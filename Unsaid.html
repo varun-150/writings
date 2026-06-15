@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unsaid — Act I | Romance & Quiet Tragedy</title>
+    <meta name="description" content="They never said everything. Adhi and Manju's shared silence across college and life.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Unsaid</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Unsaid</span>
+            <span class="header-brand-sub">Romance & Quiet Tragedy</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 1">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 1</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 2">
+                <span class="dot-label">II</span>
+                <span class="dot-tooltip">Chapter 2 · “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 2</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 3">
+                <span class="dot-label">III</span>
+                <span class="dot-tooltip">Chapter 3 · “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 3</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch4" aria-label="Chapter 4: “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 4">
+                <span class="dot-label">IV</span>
+                <span class="dot-tooltip">Chapter 4 · “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 4</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">“ THEY NEVER SAID EVERYTHING.” UNSAID : PART 1</span>
+                    <span class="sb-desc">Silence anedi sudden ga raadu. Oka chinna moment lo start avtundi, manaki teliyaku...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch2">
+                <span class="sb-num">02</span>
+                <div class="sb-info">
+                    <span class="sb-name">“ THEY NEVER SAID EVERYTHING.” UNSAID : PART 2</span>
+                    <span class="sb-desc">Second year start ayyaka time slow ga nadavatam start ayyindi. Crowd undi, noise u...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch3">
+                <span class="sb-num">03</span>
+                <div class="sb-info">
+                    <span class="sb-name">“ THEY NEVER SAID EVERYTHING.” UNSAID : PART 3</span>
+                    <span class="sb-desc">Time change ayindi ani evaru chepparu, kani Manju ki telusu—oka roju Adhi bus stop...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch4">
+                <span class="sb-num">04</span>
+                <div class="sb-info">
+                    <span class="sb-name">“ THEY NEVER SAID EVERYTHING.” UNSAID : PART 4</span>
+                    <span class="sb-desc">Time inka munduku vellipoyindi. Dates marchayi, places marchayi. Manju ki konni em...</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/UNSAID.png" alt="Unsaid — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Unsaid">Unsaid</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Romance & Quiet Tragedy</div>
+                <div class="landing-meta" id="landing-meta">They never said everything. Adhi and Manju's shared silence across college and life.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Unsaid story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 1             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="tension" data-chapter-index="0" aria-label="Chapter 1: “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 1">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">“ THEY NEVER SAID EVERYTHING.” UNSAID : PART 1</h2>
+                    <p class="chapter-synopsis">Silence anedi sudden ga raadu. Oka chinna moment lo start avtundi, manaki teliyakunda. 7th class lo, second floor cor...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="tension" data-intensity="0.45">Silence anedi sudden ga raadu. Oka chinna moment lo start avtundi, manaki teliyakunda. 7th class lo, second floor corridor lo bell aipoyina tarvata kuda class lo sound undedi— benchlu drag avvadam, water bottles, navvulu. Aa noise madhya lo Adhi last bench daggara kurchuni window bayata chusthu unnadu. Notebook open undi, pen move kaaledu. Bayata sunlight dust madhya lo break ayyi ground meeda padutundi. Manju first time chusinappudu em special anipinchaledu. Crush kaadu, curiosity kuda kaadu. Just oka face mind lo register ayyindi, enduko teliyakunda.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Roju roju ade routine. Same corridor, same bell, same lunch break chaos. Adhi matladadu, attention kosam try cheyyadu. Friends circle ledu. He walks slow, laughs takkuva, eyes ekkuva observe chestayi. Manju silent ga chustundi. Matladali ani anukoledu, plan cheyyaledu, kani chudadam matram stop cheyyaledu. Konni connections matalu lekunda grow avtayi. Just time chaalu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">8 th class start ayyaka oka roju class lo announcement vachindi—Adhi school change chesadu ani. Andariki adi normal news laaga aipoyindi. “Okay” ani next period ki vellipoyaru. Manju ki matram class lo oka blank space create ayyindi. Sound undi, kani presence ledu. Tears raaledu, reaction ledu. Just lopala oka heavy silence settle ayyindi. Once friends ni adigindi— number unda, address telusa ani. Evariki teliyaledu. Questions aagipoyayi, memory aagaledu. Introverts fight cheyyaru. They don’t protest.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.60">They just carry. Years taruvata Vijayawada. Benz Circle daggara traffic sound continuous—buses late, signals long. Inter college first year almost aipoyindi. Oka roju crowd madhya lo oka familiar shape kanipinchindi. Same height, same walk. Adhi. Manju heart okka second tight ayyindi, kani body reaction zero. “Hi.” “Hi.” Five minutes matrame matladukunnaru— notes, exams, normal stuff. Manju ki adi restart la anipinchindi. Adhi ki adi just another conversation. Life always equal ga feel cheyyadu. Adhi side lo inko story undi. 10th class lo one-side love. Hope undi, courage undi, response ledu. Tears raaledu, scenes levu. Just oka silent decision— feelings ni open cheste pain vastundi ani. Silence safe place ayyindi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">Walls build chesadu. Manju ee story eppudu telusukoledu, kani silence lo oka weight undani ardam chesindi. Konni mandi faces marchipotaru, konni mandi words marchipotaru, kani konni mandi matram evaritho silence ela feel ayyindo adi eppatiki marchiporu. Ippatiki love ledu. Confession ledu. Story kuda start kaaledu. Just oka quiet seed. Years tarvata grow avvadaniki ready ga unna seed.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 2 — “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 2             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch2" data-chapter-theme="calmness" data-chapter-index="1" aria-label="Chapter 2: “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 2">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">02</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 02</span>
+                    <h2 class="chapter-title">“ THEY NEVER SAID EVERYTHING.” UNSAID : PART 2</h2>
+                    <p class="chapter-synopsis">Second year start ayyaka time slow ga nadavatam start ayyindi. Crowd undi, noise undi, kani Manju ki world narrow aip...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.45">Second year start ayyaka time slow ga nadavatam start ayyindi. Crowd undi, noise undi, kani Manju ki world narrow aipoyindi. Adhi ni chudadam daily habit laaga aipoyindi—intentional kaadu, accidental kuda kaadu. Bus stop daggara, corridor turn lo, canteen bayata. Same silence, same distance. Oka roju evening Benz Circle daggara bus late ayyindi. Traffic hornlu continuous ga sound chestunnayi. Manju phone screen off chesi pakkana pettindi. Adhi kuda ade chesadu. Appude matalu vachayi. Planned kaadu. Forced kaadu. Simple. “Bus late kada.” “Avunu.” Anthe. Kani aa rendu lines madhya lo pressure ledu. Fear ledu. Just stillness.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Aa roju varaku Manju wait chesindi, kaani rush cheyyaledu. She wasn’t chasing a feeling; she was checking safety. Next roju friends ni adigindi—phone number, Instagram ID. Stalking kosam kaadu. Map kosam. “Ee person world lo ekkada untado telusukovali” anipinchindi. Adhi meanwhile notice cheyyaledu. He never did. Silence lo undadam alavaatu ayipoyindi. Past lo oka memory, oka decision—feelings ni lock chesukovadam—avi background lo steady ga run avtunnayi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.60">July 12 evening. Light ga wind, sky dull blue. Benz Circle daggara oka side lane lo Manju Adhi ni pilichindi. No buildup. No drama. Oka chinna folded paper ichindi. “Idi chaduvu.” Anthe. Hand shake kaadu, eye contact kuda full kaadu. She walked away. Letter lo words takkuva. Demand ledu. “I like the silence we share. I don’t know where this goes. But I wanted you to know.” Adhi aa night antha letter ni pocket lo petti, teesukoni, malli petti. Past pain gurtuku vachindi. 10th class lo unanswered hopes. Empty waits. Fear silent ga return ayyindi. Kani ee letter lo hurry ledu. Pressure ledu. Just truth.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.90">Next roju silence inkonchem heavy ayyindi. They still stood at the same bus stop. Still waited. Still didn’t talk. Kani Adhi mind lo oka shift jarigindi. “She isn’t asking me to prove anything.” ane thought slow ga settle ayyindi. Silence ni judge cheyyaledu. Demand cheyyaledu. That felt new. That felt safe. July 14 evening Adhi kuda oka paper fold chesadu. Words easy kaadu. Overthink chesadu. Kani simple ga raasadu. “I’m scared to feel again. But with you, silence feels safe.” Same place. Same wait. Same exchange. No smiles, no tears. Just acceptance.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">Aa week lo total matalu entha ante —twenty-three minutes. Count cheste funny anipistundi. Kani aa minutes lo unnecessary words levu. Noise levu. Just clarity. Day 7 lo em announce cheyyaledu. Love start ayindi ani evariki cheppaledu. They just sat closer. Shoulders almost touching. Silence ippudu empty kaadu. Shared ayyindi.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Love start ayyindi ani announce cheyyaledu. Evariki teliyaledu. Teliyalsina avasaram kuda ledu. College lo crowd same ga undi, kani Adhi–Manju madhya distance matram maripoyindi. Close kaadu, far kuda kaadu—comfortable. Canteen lo table dorakakapothe side steps daggara kurchunnaru. Adhi matladaledu, Manju questions adagalede. Phone lo music play chesindi, earphones share chesukunnaru. Words avasaram ledu. Beat lo oka calm undi. Lunch time lo veg box open chesaru. Curry simple, rice plain. Share chesukunnaru. Taste special kaadu, moment special.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.75">Hackathon ane word oka excuse laaga vachindi. Team undi, task undi, pressure undi. Kani vallaki idi oka reason. Late ga college lo undataniki, bus miss avvadam normal cheyyadaniki. Night before hackathon library lo padukunnaru —same desk, different corners. Light dim. AC sound steady. Manju table meeda book petti eyes close chesindi. Adhi chair back ki lean ayyi ceiling chusthu unnadu. Nidra raaledu. Kani rest vachindi. Morning announce ayyaka prize evariki raaledu. Crowd celebrate chestundi. Vallu bayata steps daggara kurchunnaru. No prize. No regret.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Chocolate share chesukunnaru. Navvu vachindi—sudden ga, short ga. Ade chaalu. 3 A.M. walk spontaneous ga jarigindi. Streets empty. Fog ledu, kani city sound low. Adhi slow ga nadusthu cheppadu—10th class story ni, one-side love ni, aa decision ni. Manju interrupt cheyyaledu. Advice ivvaledu. Just side by side nadichindi. Aa listening lo judgement ledu. That healed something. Hand hold jarigindi—accidental. Release cheyyaledu. Confirm cheyyaledu. Let it be.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="release" data-intensity="0.45">High tarvata low vachindi. Exams, attendance, expectations. Friends questions adigaru. “Emaindi meeku?” Silence as answer. Breaking point oka roju vachindi— small misunderstanding, reply late, mind overthink. Fight kaadu. Pause. Evening bus stop daggara same place lo kurchunnaru. Adhi cheppadu—transformation kaadu, promise kaadu, just reality. “I’m not changing overnight.” Manju nod chesindi. “I don’t need that.” Reality over fantasy settle ayyindi. Appatnunchi things loud kaaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.75">Quiet ga mature ayyayi. World elsewhere celebrate chestundi— fest, prizes, noise. Vallu matram same desk daggara padukunnaru exam gap lo. Same music. Same silence. Difference okate—ippudu silence empty kaadu. Shared.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 3 — “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 3             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch3" data-chapter-theme="calmness" data-chapter-index="2" aria-label="Chapter 3: “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 3">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">03</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 03</span>
+                    <h2 class="chapter-title">“ THEY NEVER SAID EVERYTHING.” UNSAID : PART 3</h2>
+                    <p class="chapter-synopsis">Time change ayindi ani evaru chepparu, kani Manju ki telusu—oka roju Adhi bus stop ki late ga vastunnadu, inkoka roju...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="1.00">Time change ayindi ani evaru chepparu, kani Manju ki telusu—oka roju Adhi bus stop ki late ga vastunnadu, inkoka roju raavatle kuda. Reason ledu, explanation ledu, just oka slow shift. Messages taggayi, replies chinnavi ayyayi; rude kaadu, cold kaadu, just tired. College pressure perigindi—exams, attendance, future questions, home expectations. Ee anni kalisi silence ni weight laaga marchayi. Manju observe chesindi kani adagalede, endukante vallaki silence ni force cheyyadam alavatu ledu. Mundu silence safety laaga undedi. Ippudu silence uncertainty laaga anipinchindi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.75">Oka evening canteen lo kalisaru; table same, veg box same, kani space different. Mundu shoulders almost touch ayyayi, ippudu madhya lo koncham gap undi. Earphones bag lo ne unnayi, music play kaaledu. Words ravalsina place lo calm undi, kani aa calm ippudu shared kaadu, cautious. Adhi matladaledu, Manju question adagalede. Idhi fight kaadu, breakup kaadu, drama kaadu—just rendu mandi life lo responsibilities madyalo vachayi. Sometimes silence ni protect chestundi, sometimes ade distance ni penchutundi ani Manju slow ga ardham chesukundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Bus stop daggara waiting maripoyindi. Mundu oka presence kosam wait chesaru, ippudu oka clarity kosam. Adhi phone chusthu undadu, Manju kuda notifications check cheyyadu. Same place, same time, kani mind lo different thoughts. Manju ki oka bhayam— emaina adigite balance disturb avutunda ani. Adhi ki oka doubt— nenu already too much ayyana ani. Silence madhya lo questions grow avtunnayi, kani answers ravatledu. Ee gap loud kaadu, kani deep. Almost invisible, kani heavy.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.60">Oka roju evening Adhi cheppadu, very casually—“Next semester busy untundi.” Manju nod chesindi, “Hmm.” Anthe. Aa “hmm” lo complaint ledu, demand ledu, kani acceptance undi. Manju realize ayyindi—he isn’t walking away, he’s just standing still while life runs fast. Adhi realize ayyadu—she isn’t holding him, she’s giving space even when it hurts. Love undi, kani direction clear kaadu. Sometimes love ante holding hands kaadu, letting go of expectations ani iddaru telusukunnaru.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.75">Days pass ayyayi. They still met, kani frequency taggindi. Still talked, kani depth maripoyindi. Silence ippudu empty kaadu, kani full kuda kaadu—unfinished. World bayata festivals celebrate chestundi, noise undi, lights undi. Vallu matram campus corner lo same bench meeda kurchunnaru oka sari, just oka sari. No music, no hand hold, no promises. Just oka quiet understanding—konni stories loud endings kosam raavu. Konni stories mid-way lo pause avthai, ade valla truth.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 4 — “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 4             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch4" data-chapter-theme="resolution" data-chapter-index="3" aria-label="Chapter 4: “ THEY NEVER SAID EVERYTHING.” UNSAID : PART 4">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">04</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 04</span>
+                    <h2 class="chapter-title">“ THEY NEVER SAID EVERYTHING.” UNSAID : PART 4</h2>
+                    <p class="chapter-synopsis">Time inka munduku vellipoyindi. Dates marchayi, places marchayi. Manju ki konni emotions expire avvavu ani telusu. Av...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.60">Time inka munduku vellipoyindi. Dates marchayi, places marchayi. Manju ki konni emotions expire avvavu ani telusu. Avi end kaavu, marchipovadam kuda jaragadu. Just silence lo background music la play avuthayi. Evaru vinakapoyina, aame ki vinipistune untayi. Ee realization tho ee phase start ayindi. Adhi ippudu mundu laga available kaadu. Manju kuda mundu laga expect cheyyatledu. Iddaru adjust ayyaru, compromise kaadu. Idi acceptance, choice kaadu. Life lo konni roles priority avuthayi. Konni feelings side ki jaruguthayi. Adi tappu ani evaru cheppaledu. Vallu inka kalustunnaru. Kaani mundu laga kaadu. Matladuthunnaru, kani depth thaggindi. Silence undi, kani adi safety kaadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">Ippudu silence oka habit laaga marindi. Comfort kante clarity ekkuva ayindi. Akkade distance shape tiskundi. Manju ki clarity slow ga vachindi. Adhi ninnu vadilestunnadu ani kaadu. Ninnu hold cheyyaleni stage lo unnadu. Emotions lekapovadam kaadu problem. Capacity lekapovadam problem. Aame ee nijam ni oppose cheyyaledu. Just accept chesindi. Adhi ki kuda realization vachindi. Manju nannu aapadam ledu ani ardham ayindi. Nenu munduku vellakapothe saripodu. Aame life kuda pause avuthundi. Ee bhayam loud kaadu. Kaani lopala heavy ga undi. Anduke silence perigindi. Ee phase lo fight ledu. Breakup ledu. Closure ane word kuda ledu. Just rendu mandi oka bond ni carry chestunnaru.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="1.00">Force cheyyakunda, drag cheyyakunda. Love undi, direction ledu. Ade ee stage truth. Sometimes love ante daily matladadam kaadu. Sometimes love ante pakka pakkana undadam kaadu. Sometimes love ante holding hands kaadu. Sometimes love ante expectations vadiladam. Space ivvadam. Even when it hurts. Even when it stays unsaid. Ee story lo “together” ane word ledu. “Forever” ane promise ledu. Kaani jarigina vishayam temporary kaadu. Adi vallani marchindi. Silent ga, deep ga. Life-long shape chesindi. Without announcement.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Anduke vallu anni cheppaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Cheppalsina avasaram kuda ledu.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Konni emotions explanation kosam</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">kaavu. Avi existence kosam untayi. Ee</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">story loud ending kosam raaledu. Idi</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.45">pause ayina truth.Ee silence lo vallu</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">okari ni okaru miss ayyaru ani kaadu.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Vallu okari ni okaru ardham chesaru.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">Miss avvadam easy, kani ardham</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">cheskovadam kashtam. Ee kashtanni</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">iddaru choose chesaru. Anduke</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">questions adagalede. Anduke</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">answers expect cheyyaledu. Ee stage</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">lo maturity loud ga kanipinchadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Manju ippudu emotions ni hide</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">cheyyatledu. Aame vatini overuse</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">kuda cheyyatledu. Just correct place lo</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">petti nadustondi. Ee balance</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">nerchukovadam easy kaadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Adhi kuda change ayyadu ani kaadu. He remained the same person. Kaani aa same person lo awareness perigindi. Ee awareness reactions ni control chesindi. Words kanna actions ni value cheyyadam nerchukunnadu. Presence lekapoyina absence ni respect cheyyadam alavatu ayyindi. Ee alavatu strength laaga marindi. Vallu ippudu daily matladaru. Daily matladakapoyina meaning undi. Ee meaning explanation kosam kaadu. Experience kosam untadi. Life lo konni bonds routine lo kaavu. Avi background lo silent ga travel avuthayi. Time avasaram vachinappudu matrame surface avuthayi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">EE STORY LO DRAMA LEDU. VILLAINS KUDA LERU. WRONG DECISIONS ANI LABEL CHEYYADANIKI EM LEDU. CORRECT TIMING DORAKALEDU ANTHE. TIMING NI BLAME CHEYYADAM WASTE ANI IDDARU TELUSUKUNNARU. SO VALLU LIFE NI RESIST CHEYYALEDU. FLOW LO NADICHARU. SOMETIMES HAPPINESS ANTE KALISI UNDADAM KAADU. SOMETIMES HAPPINESS ANTE OKARI HAPPINESS NI BLOCK CHEYYAKUNDA UNDADAM. EE UNDERSTANDING RARE. KAANI RARE THINGS EASY GA DORAKAVU. ANDUKE EE BOND SPECIAL. NOT BECAUSE IT SURVIVED. BUT BECAUSE IT RESPECTED REALITY. MANJU IPPUDU BACK CHUSI EDAVADU. ADHI KUDA REGRETS LO STUCK AVVADU. MEMORIES NI WEAPON GA VADARU. LESSONS GA MATRAME CHUSTARU. EE LESSONS VALLANI GENTLE GA MARCHAYI. LOUD SUCCESS KOSAM KAADU. INNER STABILITY KOSAM.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Ee story lo ending announce cheyyaledu. Endukante life lo endings announce avvavu. Avi slow ga settle avuthayi. One day sudden ga realise avutham. Something changed ani. Kaani em ani cheppalemu. Ade ee story truth. Anduke vallu anni cheppaledu. Cheppalsina avasaram kuda ledu. Konni bonds words tho kaadu. Silence tho survive avuthayi. Ee story alantide.</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Unsaid</h3>
+                    <p class="epilogue-sub">Romance & Quiet Tragedy</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

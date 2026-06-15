@@ -1,0 +1,1885 @@
+/* ============================================================
+   ABHINAYAM — CINEMATIC STORYTELLING DESIGN SYSTEM
+   A Premium Interactive Novel Experience
+   Inspired by Apple Vision Pro × A24 × Rajamouli
+   ============================================================ */
+
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+    /* ---- Void Palette ---- */
+    --void: #050504;
+    --surface: #0a0a09;
+    --surface-lift: #111110;
+    --surface-glass: rgba(10, 10, 9, 0.75);
+
+    /* ---- Default / Landing Theme ---- */
+    --bg-primary: #050504;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #15120d 0%, #050504 100%);
+    --text-hero: #f5f0e8;
+    --text-primary: #e8e0d4;
+    --text-secondary: #7a7060;
+    --text-muted: #3d362c;
+    --accent: #c9a55a;
+    --accent-bright: #e2c87a;
+    --accent-dim: #6e5a28;
+    --accent-rgb: 201, 165, 90;
+    --accent-glow: rgba(201, 165, 90, 0.15);
+    --accent-whisper: rgba(201, 165, 90, 0.04);
+
+    /* ---- Typography ---- */
+    --font-display: 'Cinzel', serif;
+    --font-body: 'Cormorant Garamond', serif;
+    --font-ui: 'Inter', system-ui, sans-serif;
+
+    /* ---- Fluid Type Scale ---- */
+    --fs-display: clamp(3.2rem, 7vw, 6.5rem);
+    --fs-chapter: clamp(2.8rem, 5.5vw, 5rem);
+    --fs-h2: clamp(1.8rem, 3vw, 2.8rem);
+    --fs-body: clamp(1.05rem, 1.15vw, 1.3rem);
+    --fs-body-lg: clamp(1.2rem, 1.4vw, 1.55rem);
+    --fs-quote: clamp(1.3rem, 1.6vw, 1.8rem);
+    --fs-ui: clamp(0.65rem, 0.7vw, 0.75rem);
+    --fs-ui-sm: clamp(0.55rem, 0.6vw, 0.65rem);
+
+    /* ---- Easing Library ---- */
+    --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-breath: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --ease-sharp: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+
+    /* ---- Spacing ---- */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 8rem;
+    --space-2xl: 12rem;
+
+    /* ---- Reading Area ---- */
+    --content-width: 720px;
+    --content-padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+/* ---- Chapter 1: Sunset / Longing ---- */
+[data-chapter-theme="sunset"] {
+    --bg-primary: #0d0806;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #1e130e 0%, #0d0806 100%);
+    --text-hero: #fceee6;
+    --text-primary: #f0ddd2;
+    --text-secondary: #a08070;
+    --text-muted: #4a3530;
+    --accent: #e07050;
+    --accent-bright: #f09878;
+    --accent-dim: #8a4030;
+    --accent-rgb: 224, 112, 80;
+    --accent-glow: rgba(224, 112, 80, 0.15);
+    --accent-whisper: rgba(224, 112, 80, 0.04);
+}
+
+/* ---- Chapter 2: Midnight / Grief ---- */
+[data-chapter-theme="midnight"] {
+    --bg-primary: #04060c;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #0c1428 0%, #04060c 100%);
+    --text-hero: #dce8f8;
+    --text-primary: #c0d0e8;
+    --text-secondary: #5a6a88;
+    --text-muted: #283040;
+    --accent: #5a6af0;
+    --accent-bright: #8090ff;
+    --accent-dim: #3a3a90;
+    --accent-rgb: 90, 106, 240;
+    --accent-glow: rgba(90, 106, 240, 0.18);
+    --accent-whisper: rgba(90, 106, 240, 0.04);
+}
+
+/* ---- Chapter 3: Cosmic / Transcendence ---- */
+[data-chapter-theme="cosmic"] {
+    --bg-primary: #06040a;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #180e28 0%, #06040a 100%);
+    --text-hero: #f0e8ff;
+    --text-primary: #ddd0f0;
+    --text-secondary: #8a70b0;
+    --text-muted: #3a2850;
+    --accent: #c080f0;
+    --accent-bright: #d8a0ff;
+    --accent-dim: #7040a0;
+    --accent-rgb: 192, 128, 240;
+    --accent-glow: rgba(192, 128, 240, 0.15);
+    --accent-whisper: rgba(192, 128, 240, 0.04);
+}
+
+/* ---- Chapter 4: Gold / Rebirth ---- */
+[data-chapter-theme="gold"] {
+    --bg-primary: #0a0804;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #221a0a 0%, #0a0804 100%);
+    --text-hero: #fef6e0;
+    --text-primary: #f0e0c0;
+    --text-secondary: #a08850;
+    --text-muted: #483c20;
+    --accent: #e8a820;
+    --accent-bright: #ffc850;
+    --accent-dim: #8a6010;
+    --accent-rgb: 232, 168, 32;
+    --accent-glow: rgba(232, 168, 32, 0.15);
+    --accent-whisper: rgba(232, 168, 32, 0.04);
+}
+
+/* ---- Chapter 5: Lavender / Mystery ---- */
+[data-chapter-theme="lavender"] {
+    --bg-primary: #060608;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #141220 0%, #060608 100%);
+    --text-hero: #f0f0ff;
+    --text-primary: #d8d0e8;
+    --text-secondary: #8080a8;
+    --text-muted: #38384a;
+    --accent: #a888e0;
+    --accent-bright: #c8a8ff;
+    --accent-dim: #6a5090;
+    --accent-rgb: 168, 136, 224;
+    --accent-glow: rgba(168, 136, 224, 0.15);
+    --accent-whisper: rgba(168, 136, 224, 0.04);
+}
+
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: auto; /* Lenis handles this */
+    background-color: var(--void);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar { display: none; }
+
+body {
+    background: var(--bg-gradient);
+    background-color: var(--bg-primary);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: 1.9;
+    overflow-x: hidden;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background 1.8s var(--ease-breath),
+                color 1.2s ease;
+    position: relative;
+}
+
+
+/* ============================================================
+   3. FILM GRAIN OVERLAY
+   ============================================================ */
+.film-grain {
+    position: fixed;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.018;
+    pointer-events: none;
+    z-index: 9000;
+    animation: grain 0.8s steps(2) infinite;
+}
+
+@keyframes grain {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-1%, 2%); }
+    50%  { transform: translate(2%, -1%); }
+    75%  { transform: translate(-2%, 1%); }
+    100% { transform: translate(1%, -2%); }
+}
+
+/* ============================================================
+   4. VIGNETTE OVERLAY
+   ============================================================ */
+.vignette-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 70% 65% at 50% 50%,
+        transparent 30%,
+        rgba(0, 0, 0, 0.55) 100%
+    );
+    pointer-events: none;
+    z-index: 8999;
+}
+
+
+/* ============================================================
+   5. PRELOADER
+   ============================================================ */
+.preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #030302;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transition: opacity 1.2s var(--ease-cinematic),
+                visibility 0s linear 1.2s;
+}
+
+.preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    color: var(--accent);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: preloaderFadeIn 2s 0.3s var(--ease-cinematic) forwards;
+}
+
+.preloader-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
+    opacity: 0;
+    animation: preloaderFadeIn 2s 0.6s var(--ease-cinematic) forwards;
+}
+
+.preloader-sub {
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui-sm);
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: preloaderFadeIn 2s 0.9s var(--ease-cinematic) forwards;
+}
+
+@keyframes preloaderFadeIn {
+    to { opacity: 1; }
+}
+
+
+/* ============================================================
+   6. PARTICLE CANVAS
+   ============================================================ */
+#particle-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+    transition: opacity 2s ease;
+}
+
+
+/* ============================================================
+   7. CURSOR GLOW
+   ============================================================ */
+.cursor-glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(var(--accent-rgb), 0.05) 0%,
+        rgba(var(--accent-rgb), 0) 70%);
+    pointer-events: none;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    transition: background 1.8s ease;
+    mix-blend-mode: screen;
+    will-change: left, top;
+}
+
+
+/* ============================================================
+   8. PROGRESS BAR
+   ============================================================ */
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-dim), var(--accent), var(--accent-bright));
+    z-index: 9500;
+    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5),
+                0 0 3px var(--accent);
+    transition: width 0.08s linear,
+                background 1.8s ease,
+                box-shadow 1.8s ease;
+}
+
+
+/* ============================================================
+   9. GLASSMORPHIC HEADER
+   ============================================================ */
+.glass-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    padding: 1.4rem 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(5, 5, 4, 0.6);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.8s var(--ease-cinematic),
+                transform 0.8s var(--ease-cinematic),
+                background 1.5s ease;
+    will-change: transform, opacity;
+}
+
+.glass-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.header-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    cursor: default;
+}
+
+.header-brand-name {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--text-hero);
+    text-transform: uppercase;
+    transition: color 1s ease;
+}
+
+.header-brand-sub {
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui-sm);
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+    text-transform: uppercase;
+    transition: color 1s ease;
+}
+
+/* Chapter Navigation Dots */
+.chapter-dots {
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+}
+
+.chapter-dot {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color 0.4s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.chapter-dot::before {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    transition: all 0.5s var(--ease-cinematic);
+}
+
+.chapter-dot .dot-label {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.5s var(--ease-cinematic);
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.chapter-dot:hover::before,
+.chapter-dot.active::before {
+    transform: scale(0);
+    opacity: 0;
+}
+
+.chapter-dot:hover .dot-label,
+.chapter-dot.active .dot-label {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.chapter-dot.active {
+    color: var(--accent);
+}
+
+/* Tooltip */
+.chapter-dot .dot-tooltip {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: rgba(10, 10, 9, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+    padding: 0.45rem 0.9rem;
+    border-radius: 6px;
+    font-size: var(--fs-ui-sm);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    color: var(--text-secondary);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s var(--ease-cinematic);
+}
+
+.chapter-dot:hover .dot-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Header Controls */
+.header-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.control-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s var(--ease-cinematic);
+    position: relative;
+}
+
+.control-btn:hover {
+    color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.06);
+    border-color: rgba(var(--accent-rgb), 0.2);
+}
+
+.control-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.control-btn .icon-hidden { display: none; }
+
+/* Audio Waves */
+.audio-waves {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+    width: 16px;
+}
+
+.audio-waves span {
+    display: block;
+    width: 2px;
+    background-color: currentColor;
+    border-radius: 1px;
+    height: 20%;
+    transition: height 0.15s ease;
+}
+
+.audio-waves.playing span {
+    animation: audioWave 1s ease infinite alternate;
+}
+.audio-waves.playing span:nth-child(1) { animation-delay: 0s; }
+.audio-waves.playing span:nth-child(2) { animation-delay: 0.3s; }
+.audio-waves.playing span:nth-child(3) { animation-delay: 0.15s; }
+.audio-waves.playing span:nth-child(4) { animation-delay: 0.5s; }
+
+@keyframes audioWave {
+    0%   { height: 15%; }
+    100% { height: 100%; }
+}
+
+
+/* ============================================================
+   10. SIDEBAR CHAPTER NAVIGATION
+   ============================================================ */
+.sidebar-nav {
+    position: fixed;
+    right: 2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 400;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s var(--ease-cinematic),
+                transform 1s var(--ease-cinematic);
+}
+
+.sidebar-nav.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(-50%) translateX(0);
+}
+
+.sidebar-label {
+    font-family: var(--font-ui);
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    color: var(--accent-dim);
+    writing-mode: vertical-lr;
+    text-transform: uppercase;
+    align-self: center;
+    margin-bottom: var(--space-sm);
+    transition: color 1s ease;
+}
+
+.sidebar-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--text-muted);
+    opacity: 0.5;
+    transition: all 0.4s var(--ease-cinematic);
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+}
+
+.sidebar-item .sb-num {
+    font-family: var(--font-ui);
+    font-size: 0.7rem;
+    font-weight: 500;
+    min-width: 1.4rem;
+    text-align: right;
+    transition: color 0.4s ease;
+}
+
+.sidebar-item .sb-info {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    transition: max-width 0.5s var(--ease-cinematic),
+                opacity 0.5s ease;
+    opacity: 0;
+}
+
+.sidebar-item .sb-name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--text-hero);
+    letter-spacing: 0.05em;
+}
+
+.sidebar-item .sb-desc {
+    font-family: var(--font-ui);
+    font-size: 0.5rem;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    transition: color 1s ease;
+}
+
+.sidebar-item:hover,
+.sidebar-item.active {
+    opacity: 1;
+}
+
+.sidebar-item:hover .sb-info,
+.sidebar-item.active .sb-info {
+    max-width: 250px;
+    opacity: 1;
+}
+
+.sidebar-item.active .sb-num {
+    color: var(--accent);
+}
+
+
+/* ============================================================
+   11. LANDING SECTION
+   ============================================================ */
+.landing-section {
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem var(--content-padding) 4rem;
+    z-index: 10;
+    overflow: hidden;
+    transition: opacity 1.5s var(--ease-cinematic),
+                transform 1.5s var(--ease-cinematic);
+}
+
+.landing-section.exiting {
+    opacity: 0;
+    transform: scale(1.03);
+    pointer-events: none;
+}
+
+/* Ambient warm glow behind cover */
+.landing-ambient {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    max-width: 700px;
+    max-height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(var(--accent-rgb), 0.06) 0%,
+        rgba(var(--accent-rgb), 0.015) 40%,
+        transparent 70%);
+    pointer-events: none;
+    animation: ambientPulse 6s var(--ease-breath) infinite;
+    z-index: 1;
+}
+
+@keyframes ambientPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50%      { transform: translate(-50%, -50%) scale(1.15); opacity: 0.6; }
+}
+
+.landing-content {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+    z-index: 5;
+}
+
+/* ---- 3D Book Cover ---- */
+.cover-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+}
+
+.cover-3d {
+    position: relative;
+    width: clamp(220px, 22vw, 340px);
+    aspect-ratio: 2 / 3;
+    border-radius: 6px;
+    transform-style: preserve-3d;
+    transform: rotateY(-6deg) rotateX(4deg);
+    transition: transform 0.8s var(--ease-smooth);
+    overflow: hidden;
+    box-shadow:
+        0 50px 80px rgba(0, 0, 0, 0.7),
+        0 20px 30px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(var(--accent-rgb), 0.08),
+        0 0 50px rgba(var(--accent-rgb), 0.03);
+}
+
+.cover-3d:hover {
+    transform: rotateY(4deg) rotateX(-3deg) scale(1.03);
+    box-shadow:
+        0 60px 100px rgba(0, 0, 0, 0.8),
+        0 25px 40px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(var(--accent-rgb), 0.15),
+        0 0 70px rgba(var(--accent-rgb), 0.06);
+}
+
+.cover-3d img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) contrast(1.1);
+    transition: filter 0.8s ease, transform 1s var(--ease-smooth);
+}
+
+.cover-3d:hover img {
+    filter: brightness(0.95) contrast(1.12);
+    transform: scale(1.04);
+}
+
+/* Light-leak shimmer */
+.cover-sheen {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg,
+        rgba(255,255,255,0) 30%,
+        rgba(255,255,255,0.05) 44%,
+        rgba(255,255,255,0.12) 50%,
+        rgba(255,255,255,0.05) 56%,
+        rgba(255,255,255,0) 70%);
+    background-size: 200% 100%;
+    background-position: -100% 0;
+    pointer-events: none;
+    transition: background-position 0.7s;
+    z-index: 2;
+}
+
+.cover-3d:hover .cover-sheen {
+    background-position: 100% 0;
+}
+
+/* Inner border */
+.cover-3d::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* ---- Landing Typography ---- */
+.landing-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.landing-tag {
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+}
+
+.landing-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-display);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.8rem;
+    /* Gold gradient text */
+    background: linear-gradient(175deg,
+        var(--accent-bright) 0%,
+        var(--accent) 40%,
+        var(--accent-dim) 70%,
+        var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    opacity: 0;
+}
+
+/* Title shimmer sweep */
+.landing-title::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg,
+        transparent 38%,
+        rgba(255,255,255,0.12) 50%,
+        transparent 62%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmerSweep 6s ease-in-out 3s infinite;
+}
+
+@keyframes shimmerSweep {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+.landing-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1.15rem, 2vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0;
+}
+
+.landing-meta {
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    opacity: 0;
+}
+
+/* Begin CTA */
+.begin-btn {
+    background: rgba(var(--accent-rgb), 0.04);
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    color: var(--text-secondary);
+    padding: 1.15rem 3rem;
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.6s var(--ease-cinematic);
+    opacity: 0;
+}
+
+.begin-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg,
+        transparent 30%,
+        rgba(var(--accent-rgb), 0.2) 50%,
+        transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.7s var(--ease-cinematic);
+}
+
+.begin-btn:hover {
+    border-color: rgba(var(--accent-rgb), 0.6);
+    color: var(--accent);
+    box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.1),
+                0 10px 30px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.36em;
+    transform: translateY(-2px);
+}
+
+.begin-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.begin-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.begin-btn .btn-arrow {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.5s var(--ease-cinematic);
+    position: relative;
+    z-index: 1;
+    color: var(--accent);
+}
+
+.begin-btn:hover .btn-arrow {
+    transform: translateX(5px);
+}
+
+/* Scroll Hint */
+.scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-ui);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    opacity: 0;
+    z-index: 5;
+}
+
+.scroll-hint-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(180deg, var(--accent-dim) 0%, transparent 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-hint-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: var(--accent);
+    animation: scrollHintPulse 2.5s var(--ease-sharp) infinite;
+}
+
+@keyframes scrollHintPulse {
+    0%   { transform: translateY(-100%); opacity: 0; }
+    30%  { opacity: 1; }
+    100% { transform: translateY(400%); opacity: 0; }
+}
+
+
+/* ============================================================
+   12. STORY WRAPPER
+   ============================================================ */
+.story-wrapper {
+    position: relative;
+    z-index: 10;
+    display: none;
+}
+
+.story-wrapper.active {
+    display: block;
+}
+
+
+/* ============================================================
+   13. CHAPTER SECTIONS
+   ============================================================ */
+.chapter-section {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ---- Chapter Intro Panel (Fullscreen, Pinned) ---- */
+.chapter-intro {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+}
+
+/* Atmospheric gradient background per chapter */
+.chapter-intro::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 60% 50% at 50% 50%,
+        rgba(var(--accent-rgb), 0.03) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.chapter-intro-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 850px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Giant watermark number behind */
+.chapter-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%) scale(1);
+    font-family: var(--font-display);
+    font-size: clamp(14rem, 28vw, 35rem);
+    font-weight: 700;
+    color: rgba(var(--accent-rgb), 0.025);
+    z-index: 0;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+    transition: color 1.5s ease;
+}
+
+.chapter-num-label {
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    font-weight: 400;
+    letter-spacing: 0.6em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    transition: color 1s ease;
+}
+
+/* Flanking decorative lines */
+.chapter-num-label::before,
+.chapter-num-label::after {
+    content: '';
+    display: inline-block;
+    width: 36px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-dim));
+    transition: background 1s ease;
+}
+
+.chapter-num-label::after {
+    background: linear-gradient(90deg, var(--accent-dim), transparent);
+}
+
+.chapter-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-chapter);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.15;
+    /* Gold gradient */
+    background: linear-gradient(175deg,
+        var(--accent-bright) 0%,
+        var(--accent) 45%,
+        rgba(var(--accent-rgb), 0.5) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 2rem;
+    transition: all 1s ease;
+}
+
+/* Decorative dash under title */
+.chapter-title::after {
+    content: '—';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    color: var(--accent-dim);
+    -webkit-text-fill-color: var(--accent-dim);
+    letter-spacing: 0.4em;
+    opacity: 0.5;
+}
+
+.chapter-synopsis {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 48ch;
+    font-style: italic;
+    margin-bottom: 3rem;
+    transition: color 1s ease;
+}
+
+.chapter-scroll-cue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-ui);
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.chapter-scroll-cue .cue-line {
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(180deg, var(--accent-dim) 0%, transparent 100%);
+}
+
+
+/* ============================================================
+   14. CHAPTER BODY / READING AREA
+   ============================================================ */
+.chapter-body {
+    max-width: var(--content-width);
+    margin: 0 auto;
+    padding: 12vh var(--content-padding) 20vh;
+    position: relative;
+    z-index: 5;
+}
+
+
+/* ============================================================
+   15. CONTENT BLOCKS
+   ============================================================ */
+.content-block {
+    margin-bottom: 5rem;
+    opacity: 0;
+    will-change: opacity, transform;
+}
+
+/* ---- Narrative Paragraphs ---- */
+.story-p {
+    font-family: var(--font-body);
+    font-size: var(--fs-body);
+    line-height: 2;
+    color: var(--text-primary);
+    text-align: justify;
+    text-justify: inter-word;
+    letter-spacing: 0.015em;
+    font-weight: 400;
+    transition: color 1s ease;
+}
+
+/* Premium Drop Cap */
+.story-p.first-para::first-letter {
+    font-family: var(--font-display);
+    font-size: 4.5em;
+    font-weight: 600;
+    color: var(--accent);
+    float: left;
+    line-height: 0.7;
+    margin-right: 0.12em;
+    margin-top: 0.1em;
+    transition: color 1s ease;
+}
+
+/* ---- Dialogue Blocks ---- */
+.dialogue-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    margin: 5rem auto;
+    max-width: 620px;
+    padding-left: 1.8rem;
+    border-left: 1px solid rgba(var(--accent-rgb), 0.12);
+    position: relative;
+    transition: border-color 1.5s ease;
+}
+
+/* Subtle glow on the left border */
+.dialogue-block::before {
+    content: '';
+    position: absolute;
+    left: -1px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(var(--accent-rgb), 0.15) 30%,
+        rgba(var(--accent-rgb), 0.15) 70%,
+        transparent 100%);
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.dialogue-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.speaker-label {
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui-sm);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    transition: color 1s ease;
+}
+
+.dialogue-text {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    line-height: 1.75;
+    font-style: italic;
+    color: var(--text-primary);
+    transition: color 1s ease;
+}
+
+/* ---- Blockquote / Pullquote ---- */
+.quote-block {
+    margin: 7rem auto;
+    max-width: 640px;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.quote-block blockquote {
+    font-family: var(--font-body);
+    font-size: var(--fs-quote);
+    line-height: 1.85;
+    color: var(--text-hero);
+    text-align: center;
+    font-style: italic;
+    font-weight: 400;
+    position: relative;
+    z-index: 2;
+    transition: color 1s ease;
+}
+
+/* Ambient glow behind quote */
+.quote-block::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    background: radial-gradient(ellipse,
+        rgba(var(--accent-rgb), 0.04) 0%,
+        transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    transition: background 1.5s ease;
+}
+
+.quote-mark {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    color: rgba(var(--accent-rgb), 0.06);
+    position: absolute;
+    line-height: 1;
+    z-index: 1;
+    user-select: none;
+    transition: color 1.5s ease;
+}
+
+.quote-mark.open {
+    top: -1rem;
+    left: -0.5rem;
+}
+
+.quote-mark.close {
+    bottom: -2.5rem;
+    right: -0.5rem;
+}
+
+/* ---- Special Reveal / Lone Thought ---- */
+.special-reveal {
+    margin: 8rem auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    min-height: 40vh;
+    align-items: center;
+    position: relative;
+}
+
+.lone-thought {
+    font-family: var(--font-body);
+    font-size: var(--fs-body-lg);
+    line-height: 2.2;
+    color: var(--text-hero);
+    max-width: 36ch;
+    transition: color 1s ease;
+}
+
+.lone-thought p {
+    margin-bottom: 1.5rem;
+}
+
+.lone-thought .thought-dim {
+    font-size: var(--fs-body);
+    color: var(--text-secondary);
+    opacity: 0.8;
+    transition: color 1s ease;
+}
+
+/* Word reveal container */
+.word-reveal {
+    display: inline;
+}
+
+.word-reveal .word {
+    display: inline-block;
+    opacity: 0.08;
+    transition: opacity 0.1s ease;
+    margin-right: 0.25em;
+}
+
+.word-reveal .word.visible {
+    opacity: 1;
+}
+
+
+/* ============================================================
+   16. SCENE SEPARATORS
+   ============================================================ */
+.scene-separator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6rem 0 2rem;
+    opacity: 0;
+}
+
+.separator-line {
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.2));
+    transition: background 1s ease;
+}
+
+.separator-line:last-child {
+    background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.2), transparent);
+}
+
+.separator-diamond {
+    width: 6px;
+    height: 6px;
+    background: rgba(var(--accent-rgb), 0.3);
+    transform: rotate(45deg);
+    margin: 0 0.8rem;
+    transition: background 1s ease;
+}
+
+
+/* ============================================================
+   17. STORY EPILOGUE
+   ============================================================ */
+.story-epilogue {
+    margin: 12vh 0 6vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 var(--content-padding);
+}
+
+.epilogue-ornament {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 2.5rem;
+    animation: rotateOrn 20s linear infinite;
+    transition: color 1s ease;
+}
+
+@keyframes rotateOrn {
+    to { transform: rotate(360deg); }
+}
+
+.epilogue-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    background: linear-gradient(175deg,
+        var(--accent-bright) 0%,
+        var(--accent) 50%,
+        var(--accent-dim) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.epilogue-sub {
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    transition: color 1s ease;
+}
+
+.epilogue-divider {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.3), transparent);
+    margin-bottom: 3rem;
+}
+
+.replay-btn {
+    background: none;
+    border: 1px solid rgba(var(--accent-rgb), 0.2);
+    color: var(--text-secondary);
+    padding: 1rem 2.5rem;
+    font-family: var(--font-ui);
+    font-size: var(--fs-ui);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.5s var(--ease-cinematic);
+    position: relative;
+    overflow: hidden;
+}
+
+.replay-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg,
+        transparent 30%,
+        rgba(var(--accent-rgb), 0.15) 50%,
+        transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.7s var(--ease-cinematic);
+}
+
+.replay-btn:hover {
+    border-color: rgba(var(--accent-rgb), 0.5);
+    color: var(--accent);
+    box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.08);
+    transform: translateY(-2px);
+}
+
+.replay-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.replay-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ============================================================
+   18. FOCUS MODE
+   ============================================================ */
+body.focus-active .glass-header {
+    opacity: 0;
+    transform: translateY(-100%);
+    pointer-events: none;
+}
+
+body.focus-active .glass-header.focus-peek {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+body.focus-active .sidebar-nav {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.focus-active #progress-bar {
+    opacity: 0.25;
+    height: 1px;
+}
+
+body.focus-active .chapter-body {
+    max-width: 640px;
+}
+
+body.focus-active .story-p {
+    font-size: calc(var(--fs-body) * 1.08);
+    line-height: 2.15;
+}
+
+/* Focus mode indicator */
+.focus-indicator {
+    position: fixed;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: rgba(10, 10, 9, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(16px);
+    padding: 0.5rem 1.4rem;
+    border-radius: 100px;
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 9600;
+    transition: all 0.5s var(--ease-cinematic);
+}
+
+body.focus-active .focus-indicator {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+/* ============================================================
+   19. RESPONSIVE DESIGN
+   ============================================================ */
+@media (max-width: 1024px) {
+    .glass-header {
+        padding: 1.2rem 2rem;
+    }
+
+    .landing-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .landing-text {
+        align-items: center;
+    }
+
+    .sidebar-nav {
+        display: none;
+    }
+
+    .chapter-body {
+        max-width: 600px;
+    }
+
+    .story-p {
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    .glass-header {
+        padding: 1rem 1.25rem;
+    }
+
+    .chapter-dots {
+        display: none;
+    }
+
+    .header-controls {
+        gap: 0.6rem;
+    }
+
+    .cover-3d {
+        width: clamp(180px, 50vw, 260px);
+    }
+
+    .landing-content {
+        gap: 2rem;
+    }
+
+    .begin-btn {
+        padding: 1rem 2rem;
+        letter-spacing: 0.2em;
+    }
+
+    .chapter-intro {
+        padding: 1.5rem;
+    }
+
+    .chapter-body {
+        padding: 8vh 1.25rem 14vh;
+    }
+
+    .content-block {
+        margin-bottom: 3.5rem;
+    }
+
+    .dialogue-block {
+        margin: 3.5rem auto;
+        padding-left: 1.2rem;
+    }
+
+    .quote-block {
+        margin: 4.5rem auto;
+    }
+
+    .special-reveal {
+        margin: 5rem auto;
+        min-height: 30vh;
+    }
+
+    .scene-separator {
+        margin: 4rem 0 1.5rem;
+    }
+
+    .chapter-watermark {
+        font-size: clamp(8rem, 40vw, 14rem);
+    }
+
+    .cursor-glow {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .landing-tag {
+        font-size: 0.6rem;
+        letter-spacing: 0.25em;
+    }
+
+    .begin-btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.6rem;
+    }
+}
+
+
+/* ============================================================
+   20. REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.2s !important;
+    }
+
+    .film-grain { display: none; }
+
+    .content-block {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+    }
+
+    .chapter-watermark { opacity: 0 !important; }
+
+    #particle-canvas { display: none; }
+
+    .scroll-hint-line::after { animation: none; }
+}
+
+
+/* ============================================================
+   21. SELECTION STYLING
+   ============================================================ */
+::selection {
+    background: rgba(var(--accent-rgb), 0.25);
+    color: var(--text-hero);
+}
+
+::-moz-selection {
+    background: rgba(var(--accent-rgb), 0.25);
+    color: var(--text-hero);
+}
+
+
+/* ============================================================
+   CUSTOM EMOTION THEMES FOR ALL STORIES
+   ============================================================ */
+
+[data-chapter-theme="calmness"] {
+    --bg-primary: #04080a;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #0a1b24 0%, #04080a 100%);
+    --text-hero: #e6f3fa;
+    --text-primary: #d2e7f0;
+    --text-secondary: #709ab0;
+    --text-muted: #304e5e;
+    --accent: #50b3e0;
+    --accent-bright: #78cff0;
+    --accent-dim: #306f8a;
+    --accent-rgb: 80, 179, 224;
+    --accent-glow: rgba(80, 179, 224, 0.15);
+    --accent-whisper: rgba(80, 179, 224, 0.04);
+}
+
+[data-chapter-theme="romance"] {
+    --bg-primary: #0d060a;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #240c1a 0%, #0d060a 100%);
+    --text-hero: #fae6f2;
+    --text-primary: #f0d2e5;
+    --text-secondary: #b07095;
+    --text-muted: #5e304f;
+    --accent: #e050a6;
+    --accent-bright: #f078c2;
+    --accent-dim: #8a3064;
+    --accent-rgb: 224, 80, 166;
+    --accent-glow: rgba(224, 80, 166, 0.15);
+    --accent-whisper: rgba(224, 80, 166, 0.04);
+}
+
+[data-chapter-theme="tension"] {
+    --bg-primary: #0a0404;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #240a0a 0%, #0a0404 100%);
+    --text-hero: #fae6e6;
+    --text-primary: #f0d2d2;
+    --text-secondary: #b07070;
+    --text-muted: #5e3030;
+    --accent: #e05050;
+    --accent-bright: #f07878;
+    --accent-dim: #8a3030;
+    --accent-rgb: 224, 80, 80;
+    --accent-glow: rgba(224, 80, 80, 0.18);
+    --accent-whisper: rgba(224, 80, 80, 0.04);
+}
+
+[data-chapter-theme="fear"] {
+    --bg-primary: #050506;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #101014 0%, #050506 100%);
+    --text-hero: #e8e8ea;
+    --text-primary: #d4d4d8;
+    --text-secondary: #787880;
+    --text-muted: #3d3d44;
+    --accent: #90909c;
+    --accent-bright: #b0b0bc;
+    --accent-dim: #50505c;
+    --accent-rgb: 144, 144, 156;
+    --accent-glow: rgba(144, 144, 156, 0.15);
+    --accent-whisper: rgba(144, 144, 156, 0.04);
+}
+
+[data-chapter-theme="sadness"] {
+    --bg-primary: #06090e;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #0f1624 0%, #06090e 100%);
+    --text-hero: #e6ecfa;
+    --text-primary: #d2dbf0;
+    --text-secondary: #7084b0;
+    --text-muted: #303d5e;
+    --accent: #5078e0;
+    --accent-bright: #789cf0;
+    --accent-dim: #304b8a;
+    --accent-rgb: 80, 120, 224;
+    --accent-glow: rgba(80, 120, 224, 0.15);
+    --accent-whisper: rgba(80, 120, 224, 0.04);
+}
+
+[data-chapter-theme="instability"] {
+    --bg-primary: #0a0a04;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #24240a 0%, #0a0a04 100%);
+    --text-hero: #fafae6;
+    --text-primary: #f0f0d2;
+    --text-secondary: #b0b070;
+    --text-muted: #5e5e30;
+    --accent: #e0e050;
+    --accent-bright: #f0f078;
+    --accent-dim: #8a8a30;
+    --accent-rgb: 224, 224, 80;
+    --accent-glow: rgba(224, 224, 80, 0.15);
+    --accent-whisper: rgba(224, 224, 80, 0.04);
+}
+
+[data-chapter-theme="violence"] {
+    --bg-primary: #060000;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #1f0202 0%, #060000 100%);
+    --text-hero: #fae0e0;
+    --text-primary: #f0c8c8;
+    --text-secondary: #b06060;
+    --text-muted: #5e2828;
+    --accent: #e03030;
+    --accent-bright: #f05858;
+    --accent-dim: #8a1c1c;
+    --accent-rgb: 224, 48, 48;
+    --accent-glow: rgba(224, 48, 48, 0.22);
+    --accent-whisper: rgba(224, 48, 48, 0.04);
+}
+
+[data-chapter-theme="curiosity"] {
+    --bg-primary: #040a08;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #0c241d 0%, #040a08 100%);
+    --text-hero: #e6faf4;
+    --text-primary: #d2f0e7;
+    --text-secondary: #70b09d;
+    --text-muted: #305e52;
+    --accent: #50e0b3;
+    --accent-bright: #78f0cb;
+    --accent-dim: #308a6e;
+    --accent-rgb: 80, 224, 179;
+    --accent-glow: rgba(80, 224, 179, 0.15);
+    --accent-whisper: rgba(80, 224, 179, 0.04);
+}
+
+[data-chapter-theme="release"] {
+    --bg-primary: #06080a;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #121c24 0%, #06080a 100%);
+    --text-hero: #e8ecf0;
+    --text-primary: #d4dbe0;
+    --text-secondary: #788690;
+    --text-muted: #3d4950;
+    --accent: #8ba2b0;
+    --accent-bright: #aac0cc;
+    --accent-dim: #5c6f7c;
+    --accent-rgb: 139, 162, 176;
+    --accent-glow: rgba(139, 162, 176, 0.15);
+    --accent-whisper: rgba(139, 162, 176, 0.04);
+}
+
+[data-chapter-theme="resolution"] {
+    --bg-primary: #050504;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #15120d 0%, #050504 100%);
+    --text-hero: #f5f0e8;
+    --text-primary: #e8e0d4;
+    --text-secondary: #7a7060;
+    --text-muted: #3d362c;
+    --accent: #c9a55a;
+    --accent-bright: #e2c87a;
+    --accent-dim: #6e5a28;
+    --accent-rgb: 201, 165, 90;
+    --accent-glow: rgba(201, 165, 90, 0.15);
+    --accent-whisper: rgba(201, 165, 90, 0.04);
+}
+
+[data-chapter-theme="isolation"] {
+    --bg-primary: #040405;
+    --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #0c0d12 0%, #040405 100%);
+    --text-hero: #e2e2e6;
+    --text-primary: #ccccd2;
+    --text-secondary: #666670;
+    --text-muted: #33333b;
+    --accent: #88889c;
+    --accent-bright: #aaaaac;
+    --accent-dim: #44445c;
+    --accent-rgb: 136, 136, 156;
+    --accent-glow: rgba(136, 136, 156, 0.12);
+    --accent-whisper: rgba(136, 136, 156, 0.04);
+}

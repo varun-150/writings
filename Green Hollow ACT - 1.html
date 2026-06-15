@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Hollow — Act I | Mystery & Tension</title>
+    <meta name="description" content="Act 1. A descent into a quiet town plagued by ancient curses, hidden intentions, and fog.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Green Hollow</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Green Hollow</span>
+            <span class="header-brand-sub">Mystery & Tension</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Introduction">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Introduction</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Introduction</span>
+                    <span class="sb-desc">It rained prior to 12 am. Not heavy rain. Just enough to add a tired look to the c...</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Green Hollow ACT - 1.png" alt="Green Hollow — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Green Hollow">Green Hollow</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Mystery & Tension</div>
+                <div class="landing-meta" id="landing-meta">Act 1. A descent into a quiet town plagued by ancient curses, hidden intentions, and fog.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Green Hollow story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Introduction             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0" aria-label="Chapter 1: Introduction">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Introduction</h2>
+                    <p class="chapter-synopsis">It rained prior to 12 am. Not heavy rain. Just enough to add a tired look to the city. The street lights were on in t...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="sadness" data-intensity="0.45">It rained prior to 12 am. Not heavy rain. Just enough to add a tired look to the city. The street lights were on in the streets, which were as if broken up gold. The vehicles were moving at a low speed through the vehicles. The people ran, their heads down. No one wanted the cold weather to last longer than it had to. Ratnadev was seated close to the window of the café. In front of him there was a cup of tea. Now it didn't puff out steam any more.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.45">As it became colder, he preferred tea. The café was noisy. Not loud. Just human. On the other side there was a young couple sitting by the table. The little girl was chattering and chattering. The boy was nodding frequently, about every few seconds. This was a very straightforward question to Ratnadev. The boy looked at his phone every 40 seconds.The boy's phone was visible to him every 40 seconds. Every time she was going to say a serious sentence, the girl would smile. They both didn't say a word.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">It was more dreadful to be silent than to be wrong.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">A servant was walking slowly towards Ratnadev.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.45">Oh! My tea is cold now, Mr. Sir.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">He looked into Ratnadev's eyes. Not aggressively. However, not as long as humans, though. The first words out of the mouth of the waiter were "hello". Then uncomfortable. Then nervous. Only when he saw the change, did Ratnadev speak. People are uncomfortable when they're being honest," he said softly. The waiter laughed but, did not understand. The waiters switched over to breaking news on the café television.Suddenly, the news coverage was on the TV in the café. A body of a woman who died was found near the old railway bridge. No witnesses. No robbery. No clear reason. There's one weird thing about it. A green broken glass was stuck on her face. There was dead silence in the café.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">Only three seconds. In three seconds, I was completely blown away. A female abstainer of coffee half way. A man picked up his cell phone in no time. The young couple approached each other closer. As he was watching Ratnadev kept his silence. Not the murder. The reactions. He was more interested in that at all times. His phone vibrated. Detective Arjun. Before answering, Ratnadev looked at the screen. It rained through the glass of the outside café. Like veins. It's getting tired, Arjun," said Ratnadev. "I need your help." For a split second Ratnadev shut down his eyes. Fear was involved. It was always easier to understand people when they were afraid. He smiled. This smile wasn't a person's.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The stink of wet iron and mud came from the railway bridge. The police's lights were dazzled on the puddles. Representatives were barricaded behind yelling out. Ratnadev didn't like to see the loud voice at the scene of crime. Individuals downplayed their fear with sound.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">With arms raised, Detective Arjun was nearby whose body was strewn out. There were dark circles underneath his eyes.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">You did arrive promptly Arjun," said a voice.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">AUTHOR'S REVISIONS: I said, "I HAD FEARS.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">The comment fell on deaf ears to Arjun. The body of the deceased was found next to a cement wall.The body was discovered next to the cement wall. I wore a white dress and had green bottle glass fragments down on my face. Not randomly. Carefully. The man's body was located, and Ratnadev was seated next to it. Slowly he rolled his eyes.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">No rushed breathing. No emotional reaction. No disgust.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Only observation.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Close to the body white chalk had been used to write the hieroglyphics.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Fear + Isolation = Honesty</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Arjun sighed. Some ‘psycho' who wants to be ‘knowledgeable'.” Ratnadev nodded his head slightly. No," he whispered. This single person is sure. The interviewees were talking on the site, one of whom was nervous and was even sitting in a police jeep on the adjacent property. Young man. Sweating heavily. Avoiding eye contact. Arjun came closer to him, with an aggressive step. Describe to us what you saw. The witness hurried to shake his head in bewilderment. With one hand Ratnadev halted Arjun. He then sat, watchfully by the witness. No pressure. No shouting. "You smoke?" Ratnadev asked softly. The witness blinked. Confused. "W what?" The black smoke must be fragrancing your fingers?</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.75">The witness turned his head slowly to the right saying "yes. When do you feel so panic stricken that you will smoke? Another nod. The man's fingers were burnt several times, Ratnadev took a closer look. Wracked with fear, standing in his shaken leg. You have already encountered the body before when you called for the Police, Ratnadev said. The witness froze. Arjun looked surprised. "How do you know?" But Ratnadev kept on staring at the witness. He indicated that the police had arrived, and that he had heard that fear had taken over. Now he has begun to be afraid of "judgment, not the body. The witness dropped down his head. He softly told her, "I touched the bottle's glass. He wanted to make sure that she was alive. His eyes never flickered from Ratnadev, but Arjun remained silent. Just gestured, and – mutter of a good day, dev stood up. There was one more thing that he had noticed. The pieces of a broken bottle bounced light back to the police. Courageous green reflections, dancing over the dead woman's face, like broken memories. Beautiful. Disturbingly beautiful.</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Green Hollow</h3>
+                    <p class="epilogue-sub">Mystery & Tension</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

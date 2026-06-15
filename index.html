@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Narrative Archive — Premium Cinematic Experiences</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #060608;
+            --surface: #0e0e12;
+            --surface-hover: #16161c;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #d4af37;
+            --accent-glow: rgba(212, 175, 55, 0.35);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 0%, #111116 0%, #060608 70%);
+        }
+
+        /* Custom Cursor for pointer devices */
+        @media (pointer: fine) {
+            body {
+                cursor: none;
+            }
+
+            .custom-cursor {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 8px;
+                height: 8px;
+                background-color: var(--accent);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transform: translate(-50%, -50%);
+                transition: width 0.2s, height 0.2s, background-color 0.2s;
+                box-shadow: 0 0 8px var(--accent);
+            }
+
+            .custom-cursor-ring {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 32px;
+                height: 32px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9998;
+                transform: translate(-50%, -50%);
+                transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s;
+            }
+
+            body.cursor-active .custom-cursor {
+                width: 14px;
+                height: 14px;
+                background-color: #fff;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+
+            body.cursor-active .custom-cursor-ring {
+                width: 50px;
+                height: 50px;
+                border-color: var(--accent);
+                background-color: rgba(212, 175, 55, 0.05);
+            }
+        }
+
+        /* Particle Background Canvas */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.2;
+        }
+
+        /* Film Grain + Vignette Overlays */
+        .noise-layer {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            pointer-events: none;
+            z-index: 998;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            animation: grain 8s steps(10) infinite;
+        }
+
+        @keyframes grain {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            10% {
+                transform: translate(-3%, -8%);
+            }
+
+            20% {
+                transform: translate(-8%, 4%);
+            }
+
+            30% {
+                transform: translate(5%, -15%);
+            }
+
+            40% {
+                transform: translate(-4%, 12%);
+            }
+
+            50% {
+                transform: translate(-10%, 6%);
+            }
+
+            60% {
+                transform: translate(10%, 0%);
+            }
+
+            70% {
+                transform: translate(0%, 8%);
+            }
+
+            80% {
+                transform: translate(2%, 18%);
+            }
+
+            90% {
+                transform: translate(-6%, 5%);
+            }
+        }
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 97;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.65) 100%);
+        }
+
+        /* Header Navigation */
+        header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4rem 8vw 2rem 8vw;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .brand-logo-container {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.05);
+            padding: 5px;
+            transition: var(--transition);
+        }
+
+        .brand:hover .brand-logo-container {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.12);
+            background: rgba(212, 175, 55, 0.03);
+        }
+
+        .brand-logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .brand h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: #fff;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .brand .subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .control-btn:hover {
+            color: #fff;
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Audio visualizer waves */
+        .audio-waves {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            width: 16px;
+            height: 12px;
+        }
+
+        .audio-waves span {
+            display: block;
+            width: 2px;
+            background-color: currentColor;
+            height: 3px;
+        }
+
+        .audio-waves.playing span {
+            animation: waveAnimation 1.2s ease infinite alternate;
+        }
+
+        .audio-waves.playing span:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .audio-waves.playing span:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .audio-waves.playing span:nth-child(3) {
+            animation-delay: 0.0s;
+        }
+
+        .audio-waves.playing span:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes waveAnimation {
+            0% {
+                height: 2px;
+            }
+
+            100% {
+                height: 12px;
+            }
+        }
+
+
+
+        /* Bookshelf Main Layout */
+        .bookshelf-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 2rem 8vw 10vw 8vw;
+        }
+
+        .bookshelf {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 4vw;
+            perspective: 1200px;
+        }
+
+        .book-card {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease, opacity 0.5s ease;
+            box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.8);
+            opacity: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card.hidden {
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .book-cover-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            overflow: hidden;
+            background: #0b0b0f;
+        }
+
+        .book-cover-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75) contrast(1.1);
+            transition: transform 0.8s var(--transition), filter 0.8s ease;
+        }
+
+        .glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.12) 25%, transparent 30%);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Hover Reveal Overlay */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(6, 6, 8, 0.95) 40%, rgba(6, 6, 8, 0.6) 100%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem 1.5rem;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .overlay-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.35rem;
+            font-weight: 500;
+            line-height: 1.3;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-mood {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .overlay-mood::before {
+            content: '◆';
+            font-size: 0.6rem;
+        }
+
+        .overlay-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .begin-btn {
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: #060608;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .begin-btn:hover {
+            background: #fff;
+            border-color: #fff;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .begin-btn svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .begin-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        .book-info-footer {
+            padding: 1.2rem 1.5rem;
+            background: var(--surface);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            transition: background-color 0.5s ease;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .book-info-footer h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .book-info-footer p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Hover Interactions */
+        .book-card:hover {
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.95), 0 0 30px rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.25);
+        }
+
+        .book-card:hover .book-cover-container img {
+            transform: scale(1.05);
+            filter: brightness(0.65) blur(1px);
+        }
+
+        .book-card:hover .glare {
+            transform: translateX(100%);
+            transition: transform 1.2s ease;
+        }
+
+        .book-card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .book-card:hover .book-info-footer {
+            background-color: var(--surface-hover);
+        }
+
+        /* Footer styling */
+        footer {
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 4rem 8vw;
+            text-align: center;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-link {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            opacity: 0.75;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+            opacity: 1;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+        }
+
+        .contact-icon {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 6vw 1.5rem 6vw;
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .brand {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+
+
+            .bookshelf-wrapper {
+                padding: 1rem 6vw 15vw 6vw;
+            }
+
+            .custom-cursor,
+            .custom-cursor-ring {
+                display: none !important;
+            }
+        }
+
+        /* Splash Screen styling */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #060608;
+            background-image: radial-gradient(circle at 50% 50%, #111116 0%, #060608 80%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s;
+        }
+
+        #splash-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .splash-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .splash-brand {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: splashFadeInUp 1s ease forwards 0.2s;
+        }
+
+        .splash-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: #ffffff;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transform: translateY(15px);
+            animation: splashFadeInUp 1.2s ease forwards 0.5s;
+        }
+
+        .splash-loader-container {
+            width: 240px;
+            height: 2px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: splashFadeIn 1s ease forwards 0.8s;
+            transition: opacity 0.5s ease;
+        }
+
+        .splash-loader-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-dim), var(--accent));
+            box-shadow: 0 0 8px var(--accent);
+            transition: width 0.05s linear;
+        }
+
+        .splash-status {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: splashFadeIn 1s ease forwards 0.8s;
+            transition: opacity 0.5s ease;
+        }
+
+        .enter-btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 0.9rem 2.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            display: none;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.02);
+        }
+
+        .enter-btn.visible {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .enter-btn.visible:hover {
+            color: #060608;
+            background-color: #ffffff;
+            border-color: #ffffff;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        @keyframes splashFadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes splashFadeIn {
+            to {
+                opacity: 0.6;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Cinematic Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-content">
+            <div class="splash-brand">WR Presents</div>
+            <h1 class="splash-title">DIGITAL NARRATIVE ARCHIVE</h1>
+            <div class="splash-loader-container" id="splash-loader-wrap">
+                <div class="splash-loader-bar" id="splash-loader-bar"></div>
+            </div>
+            <div class="splash-status" id="splash-status">LOADING ARCHIVE &bull; 0%</div>
+            <button id="enter-archive-btn" class="enter-btn">ENTER ARCHIVE</button>
+        </div>
+    </div>
+
+    <div class="vignette"></div>
+    <div class="noise-layer"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Custom Cursor elements -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+    <header>
+        <div class="brand">
+            <div class="brand-logo-container">
+                <img src="New cover/Logo.png" alt="Digital Narrative Archive Logo" class="brand-logo">
+            </div>
+            <div class="brand-text">
+                <h1>Digital Narrative Archive</h1>
+                <div class="subtitle">Premium Cinematic Experiences</div>
+            </div>
+        </div>
+        <div class="header-controls">
+            
+        </div>
+    </header>
+
+
+
+    <main class="bookshelf-wrapper">
+        <div class="bookshelf">
+
+            <!-- Abhinayam -->
+            <div class="book-card" data-category="Love comes from Devotion"
+                onclick="window.location.href='Abhinayam.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Abhinayam.png" alt="Abhinayam Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Abhinayam</h4>
+                        <div class="overlay-mood">Romance, Devotion & Tragedy</div>
+                        <div class="overlay-meta">The Gopika Who Returned. Experience the story of a Gopika whose love
+                            for Krishna transcends lifetimes, told through cinematic scroll-driven storytelling.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Abhinayam</h3>
+                    <p>Act I · The Echo Of A Previous Life</p>
+                </div>
+            </div>
+
+            <!-- Almost -->
+            <div class="book-card" data-category="romance calmness" onclick="window.location.href='Almost.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Almost.png" alt="Almost Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Almost</h4>
+                        <div class="overlay-mood">Romance & Calmness</div>
+                        <div class="overlay-meta">An INFJ Relationship That Failed Perfectly. A story about safety in
+                            shared silence.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Almost</h3>
+                    <p>INFJ Relationship Story</p>
+                </div>
+            </div>
+
+            <!-- Dharshan -->
+            <div class="book-card" data-category="calmness" onclick="window.location.href='Dharshan.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Dharshan.png" alt="Dharshan Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Dharshan</h4>
+                        <div class="overlay-mood">Calmness & Devotion</div>
+                        <div class="overlay-meta">The Timeless Journey. Aditya, Nandini, and Meera's walk to Tirupati. A
+                            story of inner stability.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Dharshan</h3>
+                    <p>A Timeless Devotional Journey</p>
+                </div>
+            </div>
+
+            <!-- DHRUVENDRA -->
+            <div class="book-card" data-category="tension"
+                onclick="window.location.href='DHRUVENDRA%20-%20THE%20TREASURE%20SEEKER.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Dhruvendra.png" alt="Dhruvendra Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Dhruvendra</h4>
+                        <div class="overlay-mood">Suspense & Adventure</div>
+                        <div class="overlay-meta">The Treasure Seeker. An epic pursuit of ancient secrets, dangers, and
+                            the costs of obsession.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Dhruvendra</h3>
+                    <p>The Treasure Seeker</p>
+                </div>
+            </div>
+
+            <!-- Green Hollow -->
+            <div class="book-card" data-category="tension"
+                onclick="window.location.href='Green%20Hollow%20ACT%20-%201.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Green Hollow ACT - 1.png" alt="Green Hollow Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Green Hollow</h4>
+                        <div class="overlay-mood">Mystery & Tension</div>
+                        <div class="overlay-meta">Act 1. A descent into a quiet town plagued by ancient curses, hidden
+                            intentions, and fog.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Green Hollow</h3>
+                    <p>Act I · The Shadows of the Woods</p>
+                </div>
+            </div>
+
+            <!-- Kadha Laga Modhalaina Oka Parichayam -->
+            <div class="book-card" data-category="romance"
+                onclick="window.location.href='Kadha%20Laga%20Modhalaina%20Oka%20Parichayam.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Not Every Relationship Lasts — but Some Endings Create the Sweetest Memories. - 1.png"
+                        alt="Kadha Laga Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Kadha Laga Modhalaina</h4>
+                        <div class="overlay-mood">Romance & Nostalgia</div>
+                        <div class="overlay-meta">Oka Parichayam. An elegant Telugu romance that unfolds gently through
+                            simple gestures.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Kadha Laga Modhalaina</h3>
+                    <p>Oka Parichayam</p>
+                </div>
+            </div>
+
+            <!-- Kali -->
+            <div class="book-card" data-category="tension sadness"
+                onclick="window.location.href='Kali%20-%20The%20Five%20Paths.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Kali.png" alt="Kali Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Kali</h4>
+                        <div class="overlay-mood">Tragedy & Tension</div>
+                        <div class="overlay-meta">The Five Paths. An epic struggle through conflict, choice, and
+                            absolute cosmic destiny.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Kali</h3>
+                    <p>The Five Paths</p>
+                </div>
+            </div>
+
+            <!-- Malli Kalisi… -->
+            <div class="book-card" data-category="romance sadness"
+                onclick="window.location.href='Malli%20Kalisi%E2%80%A6.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Malli Kalisi….png" alt="Malli Kalisi Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Malli Kalisi…</h4>
+                        <div class="overlay-mood">Romance & Tragedy</div>
+                        <div class="overlay-meta">Meeting again after separations. A heartfelt look into lost echoes and
+                            promises.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Malli Kalisi…</h3>
+                    <p>Reunion of Echoes</p>
+                </div>
+            </div>
+
+            <!-- Nonparticipant -->
+            <div class="book-card" data-category="sadness calmness"
+                onclick="window.location.href='Nonparticipant.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/NONPARTICIPANT.png" alt="Nonparticipant Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Nonparticipant</h4>
+                        <div class="overlay-mood">Grief & Calmness</div>
+                        <div class="overlay-meta">Observing life from the borders. The peaceful isolation of a silent
+                            witness.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Nonparticipant</h3>
+                    <p>A Silent Witness</p>
+                </div>
+            </div>
+
+            <!-- Short and Sweet -->
+            <div class="book-card" data-category="romance" onclick="window.location.href='Short%20and%20Sweet.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Short and Sweet.png" alt="Short and Sweet Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Short and Sweet</h4>
+                        <div class="overlay-mood">Romance & Calmness</div>
+                        <div class="overlay-meta">A collection of quiet moments, light laughter, and the beginnings of
+                            love.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Short and Sweet</h3>
+                    <p>Lighthearted Encounters</p>
+                </div>
+            </div>
+
+            <!-- Telugu Ammai -->
+            <div class="book-card" data-category="romance calmness"
+                onclick="window.location.href='Telugu%20Ammai.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Telugu Ammai.png" alt="Telugu Ammai Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Telugu Ammai</h4>
+                        <div class="overlay-mood">Romance & Determination</div>
+                        <div class="overlay-meta">A young Telugu girl's pursuit of her artistic dreams and dance,
+                            fighting family doubt.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Telugu Ammai</h3>
+                    <p>Pursuit of Dance</p>
+                </div>
+            </div>
+
+            <!-- The Midnight Story -->
+            <div class="book-card" data-category="tension" onclick="window.location.href='The%20MidNight%20Story.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Midnight Escape.png" alt="The Midnight Story Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">The Midnight Story</h4>
+                        <div class="overlay-mood">Suspense & Tension</div>
+                        <div class="overlay-meta">What happens when the clock hits midnight? A gripping night adventure
+                            in the city.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>The Midnight Story</h3>
+                    <p>A Night Under Shadow</p>
+                </div>
+            </div>
+
+            <!-- THE NIGHT ONLY I REMEMBER -->
+            <div class="book-card" data-category="sadness tension"
+                onclick="window.location.href='THE%20NIGHT%20ONLY%20I%20REMEMBER.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/A Quiet Place Inside Me.png" alt="The Night Only I Remember Cover"
+                        loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">The Night Only I Remember</h4>
+                        <div class="overlay-mood">Tragedy & Mystery</div>
+                        <div class="overlay-meta">A forgotten memory, a quiet street, and a secret carried by only one
+                            soul.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>The Night Only I Remember</h3>
+                    <p>Memories in the Void</p>
+                </div>
+            </div>
+
+            <!-- Unsaid -->
+            <div class="book-card" data-category="romance sadness" onclick="window.location.href='Unsaid.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/UNSAID.png" alt="Unsaid Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Unsaid</h4>
+                        <div class="overlay-mood">Romance & Quiet Tragedy</div>
+                        <div class="overlay-meta">They never said everything. Adhi and Manju's shared silence across
+                            college and life.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Unsaid</h3>
+                    <p>Silence in Love</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>WR &bull; Digital Narrative Archive &bull; Reimagined Cinematic Storytelling</p>
+            <div class="footer-contact">
+                <a href="mailto:akurivarun@gmail.com" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    akurivarun@gmail.com
+                </a>
+                <a href="tel:+917893710452" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    +91 7893710452
+                </a>
+                <a href="https://linkedin.com/in/akuri-venkata-surya-varun50b244366" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/varun-150" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+                <a href="https://www.instagram.com/writings_of_wazirv/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    Instagram
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // -------------------------------------------------------------
+        // 1. DYNAMIC CURSOR
+        // -------------------------------------------------------------
+        const cursor = document.getElementById('cursor');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+
+        if (window.matchMedia("(pointer: fine)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                mouse.targetX = e.clientX;
+                mouse.targetY = e.clientY;
+            });
+
+            // Lerp Cursor
+            function lerp(start, end, speed) {
+                return start + (end - start) * speed;
+            }
+
+            function updateCursor() {
+                mouse.x = lerp(mouse.x, mouse.targetX, 0.2);
+                mouse.y = lerp(mouse.y, mouse.targetY, 0.2);
+                cursor.style.left = mouse.x + 'px';
+                cursor.style.top = mouse.y + 'px';
+
+                let ringX = parseFloat(cursorRing.style.left || 0);
+                let ringY = parseFloat(cursorRing.style.top || 0);
+                cursorRing.style.left = lerp(ringX, mouse.targetX, 0.1) + 'px';
+                cursorRing.style.top = lerp(ringY, mouse.targetY, 0.1) + 'px';
+
+                requestAnimationFrame(updateCursor);
+            }
+            requestAnimationFrame(updateCursor);
+
+            // Active Class
+            document.querySelectorAll('a, button, .book-card').forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
+            });
+        }
+
+        // -------------------------------------------------------------
+        // 2. 3D PARALLAX TILT PHYSICS
+        // -------------------------------------------------------------
+        const cards = document.querySelectorAll('.book-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = ((y - centerY) / centerY) * -12;
+                const rotateY = ((x - centerX) / centerX) * 12;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+
+
+
+        // -------------------------------------------------------------
+        // 4. PARTICLE ENGINE
+        // -------------------------------------------------------------
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        for (let i = 0; i < 40; i++) {
+            particles.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                radius: Math.random() * 2 + 1,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                alpha: Math.random() * 0.4 + 0.1
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                // Mouse push
+                if (mouse.targetX > 0) {
+                    let dx = p.x - mouse.targetX;
+                    let dy = p.y - mouse.targetY;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        p.x += (dx / dist) * 1.2;
+                        p.y += (dy / dist) * 1.2;
+                    }
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`;
+                ctx.fill();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        requestAnimationFrame(animateParticles);
+
+        // -------------------------------------------------------------
+        // 6. SPLASH SCREEN & LOADER LOGIC
+        // -------------------------------------------------------------
+        window.addEventListener('DOMContentLoaded', () => {
+            const splashScreen = document.getElementById('splash-screen');
+            const loaderBar = document.getElementById('splash-loader-bar');
+            const loaderStatus = document.getElementById('splash-status');
+            const enterBtn = document.getElementById('enter-archive-btn');
+            const loaderWrap = document.getElementById('splash-loader-wrap');
+
+            let progress = 0;
+            const loadingDuration = 1800; // 1.8 seconds loading simulation
+            const intervalTime = 30;
+            const steps = loadingDuration / intervalTime;
+            const progressIncrement = 100 / steps;
+
+            const loadingInterval = setInterval(() => {
+                progress += progressIncrement + (Math.random() * 2); // add some jitter for realism
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(loadingInterval);
+                    
+                    // Trigger loader transition
+                    loaderBar.style.width = '100%';
+                    loaderStatus.textContent = 'ARCHIVE READY';
+                    
+                    setTimeout(() => {
+                        // Fade out loading items
+                        loaderWrap.style.opacity = '0';
+                        loaderStatus.style.opacity = '0';
+                        
+                        setTimeout(() => {
+                            loaderWrap.style.display = 'none';
+                            loaderStatus.style.display = 'none';
+                            // Show enter button
+                            enterBtn.classList.add('visible');
+                        }, 500);
+                    }, 400);
+                } else {
+                    loaderBar.style.width = `${progress}%`;
+                    loaderStatus.textContent = `LOADING ARCHIVE • ${Math.round(progress)}%`;
+                }
+            }, intervalTime);
+
+            enterBtn.addEventListener('click', () => {
+                splashScreen.classList.add('fade-out');
+            });
+        });
+    </script>
+</body>
+
+</html>

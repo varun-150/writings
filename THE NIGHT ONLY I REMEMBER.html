@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Night Only I Remember — Act I | Tragedy & Mystery</title>
+    <meta name="description" content="A forgotten memory, a quiet street, and a secret carried by only one soul.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">The Night Only I Remember</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">The Night Only I Remember</span>
+            <span class="header-brand-sub">Tragedy & Mystery</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: INTRODUCTION">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · INTRODUCTION</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: CHAPTER - 1">
+                <span class="dot-label">II</span>
+                <span class="dot-tooltip">Chapter 2 · CHAPTER - 1</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: CHAPTER 2">
+                <span class="dot-label">III</span>
+                <span class="dot-tooltip">Chapter 3 · CHAPTER 2</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch4" aria-label="Chapter 4: CHAPTER 3">
+                <span class="dot-label">IV</span>
+                <span class="dot-tooltip">Chapter 4 · CHAPTER 3</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch5" aria-label="Chapter 5: CHAPTER 4">
+                <span class="dot-label">V</span>
+                <span class="dot-tooltip">Chapter 5 · CHAPTER 4</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch6" aria-label="Chapter 6: CHAPTER 5">
+                <span class="dot-label">VI</span>
+                <span class="dot-tooltip">Chapter 6 · CHAPTER 5</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch7" aria-label="Chapter 7: STORY SUMMARY">
+                <span class="dot-label">VII</span>
+                <span class="dot-tooltip">Chapter 7 · STORY SUMMARY</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch8" aria-label="Chapter 8: CHARACTERS">
+                <span class="dot-label">VIII</span>
+                <span class="dot-tooltip">Chapter 8 · CHARACTERS</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">INTRODUCTION</span>
+                    <span class="sb-desc">On an ordinary night that should’ve meant nothing, Arjun walked out of his house w...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch2">
+                <span class="sb-num">02</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER - 1</span>
+                    <span class="sb-desc">Arjun didn’t leave home with a dramatic slam or loud argument; he simply stepped o...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch3">
+                <span class="sb-num">03</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER 2</span>
+                    <span class="sb-desc">Arjun stood frozen on the silent road, his breath sharp in the cold air, wondering...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch4">
+                <span class="sb-num">04</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER 3</span>
+                    <span class="sb-desc">Arjun’s fingers tightened around his phone as the strange notification slowly fade...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch5">
+                <span class="sb-num">05</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER 4</span>
+                    <span class="sb-desc">Arjun’s pulse thudded in his ears as he stared at the doorway of the waiting shed,...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch6">
+                <span class="sb-num">06</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER 5</span>
+                    <span class="sb-desc">Arjun’s world tilted as he stared at the older version of himself standing on the ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch7">
+                <span class="sb-num">07</span>
+                <div class="sb-info">
+                    <span class="sb-name">STORY SUMMARY</span>
+                    <span class="sb-desc">Arjun steps out of his house on an ordinary night, thinking he’s just cooling off ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch8">
+                <span class="sb-num">08</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHARACTERS</span>
+                    <span class="sb-desc">ARJUN (17) — The Boy Who Should’ve Died Role: Main protagonist</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/A Quiet Place Inside Me.png" alt="The Night Only I Remember — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="The Night Only I Remember">The Night Only I Remember</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Tragedy & Mystery</div>
+                <div class="landing-meta" id="landing-meta">A forgotten memory, a quiet street, and a secret carried by only one soul.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="The Night Only I Remember story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — INTRODUCTION             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="isolation" data-chapter-index="0" aria-label="Chapter 1: INTRODUCTION">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">INTRODUCTION</h2>
+                    <p class="chapter-synopsis">On an ordinary night that should’ve meant nothing, Arjun walked out of his house with anger in his chest and silence ...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.90">On an ordinary night that should’ve meant nothing, Arjun walked out of his house with anger in his chest and silence in his eyes. It wasn’t a dramatic fight, or a heartbreak, or some movie- level tragedy. It was just one of those nights where life feels too loud, and leaving feels easier than explaining. But the moment he stepped onto that moonlit road, something strange happened— something the world erased by the next morning. Everyone forgot the night completely. The sky, the silence, the sound he heard behind the trees… even the shadow that followed him from a distance. The entire world moved on like the night never existed. Everyone except him. Arjun remembers every second of it—the cold air, the silver road, the flicker in the sky like reality had blinked, and the feeling that someone, or something, was watching him. And when midnight strikes again, the world “resets,” wiping the night like it’s a mistake in a story being rewritten endlessly. Streets change.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">People act differently. Memories disappear. But Arjun wakes up knowing something is terribly wrong… because he is the only person who remembers yesterday’s night in a world that resets itself every 24 hours. But everything changes when he meets a girl who remembers one forgotten night too—not the same night, but a different one. And slowly, piece by piece, Arjun discovers a terrifying truth: every person who remembers a “lost night” is someone who technically should not be alive. Every reset is fixing a world error… and Arjun is the biggest error of all.The night the world forgot… is the night he actually died. Now hunted by forces that don’t belong to this world, Arjun must choose—uncover the truth and risk breaking reality, or stay silent and let the world erase him for good. A simple boy. A broken night. A looping world. And one memory that refuses to disappear.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 2 — CHAPTER - 1             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch2" data-chapter-theme="calmness" data-chapter-index="1" aria-label="Chapter 2: CHAPTER - 1">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">02</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 02</span>
+                    <h2 class="chapter-title">CHAPTER - 1</h2>
+                    <p class="chapter-synopsis">Arjun didn’t leave home with a dramatic slam or loud argument; he simply stepped out into the night as if the air out...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.90">Arjun didn’t leave home with a dramatic slam or loud argument; he simply stepped out into the night as if the air outside could carry the weight he couldn’t hold anymore. The road glistened under the full moon, wet and reflective like it had been crying long before he arrived. He walked without direction, hands buried in his pockets, hoping silence would calm everything burning inside him. But the silence he found wasn’t normal—it felt too deep, too still, like the entire world had paused just to watch him. Even the wind had stopped moving. A soft, metallic sound cut through the air, almost like a wire snapping somewhere above, and when he looked up, the sky stared back blankly, the moon unblinking. He kept walking, trying to ignore the goosebumps crawling up his arms, but then it happened: the road behind him flickered with a faint, unnatural blue light, appearing just for a heartbeat before vanishing as if it had never existed.</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">His muddy footprints, which should’ve been clear on the wet ground, were suddenly dry —untouched. A cold fear twisted in his stomach. Before he could process anything, a whisper brushed against his ear, so close it felt like breath on his neck</span>
+                        <p class="dialogue-text">“You shouldn’t be here.” Arjun spun around, but the road was empty, the trees frozen in place. And yet the night felt alive—alive and wrong. The sky above blinked like a faulty screen, stars disappearing for a second before snapping back into place, and a ripple of light shivered through the darkness. The ground trembled beneath his shoes, and for the first time in his life, Arjun felt something shift inside him —like the world had slipped out of sync. He didn’t understand what was happening, only that this night was broken… and somehow, terrifyingly, he was the only one meant to remember it.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 3 — CHAPTER 2             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch3" data-chapter-theme="tension" data-chapter-index="2" aria-label="Chapter 3: CHAPTER 2">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">03</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 03</span>
+                    <h2 class="chapter-title">CHAPTER 2</h2>
+                    <p class="chapter-synopsis">Arjun stood frozen on the silent road, his breath sharp in the cold air, wondering if fear could make a person hear t...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="tension" data-intensity="0.90">Arjun stood frozen on the silent road, his breath sharp in the cold air, wondering if fear could make a person hear things that weren’t real, but deep down he knew this wasn’t imagination—something had shifted in the night itself. He began walking again, faster this time, as if distance could untangle whatever was happening around him, but every step only made the world feel stranger. The streetlight ahead flickered like a heartbeat struggling to stay alive, casting long, broken shadows across the path. When he stepped under it, the light steadied for a moment and then abruptly went out, leaving him in darkness so complete it felt almost thick. He reached out with his hand but couldn’t even see his fingers, only the sensation of emptiness pressing against his palm.hen,slowly, the moon brightened ,flooding the road with pale silver,and in that sudden clarity he noticed something that made his stomach drop—his shadow was gone</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.75">Arjun’s breath hitched as he stared at the ground beneath him, the dirt and stone illuminated cleanly, but no trace of him imprinted on it. The silence seemed to tighten around his chest, and he took a shaky step back, half-expecting the shadow to suddenly appear behind him like some delayed reflection, but the ground remained disturbingly empty. He whispered a soft, trembling “why?”, though he knew there would be no answer. And then, as if the world wanted to prove him wrong, his phone buzzed unexpectedly in his pocket. The screen lit up with a notification that shouldn’t exist: 12:03 AM — NIGHT ERROR DETECTED. His fingers trembled as he stared at the glowing text, the letters sharp and cold against the dark. No app, no sender, no number. Just those three words. Arjun’s pulse pounded through his ears as he looked around, realizing the darkness wasn’t just surrounding him—</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">it was studying him, waiting for his next move. And for the first time, something inside him whispered that maybe he wasn’t supposed to survive this night at all.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 4 — CHAPTER 3             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch4" data-chapter-theme="romance" data-chapter-index="3" aria-label="Chapter 4: CHAPTER 3">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">04</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 04</span>
+                    <h2 class="chapter-title">CHAPTER 3</h2>
+                    <p class="chapter-synopsis">Arjun’s fingers tightened around his phone as the strange notification slowly faded from the screen, leaving it blank...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="romance" data-intensity="0.45">Arjun’s fingers tightened around his phone as the strange notification slowly faded from the screen, leaving it blank as if it had never existed, and the emptiness in that moment felt louder than any sound the night could make. His heart hammered inside his chest, urging him to run, but his legs refused to move, rooted to the spot by a fear he didn’t fully understand. When he finally forced himself to walk, every step felt heavier, as though the ground itself wanted to keep him there. The air around him grew colder, carrying an odd metallic smell, like rain mixed with electricity, though the sky remained perfectly dry. Far ahead, the silhouette of an old waiting shed came into view—half-broken, its roof rusted, its bench cracked—yet it felt like the only place he could breathe for a moment. He stepped inside, and the world outside suddenly muted, the sounds disappearing like someone had turned off a switch.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.75">. He sat down, the wood creaking beneath him, and tried to steady his breath, but the silence here was worse than the darkness outside; it felt controlled, intentional, watching him more closely than eyes ever could.Arjun closed his eyes for a second, but when he opened them, the bench beside him held something that hadn’t been there before—a small, black notebook, edges burnt as if it had survived a fire. His throat tightened as he slowly reached for it, hesitating when his fingers brushed against the cover—it was warm, almost pulsing like a heartbeat. He swallowed and opened the first page, expecting empty sheets or scribbles, but what he saw instead made his entire body tense: a single line written in hurried, uneven handwriting—“If you’re reading this, the night has chosen you too.” Arjun’s breath caught, and in the reflection of the torn roof he noticed something even worse—</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">behind him, just outside the shed, a faint shadow moved even though there was nothing there to cast it. The night wasn’t following him anymore. It had found him.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 5 — CHAPTER 4             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch5" data-chapter-theme="fear" data-chapter-index="4" aria-label="Chapter 5: CHAPTER 4">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">05</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 05</span>
+                    <h2 class="chapter-title">CHAPTER 4</h2>
+                    <p class="chapter-synopsis">Arjun’s pulse thudded in his ears as he stared at the doorway of the waiting shed, watching the impossible shadow str...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="fear" data-intensity="0.75">Arjun’s pulse thudded in his ears as he stared at the doorway of the waiting shed, watching the impossible shadow stretch slowly across the ground even though there was no light to cast it, no body to own it. He clutched the burning notebook tighter, feeling it vibrate faintly in his hand like it was alive, like it was aware. The air thickened around him, strange and heavy, and when he glanced back at the pages, a new line had appeared—written in the same shaky handwriting as before—“Don’t follow the shadow. It’s not behind you… it’s ahead.” His skin prickled with goosebumps. He hadn’t opened the notebook. He hadn’t touched the pages. Yet it was writing itself as if the night was whispering directly into it. Swallowing hard, he stepped out of the shed, the cold brushing against him like fingers trailing his spine, and he watched the strange shadow glide forward along the road, not following him but leading him,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.60">as if expecting him to walk into whatever truth it was hiding. Against every instinct screaming at him to run the other way, Arjun took a slow step forward, and the shadow paused—like it was waiting. He moved again, and it moved too, mimicking his pace but always staying just far enough that he could never reach it. His heart pounded as he followed it past the trees, past the dead streetlight, until the road suddenly split into two paths he didn’t remember seeing before; the left side was bright under the moon, familiar and real, but the right side shimmered faintly, like heat rising off desert sand, bending and warping as though the world was glitching. The shadow drifted toward the right path. Arjun opened his mouth to speak, maybe to tell himself to stop, but before he could say a word his phone buzzed violently. He grabbed it, expecting another strange message,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">but what he saw twisted his stomach—an old CCTV thumbnail from his street, timestamped just ten minutes ago, showing him walking out of his house… except there were two silhouettes. One was clearly him. The second was slightly taller, moving half a second before he did, as if it already knew his next step. And in that dim footage, Arjun recognized the horrifying truth: the second silhouette looked exactly like him—but older, thinner, and bruised, wearing clothes he’d never seen before. His breath shattered in his chest. The shadow leading him now, the glitches in the sky, the night rewriting itself—none of it was random. Something was trying to guide him. Or warn him. And as the older version of him faded into the grainy footage, a final line appeared in the notebook without him touching it: “You’ve been here before. You survived once. You won’t survive again.”</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 6 — CHAPTER 5             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch6" data-chapter-theme="violence" data-chapter-index="5" aria-label="Chapter 6: CHAPTER 5">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">06</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 06</span>
+                    <h2 class="chapter-title">CHAPTER 5</h2>
+                    <p class="chapter-synopsis">Arjun’s world tilted as he stared at the older version of himself standing on the cracked, abandoned road, the moon a...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="violence" data-intensity="0.60">Arjun’s world tilted as he stared at the older version of himself standing on the cracked, abandoned road, the moon above splitting faintly like a reflection on disturbed water. His pulse hammered painfully as the older Arjun stepped closer, his footsteps slow and uneven, like someone carrying the memory of pain in every bone. The notebook in Arjun’s pocket grew warmer, almost urging him to step back, but he couldn’t move; he was caught between fear and a strange pull, as if his body recognized the man in front of him even when his mind didn’t. The older Arjun’s eyes were hollow yet held a sadness so deep it felt ancient, and when he finally spoke, his voice broke through the night like a cracked mirror—“You think this is your first time walking this road? It isn’t. This is where everything ended the first time.” Arjun’s breath hitched, and flashes burst through his head—rain, headlights, a scream,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">the taste of blood, the feeling of falling— images that didn’t belong to his life yet felt painfully familiar. He stumbled back, shaking his head, but the older version reached out a trembling hand, stopping inches from him, not touching, just hovering with the weight of a truth he couldn’t avoid. “You died here, Arjun,” he whispered, tears trembling in his voice. “I watched it happen. I tried to change it. I failed. The night reset because the world wasn’t ready to lose you.” Arjun felt the ground blur beneath him, felt the air tighten like it was about to collapse, and the older Arjun continued, voice growing urgent, “Every reset, I wake up again. Every reset, I try to reach you. But every version of you forgets before this moment. Except now.” The moment he said it, the road trembled lightly, the sky flickered like a faulty film reel, and the older Arjun’s form started glitching,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.60">pieces of him fading in and out. He pressed the notebook into Arjun’s hands, his trembling fingers cold as stone. “This is the only thing that survives the loop. Whatever happens next, don’t run. Don’t repeat my mistake.” His voice wavered as his outline fractured like broken glass. “If you run… the night will take you again.” Arjun’s chest clenched as the older self began dissolving into shimmering dust, each particle pulled upward toward the blinking sky. His final whisper, barely audible, lingered in the air —“Live the night I couldn’t.” And then he was gone. The road fell silent. The moon steadied. The air warmed just enough for Arjun to feel alive again. His hands shook as he opened the notebook—and a new line appeared on the page, written in fresh, dark ink: “The loop is broken. Now the real night begins.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 7 — STORY SUMMARY             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch7" data-chapter-theme="fear" data-chapter-index="6" aria-label="Chapter 7: STORY SUMMARY">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">07</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 07</span>
+                    <h2 class="chapter-title">STORY SUMMARY</h2>
+                    <p class="chapter-synopsis">Arjun steps out of his house on an ordinary night, thinking he’s just cooling off after a small argument. But the mom...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Arjun steps out of his house on an ordinary night, thinking he’s just cooling off after a small argument. But the moment he walks onto the moonlit road, the world around him begins to behave in strange, impossible ways—streetlights glitch, shadows move without sources, and the sky flashes like a broken screen. He hears a voice whispering warnings, sees blue light flickering across the road, and receives a mysterious message on his phone</span>
+                        <p class="dialogue-text">“NIGHT ERROR DETECTED.” Confused and terrified, Arjun hides inside a broken waiting shed, where he discovers a burnt black notebook that begins writing messages on its own. It warns him that the night has “chosen” him and that something is watching him. When he steps outside, he notices a disturbing detail—his shadow is gone, and instead, a separate shadow moves ahead of him, almost guiding him.</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.60">Then the impossible happens: Arjun receives a CCTV clip showing himself leaving home that night… but with someone else walking beside him. Someone who looks exactly like him—older, bruised, and hauntingly familiar. Following the shadow, Arjun walks into a shimmering path that leads him to a distorted version of his own street—older, abandoned, and broken. There, he meets the mysterious figure from the CCTV: an older version of himself. This older Arjun reveals the truth: Arjun died on this road once before. The world “reset” the night to stop that death, trapping both versions of him inside an endless loop of the same night repeating. Each reset erases everyone’s memories except his own, but the younger Arjun always forgets—until now. The older Arjun, fading from the strain of repeated loops, hands him the notebook— the only object that survives every reset</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">—and begs him not to run like he once did. As the older version dissolves into light, the notebook writes a final line</span>
+                        <p class="dialogue-text">“The loop is broken. Now the real night begins.” The summary ends with Arjun standing alone on the moonlit road, realizing this night isn’t trying to kill him anymore—it’s giving him one final chance to change his fate. And now, for the first time… he is ready to face what truly happened the night he died.</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 8 — CHARACTERS             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch8" data-chapter-theme="resolution" data-chapter-index="7" aria-label="Chapter 8: CHARACTERS">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">08</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 08</span>
+                    <h2 class="chapter-title">CHARACTERS</h2>
+                    <p class="chapter-synopsis">ARJUN (17) — The Boy Who Should’ve Died Role: Main protagonist</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">ARJUN (17) — The Boy Who Should’ve Died Role: Main protagonist</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Behavior: Quiet, emotional, curious, haunted. Core Truth: The only person who remembers the night that resets. Crazy Twist: He actually died once. This version of Arjun is an “error” the world cannot delete.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.60">OLDER ARJUN — The Broken Future Role: Future version of Arjun trapped in the loop</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="instability" data-intensity="0.45">Behavior: Tired, protective, hopeless, hollow Core Truth: He lived through countless resets trying to save his younger self. Crazy Twist: He knows how Arjun died… because he watched it happen.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">THE SHADOW — The Path That Should Have Been Role: Silent guide</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="instability" data-intensity="0.45">Behaviour: Moves ahead, never behind; reacts to Arjun’s choices Core Truth: Leads Arjun toward truths he’s not ready for. Crazy Twist: It is created from the timeline where Arjun actually died — a memory shaped into a guide.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ANANYA (17) — The Girl Who Remembers Another Night Role: Second anomaly</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Behaviour: Calm, sharp, observant, brave Core Truth: She remembers a forgotten night too — but not the same night as Arjun. razy Twist: Her memory contradicts Arjun’s. One of them is wrong… or both are incomplete</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">The Night Only I Remember</h3>
+                    <p class="epilogue-sub">Tragedy & Mystery</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

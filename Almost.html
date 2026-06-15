@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almost — Act I | Romance & Calmness</title>
+    <meta name="description" content="An INFJ Relationship That Failed Perfectly. A story about safety in shared silence.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Almost</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Almost</span>
+            <span class="header-brand-sub">Romance & Calmness</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: FAILED PERFECTLY">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · FAILED PERFECTLY</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: INTRODUCTION">
+                <span class="dot-label">II</span>
+                <span class="dot-tooltip">Chapter 2 · INTRODUCTION</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: CHAPTER – 1">
+                <span class="dot-label">III</span>
+                <span class="dot-tooltip">Chapter 3 · CHAPTER – 1</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch4" aria-label="Chapter 4: CHAPTER – 2">
+                <span class="dot-label">IV</span>
+                <span class="dot-tooltip">Chapter 4 · CHAPTER – 2</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch5" aria-label="Chapter 5: CHAPTER – 3">
+                <span class="dot-label">V</span>
+                <span class="dot-tooltip">Chapter 5 · CHAPTER – 3</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch6" aria-label="Chapter 6: CHAPTER – 4">
+                <span class="dot-label">VI</span>
+                <span class="dot-tooltip">Chapter 6 · CHAPTER – 4</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch7" aria-label="Chapter 7: CHAPTER – 5">
+                <span class="dot-label">VII</span>
+                <span class="dot-tooltip">Chapter 7 · CHAPTER – 5</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch8" aria-label="Chapter 8: CHAPTER – 6">
+                <span class="dot-label">VIII</span>
+                <span class="dot-tooltip">Chapter 8 · CHAPTER – 6</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch9" aria-label="Chapter 9: CHAPTER – 7">
+                <span class="dot-label">IX</span>
+                <span class="dot-tooltip">Chapter 9 · CHAPTER – 7</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch10" aria-label="Chapter 10: ALMOST">
+                <span class="dot-label">X</span>
+                <span class="dot-tooltip">Chapter 10 · ALMOST</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch11" aria-label="Chapter 11: CHAPTER – 1">
+                <span class="dot-label">XI</span>
+                <span class="dot-tooltip">Chapter 11 · CHAPTER – 1</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch12" aria-label="Chapter 12: CHAPTER – 2">
+                <span class="dot-label">XII</span>
+                <span class="dot-tooltip">Chapter 12 · CHAPTER – 2</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch13" aria-label="Chapter 13: CHAPTER – 3">
+                <span class="dot-label">XIII</span>
+                <span class="dot-tooltip">Chapter 13 · CHAPTER – 3</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch14" aria-label="Chapter 14: CHAPTER – 4">
+                <span class="dot-label">XIV</span>
+                <span class="dot-tooltip">Chapter 14 · CHAPTER – 4</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch15" aria-label="Chapter 15: CHAPTER – 5">
+                <span class="dot-label">XV</span>
+                <span class="dot-tooltip">Chapter 15 · CHAPTER – 5</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch16" aria-label="Chapter 16: CHAPTER – 6">
+                <span class="dot-label">XVI</span>
+                <span class="dot-tooltip">Chapter 16 · CHAPTER – 6</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch17" aria-label="Chapter 17: CHAPTER – 7">
+                <span class="dot-label">XVII</span>
+                <span class="dot-tooltip">Chapter 17 · CHAPTER – 7</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch18" aria-label="Chapter 18: CHAPTER – 8">
+                <span class="dot-label">XVIII</span>
+                <span class="dot-tooltip">Chapter 18 · CHAPTER – 8</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch19" aria-label="Chapter 19: ALMOST">
+                <span class="dot-label">XIX</span>
+                <span class="dot-tooltip">Chapter 19 · ALMOST</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch20" aria-label="Chapter 20: CHAPTER – 1">
+                <span class="dot-label">XX</span>
+                <span class="dot-tooltip">Chapter 20 · CHAPTER – 1</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch21" aria-label="Chapter 21: CHAPTER – 2">
+                <span class="dot-label">XXI</span>
+                <span class="dot-tooltip">Chapter 21 · CHAPTER – 2</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch22" aria-label="Chapter 22: CHAPTER – 3">
+                <span class="dot-label">XXII</span>
+                <span class="dot-tooltip">Chapter 22 · CHAPTER – 3</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch23" aria-label="Chapter 23: CHAPTER – 4">
+                <span class="dot-label">XXIII</span>
+                <span class="dot-tooltip">Chapter 23 · CHAPTER – 4</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch24" aria-label="Chapter 24: CHAPTER – 5">
+                <span class="dot-label">XXIV</span>
+                <span class="dot-tooltip">Chapter 24 · CHAPTER – 5</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch25" aria-label="Chapter 25: CHAPTER – 6">
+                <span class="dot-label">XXV</span>
+                <span class="dot-tooltip">Chapter 25 · CHAPTER – 6</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch26" aria-label="Chapter 26: CHAPTER – 7">
+                <span class="dot-label">XXVI</span>
+                <span class="dot-tooltip">Chapter 26 · CHAPTER – 7</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch27" aria-label="Chapter 27: CHAPTER – 8">
+                <span class="dot-label">XXVII</span>
+                <span class="dot-tooltip">Chapter 27 · CHAPTER – 8</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch28" aria-label="Chapter 28: CHAPTER – 9">
+                <span class="dot-label">XXVIII</span>
+                <span class="dot-tooltip">Chapter 28 · CHAPTER – 9</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch29" aria-label="Chapter 29: CHAPTER – 10">
+                <span class="dot-label">XXIX</span>
+                <span class="dot-tooltip">Chapter 29 · CHAPTER – 10</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch30" aria-label="Chapter 30: CHAPTER – 11">
+                <span class="dot-label">XXX</span>
+                <span class="dot-tooltip">Chapter 30 · CHAPTER – 11</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">FAILED PERFECTLY</span>
+                    <span class="sb-desc">Time gurinchi ee kadha matladadu, kani time ee kadha ni nadipistundi,dates marchip...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch2">
+                <span class="sb-num">02</span>
+                <div class="sb-info">
+                    <span class="sb-name">INTRODUCTION</span>
+                    <span class="sb-desc">avi just background music laaga life lo play avuthu untayi, evaru vinakapoyina val...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch3">
+                <span class="sb-num">03</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 1</span>
+                    <span class="sb-desc">Time appatike munduku nadustunnattu anipinchaledu, kani roju roju same rhythm lo r...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch4">
+                <span class="sb-num">04</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 2</span>
+                    <span class="sb-desc">kani ee space lo evaru evarni impress cheyyalsina avasaram ledu ani iddariki clear...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch5">
+                <span class="sb-num">05</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 3</span>
+                    <span class="sb-desc">Coffee shop entry taruvata, routine mellaga oka shape tiskundi, deliberate ga kaad...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch6">
+                <span class="sb-num">06</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 4</span>
+                    <span class="sb-desc">Routine settle ayyaka, valla madhya oka strange clarity vachindi, adi cheppukunnad...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch7">
+                <span class="sb-num">07</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 5</span>
+                    <span class="sb-desc">Ee phase lo matalu ekkuva avvaledu, kani chinna chinna gestures slow ga place tisk...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch8">
+                <span class="sb-num">08</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 6</span>
+                    <span class="sb-desc">Ee stage lo iddaru oka vishayam clear ga ardham chesukunnaru, ee connection ni tig...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch9">
+                <span class="sb-num">09</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 7</span>
+                    <span class="sb-desc">Ee phase lo em maraledu ani bayata chusthe anipinchachu, kani lopala chala settle ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch10">
+                <span class="sb-num">10</span>
+                <div class="sb-info">
+                    <span class="sb-name">ALMOST</span>
+                    <span class="sb-desc">An INFJ Relationship That Failed Perfectly</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch11">
+                <span class="sb-num">11</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 1</span>
+                    <span class="sb-desc">Roju laage train nadustundi, coffee shop door open avuthundi, college route lo cro...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch12">
+                <span class="sb-num">12</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 2</span>
+                    <span class="sb-desc">Ee madhya silence tone marindi ani iddariki slow ga telisindi. Mundu silence ante ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch13">
+                <span class="sb-num">13</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 3</span>
+                    <span class="sb-desc">College route lo nadustunnapudu ee absence explanation adugaledu. Mundu iddaru sam...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch14">
+                <span class="sb-num">14</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 4</span>
+                    <span class="sb-desc">Comparison anedi attachment ki first symptom ani tanu lopala accept chesindi.Iddar...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch15">
+                <span class="sb-num">15</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 5</span>
+                    <span class="sb-desc">Valla lives move avuthunnayi ani evaru deny cheyyaledu. Work, studies, responsibil...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch16">
+                <span class="sb-num">16</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 6</span>
+                    <span class="sb-desc">Valla madhya eppudu oka clear line draw cheyyaledu. Friends ani cheppaledu, strang...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch17">
+                <span class="sb-num">17</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 7</span>
+                    <span class="sb-desc">Cheppani maatalu first silence lo form avuthayi. Tarvata mind lo repeat avuthayi. ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch18">
+                <span class="sb-num">18</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 8</span>
+                    <span class="sb-desc">Withdrawal loud ga jaragaledu. Decision announce cheyyaledu, explanation ivvaledu....</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch19">
+                <span class="sb-num">19</span>
+                <div class="sb-info">
+                    <span class="sb-name">ALMOST</span>
+                    <span class="sb-desc">An INFJ Relationship That Failed Perfectly</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch20">
+                <span class="sb-num">20</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 1</span>
+                    <span class="sb-desc">Anvi ee travel ni plan cheyyaledu. Decision laa teesukoledu, excitement kuda ledu....</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch21">
+                <span class="sb-num">21</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 2</span>
+                    <span class="sb-desc">Ee city lo iddaru settle ayyaru ani cheppadam kuda overstatement. Vallu just unnar...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch22">
+                <span class="sb-num">22</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 3</span>
+                    <span class="sb-desc">Anvi ki ee city lo konni places chusthunte reason teliyani comfort anipinchindi. O...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch23">
+                <span class="sb-num">23</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 4</span>
+                    <span class="sb-desc">Oka casual conversation madhya lo Vihaan aa peru vinnadu. Loud ga kaadu, dramatic ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch24">
+                <span class="sb-num">24</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 5</span>
+                    <span class="sb-desc">Adi plan kaadu. Coincidence ani kuda anukovachu. Evening time lo crowd koncham tha...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch25">
+                <span class="sb-num">25</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 6</span>
+                    <span class="sb-desc">Aa crossing tarvata iddaru back choodaledu. Adi intentional kaadu, avoidance kuda ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch26">
+                <span class="sb-num">26</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 7</span>
+                    <span class="sb-desc">Conversation start ayyindi ani cheppadam kuda accurate kaadu. It just happened. Ok...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch27">
+                <span class="sb-num">27</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 8</span>
+                    <span class="sb-desc">Ee sari iddaru okarini okaru chusaru, kani memory lens lo kaadu. Present lens lo. ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch28">
+                <span class="sb-num">28</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 9</span>
+                    <span class="sb-desc">Ee decision sudden ga vachindi ani cheppalemu. Planned ani kuda cheppalemu. Just o...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch29">
+                <span class="sb-num">29</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 10</span>
+                    <span class="sb-desc">Ee marriage announcement loud ga jaragaledu. Big reactions, big explanations, big ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch30">
+                <span class="sb-num">30</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER – 11</span>
+                    <span class="sb-desc">Back chesi chusthe ee story lo em jaragaledu ani anipinchachu. No dramatic confess...</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Almost Part I.png" alt="Almost — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Almost">Almost</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Romance & Calmness</div>
+                <div class="landing-meta" id="landing-meta">An INFJ Relationship That Failed Perfectly. A story about safety in shared silence.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Almost story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — FAILED PERFECTLY             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0" aria-label="Chapter 1: FAILED PERFECTLY">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">FAILED PERFECTLY</h2>
+                    <p class="chapter-synopsis">Time gurinchi ee kadha matladadu, kani time ee kadha ni nadipistundi,dates marchipothayi ,places marchipothayi, kaani...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.45">Time gurinchi ee kadha matladadu, kani time ee kadha ni nadipistundi,dates marchipothayi ,places marchipothayi, kaani konni connections marchipovu ani ee kadha cheptundi, Almost anedi premalo padadam gurinchi kaadu, kalisi undadam gurinchi kuda kaadu, idi iddaru okarini okaru urgency lekunda gamaninche process gurinchi, matladakunda ardham chesukune moments gurinchi, silence lo safety kanipinche phase gurinchi, ee kadha lo emotions shout cheyyavu, declarations undavu, promises levu, just routine lo kalisi nadiche presence untundi, konni feelings end avvavu ani ee kadha nammutundi, avi marchipovadam kuda jaragadu,</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 2 — INTRODUCTION             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch2" data-chapter-theme="calmness" data-chapter-index="1" aria-label="Chapter 2: INTRODUCTION">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">02</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 02</span>
+                    <h2 class="chapter-title">INTRODUCTION</h2>
+                    <p class="chapter-synopsis">avi just background music laaga life lo play avuthu untayi, evaru vinakapoyina vallaki maatrame vinipistayi, Almost l...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.45">avi just background music laaga life lo play avuthu untayi, evaru vinakapoyina vallaki maatrame vinipistayi, Almost lo love prove cheyyalsina avasaram ledu, possess cheyyalsina need ledu, identity ni kolpoyina sacrifice kuda ledu, ee kadha lo people kalustaru, connect avutharu, tarvata malli tama tama shells lo ki vellipotharu., adi loss kaadu ani ee kadha cheptundi, adi failure kaadu ani kuda cheptundi, idi just oka acceptance, konni stories complete avvakapovachu, konni relationships together end avvakapovachu, kani ardham ayyi vellipovadam kuda oka rakamaina peace ani Almost nammutundi</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 3 — CHAPTER – 1             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch3" data-chapter-theme="release" data-chapter-index="2" aria-label="Chapter 3: CHAPTER – 1">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">03</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 03</span>
+                    <h2 class="chapter-title">CHAPTER – 1</h2>
+                    <p class="chapter-synopsis">Time appatike munduku nadustunnattu anipinchaledu, kani roju roju same rhythm lo repeat avuthunna oka pattern laaga u...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="release" data-intensity="0.45">Time appatike munduku nadustunnattu anipinchaledu, kani roju roju same rhythm lo repeat avuthunna oka pattern laaga undi, Vihaan roju laage train lo kurchunnadu, opposite seat lo evaro unnaru ani notice chesadu kani curiosity raaledu, interest kuda raaledu, adi kuda oka relief la anipinchindi, Anvi kuda roju laage tana place lo undi, evarni chudali ani kaadu, evarni avoid cheyyali ani kaadu, just undadam chaalu ani tana mind cheppinattu undi, first few days lo iddaru okarini okaru gamanincharu ani cheppalem, kani oka roju Vihaan ki oka subtle feeling vachindi,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="release" data-intensity="0.45">ee silence lo pressure ledu ani, opposite side lo unna presence tana thoughts ni disturb cheyyatledu ani, adi koncham unfamiliar kaani comfortable ga undi, Anvi kuda alane feel ayyindi, train lo chala faces untayi kani konni faces matrame em expect cheyyavu ani, questions adagaru ani, attention kosam signals ivvaru ani, ee presence alantide ani tana mind accept chesindi, matladaledu, parichayam ledu, peru teliyadu, kani oka invisible understanding slowly form ayyindi, ee space lo nenu nannu prove cheyyalsina avasaram ledu ani, ee moment lo nenu change avvalsina avasaram ledu ani, ee chapter lo em jaragaledu ani bayata anipinchachu, kani lopala oka clarity start ayindi, konni connections attraction tho kaadu, relief tho puttayi ani.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Train lo unna silence laage, coffee shop lo kuda oka familiar calm undi, Vihaan roju laage lopalaki vachadu, special ga em kavali ani kaadu, just oka cup coffee and oka corner chair chaalu ani anipinchindi, Anvi kuda roju laage vachindi, same time, same pace, evarni search cheyyaledu, evarni avoid cheyyaledu, coffee shop lo chala tables unnayi kani vallu iddaru opposite tables choose chesukunnaru ani cheppalem, adi just ala jarigipoyindi, first few days lo iddaru okarini okaru chudaledu ani kuda kaadu, kani chusina daaniki meaning ivvaledu, oka nod, oka pause, anthe, coffee taste gurinchi alochincharu, phone screen meeda glance chesaru, bayata valla life lo em jaruguthundo daani gurinchi alochincharu,</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 4 — CHAPTER – 2             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch4" data-chapter-theme="resolution" data-chapter-index="3" aria-label="Chapter 4: CHAPTER – 2">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">04</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 04</span>
+                    <h2 class="chapter-title">CHAPTER – 2</h2>
+                    <p class="chapter-synopsis">kani ee space lo evaru evarni impress cheyyalsina avasaram ledu ani iddariki clear ga anipinchindi, silence ikkada aw...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.45">kani ee space lo evaru evarni impress cheyyalsina avasaram ledu ani iddariki clear ga anipinchindi, silence ikkada awkward kaadu, adi oka permission la undi, matladakapovachu ani, explain cheyyakapovachu ani, coffee finish ayyaka lechi vellipoyaru, without goodbye, without regret, without missing, kani next day malli adhe coffee shop ki vacharu, adhe time ki, adhe feeling tho, ee repetition lo oka comfort undi ani evaru loud ga accept cheyyaledu, kani iddaru lopala acknowledge chesaru, konni places manam choose cheyyamu, avi manalni choose chestayi ani.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 5 — CHAPTER – 3             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch5" data-chapter-theme="isolation" data-chapter-index="4" aria-label="Chapter 5: CHAPTER – 3">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">05</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 05</span>
+                    <h2 class="chapter-title">CHAPTER – 3</h2>
+                    <p class="chapter-synopsis">Coffee shop entry taruvata, routine mellaga oka shape tiskundi, deliberate ga kaadu, plan chesukuni kuda kaadu, just ...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.45">Coffee shop entry taruvata, routine mellaga oka shape tiskundi, deliberate ga kaadu, plan chesukuni kuda kaadu, just ala settle aipoyindi, train lo opposite seats, college vaipu same route, evening lo adhe coffee shop, ee pattern ni evaru fix cheyyaledu kani roju repeat avuthundi ani iddariki telusu, Vihaan ki ee routine lo oka strange comfort dorikindi, enduku ante ikkada questions levu, expectations levu, Anvi kuda ade feel ayyindi, ee rhythm lo tanu tana silence ni defend cheyyalsina avasaram ledu ani, iddaru small signals ni notice chesaru kani analyze cheyyaledu, train late ayithe coffee shop lo time marindi ani, coffee strong ga undi ani oka look exchange,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">college crowd ekkuva undi ani oka pause, matalu levu kani response untundi,ee routine lo time slow ayyindi ani anipinchindi, roju laage nadustunna life madhya lo oka stable point dorikindi,, adi attach avvadam kaadu, depend avvadam kaadu, just undadam, ee chapter lo kuda em dramatic ga jaragaledu, kani iddaru ardham chesukunnadi idi, konni connections words valla kaadu, repetition valla deep avuthayi ani.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 6 — CHAPTER – 4             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch6" data-chapter-theme="tension" data-chapter-index="5" aria-label="Chapter 6: CHAPTER – 4">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">06</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 06</span>
+                    <h2 class="chapter-title">CHAPTER – 4</h2>
+                    <p class="chapter-synopsis">Routine settle ayyaka, valla madhya oka strange clarity vachindi, adi cheppukunnadi kaadu, decide chesukunnadi kuda k...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="tension" data-intensity="0.45">Routine settle ayyaka, valla madhya oka strange clarity vachindi, adi cheppukunnadi kaadu, decide chesukunnadi kuda kaadu, just natural ga form ayyindi, ee connection ki peru ivvalsina avasaram ledu ani, friends ani cheppina tight aipothundi ani, strangers ani cheppina tappu anipistundi ani, madhyalo undadam safer ani iddariki telusu, Vihaan ki idi oka relief, enduku ante peru pettina ventane expectations start avuthayi ani tana experience cheppindi, Anvi kuda alane feel ayyindi, label ivvadam ante pressure invite cheyyadam ani tana mind accept cheyyaledu, vallu kalustunnaru kani claim cheyyatledu, matladuthunnaru kani explain cheyyatledu, silence undi kani daanini fill cheyyadaniki try cheyyatledu, ee phase lo iddaru chala light ga feel ayyaru, evarni impress cheyyalsina avasaram ledu, evariki answer ivvalsina responsibility ledu,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="release" data-intensity="0.60">just oka shared space undi, aa space lo iddaru safe ga unnaru, ee chapter lo love ani padam ekkada use cheyyaledu, kani relief ane padam prathi moment lo present ga undi, enduku ante konni relations grow avvadaniki labels kaadu, freedom kavali ani iddaru lopala ardham chesukunnaru.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 7 — CHAPTER – 5             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch7" data-chapter-theme="calmness" data-chapter-index="6" aria-label="Chapter 7: CHAPTER – 5">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">07</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 07</span>
+                    <h2 class="chapter-title">CHAPTER – 5</h2>
+                    <p class="chapter-synopsis">Ee phase lo matalu ekkuva avvaledu, kani chinna chinna gestures slow ga place tiskunnayi, Vihaan oka roju coffee cup ...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.60">Ee phase lo matalu ekkuva avvaledu, kani chinna chinna gestures slow ga place tiskunnayi, Vihaan oka roju coffee cup lo steam chusthu koncham smile chesadu, Anvi adi notice chesi return smile ichindi, adi conversation kaadu, adi response kuda kaadu, just acknowledgement, train lo seat dorakakapothe oka slight nod, coffee shop lo table occupied ayithe oka brief pause, college gate daggara oka second ekkuva aagi nilchovadam, ivanni signals laa kaadu, invitations laa kuda kaadu, just oka silent way of saying “nuvvu ikkada unnav ani telusu” ane feeling, ee smiles lo promise ledu, future ledu, meaning ledu, anduke avi safe ga unnayi iddaru ardham chesukunnaru ee gestures ni analyse cheyyadam start chesthe ee calm break avuthundi ani, so vallu smile chesaru kani decode cheyyaledu,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">acknowledge chesaru kani expect cheyyaledu, ee chapter lo jarigindi chala chinnadi anipinchachu, kani iddaru lopala feel ayyindi pedda vishayam, silence ippudu empty kaadu, adi shared ayyindi.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 8 — CHAPTER – 6             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch8" data-chapter-theme="tension" data-chapter-index="7" aria-label="Chapter 8: CHAPTER – 6">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">08</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 08</span>
+                    <h2 class="chapter-title">CHAPTER – 6</h2>
+                    <p class="chapter-synopsis">Ee stage lo iddaru oka vishayam clear ga ardham chesukunnaru, ee connection ni tight ga pattukunte idi break aipothun...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="tension" data-intensity="0.45">Ee stage lo iddaru oka vishayam clear ga ardham chesukunnaru, ee connection ni tight ga pattukunte idi break aipothundi ani, so vallu loose ga unchadam nerchukunnaru, roju kalustunnaru kani roju matladali ani rule ledu, text cheyyali ani expectation ledu, call cheyyakapoyina guilt ledu, Vihaan ki ee distance lonely ga anipinchaledu, enduku ante Anvi presence tana life lo burden create cheyyatledu,Anvi ki kuda ade feeling, Vihaan tana space ni respect chestunnadu ani telusu, ee phase lo iddaru tana tana inner worlds ni intact ga unchukunnaru valla dreams, fears, alochanalu anni intact ga unnayi, ee connection valla evaru evarini absorb cheyyatledu, depend avvatledu, possess cheyyatledu, just parallel ga nadustunnaru, ee inner comfort valla valla madhya attachment grow avvaledu ani kaadu, kani adi grip laa kaadu, adi oka soft awareness laa undi,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ee chapter lo iddaru realise ayyindi idi, okarini okaru choose chesina kuda, okarini okaru kolpoyadam avasaram ledu ani.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 9 — CHAPTER – 7             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch9" data-chapter-theme="isolation" data-chapter-index="8" aria-label="Chapter 9: CHAPTER – 7">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">09</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 09</span>
+                    <h2 class="chapter-title">CHAPTER – 7</h2>
+                    <p class="chapter-synopsis">Ee phase lo em maraledu ani bayata chusthe anipinchachu, kani lopala chala settle ayyindi, Vihaan ki oka clarity vach...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.75">Ee phase lo em maraledu ani bayata chusthe anipinchachu, kani lopala chala settle ayyindi, Vihaan ki oka clarity vachindi — ee connection tana life ni disturb cheyyatledu ani, direction marchadam kuda kaadu, just tana existing flow lo oka smooth layer add ayyindi ani, Anvi kuda ade feel ayyindi, ee presence valla tanu tana rhythm ni lose avvatledu ani, tana silence ni explain cheyyalsina avasaram ledu ani, ee relation lo rush ledu, future planning ledu, proof avasaram ledu, vallu kalustunnaru kani cling avvatledu, dooram untunnaru kani disconnect kaadu, ee balance lo oka rare relief undi, enduku ante iddaru okarini okaru fill cheyyadam kosam vachina vallu kaadu , already complete ga unna vallu, ee phase lo silence fully transform ayyindi, adi awkward kaadu, adi empty kuda kaadu, adi rest laa undi, oka mental</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">pause laa undi, roju lo konni moments lo Vihaan ki anipinchindi ee feeling ni disturb cheyyakapothe chaalu ani Anvi ki kuda ade anipinchindi, ee state ni question cheyyakapothe baagundu ani, ee chapter lo love ani padam ekkada pronounce avvaledu, expectations ane word kuda enter avvaledu, kani relief ane feeling prathi moment lo present ga undi, ee recognition stage lo iddaru ardham chesukunnaru konni connections grow avvadaniki direction kaadu , space kavali ani, clarity kaadu, calm kavali ani, ee kadha ikkada end avvaledu kani ikkada breathe tiskundi, enduku ante konni beginnings climax kosam kaadu, konni just manishini koncham light cheyyadaniki matrame untayi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">Part-1 lo Almost story slow ga unfold avuthundi, attraction lekapoyina oka subtle recognition tho start ayye phase idi, Vihaan mariyu Anvi daily routine lo — train, college route, coffee shop — silent ga overlap avutharu, matladaru, parichayam ledu, kani presence comfortable ga anipisthundi, labels lekunda, expectations lekunda oka connection form avuthundi, small smiles, chinna acknowledgements, shared silence valla familiarity deepen avuthundi kani attach avvadam jaragadu, future gurinchi matladaru, promises ivvaru, possessiveness ledu, iddaru tana tana identity ni intact ga unchukoni parallel ga nadustaru, ee balance lo silence awkward nundi safe space ga maruthundi, inner comfort periguthundi, relief peak ki reach avuthundi, love ane word pronounce cheyyakunda kuda oka meaningful bond exist avvagaladu ani ee part chepthundi,</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">story ikkada pause tiskuntundi — climax kosam kaadu, breathing kosam.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 10 — ALMOST             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch10" data-chapter-theme="resolution" data-chapter-index="9" aria-label="Chapter 10: ALMOST">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">10</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 10</span>
+                    <h2 class="chapter-title">ALMOST</h2>
+                    <p class="chapter-synopsis">An INFJ Relationship That Failed Perfectly</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">An INFJ Relationship That Failed Perfectly</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">PART – 2 : The Drift</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 11 — CHAPTER – 1             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch11" data-chapter-theme="curiosity" data-chapter-index="10" aria-label="Chapter 11: CHAPTER – 1">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">11</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 11</span>
+                    <h2 class="chapter-title">CHAPTER – 1</h2>
+                    <p class="chapter-synopsis">Roju laage train nadustundi, coffee shop door open avuthundi, college route lo crowd same ga kanipistundi. Bayata chu...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="curiosity" data-intensity="0.75">Roju laage train nadustundi, coffee shop door open avuthundi, college route lo crowd same ga kanipistundi. Bayata chusthe em maraledu ani anipistundi. Kaani lopala oka small shift jarigindi ani Vihaan ki first time clear ga telisindi. Mundu silence neutral ga undedi, ippudu adi koncham weight la feel avuthondi. Presence undi, kani earlier la effortless kaadu. Anvi opposite seat lo undi, kani ee sari eyes automatic ga search cheyyatledu. Search cheyyatledu ani realize avvadame change.Coffee shop lo kurchunnapudu cup steam same laaga rise avuthondi, kani aa steam chusthu smile raaledu. Mundu aa smile plan chesinadi kaadu, ippudu absence kuda plan chesinadi kaadu. Just ala jarigipoyindi. Anvi kuda ade notice chesindi — matladakunda, react avvakunda. Silence lo oka micro- delay vachindi. Earlier pause rest la undedi, ippudu adi thought ki space ichindi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">Iddaru same places lo unnaru, kani same moment lo kaadu. Time sync slight ga break ayyindi. Ee break loud kaadu, visible kuda kaadu. Kaani once notice chesaka ignore cheyyadam kashtam. Recognition stage lo silence safe space ayithe, ee stage lo silence mirror laa marindi. And aa mirror lo first time oka question reflect ayyindi — “Manam inka same place lo unnama, leka same route lo different speeds lo nadustunnama?” Ee chapter lo em jaragaledu ani evaraina cheppachu. No argument. No confession. No turning point. Kaani inner rhythm lo first off-beat ikkade start ayyindi.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 12 — CHAPTER – 2             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch12" data-chapter-theme="isolation" data-chapter-index="11" aria-label="Chapter 12: CHAPTER – 2">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">12</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 12</span>
+                    <h2 class="chapter-title">CHAPTER – 2</h2>
+                    <p class="chapter-synopsis">Ee madhya silence tone marindi ani iddariki slow ga telisindi. Mundu silence ante permission la undedi — matladakapov...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="1.00">Ee madhya silence tone marindi ani iddariki slow ga telisindi. Mundu silence ante permission la undedi — matladakapovachu, explain cheyyakapovachu ani. Ippudu adhe silence questions adagadam start chesindi, kani voice lekunda. Train lo opposite seats lo kurchunnapudu eyes phone screen meeda unnayi, kani thoughts ekkado vere direction lo tiruguthunnayi. Presence undi, kani attention fully akkada ledu ani iddaru lopala notice chesaru. Coffee shop lo kurchunnapudu mundu laaga time fast ga povadam jaragaledu. Cup empty ayyaka kuda lechi vellali ani hurry ledu kani undali ani clarity kuda ledu. Ee gap lo silence loud kaadu, kani persistent ga undi. Oka thought start ayithe complete cheyyakunda aapesthunnaru, enduku ante aa thought ni finish cheste direction maripothundi ani bhayam.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">College route lo nadustunnapudu crowd madhya lo kuda oka lonely awareness vachindi. Mundu ee route shared ani anipinchedi, ippudu parallel ani anipistondi. Iddaru same place lo unnaru kani same phase lo kaadu ani oka subtle realization settle ayyindi. Ee realization lo anger ledu, blame ledu, just oka quiet acceptance ki door open avuthondi. Ee chapter lo evaru matladaledu, kani iddaru vinnaru. Words bayata padaledu, kani silence lo meaning form ayyindi. Almost story lo idi first time silence comfort nundi communication ki maradam. Cheppakapoyina vishayalu ikkade shape tiskuntunnayi — slow ga, clear ga, escape avvaleni vidhamga.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.60">Absence plan chesinadi kaadu, decision kuda kaadu. Oka roju train lo opposite seat empty ga kanipinchindi, anthe. Vihaan first second lo adi notice cheyyaledu, kani taruvata eyes automatic ga akkada settle ayyayi. Reason search cheyyaledu, explanation expect cheyyaledu, kani presence miss ayyindi ani mind accept chesindi. Absence loud ga announce cheyyaledu, kani silence lo space create chesindi. Coffee shop lo kurchunnapudu kuda ade feeling repeat ayyindi. Corner chair lo usual calm undi, kani opposite table vacant ga undadam oka extra gap la anipinchindi. Cup steam rise avuthondi, kani ee sari adhi distraction kaadu. Time normal ga move avuthondi ani telusu, kani aa movement lo oka sync missing ani clear ga ardham ayyindi. Anvi kuda adhe coffee shop ki vachindi, kani different time lo. Same place, different moment — without coordination.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 13 — CHAPTER – 3             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch13" data-chapter-theme="resolution" data-chapter-index="12" aria-label="Chapter 13: CHAPTER – 3">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">13</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 13</span>
+                    <h2 class="chapter-title">CHAPTER – 3</h2>
+                    <p class="chapter-synopsis">College route lo nadustunnapudu ee absence explanation adugaledu. Mundu iddaru same crowd lo separate ga walk chesaru...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.45">College route lo nadustunnapudu ee absence explanation adugaledu. Mundu iddaru same crowd lo separate ga walk chesaru, ippudu crowd lo okarine walk chesthunnattu anipinchindi. Ee feeling loneliness kaadu, rejection kuda kaadu. Just oka silent update — “Ee overlap permanent kaadu.” Ee chapter lo separation jaragaledu, send-off kuda jaragaledu. Kaani presence value absence dwara first time clear ga kanipinchindi. Almost story lo idi turning point kaadu, kani direction shift. Ikkada iddaru ardham chesukunnadi okate — konni connections continue avvadam kosam kaadu, ardham avvadam kosam vastayi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Dependency ani padam ni iddaru avoid cheyyalanukunnaru. Mundu nundi kuda idhe rule — attach avvakudadhu, rely avvakudadhu, name ivvakudadhu. Kaani absence vachina tarvata aa rules automatic ga test avvadam start ayyayi. Vihaan ki ardham ayyindi ee feeling loneliness kaadu ani. Enduku ante tana life lo vere routines, vere people, vere responsibilities anni intact ga unnayi. Kaani aa routine madhya lo oka small reference point miss ayyindi ani clarity vachindi. Anvi ki kuda ade awareness slow ga settle ayyindi. Tanu evarini wait cheyyatledu, evarini search cheyyatledu, kani konni moments lo oka familiarity missing ani body munduga react ayyindi. Train sound, coffee aroma, college crowd — ivanni earlier laage unnayi. Kaani mundu ee experiences neutral ga anipinchinavi, ippudu comparison create chesthunnayi.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 14 — CHAPTER – 4             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch14" data-chapter-theme="isolation" data-chapter-index="13" aria-label="Chapter 14: CHAPTER – 4">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">14</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 14</span>
+                    <h2 class="chapter-title">CHAPTER – 4</h2>
+                    <p class="chapter-synopsis">Comparison anedi attachment ki first symptom ani tanu lopala accept chesindi.Iddaru oka vishayam observe chesaru — pr...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.60">Comparison anedi attachment ki first symptom ani tanu lopala accept chesindi.Iddaru oka vishayam observe chesaru — presence unnappudu ee connection weight la anipinchaledu, absence vachina appudu impact reveal ayyindi. Dependency ante daily matladadam kaadu, daily kalavadam kaadu. Oka fixed reference point la mind lo settle avvadame dependency. Ee realization scary kaadu, kani comfortable kuda kaadu. Enduku ante ee comfort ni acknowledge cheyyadam ante direction change avuthundi ani telusu. Vihaan ee stage lo tana silence ni question cheyyadam start chesadu. Mundu silence choice la undedi, ippudu adi defense la marindi. Explain cheyyakapovadam freedom kosam kaadu, complexity avoid cheyyadam kosam ani tanu first time admit chesadu. Anvi kuda ade stage lo undi. Tanu ee connection ni protect cheyyalani kaadu, disturb cheyyakudadhu ani anukuntundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">Kaani disturb cheyyakapovadam ante feel cheyyakapovadam kaadu ani clarity vachindi. Ee chapter lo love ani padam ekkada enter avvaledu, kani dependency ane padam internal ga acknowledge ayyindi. Iddaru ee realization ni loud ga accept cheyyaledu, decision la convert cheyyaledu. Just observe chesaru. Almost story lo idi attachment start kaadu, idi awareness start. Ee awareness tho vallu iddaru okate ardham chesukunnaru — control cheyyaleni feelings ni control cheyyadaniki try cheyyadam kante, ardham chesukovadam safer.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 15 — CHAPTER – 5             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch15" data-chapter-theme="calmness" data-chapter-index="14" aria-label="Chapter 15: CHAPTER – 5">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">15</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 15</span>
+                    <h2 class="chapter-title">CHAPTER – 5</h2>
+                    <p class="chapter-synopsis">Valla lives move avuthunnayi ani evaru deny cheyyaledu. Work, studies, responsibilities, friends — anni tana tana spe...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.60">Valla lives move avuthunnayi ani evaru deny cheyyaledu. Work, studies, responsibilities, friends — anni tana tana speed lo munduku velluthunnayi. Kaani ee movement madhya lo oka subtle overlap undi ani iddariki telusu. Morning routine start ayyaka, day lo eppudo oka moment lo mind automatic ga vere thought vaipu tiruguthundi. Adi intentional kaadu, avoid cheyyalanukunnadi kuda kaadu. Just ala cross avuthondi. Vihaan tana day lo busy ga unnappudu kuda konni small triggers notice chesadu. Train sound vinnapudu, coffee smell vachinapudu, evening light particular angle lo fall ayinapudu — ee moments lo oka familiar pause vasthundi. Tanu aa pause ni hold cheyyadaniki try cheyyadu, push cheyyadaniki kuda try cheyyadu. Just let it pass. Enduku ante ee crossing ni stop cheyyadam ante struggle start avuthundi ani tanu ardham chesukunnadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">Anvi life lo kuda same pattern repeat avuthondi. Tanu tana own people madhya navvuthundi, matladuthundi, participate chesthundi. Kaani ee participation complete ga involve ayinattu anipinchadu. Mind lo oka soft awareness undi — evaro okaru ee same moment ni vere place lo experience chesthunnaru ani. Ee thought possessive kaadu, emotional claim kuda kaadu. Just oka quiet connection. Iddaru oka stage lo ee truth ni accept chesaru — valla lives parallel tracks lo nadustunnayi. Cross avvadam rare, merge avvadam unnecessary. Ee tracks madhya occasional eye contact laanti thoughts untayi, kani direction maradam jaragadu. Ee realization painful kaadu, kani comfortable kuda kaadu. Adi neutral ga undi, anduke weight carry chesthundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Ee chapter lo iddaru realize ayyindi idi — parallel lives lo crossing thoughts exist avvachu without collision. Ee connection future plan kaadu, past memory kuda kaadu. Adi present lo oka light touch la undi. Almost story lo idi acceptance deepen avvadam start ayye phase. Not holding, not losing — just knowing.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 16 — CHAPTER – 6             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch16" data-chapter-theme="curiosity" data-chapter-index="15" aria-label="Chapter 16: CHAPTER – 6">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">16</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 16</span>
+                    <h2 class="chapter-title">CHAPTER – 6</h2>
+                    <p class="chapter-synopsis">Valla madhya eppudu oka clear line draw cheyyaledu. Friends ani cheppaledu, strangers ani declare cheyyaledu. Ee ambi...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="curiosity" data-intensity="0.45">Valla madhya eppudu oka clear line draw cheyyaledu. Friends ani cheppaledu, strangers ani declare cheyyaledu. Ee ambiguity ne mundu safety la anipinchindi. Kaani ippudu adhe ambiguity oka invisible boundary laa kanipinchindi. Boundary draw cheyyakapoyina, cross ayinattu feeling vachindi ani iddariki silent ga telisindi. Vihaan ee stage lo okati ardham chesukunnadu — limits define cheyyakapothe freedom untundi ani anukunna idea incomplete ani. Enduku ante define cheyyakapoyina kuda, mind limits create chesthundi. Oka thought ni next step ki teeskellakudadu ani decision cheppakapoyina, body automatic ga aapesthundi. Ee restraint plan kaadu, reflex. Anvi ki kuda ade clarity vachindi. Tanu question adagakapovadam choice ani anukunna phase ippudu awareness laa marindi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.60">Silence ni maintain cheyyadam maturity anipinchindi kani ippudu adi hesitation kuda undochu ani realization vachindi. Ee hesitation blame kaadu, fear kuda kaadu. Just oka internal check — “ikkada varake chaalu.” Iddaru ee line ni draw cheyyaledu, kani iddaru adhe line ni respect chesthunnaru. Ee respect dramatic kaadu, visible kuda kaadu. Kaani prathi small decision lo reflect avuthondi — message cheyyakunda undadam, question adgakunda undadam, explanation expect cheyyakunda undadam. Ee choices connection ni break cheyyatledu, kani direction ni limit chesthunnayi. Ee chapter lo realization clear — konni lines paper meeda draw cheyyakkarledu, behaviour lo form avuthayi. Almost story lo idi separation start kaadu, kani overlap end. Ikkade iddaru ardham chesukunnaru — draw cheyyani boundary ni cross cheyyadam kante, respect cheyyadam less painful.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 17 — CHAPTER – 7             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch17" data-chapter-theme="resolution" data-chapter-index="16" aria-label="Chapter 17: CHAPTER – 7">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">17</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 17</span>
+                    <h2 class="chapter-title">CHAPTER – 7</h2>
+                    <p class="chapter-synopsis">Cheppani maatalu first silence lo form avuthayi. Tarvata mind lo repeat avuthayi. Ee stage lo iddaru ardham chesukunn...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.60">Cheppani maatalu first silence lo form avuthayi. Tarvata mind lo repeat avuthayi. Ee stage lo iddaru ardham chesukunnaru — matladakapovadam valla clarity vachindi ani anukunna phase ipudu burden la marindi ani. Words bayata padaledu kani lopala accumulate ayyayi. Prathi roju okkate vishayam cheppakapoyina, aa one thing roju roju heavier avuthondi. Vihaan ki ee weight clear ga anipinchindi when tanu tana day ni end chesinappudu. Busy unna roju kuda, night calm lo oka sentence mind lo echo avuthundi. Aa sentence complete kaadu, start kuda kaadu. Just possibility. Ee possibility ni voice cheyyadam ante consequences accept cheyyadam ani tanu telusu. Anduke silence ni choose chesthunnadu, kani ee choice effortless kaadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">Anvi ki kuda ade process nadusthondi. Tanu strong ga undadam ani anukunna self-image ni maintain cheyyalani try chesthundi. Kaani cheppani maatalu strength kaadu ani realization vachindi. Avi fragile kaadu, kani dangerous kuda kaadu. Avi direction change cheyyagalige capacity unna thoughts. Anduke tanu kuda vatini bayata padanivvatledu. Iddaru ee vishayam observe chesaru — cheppani words relationship ni destroy cheyyavu, kani silence ni heavy chesthayi. Kaani cheppani maatalu strength kaadu ani realization vachindi. Avi fragile kaadu, kani dangerous kuda kaadu. Avi direction change cheyyagalige capacity unna thoughts. Anduke tanu kuda vatini bayata padanivvatledu. Iddaru ee vishayam observe chesaru — cheppani words relationship ni destroy cheyyavu, kani silence ni heavy chesthayi. Ee heaviness lo anger ledu, regret kuda ledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Just oka awareness undi — ippudu chepte story vere route ki velthundi ani. Almost story lo idi climax kaadu, kani threshold. Ee threshold daggara iddaru same decision tiskuntunnaru — matladakapovadam safe, kani free kaadu.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 18 — CHAPTER – 8             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch18" data-chapter-theme="resolution" data-chapter-index="17" aria-label="Chapter 18: CHAPTER – 8">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">18</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 18</span>
+                    <h2 class="chapter-title">CHAPTER – 8</h2>
+                    <p class="chapter-synopsis">Withdrawal loud ga jaragaledu. Decision announce cheyyaledu, explanation ivvaledu. Just frequency marindi. Mundu auto...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.60">Withdrawal loud ga jaragaledu. Decision announce cheyyaledu, explanation ivvaledu. Just frequency marindi. Mundu automatic ga jarige overlaps ippudu deliberate ga avoid cheyyadam kaadu, kani repeat avvakunda aagipoyayi. Train lo same compartment undakapovadam coincidence la start ayyindi, tarvata habit la settle ayyindi. Coffee shop time slight ga marindi, route kuda koncham adjust ayyindi. Ivanni escape kaadu, adjustment. Vihaan ki ee distance relief ivvaledu, pain kuda ivvaledu. Adi neutral ga undi. Mundu ee connection ni disturb cheyyakapovadam kosam silence choose chesadu, ippudu adhe silence ni protect cheyyadam kosam distance choose chesthunnadu. Ee choice heroic kaadu, sacrifice kuda kaadu. Just oka internal alignment.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.75">Vihaan ki ee distance relief ivvaledu, pain kuda ivvaledu. Adi neutral ga undi. Mundu ee connection ni disturb cheyyakapovadam kosam silence choose chesadu, ippudu adhe silence ni protect cheyyadam kosam distance choose chesthunnadu. Ee choice heroic kaadu, sacrifice kuda kaadu. Just oka internal alignment. Anvi kuda ee withdrawal ni resist cheyyaledu. Tanu ee phase ni loss laaga frame cheyyalani try cheyyaledu. Enduku ante loss ani anukunte, reclaim cheyyali ane instinct vasthundi. Ikkada reclaim cheyyadaniki em ledu ani tanu telusu. Ee connection purpose complete ayyindi ani anipinchindi — fill cheyyadaniki kaadu, reflect cheyyadaniki. Iddaru oka roju accidental ga malli same place lo kanipincharu. No shock. No rush. Just oka nod. Aa nod lo apology ledu, promise ledu, continuation kuda ledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Just mutual recognition — “manam idi correct ga handle chesam.” Words vadalsina avasaram ledu, enduku ante ee ending failure kaadu ani iddariki telusu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.45">Ee chapter tho Part–2 close avuthundi. Story ikkada end avvaledu, kani relationship ikkada transform ayyindi. Almost story lo idi breakup kaadu, goodbye kuda kaadu. Idi acceptance. Okarini okaru odilesina vidham lo kaadu, okarini okaru ardham chesina vidham lo.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 19 — ALMOST             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch19" data-chapter-theme="resolution" data-chapter-index="18" aria-label="Chapter 19: ALMOST">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">19</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 19</span>
+                    <h2 class="chapter-title">ALMOST</h2>
+                    <p class="chapter-synopsis">An INFJ Relationship That Failed Perfectly</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">An INFJ Relationship That Failed Perfectly</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">PART – 3 : Chosen by Time</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Introduction</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="release" data-intensity="0.60">Ee part oka love story continuation kaadu. Idi reunion kuda kaadu. Idi “finally kalisaru” ane relief kosam raasina section kuda kaadu. Part–3 time gurinchi matladuthundi — time ela manishini mould chesthundo, ela readiness ni test chesthundo, ela decision ni manam teesukunnattu anipinchina moment lo kuda control tana chetlo unchukuntundo. Vihaan mariyu Anvi iddaru evarini choose cheyyaledu. Vallu wait cheyyaledu, vallu hope kuda pettukoledu. Life tana tana pace lo vellipoyindi. Cities marchayi, priorities marchayi, selves mature ayyayi. Ee madhya lo vallu okarini okaru gurtu pettukovadam kosam pray cheyyaledu. Kaani marchipovadam kosam kuda fight cheyyaledu. Konni connections ala untayi — neither held nor erased.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.60">Part–3 lo ee story cheppedi okate — konni relationships destiny finish cheyyadu, delay chesthundi. Enduku ante maturity complete avvaledu. Identity settle avvaledu. Calm ready avvaledu. Ee part lo marriage climax kaadu; adi result. Process ekkada complete ayyindo, akkade destiny enter ayyindi. Almost ikkada end avvadu. Almost ikkada justify avuthundi. Enduku ante ee story lo vallu kalisi undadam oka choice la kanipinchina kuda, adi time approve chesina decision. Ee part lo manam chusedi love ela start ayyindo kaadu — love ela wait chesindo.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 20 — CHAPTER – 1             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch20" data-chapter-theme="calmness" data-chapter-index="19" aria-label="Chapter 20: CHAPTER – 1">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">20</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 20</span>
+                    <h2 class="chapter-title">CHAPTER – 1</h2>
+                    <p class="chapter-synopsis">Anvi ee travel ni plan cheyyaledu. Decision laa teesukoledu, excitement kuda ledu. Just work related reason tho oka c...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.60">Anvi ee travel ni plan cheyyaledu. Decision laa teesukoledu, excitement kuda ledu. Just work related reason tho oka city ki vellalsi vachindi, and aa city peru cheppinappudu kuda tana mind lo em click avvaledu. Places sometimes ala untayi — meaning carry cheyyavu, just location laa untayi. Ee city kuda Anvi ki alantide. Past tho link undi ani kuda tanu alochinchaledu. Train digina tarvata, surroundings anni unfamiliar ga unnayi. Streets kothaga unnayi, sounds different ga unnayi, pace koncham slow ga anipinchindi. Ee unfamiliarity lo kuda Anvi calm ga undi. Enduku ante ee phase lo tanu evarini vetukutledu, evarni avoid cheyyatledu. Life tana lane lo nadusthondi ani tanu accept chesindi. Ee city lo oka name, oka memory, oka face undi ani tanu marchipoyindi ani kaadu — just relevance ivvaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.90">Meanwhile, Vihaan ki ee movement gurinchi asalu telidu. Tana life adhe rhythm lo continue avuthondi. Same routines, same responsibilities, same silence. Ee silence ippudu lonely kaadu, empty kuda kaadu. It is lived-in. Ee city tana home laa maripoyindi ani tanu realize kuda cheyyaledu. Enduku ante some places manaki home ani declare cheyyalsina avasaram undadu, just ala settle aipothayi. Anvi aa city lo days spend chesthundi. Coffee shop lo kurchuntundi, roads lo nadusthundi, evening light ni observe chesthundi. Konni moments lo oka vague familiarity anipisthundi, kani tanu aa feeling ni name ivvaledu. Ee feeling memory kaadu, longing kuda kaadu. Just oka soft recognition — “Ee silence naku telusu.”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Ee chapter lo iddaru same city lo unnaru. Kaani iddaru iddaru gurinchi telusukoru. Destiny ikkada loud entry ivvaledu. No signs, no hints, no dramatic crossings. Just time vallani same map lo place chesindi. Almost story lo idi reunion start kaadu. Idi alignment prepare ayye moment.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 21 — CHAPTER – 2             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch21" data-chapter-theme="calmness" data-chapter-index="20" aria-label="Chapter 21: CHAPTER – 2">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">21</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 21</span>
+                    <h2 class="chapter-title">CHAPTER – 2</h2>
+                    <p class="chapter-synopsis">Ee city lo iddaru settle ayyaru ani cheppadam kuda overstatement. Vallu just unnaru. Anvi tana work routine lo busy g...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.60">Ee city lo iddaru settle ayyaru ani cheppadam kuda overstatement. Vallu just unnaru. Anvi tana work routine lo busy ga undi, mornings hurry, evenings tired calm. Vihaan tana usual rhythm ni continue chesthunnadu — same routes, same pauses, same silence. Iddaru okate city lo breathing chesthunnaru ani fact iddariki telidu. Awareness lekapovadam valla ee closeness light ga undi. Anvi daily oka coffee shop ki velthundi. Choice kaadu, convenience. Window pakkana seat, crowd ni observe chesthu coffee sip cheyyadam. Ee place lo tanu safe ga feel avuthundi ani realize cheyyaledu kuda. Meanwhile Vihaan adhe road lo nundi almost daily nadusthadu, kani stop avvadu. Timing slight ga different. Minutes gap lo destinies miss avuthunnayi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.60">Streets lo, signals daggara, metro entrances lo — valla paths overlap avvadaniki ready ga unnayi. Kaani eppudu okate moment lo kaadu. Ee near-misses visible kaavu, dramatic kuda kaavu. Just time slightly ahead or behind. Destiny hurry chesthunattu ledu. Tanu timing ni test chesthunnattu undi. Anvi ki ee city lo konni sounds oddly comforting ga anipisthunnayi. Morning traffic hum, evening vendors voices, rain padithe road meeda vachche smell. Ee comfort ki reason telidu. Tanu analysis cheyyadu. Ee phase lo tanu explanations kosam search cheyyadam maanindi. Vihaan ki kuda oka strange settled feeling undi. Ee city lo tanu complete ayinattu feel avuthunnadu, kani enduku ani question adagadu. Life lo konni answers later kosam reserve cheyyadam better ani tanu nerchukunnadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Ee calm lo tanu mundu epudaina share chesina silence gurinchi kuda think cheyyatledu. Ee chapter lo iddaru chala daggara unnaru. Kaani knowledge ledu, intention ledu, direction ledu. Destiny ikkada signal ivvaledu. Just coordinates adjust chesthundi. Almost story lo idi coincidence kaadu — preparation.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 22 — CHAPTER – 3             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch22" data-chapter-theme="calmness" data-chapter-index="21" aria-label="Chapter 22: CHAPTER – 3">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">22</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 22</span>
+                    <h2 class="chapter-title">CHAPTER – 3</h2>
+                    <p class="chapter-synopsis">Anvi ki ee city lo konni places chusthunte reason teliyani comfort anipinchindi. Oka bus stop daggara nilabadi unte, ...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.75">Anvi ki ee city lo konni places chusthunte reason teliyani comfort anipinchindi. Oka bus stop daggara nilabadi unte, oka road turn daggara slow ga nadusthunte, konni moments lo body munduga react ayyindi, mind kanna mundu. Ee feeling memory laa kaadu, longing laa kuda kaadu. Just oka soft recognition — “ikkada nenu okasari calm ga unna” ane feeling. Coffee shop lo window pakkana kurchunnapudu, bayata nadusthunna crowd ni chusthundi. Konni faces lo urgency kanipisthundi, konni faces lo routine. Ee visuals chusthunte tanu sudden ga oka old phase gurinchi think chesthundi, kani aa phase clear ga form avvadu. Names levu, dialogues levu. Just silence texture matrame gurthosthundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Ee familiarity ni Anvi explain cheyyadaniki try cheyyaledu. Explanation ivvadam start chesthe aa feeling fragile aipothundi ani tanu telusu. Anduke tanu aa comfort ni question cheyyakunda accept chesthundi. Ee city ni like cheyyadam kuda jaragaledu, dislike cheyyadam kuda jaragaledu. Just allow chesthundi. Meanwhile Vihaan adhe city lo tana routine ni continue chesthunnadu. Ee places tanaki fully known. Kaani ee madhya konni streets lo nadusthunte oka micro-pause vasthondi. Enduku ani tanu alochinchadu. Ee pause meaning kosam kaadu, presence kosam. Tana silence ippudu complete ayinattu anipisthundi. Ee chapter lo iddaru same feeling ni experience chesthunnaru, kani reference different. Anvi ki adi unfamiliar city lo unexpected calm. Vihaan ki adi familiar city lo deeper settle. Ee two experiences collide avvakunda parallel ga move avuthunnayi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Almost story lo idi memory return kaadu. Idi alignment warming up. Konni connections mind lo register avvakunda kuda body lo remain avuthayi ani ee chapter chepthundi.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 23 — CHAPTER – 4             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch23" data-chapter-theme="curiosity" data-chapter-index="22" aria-label="Chapter 23: CHAPTER – 4">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">23</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 23</span>
+                    <h2 class="chapter-title">CHAPTER – 4</h2>
+                    <p class="chapter-synopsis">Oka casual conversation madhya lo Vihaan aa peru vinnadu. Loud ga kaadu, dramatic ga kuda kaadu. Just ala vachindi. S...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="curiosity" data-intensity="0.60">Oka casual conversation madhya lo Vihaan aa peru vinnadu. Loud ga kaadu, dramatic ga kuda kaadu. Just ala vachindi. Someone mentioned it, context light ga undi, reaction expect cheyyaledu. Vihaan first second lo react avvaledu. Aa peru tana mind lo echo avvaledu, heart rate change kuda kaaledu. Adi surprising ga anipinchindi. Ee silence lo tanu okati notice chesadu — ee peru okappudu tana life lo weight carry chesindi, ippudu just information laa enter ayyindi. Past door open avvaledu, memory flood kuda kaaledu. Just oka acknowledgment — “Ee name naku telusu.” Anthe. No curiosity to know more, no urge to ask questions. Anvi side lo kuda similar experience jarigindi. Tana office lo, oka list lo, oka random mention lo Vihaan peru kanipinchindi. Tanu screen meeda oka second extra aagi chusindi, kani aa pause emotional reaction kosam kaadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Adi confirmation kosam — “Yes, idi ade peru.” Tana mind lo past immediately activate avvaledu. Ee calm itself tanu notice chesindi. Iddaru ee moments ni follow up cheyyaledu. Inquiry ledu, searching ledu, social media check kuda ledu. Enduku ante urgency anedi interest nundi kaadu, incompleteness nundi vasthundi ani iddariki telusu. Ippudu aa incompleteness ledu. Lives complete ga unnayi. Ee chapter lo destiny next step tiskuntundi kani push cheyyadu. Name enter ayyindi, kani story immediate ga move avvaledu. Almost lo idi tease kaadu. Idi test. Time iddari readiness ni quietly observe chesthondi — past trigger ayyinda, leda past settle ayyinda ani.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 24 — CHAPTER – 5             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch24" data-chapter-theme="romance" data-chapter-index="23" aria-label="Chapter 24: CHAPTER – 5">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">24</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 24</span>
+                    <h2 class="chapter-title">CHAPTER – 5</h2>
+                    <p class="chapter-synopsis">Adi plan kaadu. Coincidence ani kuda anukovachu. Evening time lo crowd koncham thaggina road, signal daggara aagalsin...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="romance" data-intensity="0.45">Adi plan kaadu. Coincidence ani kuda anukovachu. Evening time lo crowd koncham thaggina road, signal daggara aagalsina moment. Anvi phone screen nundi eyes lift chesindi, Vihaan road cross cheyyadaniki aagadu. Oka second. Just oka second lo iddaru okarini okaru chusaru. No shock. No disbelief. Just recognition. Evaru first smile cheyyaledu. Evaru first step forward kuda veyyaledu. Ee crossing lo urgency ledu, confusion ledu. Mind lo “adi vaalla?” ani doubt kuda undaledu. Confirmation immediate ga vachindi. Years gap unna kuda faces change avvaledu, expression mature ayyindi anthe. Signal green ayyindi. Crowd malli move ayyindi. Signal green ayyindi. Crowd malli move ayyindi. Iddaru opposite directions lo nadicharu. Ee meeting ni stop cheyyalani try cheyyaledu, continue cheyyalani kuda try cheyyaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Adi oka acknowledgement laa undi, conversation kaadu. Destiny card play chesindi, kani reaction ni vallake vadilesindi. Walking chesthunnapudu Anvi ki oka clarity settle ayyindi — ee meeting reminder kaadu, invitation kaadu. Just proof. “Timing ippudu different.” Vihaan ki kuda ade anipinchindi. Ee crossing chala silent ga jarigindi ani, anduke meaningful ga undi.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 25 — CHAPTER – 6             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch25" data-chapter-theme="calmness" data-chapter-index="24" aria-label="Chapter 25: CHAPTER – 6">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">25</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 25</span>
+                    <h2 class="chapter-title">CHAPTER – 6</h2>
+                    <p class="chapter-synopsis">Aa crossing tarvata iddaru back choodaledu. Adi intentional kaadu, avoidance kuda kaadu. Just necessity ledu. Recogni...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.60">Aa crossing tarvata iddaru back choodaledu. Adi intentional kaadu, avoidance kuda kaadu. Just necessity ledu. Recognition jarigindi, kani aa recognition ni action lo convert cheyyalsina urgency iddariki anipinchaledu. Ee stage lo iddaru okate ardham chesukunnaru — past ni acknowledge cheyyadam ante past ki vellipovadam kaadu. Vihaan aa night tana routine ni change cheyyaledu. Same walk, same dinner, same silence. Kaani ee sari silence lo disturbance ledu. Mind lo oka thought settle ayyindi — “Manam iddaram ippudu different versions.” Ee realization sadness ni create cheyyaledu, relief ivvadaniki kuda try cheyyaledu. Just fact laa undi. Anvi kuda aa meeting gurinchi friend tho share cheyyaledu. Diary lo note cheyyaledu. Explanation ivvalani urge ledu. Ee calm itself tanu notice chesindi. Mundu ilanti moment vachunte questions flood ayyedi. Ippudu questions kuda calm ga aagipoyayi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Iddaru ee recognition ni return ga marchaledu. Messages ledu, calls ledu, follow-up ledu. Ee restraint fear valla kaadu, pride valla kaadu. Ee restraint maturity valla. Enduku ante iddaru telusu — ippudu reach out chesthe story emotional memory ki velthundi, present reality ki kaadu. Ee chapter lo destiny malli push cheyyaledu. Time observe chesthondi. Recognition jarigina tarvata kuda iddaru steady ga unnaaru ante, alignment start ayyindi ani sign. Almost story lo idi restraint chapter. Not because they can’t… but because they don’t need to.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 26 — CHAPTER – 7             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch26" data-chapter-theme="isolation" data-chapter-index="25" aria-label="Chapter 26: CHAPTER – 7">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">26</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 26</span>
+                    <h2 class="chapter-title">CHAPTER – 7</h2>
+                    <p class="chapter-synopsis">Conversation start ayyindi ani cheppadam kuda accurate kaadu. It just happened. Oka common contact, oka casual situat...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.45">Conversation start ayyindi ani cheppadam kuda accurate kaadu. It just happened. Oka common contact, oka casual situation. No “we should talk” moment. No awkward silence to break. Just oka normal exchange, like iddaru already oka neutral ground meeda unnattu. First few lines lo past mention avvaledu. Names, places, explanations — anni avoid ayyayi. Vihaan matladuthunnapudu notice chesadu — Anvi voice lo urgency ledu. Earlier versions lo unde need ippudu kanipinchaledu. Tanu answers ivvadam kosam answer ivvaledu, impress cheyyadam kosam matladaledu. Just present lo undi. Ee simplicity Vihaan ki comfortable ga anipinchindi. No pressure to perform, no role to play. Anvi kuda ade observe chesindi. Vihaan ippudu listening kosam listen chesthunnadu, respond avvadam kosam kaadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">Tana eyes lo familiarity undi, kani claim ledu. Ee balance rare ani tanu telusu. Strangers laaga matladuthunnaru, kani silence fill cheyyalsina avasaram ledu ani iddariki telusu. Conversation madhya lo okkasari kuda “appudu” ani padam use avvaledu. Past ki doors open chesukoledu, kani past ni deny kuda cheyyaledu. Adi background lo undi, foreground lo kaadu. Ee approach deliberate kaadu, instinctive. Ee chapter lo iddaru realize ayyindi idi — chala mandi strangers untaru, chala mandi familiar untaru. Kani konni mandi matrame strangers laaga matladagalugutharu, familiarity burden lekunda. Almost story lo idi reconciliation kaadu. Idi reintroduction.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 27 — CHAPTER – 8             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch27" data-chapter-theme="isolation" data-chapter-index="26" aria-label="Chapter 27: CHAPTER – 8">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">27</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 27</span>
+                    <h2 class="chapter-title">CHAPTER – 8</h2>
+                    <p class="chapter-synopsis">Ee sari iddaru okarini okaru chusaru, kani memory lens lo kaadu. Present lens lo. Vihaan ki Anvi lo first noticeable ...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.45">Ee sari iddaru okarini okaru chusaru, kani memory lens lo kaadu. Present lens lo. Vihaan ki Anvi lo first noticeable change age kaadu, ambition. Tanu tana decisions ni justify cheyyalsina avasaram lekunda chepthondi. Confidence loud ga ledu, silent ga undi. Ee silence earlier laaga emptiness kaadu, ownership. Anvi ki Vihaan lo kanipinchindi steadiness. Mundu unde restless thinking ippudu organized ga undi. Tanu opinions express chesthunnadu, kani prove cheyyalani kaadu. Listening lo patience undi, pauses lo comfort undi. Ee version mundu kalisunte iddaru safe feel ayye chance undedi kaadu ani tanu telusu. Ee observation lo regret ledu. “Appudu idhi unte” ane thought raledu. Enduku ante aa time lo iddaru ee versions kaadu. Ee realization iddariki oka neutral truth laa settle ayyindi. Growth ni romanticize cheyyaledu,</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">loss laa kuda treat cheyyaledu. Just acknowledge chesaru.Conversation munduku vellina kuda tempo slow ga undi. No rush to meet again, no plans to extend time. Enduku ante iddaru okate ardham chesukunnaru — ee versions ni rush chesthe distort avuthayi. Calm lo undaalani. Ee chapter lo destiny first time clear ga kanipinchindi. Not as force, not as coincidence. As timing. Almost story lo idi pivot moment. Iddaru finally same phase lo unnaru.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 28 — CHAPTER – 9             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch28" data-chapter-theme="curiosity" data-chapter-index="27" aria-label="Chapter 28: CHAPTER – 9">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">28</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 28</span>
+                    <h2 class="chapter-title">CHAPTER – 9</h2>
+                    <p class="chapter-synopsis">Ee decision sudden ga vachindi ani cheppalemu. Planned ani kuda cheppalemu. Just oka natural conclusion laa arrive ay...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="curiosity" data-intensity="0.90">Ee decision sudden ga vachindi ani cheppalemu. Planned ani kuda cheppalemu. Just oka natural conclusion laa arrive ayyindi. Oka conversation lo kaadu, oka emotional peak lo kaadu. Normal day lo, normal tone lo, oka simple question laa bayata padindi. “Ee life ni kalisi nadavacha?” Ane line lo proposal flavour ledu, risk ledu. Just clarity undi. Vihaan aa question adagadam lo hesitation ledu. Enduku ante answer kosam pressure pettadam tanu anukoledu. Ee question oka test kaadu, oka invitation. Accept ayithe okay, reject ayithe kuda okay ane mindset lo adigadu. Ee neutrality lo confidence undi. Possession ledu, expectation ledu. Anvi aa question vinnappudu shock avvaledu. Heartbeat sudden ga speed avvaledu. Ee calm itself tanu notice chesindi. Ee decision mundu time chala pani chesindi ani tanu ardham chesukundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">Ee clarity patience nundi vachindi, longing nundi kaadu. Anduke answer immediate ga vachindi.No conditions, no future scripting. Just oka nod. Agreement kaadu, alignment. Ee chapter lo iddaru realize ayyindi idi love declaration kaadu. Idi partnership recognition. Iddaru iddaru complete ga unna stage lo meet ayyaru. Fill cheyyadaniki kaadu, share cheyyadaniki. Almost story lo idi climax laa anipinchadu, kani idi most important turn. Enduku ante ee sari decision valladi kaadu ani iddariki telusu. Time already decide chesindi.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 29 — CHAPTER – 10             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch29" data-chapter-theme="tension" data-chapter-index="28" aria-label="Chapter 29: CHAPTER – 10">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">29</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 29</span>
+                    <h2 class="chapter-title">CHAPTER – 10</h2>
+                    <p class="chapter-synopsis">Ee marriage announcement loud ga jaragaledu. Big reactions, big explanations, big justifications — em levu. Families ...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="tension" data-intensity="0.60">Ee marriage announcement loud ga jaragaledu. Big reactions, big explanations, big justifications — em levu. Families ki cheppinappudu kuda tone simple ga undi. Surprise undi, shock ledu. Enduku ante iddaru cheppina vidham lo certainty kanipinchindi. Ee decision sudden kaadu ani, ee choice impulsive kaadu ani andariki clear ga ardham ayyindi. Wedding day kuda same mood lo undi. Decorations minimal. Music low. Smiles forced kaadu. Rituals follow avuthunnayi, kani attention rituals meeda kaadu, stillness meeda undi. Vihaan stage meeda nilabadi unna time lo nervous feel avvaledu. Ee place tanaki unfamiliar kaadu ani anipinchindi. Anvi kuda ade calm lo undi. Bridal glow ani cheppadaniki try cheyyalsina avasaram ledu. Ee face lo relief undi, perform cheyyalsina role ledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">Ee marriage lo promises dramatic ga exchange cheyyaledu. Forever ani shout cheyyaledu. Enduku ante ee forever already time test pass ayyindi. Ippudu prove cheyyalsina avasaram ledu. Iddaru okarini okaru chusukunnapudu past flashbacks raledu. Instead oka silent understanding undi — “Manam ikkada reach avvadam random kaadu.” Guests vellipoyina tarvata, hall empty ayyaka, iddaru pakkapakkane kurchunnaru. Silence malli vachindi. Kaani ee sari adi beginning kaadu, ending kuda kaadu. Adi continuation. Almost story lo ee chapter celebration kaadu. Idi confirmation. Time correct ga choose chesindi ani oka quiet stamp.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 30 — CHAPTER – 11             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch30" data-chapter-theme="calmness" data-chapter-index="29" aria-label="Chapter 30: CHAPTER – 11">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">30</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 30</span>
+                    <h2 class="chapter-title">CHAPTER – 11</h2>
+                    <p class="chapter-synopsis">Back chesi chusthe ee story lo em jaragaledu ani anipinchachu. No dramatic confession, no breakup scars, no grand reu...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.45">Back chesi chusthe ee story lo em jaragaledu ani anipinchachu. No dramatic confession, no breakup scars, no grand reunion. Kaani idhe point. Almost lo jarigindi antha loud ga kaadu, kani essential. Recognition, distance, silence, acceptance — ivanni training laaga pani chesayi. Ee stages lekunda ee ending possible kaadu. Vihaan mariyu Anvi ippudu kalisi unnaru ani cheppadam easy. Kaani ee kalisi undadam impulsive decision kaadu. Ee place ki ravadam kosam iddaru separate ga prepare ayyayi. Life vallani break cheyyaledu, bend cheyyaledu. Just slow ga align chesindi. Ee marriage love reward kaadu, patience result. Ee story lo “almost” failure kaadu. Almost ante incomplete ani kaadu. Almost ante ready avvadam. Time vallani okasari kaadu, rendu sarlu test chesindi. First time feelings unnapudu — timing wrong.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Second time timing correct ayyaka — feelings calm ayyi mature ayyayi. Ee difference marriage ni strong chesindi. Ippudu vallu okarini okaru fill cheyyaru. Share chestharu. Possess cheyyaru. Respect chestharu. Ee relationship lo urgency ledu, insecurity ledu. Enduku ante ee bond hope meeda build kaaledu, reality meeda build ayyindi. Almost story ikkada end avuthundi ani cheppadam wrong. Enduku ante idi ending kaadu. Idi proof. Konni stories complete avvaledu kabatte, konni endings perfect ga untayi.</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Almost</h3>
+                    <p class="epilogue-sub">Romance & Calmness</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

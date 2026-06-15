@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malli Kalisi… — Act I | Story Experience</title>
+    <meta name="description" content="A Premium Cinematic Storytelling Experience.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Malli Kalisi…</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Malli Kalisi…</span>
+            <span class="header-brand-sub">Story Experience</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Introduction">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Introduction</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Introduction</span>
+                    <span class="sb-desc">Malli Kalisi…</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Malli Kalisi….png" alt="Malli Kalisi… — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Malli Kalisi…">Malli Kalisi…</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Story Experience</div>
+                <div class="landing-meta" id="landing-meta">A Premium Cinematic Storytelling Experience.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Malli Kalisi… story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Introduction             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0" aria-label="Chapter 1: Introduction">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Introduction</h2>
+                    <p class="chapter-synopsis">Malli Kalisi…</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">Malli Kalisi…</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">W r i t t e n B y W R</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.75">Dev mariyu Nandini late twenties lo unna oka deeply connected couple. Valla life simple ga untundi kani emotional ga chala rich. Valla bond loud ga ledu, dramatic ga kuda ledu adi calm, steady, meaningful ga untundi. Oka roju, sudden ga Dev car accident lo chanipothadu. Nandini okkate migilipothundi, closure lekunda unna love ni carry chestu. Aame normal ga move on avvalekapothundi; daniki baduluga, memories tho brathukutundi, avi slow ga tana only companionship aipothayi. Konni samvatsarala tarvata, Eswar ane abbai vere family lo puttadu. Chinna nunchi vadu konchem different ga untadu calm, observant, mariyu explain cheyaleni depth tho. 15 years tarvata, oka ironic situation lo Nandini tana life lo caretaker ga enter avuthundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Aame vanni genuine ga care chestundi, almost mother laga, kani valla madhya connection lo edo unusual feeling untundi. Eswar ki kuda aame tho oka strange comfort mariyu familiarity anipistundi, kani daniki reason evariki ardham kaadu. Tarvata, Eswar life lo kuda tragedy vastundi. Tana parents sudden flight crash lo chanipotharu. Vadu emotionally break aipothadu mariyu lonely aipothadu. Trust chesina relatives kuda vanni betray chestaru. Ekkada vellalo teliyaka, tana life lo safe ga feel ayina okka person daggara ki velthadu Nandini daggara. Aame hesitation lekunda vanni accept chestundi, stability mariyu care ivvadam start chestundi. Bayata world ki aame guardian laga kanipistundi, kani lopala Dev presence eppudu thaggadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.60">Aame Eswar ni care chestundi kani tana heart lo Dev ni gurthucheskuntundi. Aina kuda, aame strict boundary maintain chestundi emotions physical ga maarakunda chustundi. Valla madhya unna bond silent, controlled, mariyu chala complex love. 20 years age lo Eswar ki oka change jarugutundi. Dev chanipoyina place daggara wait chestu undaga, sudden ga memories flash avutayi tana life kaani memories. Shock ayina vadu direct ga Nandini daggara ki vellipoyi, tanu Dev ani cheptadu. Modati ki aame nammadhu. Kani vadu cheppina memories, conversations, details chustunte avi vere evariki teliyani vi ame slowly nammadam start chestundi. Aame ki idi comfort ga kuda, disturb ga kuda anipistundi. Kani aame oka line draw chestundi.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">“Nuvvu Dev kaadu, ippudu Eswar,” ani cheptundi. Aame ki past ni reclaim cheyadam kaadu important present ni respect cheyadam important. Eswar life malli rebuild avvadam start ayyaka, Nandini tana presence valla vadu munduku vellalekapothunnadu ani realize avuthundi. Aame oka tough decision tiskuntundi tana marriage Uma tho fix chestundi. Modati ki Eswar refuse chestadu, endukante tana heart Nandini tho deep ga connect ayyi untundi. Kani Nandini calm ga convince chestundi: life ante past ni pattukuni undadam kaadu, munduku nadavadam ani. Aame maatallo unna weight ki vadu oppose cheyalekapothadu, last ki agree avuthadu.Eswar Uma ni pelli chesukuntadu. Uma kind, perceptive, emotionally strong ammayi. Marriage early months lo Eswar lo konchem distance untundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.75">Uma adi notice chestundi kani insecurity tho react avvakunda patience choose chestundi. Slow ga aame ardham chesukuntundi tana life lo oka past undi ani, danitho compete cheyadam possible kaadu ani. Nandini, Eswar settle ayyaka, back step tiskuntundi. Aame valla tho kalisi undadam vadilesindi not because love lekapovadam, kani boundaries ardham chesukuni. Bayata world ki aame mother figure laga kanipistundi. Lopala matram, tana love same ga untundi expression lekunda, silent ga. Dev Eswar truth Uma ki telustundi. Aame ki kuda oka choice untundi. Jealousy badulu empathy ni choose chestundi. Aame Nandini ni threat ga kaadu, selfless love example ga chustundi. Nandini tana future kosam back step tiskundani ardham chesukuntundi. Aame Nandini ni respect chestundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.60">Chivariki, andariki oka silent balance vastundi. Eswar tana past mariyu present ni accept chestadu. Uma tana real partner ga undi, vanni ardham chesukuntundi without trying to own him completely. Nandini distant ga untundi kani constant presence laga. Idi dramatic reunion story kaadu. Lost love ni reclaim chese story kuda kaadu. Idi acceptance gurinchi. Dev mariyu Nandini madhya unna love maraledu, kani adi conventional ga marchaledu. Adi alaane undi untouched, incomplete, kani complete in its own way. Konni relationships continue avvavu, kani avi end avvu kuda. Avi silent ga mana lives ni shape chestayi, place demand cheyakunda.</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Malli Kalisi…</h3>
+                    <p class="epilogue-sub">Story Experience</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

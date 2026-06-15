@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dharshan — Act I | Calmness & Devotion</title>
+    <meta name="description" content="The Timeless Journey. Aditya, Nandini, and Meera's walk to Tirupati. A story of inner stability.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Dharshan</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Dharshan</span>
+            <span class="header-brand-sub">Calmness & Devotion</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Introduction">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Introduction</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Introduction</span>
+                    <span class="sb-desc">Dharshan</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Dharshan.png" alt="Dharshan — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Dharshan">Dharshan</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Calmness & Devotion</div>
+                <div class="landing-meta" id="landing-meta">The Timeless Journey. Aditya, Nandini, and Meera's walk to Tirupati. A story of inner stability.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Dharshan story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Introduction             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="calmness" data-chapter-index="0" aria-label="Chapter 1: Introduction">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Introduction</h2>
+                    <p class="chapter-synopsis">Dharshan</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">Dharshan</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The Timeless Journey</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">Aditya 26 years. Jeevitham ante hurry kaadu, answers kosam parigettadam kuda kaadu. Observe cheyyadam, accept cheyyadam nerchukuntunna age. Nandini kuda ade age. Ame lo loudness ledu, kani steady calm undi. Vaallu undey illu chinnadi, simple di. Aa illu shout cheyyadu, kani space ivvagaladu. Walls vaalla routine ni nerchukunnayi, windows light timing ni ardham chesukunnayi. Silence akkada emptiness kaadu, choice. Prati roju 4 a.m. ki day start avuthundi. Alarm valla kaadu, habit valla. Aditya first lechestadu, taruvatha Nandini.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">Water sound, soft footsteps, anthe. 4:30 ki deepam velugutundi. Pooja room lo velugu steady ga untundi, flame kuda oka rhythm follow avuthundi. Pooja taruvatha kirtan. Loud kaadu, performative kaadu. Just sincere. 5 nundi 7 varaku iddaru kalisi Hare Krishna maha mantra chanting chestaaru. Words repeat avuthayi, kani days repeat avvavu. Konni rojulu mind clear, konni rojulu heavy, konni rojulu blank. Chanting thoughts ni champadu, grip ni loose chestundi. Time slow ga dissolve ayipothundi. 7 ki tiffin. Steel plates, simple food. Taste gurinchi discussion ledu, effort gurinchi appreciation ledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Tinadam oka understanding la untundi. 7:30 ki walk. Same road, same trees, same sky. Sometimes iddaru close ga nadustaaru, sometimes koncham gap lo. Distance lo kuda connection undi.8:30 nundi 11:15 varaku oka movie. Escape kosam kaadu, observe cheyyadaniki. Screen lo drama jarugutundi, vaallu matram react avvaru. 45 minutes news reading. World ni acknowledge chestaaru, kani lopalaki allow cheyyaru. 12 ki lunch. Four varieties. Quantity important kaadu, gratitude important. Nandini cook chestundi, Aditya help chestadu without instructions. Tinaka 4 hours sleep.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.75">Nidra escape kaadu, respect to body.4 nundi 5:30 evening walk. Sunset light lo words takkuva, presence ekkuva. 5:30 nundi 8 temple services and bhajan. Lamps clean cheyyadam, floors sweep cheyyadam, bhajans lo voice kalapadam. Evaru lead, evaru follow ane concept ledu. Time grip loose ayipothundi. 8 nundi 8:30 dinner, light ga. 8:30 ki terrace. Rendu chairs. Oka chinna radio lo old songs. Lyrics sometimes artham avuthayi, sometimes kaavu. Tune chaalu. 9 kalla sleep. Lights off, phones off. Ee settled rhythm lo Meera enter avuthundi. Blood relation kaadu, kani bond lo calculation ledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.75">Ame oka afternoon chinna bag tho vastundi. Illu ni choosi first notice chesindi silence. Awkward silence kaadu, breathing space laga unna silence. Ame easy ga fit ayipothundi. Meera observe chestu days pass chestundi. Early mornings lo lechi pooja join avuthundi when she feels ready. Morning walks lo koncham mundu nadustundi. Ame presence rhythm ni disturb cheyyadu, widen chestundi. Oka roju terrace meeda radio slow ga play avuthunnappudu, Meera sudden ga cheptundi, “Aditya… Nandini… manam Tirupati veldam.” Voice lo excitement ledu, request kuda kaadu, just oka thought la cheppindi.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Aditya koncham sepu emi matladaledu. Nandini radio volume tagginchi Meera vaipu choosindi. Idhariki adi plan laga anipinchaledu, natural next step laga anipinchindi.Aditya silent ga head nod chestadu. Nandini smile chestundi. Anthe. Decision ayipoyindi. Planning sheets ledu, discussions ledu. Just mugguru kalisi veladam ani fix ayyaru. Tirupati journey start ayyindi oka simple decision nundi, kani aa journey lo prathi step importance carry chestundi. Early morning train journey. Platform lo crowd undi, kani vaalla mugguru lo silence ekkuva.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.75">Aditya calm ga luggage handle chestadu, job chestadu ani telisipothundi—organized, matured. Nandini jokes vesthu tension ni light chestundi. Meera rendu pakkala choostu, chinna chinna things observe chestu silly comments chestundi. Train move ayyagane, window bayata scenery slow ga marchipotundi. Hills daggariki vachinappudu Meera cheptundi, “Ippudu real journey start ayyindi anipisthundi.” Tirupati reach ayyaka, fresh air first hit. Station bayata sound, movement, devotees. Vaallu direct ga steps dhari vaipu veltharu. Steps start ayyayi. Mundu Meera nadustundi, excitement tho.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.60">Madhyalo Nandini navvuthu motivate chestundi. Aditya venaka steady ga, breath control chestu, pace maintain chestadu. Oka step, inko step. Sweat, water breaks, small pauses. Total ga almost 3 hours pattindi steps top reach avvadaniki. Legs lo pain start ayyindi, kani mind lo complaint ledu. Top reach ayyaka, room book chesukuntaru. Chinna room, basic facilities. Bags padesi kasepu rest teesukuntaru. Bed meeda padukuni kuda silence enjoy chestaaru. Tarvatha free prasadam. Hot food, simple taste, kani aa time lo adhi amrutam la anipistundi. Meera silly ga cheptundi, “Ee taste steps pain ni marchipoyela chestundi.”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.90">Tarvatha darshan queue. Line lo standing. Hours pass avuthunnayi. 12 hours almost. Legs pain, tiredness, back ache. Nandini face lo innocent smile undi, kani body matram complain chestundi. Meera silent ayipoyindi, energy save chestundi. Aditya matram calm ga nilabaduthadu. Job lo stress handle chesina maturity ikkada kanipistundi. Pain unna kani control lo undi. Finally, aa moment. Sri Venkateswara Swamy darshan. Crowd sound fade ayipothundi. Time slow ayipothundi. Oka sari aa idol ni choosaka, legs pain ledu, tiredness ledu. Just oka wave of peace. Aditya eyes nundi tears vastayi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.90">Sadness kaadu. Extreme happiness. Gratitude. Relief. Nandini hands automatic ga fold ayipothayi. Meera eyes wide open—silent awe. Darshan ayyaka mugguru okasari kurchuni breath teesukuntaru. Evaru matladaru. Words avasaram ledu. Aa anandam explain cheyyadam possible kaadu. Next day remaining temples visit chestaaru. Govindaraja, Padmavathi, local shrines. Walking slow ga, smiles easy ga. Body tired unna mind light ga undi. Meera malli silly avuthundi. Nandini navvuthundi. Aditya relaxed ga untadu. Return journey calm ga jaruguthundi. Train slow ga hills nundi diguthundi. Meera window bayata lights choostu random stories cheptundi.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">Nandini madhyalo navvuthundi, madhyalo silent ayipothundi. Aditya matram seat lo kurchuni eyes close chesi aa darshan moment ni malli malli feel avuthadu. Tears malli raaru, kani aa feeling stay avuthundi. Intiki reach ayyaka routine malli start avuthundi. 4 a.m., pooja, chanting, walks. Bayata choosthe emi change ledu. Kani lopala oka deep shift undi. Steps lo unna pain, queue lo unna waiting, aa darshan moment—all ivanni routine lo oka quiet strength la kalisipoyayi. Days pass avuthayi. Aditya job ki vellina time takkuva matrame chestadu, kani work lo focus increase ayyindi. Nandini funny comments tho house ni light ga unchuthundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Meera occasional ga vastundi, silence ni disturb cheyyadu, silliness tho fill chestundi. Ee jeevitham lo pedda twists levu. Pedda declarations levu. Kani roju roju oka chinna stability undi. Tirupati journey oka trip la kaadu, oka reference point la marindi. Whenever tiredness vastundo, whenever doubt vastundo, Aditya ki aa darshan gurthostundi. Nandini ki aa steps lo navvina moments. Meera ki aa first calm feeling. Ee kathaki ending ledu, because vaalla life continue avuthundi. Routine repeat avuthundi, kani meaning deep avuthundi. Darshan anedi oka day lo jarigina event kaadu. Adi vaalla jeevitham lo permanent rhythm ayipoyindi.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.45">Some journeys don’t end. They settle into the way we live.</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Dharshan</h3>
+                    <p class="epilogue-sub">Calmness & Devotion</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,3301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhinayam — Act I | The Echo Of A Previous Life</title>
+    <meta name="description"
+        content="An award-winning interactive digital novel. Experience the story of a Gopika whose love for Krishna transcends lifetimes, told through cinematic scroll-driven storytelling.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <style>
+        /* ============================================================
+   ABHINAYAM — CINEMATIC STORYTELLING DESIGN SYSTEM
+   A Premium Interactive Novel Experience
+   Inspired by Apple Vision Pro × A24 × Rajamouli
+   ============================================================ */
+
+        /* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+        :root {
+            /* ---- Void Palette ---- */
+            --void: #050504;
+            --surface: #0a0a09;
+            --surface-lift: #111110;
+            --surface-glass: rgba(10, 10, 9, 0.75);
+
+            /* ---- Default / Landing Theme ---- */
+            --bg-primary: #050504;
+            --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #15120d 0%, #050504 100%);
+            --text-hero: #f5f0e8;
+            --text-primary: #e8e0d4;
+            --text-secondary: #7a7060;
+            --text-muted: #3d362c;
+            --accent: #c9a55a;
+            --accent-bright: #e2c87a;
+            --accent-dim: #6e5a28;
+            --accent-rgb: 201, 165, 90;
+            --accent-glow: rgba(201, 165, 90, 0.15);
+            --accent-whisper: rgba(201, 165, 90, 0.04);
+
+            /* ---- Typography ---- */
+            --font-display: 'Cinzel', serif;
+            --font-body: 'Cormorant Garamond', serif;
+            --font-ui: 'Inter', system-ui, sans-serif;
+
+            /* ---- Fluid Type Scale ---- */
+            --fs-display: clamp(3.2rem, 7vw, 6.5rem);
+            --fs-chapter: clamp(2.8rem, 5.5vw, 5rem);
+            --fs-h2: clamp(1.8rem, 3vw, 2.8rem);
+            --fs-body: clamp(1.05rem, 1.15vw, 1.3rem);
+            --fs-body-lg: clamp(1.2rem, 1.4vw, 1.55rem);
+            --fs-quote: clamp(1.3rem, 1.6vw, 1.8rem);
+            --fs-ui: clamp(0.65rem, 0.7vw, 0.75rem);
+            --fs-ui-sm: clamp(0.55rem, 0.6vw, 0.65rem);
+
+            /* ---- Easing Library ---- */
+            --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-breath: cubic-bezier(0.645, 0.045, 0.355, 1);
+            --ease-sharp: cubic-bezier(0.77, 0, 0.175, 1);
+            --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+
+            /* ---- Spacing ---- */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 8rem;
+            --space-2xl: 12rem;
+
+            /* ---- Reading Area ---- */
+            --content-width: 720px;
+            --content-padding: clamp(1.25rem, 4vw, 3rem);
+        }
+
+        /* ---- Chapter 1: Sunset / Longing ---- */
+        [data-chapter-theme="sunset"] {
+            --bg-primary: #0d0806;
+            --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #1e130e 0%, #0d0806 100%);
+            --text-hero: #fceee6;
+            --text-primary: #f0ddd2;
+            --text-secondary: #a08070;
+            --text-muted: #4a3530;
+            --accent: #e07050;
+            --accent-bright: #f09878;
+            --accent-dim: #8a4030;
+            --accent-rgb: 224, 112, 80;
+            --accent-glow: rgba(224, 112, 80, 0.15);
+            --accent-whisper: rgba(224, 112, 80, 0.04);
+        }
+
+        /* ---- Chapter 2: Midnight / Grief ---- */
+        [data-chapter-theme="midnight"] {
+            --bg-primary: #04060c;
+            --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #0c1428 0%, #04060c 100%);
+            --text-hero: #dce8f8;
+            --text-primary: #c0d0e8;
+            --text-secondary: #5a6a88;
+            --text-muted: #283040;
+            --accent: #5a6af0;
+            --accent-bright: #8090ff;
+            --accent-dim: #3a3a90;
+            --accent-rgb: 90, 106, 240;
+            --accent-glow: rgba(90, 106, 240, 0.18);
+            --accent-whisper: rgba(90, 106, 240, 0.04);
+        }
+
+        /* ---- Chapter 3: Cosmic / Transcendence ---- */
+        [data-chapter-theme="cosmic"] {
+            --bg-primary: #06040a;
+            --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #180e28 0%, #06040a 100%);
+            --text-hero: #f0e8ff;
+            --text-primary: #ddd0f0;
+            --text-secondary: #8a70b0;
+            --text-muted: #3a2850;
+            --accent: #c080f0;
+            --accent-bright: #d8a0ff;
+            --accent-dim: #7040a0;
+            --accent-rgb: 192, 128, 240;
+            --accent-glow: rgba(192, 128, 240, 0.15);
+            --accent-whisper: rgba(192, 128, 240, 0.04);
+        }
+
+        /* ---- Chapter 4: Gold / Rebirth ---- */
+        [data-chapter-theme="gold"] {
+            --bg-primary: #0a0804;
+            --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #221a0a 0%, #0a0804 100%);
+            --text-hero: #fef6e0;
+            --text-primary: #f0e0c0;
+            --text-secondary: #a08850;
+            --text-muted: #483c20;
+            --accent: #e8a820;
+            --accent-bright: #ffc850;
+            --accent-dim: #8a6010;
+            --accent-rgb: 232, 168, 32;
+            --accent-glow: rgba(232, 168, 32, 0.15);
+            --accent-whisper: rgba(232, 168, 32, 0.04);
+        }
+
+        /* ---- Chapter 5: Lavender / Mystery ---- */
+        [data-chapter-theme="lavender"] {
+            --bg-primary: #060608;
+            --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #141220 0%, #060608 100%);
+            --text-hero: #f0f0ff;
+            --text-primary: #d8d0e8;
+            --text-secondary: #8080a8;
+            --text-muted: #38384a;
+            --accent: #a888e0;
+            --accent-bright: #c8a8ff;
+            --accent-dim: #6a5090;
+            --accent-rgb: 168, 136, 224;
+            --accent-glow: rgba(168, 136, 224, 0.15);
+            --accent-whisper: rgba(168, 136, 224, 0.04);
+        }
+
+
+        /* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: auto;
+            /* Lenis handles this */
+            background-color: var(--void);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            background-color: var(--bg-primary);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: var(--fs-body);
+            line-height: 1.9;
+            overflow-x: hidden;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background 1.8s var(--ease-breath),
+                color 1.2s ease;
+            position: relative;
+        }
+
+
+        /* ============================================================
+   3. FILM GRAIN OVERLAY
+   ============================================================ */
+        .film-grain {
+            position: fixed;
+            inset: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            opacity: 0.018;
+            pointer-events: none;
+            z-index: 9000;
+            animation: grain 0.8s steps(2) infinite;
+        }
+
+        @keyframes grain {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-1%, 2%);
+            }
+
+            50% {
+                transform: translate(2%, -1%);
+            }
+
+            75% {
+                transform: translate(-2%, 1%);
+            }
+
+            100% {
+                transform: translate(1%, -2%);
+            }
+        }
+
+        /* ============================================================
+   4. VIGNETTE OVERLAY
+   ============================================================ */
+        .vignette-overlay {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 65% at 50% 50%,
+                    transparent 30%,
+                    rgba(0, 0, 0, 0.55) 100%);
+            pointer-events: none;
+            z-index: 8999;
+        }
+
+
+        /* ============================================================
+   5. PRELOADER
+   ============================================================ */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: #030302;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transition: opacity 1.2s var(--ease-cinematic),
+                visibility 0s linear 1.2s;
+        }
+
+        .preloader.loaded {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .preloader-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            color: var(--accent);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: preloaderFadeIn 2s 0.3s var(--ease-cinematic) forwards;
+        }
+
+        .preloader-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
+            opacity: 0;
+            animation: preloaderFadeIn 2s 0.6s var(--ease-cinematic) forwards;
+        }
+
+        .preloader-sub {
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui-sm);
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            opacity: 0;
+            animation: preloaderFadeIn 2s 0.9s var(--ease-cinematic) forwards;
+        }
+
+        @keyframes preloaderFadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+
+        /* ============================================================
+   6. PARTICLE CANVAS
+   ============================================================ */
+        #particle-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.6;
+            transition: opacity 2s ease;
+        }
+
+
+        /* ============================================================
+   7. CURSOR GLOW
+   ============================================================ */
+        .cursor-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    rgba(var(--accent-rgb), 0.05) 0%,
+                    rgba(var(--accent-rgb), 0) 70%);
+            pointer-events: none;
+            z-index: 2;
+            transform: translate(-50%, -50%);
+            transition: background 1.8s ease;
+            mix-blend-mode: screen;
+            will-change: left, top;
+        }
+
+
+        /* ============================================================
+   8. PROGRESS BAR
+   ============================================================ */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent-dim), var(--accent), var(--accent-bright));
+            z-index: 9500;
+            box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5),
+                0 0 3px var(--accent);
+            transition: width 0.08s linear,
+                background 1.8s ease,
+                box-shadow 1.8s ease;
+        }
+
+
+        /* ============================================================
+   9. GLASSMORPHIC HEADER
+   ============================================================ */
+        .glass-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 500;
+            padding: 1.4rem 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(5, 5, 4, 0.6);
+            backdrop-filter: blur(24px) saturate(1.2);
+            -webkit-backdrop-filter: blur(24px) saturate(1.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: opacity 0.8s var(--ease-cinematic),
+                transform 0.8s var(--ease-cinematic),
+                background 1.5s ease;
+            will-change: transform, opacity;
+        }
+
+        .glass-header.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .header-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+            cursor: default;
+        }
+
+        .header-brand-name {
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            color: var(--text-hero);
+            text-transform: uppercase;
+            transition: color 1s ease;
+        }
+
+        .header-brand-sub {
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui-sm);
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            text-transform: uppercase;
+            transition: color 1s ease;
+        }
+
+        /* Chapter Navigation Dots */
+        .chapter-dots {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        .chapter-dot {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui-sm);
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.4s ease;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .chapter-dot::before {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            transition: all 0.5s var(--ease-cinematic);
+        }
+
+        .chapter-dot .dot-label {
+            opacity: 0;
+            transform: scale(0.7);
+            transition: all 0.5s var(--ease-cinematic);
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chapter-dot:hover::before,
+        .chapter-dot.active::before {
+            transform: scale(0);
+            opacity: 0;
+        }
+
+        .chapter-dot:hover .dot-label,
+        .chapter-dot.active .dot-label {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .chapter-dot.active {
+            color: var(--accent);
+        }
+
+        /* Tooltip */
+        .chapter-dot .dot-tooltip {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            background: rgba(10, 10, 9, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            font-size: var(--fs-ui-sm);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            color: var(--text-secondary);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.4s var(--ease-cinematic);
+        }
+
+        .chapter-dot:hover .dot-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Header Controls */
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .control-btn {
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s var(--ease-cinematic);
+            position: relative;
+        }
+
+        .control-btn:hover {
+            color: var(--accent);
+            background: rgba(var(--accent-rgb), 0.06);
+            border-color: rgba(var(--accent-rgb), 0.2);
+        }
+
+        .control-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .control-btn .icon-hidden {
+            display: none;
+        }
+
+        /* Audio Waves */
+        .audio-waves {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 14px;
+            width: 16px;
+        }
+
+        .audio-waves span {
+            display: block;
+            width: 2px;
+            background-color: currentColor;
+            border-radius: 1px;
+            height: 20%;
+            transition: height 0.15s ease;
+        }
+
+        .audio-waves.playing span {
+            animation: audioWave 1s ease infinite alternate;
+        }
+
+        .audio-waves.playing span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .audio-waves.playing span:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .audio-waves.playing span:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .audio-waves.playing span:nth-child(4) {
+            animation-delay: 0.5s;
+        }
+
+        @keyframes audioWave {
+            0% {
+                height: 15%;
+            }
+
+            100% {
+                height: 100%;
+            }
+        }
+
+
+        /* ============================================================
+   10. SIDEBAR CHAPTER NAVIGATION
+   ============================================================ */
+        .sidebar-nav {
+            position: fixed;
+            right: 2.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 400;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1s var(--ease-cinematic),
+                transform 1s var(--ease-cinematic);
+        }
+
+        .sidebar-nav.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .sidebar-label {
+            font-family: var(--font-ui);
+            font-size: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            color: var(--accent-dim);
+            writing-mode: vertical-lr;
+            text-transform: uppercase;
+            align-self: center;
+            margin-bottom: var(--space-sm);
+            transition: color 1s ease;
+        }
+
+        .sidebar-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+            color: var(--text-muted);
+            opacity: 0.5;
+            transition: all 0.4s var(--ease-cinematic);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+        }
+
+        .sidebar-item .sb-num {
+            font-family: var(--font-ui);
+            font-size: 0.7rem;
+            font-weight: 500;
+            min-width: 1.4rem;
+            text-align: right;
+            transition: color 0.4s ease;
+        }
+
+        .sidebar-item .sb-info {
+            max-width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: flex;
+            flex-direction: column;
+            transition: max-width 0.5s var(--ease-cinematic),
+                opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        .sidebar-item .sb-name {
+            font-family: var(--font-display);
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: var(--text-hero);
+            letter-spacing: 0.05em;
+        }
+
+        .sidebar-item .sb-desc {
+            font-family: var(--font-ui);
+            font-size: 0.5rem;
+            color: var(--accent);
+            letter-spacing: 0.06em;
+            transition: color 1s ease;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            opacity: 1;
+        }
+
+        .sidebar-item:hover .sb-info,
+        .sidebar-item.active .sb-info {
+            max-width: 250px;
+            opacity: 1;
+        }
+
+        .sidebar-item.active .sb-num {
+            color: var(--accent);
+        }
+
+
+        /* ============================================================
+   11. LANDING SECTION
+   ============================================================ */
+        .landing-section {
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 6rem var(--content-padding) 4rem;
+            z-index: 10;
+            overflow: hidden;
+            transition: opacity 1.5s var(--ease-cinematic),
+                transform 1.5s var(--ease-cinematic);
+        }
+
+        .landing-section.exiting {
+            opacity: 0;
+            transform: scale(1.03);
+            pointer-events: none;
+        }
+
+        /* Ambient warm glow behind cover */
+        .landing-ambient {
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60vw;
+            height: 60vw;
+            max-width: 700px;
+            max-height: 700px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    rgba(var(--accent-rgb), 0.06) 0%,
+                    rgba(var(--accent-rgb), 0.015) 40%,
+                    transparent 70%);
+            pointer-events: none;
+            animation: ambientPulse 6s var(--ease-breath) infinite;
+            z-index: 1;
+        }
+
+        @keyframes ambientPulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.15);
+                opacity: 0.6;
+            }
+        }
+
+        .landing-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: center;
+            z-index: 5;
+        }
+
+        /* ---- 3D Book Cover ---- */
+        .cover-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1200px;
+        }
+
+        .cover-3d {
+            position: relative;
+            width: clamp(220px, 22vw, 340px);
+            aspect-ratio: 2 / 3;
+            border-radius: 6px;
+            transform-style: preserve-3d;
+            transform: rotateY(-6deg) rotateX(4deg);
+            transition: transform 0.8s var(--ease-smooth);
+            overflow: hidden;
+            box-shadow:
+                0 50px 80px rgba(0, 0, 0, 0.7),
+                0 20px 30px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(var(--accent-rgb), 0.08),
+                0 0 50px rgba(var(--accent-rgb), 0.03);
+        }
+
+        .cover-3d:hover {
+            transform: rotateY(4deg) rotateX(-3deg) scale(1.03);
+            box-shadow:
+                0 60px 100px rgba(0, 0, 0, 0.8),
+                0 25px 40px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(var(--accent-rgb), 0.15),
+                0 0 70px rgba(var(--accent-rgb), 0.06);
+        }
+
+        .cover-3d img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: brightness(0.85) contrast(1.1);
+            transition: filter 0.8s ease, transform 1s var(--ease-smooth);
+        }
+
+        .cover-3d:hover img {
+            filter: brightness(0.95) contrast(1.12);
+            transform: scale(1.04);
+        }
+
+        /* Light-leak shimmer */
+        .cover-sheen {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg,
+                    rgba(255, 255, 255, 0) 30%,
+                    rgba(255, 255, 255, 0.05) 44%,
+                    rgba(255, 255, 255, 0.12) 50%,
+                    rgba(255, 255, 255, 0.05) 56%,
+                    rgba(255, 255, 255, 0) 70%);
+            background-size: 200% 100%;
+            background-position: -100% 0;
+            pointer-events: none;
+            transition: background-position 0.7s;
+            z-index: 2;
+        }
+
+        .cover-3d:hover .cover-sheen {
+            background-position: 100% 0;
+        }
+
+        /* Inner border */
+        .cover-3d::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        /* ---- Landing Typography ---- */
+        .landing-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0;
+        }
+
+        .landing-tag {
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui);
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+        }
+
+        .landing-title {
+            font-family: var(--font-display);
+            font-size: var(--fs-display);
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.8rem;
+            /* Gold gradient text */
+            background: linear-gradient(175deg,
+                    var(--accent-bright) 0%,
+                    var(--accent) 40%,
+                    var(--accent-dim) 70%,
+                    var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            opacity: 0;
+        }
+
+        /* Title shimmer sweep */
+        .landing-title::after {
+            content: attr(data-text);
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg,
+                    transparent 38%,
+                    rgba(255, 255, 255, 0.12) 50%,
+                    transparent 62%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerSweep 6s ease-in-out 3s infinite;
+        }
+
+        @keyframes shimmerSweep {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .landing-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1.15rem, 2vw, 2rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            opacity: 0;
+        }
+
+        .landing-meta {
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            opacity: 0;
+        }
+
+        /* Begin CTA */
+        .begin-btn {
+            background: rgba(var(--accent-rgb), 0.04);
+            border: 1px solid rgba(var(--accent-rgb), 0.2);
+            color: var(--text-secondary);
+            padding: 1.15rem 3rem;
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui);
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 100px;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.6s var(--ease-cinematic);
+            opacity: 0;
+        }
+
+        .begin-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,
+                    transparent 30%,
+                    rgba(var(--accent-rgb), 0.2) 50%,
+                    transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.7s var(--ease-cinematic);
+        }
+
+        .begin-btn:hover {
+            border-color: rgba(var(--accent-rgb), 0.6);
+            color: var(--accent);
+            box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.1),
+                0 10px 30px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.36em;
+            transform: translateY(-2px);
+        }
+
+        .begin-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .begin-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .begin-btn .btn-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.5s var(--ease-cinematic);
+            position: relative;
+            z-index: 1;
+            color: var(--accent);
+        }
+
+        .begin-btn:hover .btn-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Scroll Hint */
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            font-family: var(--font-ui);
+            font-size: 0.55rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        .scroll-hint-line {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(180deg, var(--accent-dim) 0%, transparent 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-hint-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: var(--accent);
+            animation: scrollHintPulse 2.5s var(--ease-sharp) infinite;
+        }
+
+        @keyframes scrollHintPulse {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(400%);
+                opacity: 0;
+            }
+        }
+
+
+        /* ============================================================
+   12. STORY WRAPPER
+   ============================================================ */
+        .story-wrapper {
+            position: relative;
+            z-index: 10;
+            display: none;
+        }
+
+        .story-wrapper.active {
+            display: block;
+        }
+
+
+        /* ============================================================
+   13. CHAPTER SECTIONS
+   ============================================================ */
+        .chapter-section {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* ---- Chapter Intro Panel (Fullscreen, Pinned) ---- */
+        .chapter-intro {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        /* Atmospheric gradient background per chapter */
+        .chapter-intro::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 50% at 50% 50%,
+                    rgba(var(--accent-rgb), 0.03) 0%,
+                    transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .chapter-intro-inner {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 850px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Giant watermark number behind */
+        .chapter-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -55%) scale(1);
+            font-family: var(--font-display);
+            font-size: clamp(14rem, 28vw, 35rem);
+            font-weight: 700;
+            color: rgba(var(--accent-rgb), 0.025);
+            z-index: 0;
+            pointer-events: none;
+            line-height: 1;
+            user-select: none;
+            transition: color 1.5s ease;
+        }
+
+        .chapter-num-label {
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui);
+            font-weight: 400;
+            letter-spacing: 0.6em;
+            color: var(--accent-dim);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            transition: color 1s ease;
+        }
+
+        /* Flanking decorative lines */
+        .chapter-num-label::before,
+        .chapter-num-label::after {
+            content: '';
+            display: inline-block;
+            width: 36px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-dim));
+            transition: background 1s ease;
+        }
+
+        .chapter-num-label::after {
+            background: linear-gradient(90deg, var(--accent-dim), transparent);
+        }
+
+        .chapter-title {
+            font-family: var(--font-display);
+            font-size: var(--fs-chapter);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            line-height: 1.15;
+            /* Gold gradient */
+            background: linear-gradient(175deg,
+                    var(--accent-bright) 0%,
+                    var(--accent) 45%,
+                    rgba(var(--accent-rgb), 0.5) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 2rem;
+            transition: all 1s ease;
+        }
+
+        /* Decorative dash under title */
+        .chapter-title::after {
+            content: '—';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1rem;
+            color: var(--accent-dim);
+            -webkit-text-fill-color: var(--accent-dim);
+            letter-spacing: 0.4em;
+            opacity: 0.5;
+        }
+
+        .chapter-synopsis {
+            font-family: var(--font-body);
+            font-size: var(--fs-body-lg);
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            max-width: 48ch;
+            font-style: italic;
+            margin-bottom: 3rem;
+            transition: color 1s ease;
+        }
+
+        .chapter-scroll-cue {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-ui);
+            font-size: 0.55rem;
+            font-weight: 400;
+            letter-spacing: 0.25em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .chapter-scroll-cue .cue-line {
+            width: 1px;
+            height: 28px;
+            background: linear-gradient(180deg, var(--accent-dim) 0%, transparent 100%);
+        }
+
+
+        /* ============================================================
+   14. CHAPTER BODY / READING AREA
+   ============================================================ */
+        .chapter-body {
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 12vh var(--content-padding) 20vh;
+            position: relative;
+            z-index: 5;
+        }
+
+
+        /* ============================================================
+   15. CONTENT BLOCKS
+   ============================================================ */
+        .content-block {
+            margin-bottom: 5rem;
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+
+        /* ---- Narrative Paragraphs ---- */
+        .story-p {
+            font-family: var(--font-body);
+            font-size: var(--fs-body);
+            line-height: 2;
+            color: var(--text-primary);
+            text-align: justify;
+            text-justify: inter-word;
+            letter-spacing: 0.015em;
+            font-weight: 400;
+            transition: color 1s ease;
+        }
+
+        /* Premium Drop Cap */
+        .story-p.first-para::first-letter {
+            font-family: var(--font-display);
+            font-size: 4.5em;
+            font-weight: 600;
+            color: var(--accent);
+            float: left;
+            line-height: 0.7;
+            margin-right: 0.12em;
+            margin-top: 0.1em;
+            transition: color 1s ease;
+        }
+
+        /* ---- Dialogue Blocks ---- */
+        .dialogue-block {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 5rem auto;
+            max-width: 620px;
+            padding-left: 1.8rem;
+            border-left: 1px solid rgba(var(--accent-rgb), 0.12);
+            position: relative;
+            transition: border-color 1.5s ease;
+        }
+
+        /* Subtle glow on the left border */
+        .dialogue-block::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg,
+                    transparent 0%,
+                    rgba(var(--accent-rgb), 0.15) 30%,
+                    rgba(var(--accent-rgb), 0.15) 70%,
+                    transparent 100%);
+            filter: blur(2px);
+            pointer-events: none;
+        }
+
+        .dialogue-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .speaker-label {
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui-sm);
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            transition: color 1s ease;
+        }
+
+        .dialogue-text {
+            font-family: var(--font-body);
+            font-size: var(--fs-body-lg);
+            line-height: 1.75;
+            font-style: italic;
+            color: var(--text-primary);
+            transition: color 1s ease;
+        }
+
+        /* ---- Blockquote / Pullquote ---- */
+        .quote-block {
+            margin: 7rem auto;
+            max-width: 640px;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .quote-block blockquote {
+            font-family: var(--font-body);
+            font-size: var(--fs-quote);
+            line-height: 1.85;
+            color: var(--text-hero);
+            text-align: center;
+            font-style: italic;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+            transition: color 1s ease;
+        }
+
+        /* Ambient glow behind quote */
+        .quote-block::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 200px;
+            background: radial-gradient(ellipse,
+                    rgba(var(--accent-rgb), 0.04) 0%,
+                    transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            transition: background 1.5s ease;
+        }
+
+        .quote-mark {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            color: rgba(var(--accent-rgb), 0.06);
+            position: absolute;
+            line-height: 1;
+            z-index: 1;
+            user-select: none;
+            transition: color 1.5s ease;
+        }
+
+        .quote-mark.open {
+            top: -1rem;
+            left: -0.5rem;
+        }
+
+        .quote-mark.close {
+            bottom: -2.5rem;
+            right: -0.5rem;
+        }
+
+        /* ---- Special Reveal / Lone Thought ---- */
+        .special-reveal {
+            margin: 8rem auto;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            min-height: 40vh;
+            align-items: center;
+            position: relative;
+        }
+
+        .lone-thought {
+            font-family: var(--font-body);
+            font-size: var(--fs-body-lg);
+            line-height: 2.2;
+            color: var(--text-hero);
+            max-width: 36ch;
+            transition: color 1s ease;
+        }
+
+        .lone-thought p {
+            margin-bottom: 1.5rem;
+        }
+
+        .lone-thought .thought-dim {
+            font-size: var(--fs-body);
+            color: var(--text-secondary);
+            opacity: 0.8;
+            transition: color 1s ease;
+        }
+
+        /* Word reveal container */
+        .word-reveal {
+            display: inline;
+        }
+
+        .word-reveal .word {
+            display: inline-block;
+            opacity: 0.08;
+            transition: opacity 0.1s ease;
+            margin-right: 0.25em;
+        }
+
+        .word-reveal .word.visible {
+            opacity: 1;
+        }
+
+
+        /* ============================================================
+   16. SCENE SEPARATORS
+   ============================================================ */
+        .scene-separator {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 6rem 0 2rem;
+            opacity: 0;
+        }
+
+        .separator-line {
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.2));
+            transition: background 1s ease;
+        }
+
+        .separator-line:last-child {
+            background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.2), transparent);
+        }
+
+        .separator-diamond {
+            width: 6px;
+            height: 6px;
+            background: rgba(var(--accent-rgb), 0.3);
+            transform: rotate(45deg);
+            margin: 0 0.8rem;
+            transition: background 1s ease;
+        }
+
+
+        /* ============================================================
+   17. STORY EPILOGUE
+   ============================================================ */
+        .story-epilogue {
+            margin: 12vh 0 6vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 var(--content-padding);
+        }
+
+        .epilogue-ornament {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+            animation: rotateOrn 20s linear infinite;
+            transition: color 1s ease;
+        }
+
+        @keyframes rotateOrn {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .epilogue-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            background: linear-gradient(175deg,
+                    var(--accent-bright) 0%,
+                    var(--accent) 50%,
+                    var(--accent-dim) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .epilogue-sub {
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui);
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            color: var(--accent-dim);
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            transition: color 1s ease;
+        }
+
+        .epilogue-divider {
+            width: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.3), transparent);
+            margin-bottom: 3rem;
+        }
+
+        .replay-btn {
+            background: none;
+            border: 1px solid rgba(var(--accent-rgb), 0.2);
+            color: var(--text-secondary);
+            padding: 1rem 2.5rem;
+            font-family: var(--font-ui);
+            font-size: var(--fs-ui);
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.5s var(--ease-cinematic);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .replay-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg,
+                    transparent 30%,
+                    rgba(var(--accent-rgb), 0.15) 50%,
+                    transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.7s var(--ease-cinematic);
+        }
+
+        .replay-btn:hover {
+            border-color: rgba(var(--accent-rgb), 0.5);
+            color: var(--accent);
+            box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.08);
+            transform: translateY(-2px);
+        }
+
+        .replay-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        .replay-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* ============================================================
+   18. FOCUS MODE
+   ============================================================ */
+        body.focus-active .glass-header {
+            opacity: 0;
+            transform: translateY(-100%);
+            pointer-events: none;
+        }
+
+        body.focus-active .glass-header.focus-peek {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        body.focus-active .sidebar-nav {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        body.focus-active #progress-bar {
+            opacity: 0.25;
+            height: 1px;
+        }
+
+        body.focus-active .chapter-body {
+            max-width: 640px;
+        }
+
+        body.focus-active .story-p {
+            font-size: calc(var(--fs-body) * 1.08);
+            line-height: 2.15;
+        }
+
+        /* Focus mode indicator */
+        .focus-indicator {
+            position: fixed;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: rgba(10, 10, 9, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(16px);
+            padding: 0.5rem 1.4rem;
+            border-radius: 100px;
+            font-family: var(--font-ui);
+            font-size: 0.6rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            pointer-events: none;
+            opacity: 0;
+            z-index: 9600;
+            transition: all 0.5s var(--ease-cinematic);
+        }
+
+        body.focus-active .focus-indicator {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+
+        /* ============================================================
+   19. RESPONSIVE DESIGN
+   ============================================================ */
+        @media (max-width: 1024px) {
+            .glass-header {
+                padding: 1.2rem 2rem;
+            }
+
+            .landing-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                text-align: center;
+            }
+
+            .landing-text {
+                align-items: center;
+            }
+
+            .sidebar-nav {
+                display: none;
+            }
+
+            .chapter-body {
+                max-width: 600px;
+            }
+
+            .story-p {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .glass-header {
+                padding: 1rem 1.25rem;
+            }
+
+            .chapter-dots {
+                display: none;
+            }
+
+            .header-controls {
+                gap: 0.6rem;
+            }
+
+            .cover-3d {
+                width: clamp(180px, 50vw, 260px);
+            }
+
+            .landing-content {
+                gap: 2rem;
+            }
+
+            .begin-btn {
+                padding: 1rem 2rem;
+                letter-spacing: 0.2em;
+            }
+
+            .chapter-intro {
+                padding: 1.5rem;
+            }
+
+            .chapter-body {
+                padding: 8vh 1.25rem 14vh;
+            }
+
+            .content-block {
+                margin-bottom: 3.5rem;
+            }
+
+            .dialogue-block {
+                margin: 3.5rem auto;
+                padding-left: 1.2rem;
+            }
+
+            .quote-block {
+                margin: 4.5rem auto;
+            }
+
+            .special-reveal {
+                margin: 5rem auto;
+                min-height: 30vh;
+            }
+
+            .scene-separator {
+                margin: 4rem 0 1.5rem;
+            }
+
+            .chapter-watermark {
+                font-size: clamp(8rem, 40vw, 14rem);
+            }
+
+            .cursor-glow {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .landing-tag {
+                font-size: 0.6rem;
+                letter-spacing: 0.25em;
+            }
+
+            .begin-btn {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.6rem;
+            }
+        }
+
+
+        /* ============================================================
+   20. REDUCED MOTION
+   ============================================================ */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.2s !important;
+            }
+
+            .film-grain {
+                display: none;
+            }
+
+            .content-block {
+                opacity: 1 !important;
+                transform: none !important;
+                filter: none !important;
+            }
+
+            .chapter-watermark {
+                opacity: 0 !important;
+            }
+
+            #particle-canvas {
+                display: none;
+            }
+
+            .scroll-hint-line::after {
+                animation: none;
+            }
+        }
+
+
+        /* ============================================================
+   21. SELECTION STYLING
+   ============================================================ */
+        ::selection {
+            background: rgba(var(--accent-rgb), 0.25);
+            color: var(--text-hero);
+        }
+
+        ::-moz-selection {
+            background: rgba(var(--accent-rgb), 0.25);
+            color: var(--text-hero);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Abhinayam</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0"
+        aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Abhinayam</span>
+            <span class="header-brand-sub">Act I</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Anthima Veedkolu">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Anthima Veedkolu</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: Oka Janma Mugisindi">
+                <span class="dot-label">II</span>
+                <span class="dot-tooltip">Chapter 2 · Oka Janma Mugisindi</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: Maro Prayanam">
+                <span class="dot-label">III</span>
+                <span class="dot-tooltip">Chapter 3 · Maro Prayanam</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch4" aria-label="Chapter 4: Abhinaya Jananam">
+                <span class="dot-label">IV</span>
+                <span class="dot-tooltip">Chapter 4 · Abhinaya Jananam</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch5" aria-label="Chapter 5: Ajnatha Gnapakalu">
+                <span class="dot-label">V</span>
+                <span class="dot-tooltip">Chapter 5 · Ajnatha Gnapakalu</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode"
+                aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Anthima Veedkolu</span>
+                    <span class="sb-desc">The Departure from Vrindavan</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch2">
+                <span class="sb-num">02</span>
+                <div class="sb-info">
+                    <span class="sb-name">Oka Janma Mugisindi</span>
+                    <span class="sb-desc">A Lifetime Draws to a Close</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch3">
+                <span class="sb-num">03</span>
+                <div class="sb-info">
+                    <span class="sb-name">Maro Prayanam</span>
+                    <span class="sb-desc">The Cosmic Journey of a Soul</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch4">
+                <span class="sb-num">04</span>
+                <div class="sb-info">
+                    <span class="sb-name">Abhinaya Jananam</span>
+                    <span class="sb-desc">The Rebirth of Devotion</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch5">
+                <span class="sb-num">05</span>
+                <div class="sb-info">
+                    <span class="sb-name">Ajnatha Gnapakalu</span>
+                    <span class="sb-desc">Visions from the Forgotten Banks</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="new cover/Abhinayam.png" alt="Abhinayam — The Gopika Who Returned — Book Cover"
+                        id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Abhinayam">Abhinayam</h1>
+                <div class="landing-subtitle" id="landing-subtitle">The Gopika Who Returned</div>
+                <div class="landing-meta" id="landing-meta">Act I &bull; The Echo Of A Previous Life</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Abhinayam story chapters">
+
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Anthima Veedkolu             -->
+        <!-- Emotion: Longing / Loss                  -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="sunset" data-chapter-index="0"
+            aria-label="Chapter 1: Anthima Veedkolu">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Anthima Veedkolu</h2>
+                    <p class="chapter-synopsis">Dwapara Yuga antham. Krishna Vrindavan ni vadili velladam. Oka chinna
+                        Gopika hrudayam virigipovadam.</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para">Dwapara Yuga antham daggaraku vachindi. Vrindavan lo aa rojulu
+                        maripothunnayi. Krishna Mathura ki velladaniki siddham ayyadu. Gramam motham baadha lo
+                        munigipoyindi. Gopikalu andariki telusu... Krishna vellipothe malli aa rojulu tirigi ravu ani.
+                    </p>
+                </div>
+
+                <div class="content-block">
+                    <p class="story-p">Aakasham kuda aa roju nisshabdanga undi. Yamuna teeram daggara oka chinna Gopika
+                        nilchoni undi. Andaru Krishna ni Bhagavan ani pilustharu. Kaani aame matram eppudu alaa
+                        pilavaledu.</p>
+                </div>
+
+                <div class="content-block quote-block">
+                    <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+                    <blockquote>
+                        Aame hrudayam lo Krishna ante devudu kaadu. Aame jeevitham. Aame praanam. Aame prema.
+                    </blockquote>
+                    <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+                </div>
+
+                <div class="content-block">
+                    <p class="story-p">Krishna ratham munduku kadaladam modalayindi. Andaru edusthunaru. Kaani aa ammayi
+                        maatram maatladalekapoyindi. Aame kallalo neeru nilichipoyindi.</p>
+                </div>
+
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Gopika</span>
+                        <p class="dialogue-text">"Krishna..."</p>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <p class="story-p">Krishna venakki tirigi choosadu. Chinna navvu navvadu. Aa navvu aame jeevitham lo
+                        chivari velugu ani aameku teliyadu. Ratham dooram avutoo undi. Krishna roopam chinnaga marutoo
+                        undi. Aame gunde lo edo virigipoyindi.</p>
+                </div>
+
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Gopika</span>
+                        <p class="dialogue-text">"Enduku vellipothunnavu Krishna?"</p>
+                    </div>
+                </div>
+
+                <div class="content-block special-reveal" data-reveal="word">
+                    <div class="lone-thought">
+                        <p>Samadhanam ledu.</p>
+                        <p class="thought-dim word-reveal">Kevalam dooram avutunna ratham matrame kanipinchindi. Aa roju
+                            Vrindavan nundi Krishna vellaledu. Oka hrudayam nundi prema kuda vellipoyindi.</p>
+                    </div>
+                </div>
+
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 2 — Oka Janma Mugisindi          -->
+        <!-- Emotion: Grief / Devotion                -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch2" data-chapter-theme="midnight" data-chapter-index="1"
+            aria-label="Chapter 2: Oka Janma Mugisindi">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">02</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 02</span>
+                    <h2 class="chapter-title">Oka Janma Mugisindi</h2>
+                    <p class="chapter-synopsis">Viraha vedana lo aa Gopika pranalu vidavadam.</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para">Krishna vellina taruvata rojulu gadusthunnayi. Kaani aa Gopika
+                        jeevitham matram akkade aagipoyindi. Andaru munduku saagipoyaru. Kaani aame prathi roju Yamuna
+                        teeram ki velli Krishna kosam eduruchusedi.</p>
+                </div>
+
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Gopika</span>
+                        <p class="dialogue-text">"Repu vastadu..."</p>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <p class="story-p">Aa repu eppudu raledu. Oka saayantram. Aame okkate koorchoni undi. Aakasham
+                        orange rangulo merusthundi. Gaali mellaga veesthundi. Dooram nundi flute laanti shabdam
+                        vinipinchindi. Aame navvindi.</p>
+                </div>
+
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Gopika</span>
+                        <p class="dialogue-text">"Krishna vachava?"</p>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <p class="story-p">Kaani akkada evaru leru. Aame kallalo neeru cherindi.</p>
+                </div>
+
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Gopika</span>
+                        <p class="dialogue-text">"Marichipoyava nannu?"</p>
+                    </div>
+                </div>
+
+                <div class="content-block special-reveal" data-reveal="word">
+                    <div class="lone-thought">
+                        <p>Samadhanam ledu.</p>
+                        <p class="thought-dim word-reveal">Aa raatri aame Krishna peru japistune nidrapoyindi. Malli
+                            levaledu.</p>
+                    </div>
+                </div>
+
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 3 — Maro Prayanam                -->
+        <!-- Emotion: Transcendence / Cosmic          -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch3" data-chapter-theme="cosmic" data-chapter-index="2"
+            aria-label="Chapter 3: Maro Prayanam">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">03</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 03</span>
+                    <h2 class="chapter-title">Maro Prayanam</h2>
+                    <p class="chapter-synopsis">Aame aatma punarjanma kosam prayanam modalupettadam.</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para">Shariram bhoomi meeda migilipoyindi. Kaani prema migilindi. Aatma
+                        migilindi.</p>
+                </div>
+
+                <div class="content-block">
+                    <p class="story-p">Aa aatma kaalam ane nadi lo prayaanam modalupettindi. Yugalu marayi. Rajyalu
+                        puttayi. Rajyalu nashinchipoyayi. Kaani aa prema maatram maaraledu.</p>
+                </div>
+
+                <div class="content-block quote-block">
+                    <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+                    <blockquote>
+                        Oka vaagdanam laa. Oka asampoorna kathala.
+                    </blockquote>
+                    <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+                </div>
+
+                <div class="content-block special-reveal" data-reveal="word">
+                    <div class="lone-thought">
+                        <p>Aa aatma malli puttadaniki siddham ayyindi.</p>
+                        <p class="thought-dim word-reveal">Krishna ni malli vetakadaniki.</p>
+                    </div>
+                </div>
+
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 4 — Abhinaya Jananam             -->
+        <!-- Emotion: Warmth / Hope / Rebirth         -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch4" data-chapter-theme="gold" data-chapter-index="3"
+            aria-label="Chapter 4: Abhinaya Jananam">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">04</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 04</span>
+                    <h2 class="chapter-title">Abhinaya Jananam</h2>
+                    <p class="chapter-synopsis">Dance parampara kutumbam lo Abhinaya puttadam.</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para">Samvatsaralu gadichayi. Oka chinna rajyam. Krishna bhakti ki prasiddhi
+                        pondina bhoomi. Akkada dance parampara unna kutumbam lo oka paapa puttindi. Intlo andaroo
+                        santoshamga unnaru. Paapa puttina ventane navvindi.</p>
+                </div>
+
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Amma</span>
+                        <p class="dialogue-text">"Mana intiki Lakshmi vachindi."</p>
+                    </div>
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Nanna</span>
+                        <p class="dialogue-text">"Ee ammayi goppaga perugutundi."</p>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <p class="story-p">Aameku peru pettaru. &ldquo;Abhinaya&rdquo;. Aame peru pettina kshanam nundi
+                        intlo unna deepam balanga veliginattu anipinchindi.</p>
+                </div>
+
+                <div class="content-block special-reveal" data-reveal="word">
+                    <div class="lone-thought">
+                        <p>Evariki teliyadu.</p>
+                        <p class="thought-dim word-reveal">Kaani oka puratana prema malli bhoomi meeda adugu pettindi.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 5 — Ajnatha Gnapakalu            -->
+        <!-- Emotion: Mystery / Recognition           -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch5" data-chapter-theme="lavender" data-chapter-index="4"
+            aria-label="Chapter 5: Ajnatha Gnapakalu">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">05</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 05</span>
+                    <h2 class="chapter-title">Ajnatha Gnapakalu</h2>
+                    <p class="chapter-synopsis">Chinnappati nundi Krishna gurinchi vintunna kalalu.</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para">Abhinaya chinnaga periguthundi. Migatha pillalu bommalatho
+                        aadukuntaru. Kaani Abhinaya ki vere ishtalu. Aame eppudu Krishna bomma daggare untundi.</p>
+                </div>
+
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Amma</span>
+                        <p class="dialogue-text">"Abhi, enduku eppudu Krishna daggare untavu?"</p>
+                    </div>
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Abhinaya</span>
+                        <p class="dialogue-text">"Naku ayana ante chala ishtam."</p>
+                    </div>
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Amma</span>
+                        <p class="dialogue-text">"Bhagavan kabatti kada?"</p>
+                    </div>
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Abhinaya</span>
+                        <p class="dialogue-text">"Ledu..."</p>
+                    </div>
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Amma</span>
+                        <p class="dialogue-text">"Marenduku?"</p>
+                    </div>
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Abhinaya</span>
+                        <p class="dialogue-text">"Naku teliyadu... kaani ayana dooram vellipoyina feeling vastundi."</p>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <p class="story-p">Aa maataki amma navvindi. Kaani enduko aame gunde lo oka chinna bayam puttindi.
+                        Aa raatri Abhinaya oka kala chusindi.</p>
+                </div>
+
+                <div class="content-block quote-block">
+                    <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+                    <blockquote>
+                        Yamuna teeram.... Venugaanam.... Dooram vellipothunna Krishna....
+                    </blockquote>
+                    <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+                </div>
+
+                <div class="content-block special-reveal" data-reveal="word">
+                    <div class="lone-thought">
+                        <p>Kallu terichindi. Kallalo neeru undi. Tanaki ardham kaaledu.</p>
+                        <p class="thought-dim word-reveal">Kaani oka vishayam maatram telusu. Ekkado... Eppudo... Tanu
+                            Krishna ni kolpoyindi.</p>
+                    </div>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Abhinayam</h3>
+                    <p class="epilogue-sub">Act I — The Echo Of A Previous Life</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script>
+        /* ============================================================
+           ABHINAYAM — CINEMATIC STORYTELLING ENGINE
+           GSAP + ScrollTrigger + Lenis + Canvas Particles + Web Audio
+           ============================================================ */
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --------------------------------------------------------
+            // 0. REDUCED MOTION DETECTION
+            // --------------------------------------------------------
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            // --------------------------------------------------------
+            // 1. LENIS SMOOTH SCROLL
+            // --------------------------------------------------------
+            const lenis = new Lenis({
+                duration: 1.6,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                touchMultiplier: 1.5,
+                infinite: false,
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            // Sync GSAP ScrollTrigger with Lenis
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+
+
+            // --------------------------------------------------------
+            // 2. PRELOADER
+            // --------------------------------------------------------
+            const preloader = document.getElementById('preloader');
+            const coverImg = document.getElementById('cover-img');
+
+            function hidePreloader() {
+                gsap.to(preloader, {
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        preloader.classList.add('loaded');
+                        initLandingAnimations();
+                    }
+                });
+            }
+
+            // Wait for cover image to load, or timeout after 3s
+            if (coverImg.complete) {
+                setTimeout(hidePreloader, 1200);
+            } else {
+                coverImg.addEventListener('load', () => setTimeout(hidePreloader, 800));
+                setTimeout(hidePreloader, 3000); // fallback
+            }
+
+
+            // --------------------------------------------------------
+            // 3. LANDING ANIMATIONS
+            // --------------------------------------------------------
+            function initLandingAnimations() {
+                if (prefersReducedMotion) {
+                    // Just show everything immediately
+                    gsap.set(['#landing-tag', '#landing-title', '#landing-subtitle', '#landing-meta', '#begin-btn', '#scroll-hint'], {
+                        opacity: 1
+                    });
+                    return;
+                }
+
+                const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+                tl.to('#landing-tag', { opacity: 1, y: 0, duration: 1 }, 0.2)
+                    .fromTo('#landing-title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.5 }, 0.5)
+                    .to('#landing-subtitle', { opacity: 1, y: 0, duration: 1.2 }, 0.9)
+                    .to('#landing-meta', { opacity: 1, y: 0, duration: 1 }, 1.2)
+                    .to('#begin-btn', { opacity: 1, y: 0, duration: 1 }, 1.5)
+                    .to('#scroll-hint', { opacity: 0.5, duration: 1.5 }, 2);
+
+                // Set initial hidden states
+                gsap.set(['#landing-tag', '#landing-subtitle', '#landing-meta', '#begin-btn'], {
+                    opacity: 0, y: 25
+                });
+                gsap.set('#scroll-hint', { opacity: 0 });
+            }
+
+
+            // --------------------------------------------------------
+            // 4. CURSOR GLOW
+            // --------------------------------------------------------
+            const cursorGlow = document.getElementById('cursor-glow');
+
+            if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+                window.addEventListener('mousemove', (e) => {
+                    gsap.to(cursorGlow, {
+                        left: e.clientX,
+                        top: e.clientY,
+                        duration: 0.9,
+                        ease: 'power3.out'
+                    });
+                });
+            }
+
+
+            // --------------------------------------------------------
+            // 5. BOOK COVER 3D PARALLAX
+            // --------------------------------------------------------
+            const cover3d = document.getElementById('cover-3d');
+            const coverSheen = cover3d ? cover3d.querySelector('.cover-sheen') : null;
+
+            if (cover3d && !prefersReducedMotion) {
+                cover3d.addEventListener('mousemove', (e) => {
+                    const rect = cover3d.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const cx = rect.width / 2;
+                    const cy = rect.height / 2;
+
+                    const rotX = -(y - cy) / 14;
+                    const rotY = (x - cx) / 14;
+
+                    gsap.to(cover3d, {
+                        rotationX: rotX,
+                        rotationY: rotY,
+                        transformPerspective: 1200,
+                        ease: 'power3.out',
+                        duration: 0.6
+                    });
+
+                    // Dynamic light leak
+                    if (coverSheen) {
+                        const px = (x / rect.width) * 100;
+                        coverSheen.style.background = `linear-gradient(${120 - px / 3}deg,
+                    rgba(255,255,255,0) 30%,
+                    rgba(255,255,255,${0.03 + (y / rect.height) * 0.06}) 45%,
+                    rgba(255,255,255,${0.14 * (x / rect.width)}) 50%,
+                    rgba(255,255,255,0.03) 55%,
+                    rgba(255,255,255,0) 70%)`;
+                    }
+                });
+
+                cover3d.addEventListener('mouseleave', () => {
+                    gsap.to(cover3d, {
+                        rotationX: 4,
+                        rotationY: -6,
+                        ease: 'power3.out',
+                        duration: 0.8
+                    });
+                    if (coverSheen) coverSheen.style.background = '';
+                });
+            }
+
+
+            // --------------------------------------------------------
+            // 6. BEGIN STORY FLOW
+            // --------------------------------------------------------
+            const beginBtn = document.getElementById('begin-btn');
+            const storyWrapper = document.getElementById('story-wrapper');
+            const landingSection = document.getElementById('landing');
+            const header = document.getElementById('main-header');
+            const sidebar = document.getElementById('sidebar-nav');
+
+            function startStoryFlow() {
+                // Activate story
+                storyWrapper.classList.add('active');
+                header.classList.add('visible');
+                sidebar.classList.add('visible');
+
+                // Set first chapter theme
+                applyChapterTheme('sunset');
+
+                // Cinematic landing exit
+                if (!prefersReducedMotion) {
+                    gsap.to(landingSection, {
+                        opacity: 0,
+                        scale: 1.04,
+                        duration: 1.5,
+                        ease: 'power2.inOut',
+                        onComplete: () => {
+                            landingSection.classList.add('exiting');
+                            landingSection.style.display = 'none';
+
+                            // Initialize all scroll-based animations after story is visible
+                            initScrollAnimations();
+                        }
+                    });
+
+                    lenis.scrollTo('#ch1', {
+                        duration: 2.5,
+                        easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+                        offset: 0,
+                    });
+                } else {
+                    landingSection.style.display = 'none';
+                    initScrollAnimations();
+                    lenis.scrollTo('#ch1', { immediate: true });
+                }
+            }
+
+            if (beginBtn) {
+                beginBtn.addEventListener('click', startStoryFlow);
+            }
+
+
+            // --------------------------------------------------------
+            // 7. CANVAS PARTICLE SYSTEM
+            // --------------------------------------------------------
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas ? canvas.getContext('2d') : null;
+            let particles = [];
+            let particleColor = { r: 201, g: 165, b: 90 }; // Default gold
+            let targetParticleColor = { r: 201, g: 165, b: 90 };
+            let particleAnimFrame = null;
+
+            // Chapter particle configs
+            const chapterParticles = {
+                landing: { r: 201, g: 165, b: 90, count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.4 },
+                sunset: { r: 224, g: 112, b: 80, count: 50, sizeMax: 3, drift: 0.2, opacityMax: 0.35 },
+                midnight: { r: 90, g: 106, b: 240, count: 35, sizeMax: 2, drift: 0.08, opacityMax: 0.45 },
+                cosmic: { r: 192, g: 128, b: 240, count: 60, sizeMax: 2.5, drift: 0.12, opacityMax: 0.5 },
+                gold: { r: 232, g: 168, b: 32, count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
+                lavender: { r: 168, g: 136, b: 224, count: 40, sizeMax: 2.2, drift: 0.1, opacityMax: 0.42 },
+            };
+
+            function initParticles() {
+                if (!canvas || !ctx || prefersReducedMotion) return;
+
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                const config = chapterParticles.landing;
+                createParticleField(config);
+                animateParticles();
+            }
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            function createParticleField(config) {
+                particles = [];
+                const count = Math.min(config.count, 60); // Performance cap
+                for (let i = 0; i < count; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: 0.5 + Math.random() * config.sizeMax,
+                        speedX: (Math.random() - 0.5) * config.drift,
+                        speedY: (Math.random() - 0.5) * config.drift * 0.6 - 0.05, // slight upward drift
+                        opacity: Math.random() * config.opacityMax,
+                        opacityTarget: Math.random() * config.opacityMax,
+                        opacitySpeed: 0.002 + Math.random() * 0.005,
+                        phase: Math.random() * Math.PI * 2
+                    });
+                }
+            }
+
+            function animateParticles() {
+                if (!ctx) return;
+
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                // Smoothly interpolate particle color
+                particleColor.r += (targetParticleColor.r - particleColor.r) * 0.02;
+                particleColor.g += (targetParticleColor.g - particleColor.g) * 0.02;
+                particleColor.b += (targetParticleColor.b - particleColor.b) * 0.02;
+
+                const r = Math.round(particleColor.r);
+                const g = Math.round(particleColor.g);
+                const b = Math.round(particleColor.b);
+
+                particles.forEach(p => {
+                    p.phase += 0.008;
+
+                    // Gentle sine drift
+                    p.x += p.speedX + Math.sin(p.phase) * 0.15;
+                    p.y += p.speedY + Math.cos(p.phase * 0.7) * 0.08;
+
+                    // Breathing opacity
+                    p.opacity += (p.opacityTarget - p.opacity) * 0.01;
+                    if (Math.abs(p.opacity - p.opacityTarget) < 0.01) {
+                        p.opacityTarget = Math.random() * 0.4;
+                    }
+
+                    // Wrap around edges
+                    if (p.x < -10) p.x = canvas.width + 10;
+                    if (p.x > canvas.width + 10) p.x = -10;
+                    if (p.y < -10) p.y = canvas.height + 10;
+                    if (p.y > canvas.height + 10) p.y = -10;
+
+                    // Draw
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity})`;
+                    ctx.fill();
+
+                    // Glow halo for larger particles
+                    if (p.size > 1.5) {
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size * 3, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${p.opacity * 0.08})`;
+                        ctx.fill();
+                    }
+                });
+
+                particleAnimFrame = requestAnimationFrame(animateParticles);
+            }
+
+            function updateParticleTheme(themeName) {
+                const config = chapterParticles[themeName] || chapterParticles.landing;
+                targetParticleColor = { r: config.r, g: config.g, b: config.b };
+            }
+
+            // Initialize particles immediately
+            initParticles();
+
+
+            // --------------------------------------------------------
+            // 8. EMOTIONAL THEME ENGINE
+            // --------------------------------------------------------
+            let currentTheme = 'landing';
+
+            function applyChapterTheme(themeName) {
+                if (themeName === currentTheme) return;
+                currentTheme = themeName;
+
+                // Apply CSS data attribute to body for theme vars
+                document.body.setAttribute('data-chapter-theme', themeName);
+
+                // Update particle colors
+                updateParticleTheme(themeName);
+            }
+
+
+            // --------------------------------------------------------
+            // 9. SCROLL ANIMATIONS ENGINE
+            // --------------------------------------------------------
+            function initScrollAnimations() {
+                initChapterEntrances();
+                initContentBlockAnimations();
+                initWordReveals();
+                initSeparatorAnimations();
+                initProgressBar();
+                initScrollSpy();
+            }
+
+            // ---- Chapter Entrance Animations ----
+            function initChapterEntrances() {
+                const chapters = document.querySelectorAll('.chapter-section');
+
+                chapters.forEach((chapter) => {
+                    const intro = chapter.querySelector('.chapter-intro-inner');
+                    const watermark = chapter.querySelector('.chapter-watermark');
+                    const numLabel = chapter.querySelector('.chapter-num-label');
+                    const title = chapter.querySelector('.chapter-title');
+                    const synopsis = chapter.querySelector('.chapter-synopsis');
+                    const scrollCue = chapter.querySelector('.chapter-scroll-cue');
+
+                    if (!intro) return;
+
+                    if (prefersReducedMotion) {
+                        // Just show everything
+                        gsap.set([numLabel, title, synopsis, scrollCue], { opacity: 1 });
+                        return;
+                    }
+
+                    // Set initial states
+                    gsap.set(numLabel, { opacity: 0, y: 20 });
+                    gsap.set(title, { opacity: 0, y: 40, scale: 0.95 });
+                    gsap.set(synopsis, { opacity: 0, y: 20 });
+                    gsap.set(scrollCue, { opacity: 0 });
+                    if (watermark) gsap.set(watermark, { opacity: 0, scale: 3 });
+
+                    const tl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: chapter,
+                            start: 'top 80%',
+                            end: 'top 20%',
+                            toggleActions: 'play none none reverse',
+                        }
+                    });
+
+                    if (watermark) {
+                        tl.to(watermark, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 2,
+                            ease: 'power2.out'
+                        }, 0);
+                    }
+
+                    tl.to(numLabel, {
+                        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out'
+                    }, 0.3)
+                        .to(title, {
+                            opacity: 1, y: 0, scale: 1, duration: 1.2, ease: 'power3.out'
+                        }, 0.5)
+                        .to(synopsis, {
+                            opacity: 1, y: 0, duration: 1, ease: 'power3.out'
+                        }, 0.9)
+                        .to(scrollCue, {
+                            opacity: 0.6, duration: 1.2, ease: 'power2.out'
+                        }, 1.3);
+                });
+            }
+
+            // ---- Content Block Varied Animations ----
+            function initContentBlockAnimations() {
+                const blocks = document.querySelectorAll('.content-block:not(.scene-separator):not(.special-reveal):not(.quote-block)');
+
+                blocks.forEach((block, index) => {
+                    if (prefersReducedMotion) {
+                        gsap.set(block, { opacity: 1 });
+                        return;
+                    }
+
+                    // Determine animation type based on block content
+                    const isDialogue = block.classList.contains('dialogue-block');
+
+                    if (isDialogue) {
+                        // Dialogue: slide in from left
+                        gsap.set(block, { opacity: 0, x: -30, filter: 'blur(4px)' });
+
+                        ScrollTrigger.create({
+                            trigger: block,
+                            start: 'top 85%',
+                            onEnter: () => {
+                                gsap.to(block, {
+                                    opacity: 1, x: 0, filter: 'blur(0px)',
+                                    duration: 1, ease: 'power3.out',
+                                    overwrite: 'auto'
+                                });
+
+                                // Stagger dialogue items
+                                const items = block.querySelectorAll('.dialogue-item');
+                                gsap.fromTo(items, {
+                                    opacity: 0, y: 15
+                                }, {
+                                    opacity: 1, y: 0,
+                                    duration: 0.7,
+                                    stagger: 0.15,
+                                    ease: 'power3.out',
+                                    delay: 0.3
+                                });
+                            },
+                            onEnterBack: () => {
+                                gsap.to(block, {
+                                    opacity: 1, x: 0, filter: 'blur(0px)',
+                                    duration: 0.6, ease: 'power3.out', overwrite: 'auto'
+                                });
+                            }
+                        });
+                    } else {
+                        // Standard paragraph: blur + fade up with varied direction
+                        const direction = index % 3 === 0 ? 35 : index % 3 === 1 ? 25 : 40;
+
+                        gsap.set(block, { opacity: 0, y: direction, filter: 'blur(6px)' });
+
+                        ScrollTrigger.create({
+                            trigger: block,
+                            start: 'top 88%',
+                            onEnter: () => {
+                                gsap.to(block, {
+                                    opacity: 1, y: 0, filter: 'blur(0px)',
+                                    duration: 1.2 + (index % 3) * 0.15,
+                                    ease: 'power3.out',
+                                    overwrite: 'auto'
+                                });
+                            },
+                            onEnterBack: () => {
+                                gsap.to(block, {
+                                    opacity: 1, y: 0, filter: 'blur(0px)',
+                                    duration: 0.7, ease: 'power3.out', overwrite: 'auto'
+                                });
+                            }
+                        });
+                    }
+                });
+
+                // Quotes: scale up from center with glow
+                const quotes = document.querySelectorAll('.quote-block');
+                quotes.forEach(q => {
+                    if (prefersReducedMotion) { gsap.set(q, { opacity: 1 }); return; }
+
+                    gsap.set(q, { opacity: 0, scale: 0.92, filter: 'blur(6px)' });
+
+                    ScrollTrigger.create({
+                        trigger: q,
+                        start: 'top 82%',
+                        onEnter: () => {
+                            gsap.to(q, {
+                                opacity: 1, scale: 1, filter: 'blur(0px)',
+                                duration: 1.4, ease: 'power3.out', overwrite: 'auto'
+                            });
+                        },
+                        onEnterBack: () => {
+                            gsap.to(q, {
+                                opacity: 1, scale: 1, filter: 'blur(0px)',
+                                duration: 0.8, ease: 'power3.out', overwrite: 'auto'
+                            });
+                        }
+                    });
+                });
+            }
+
+            // ---- Word-by-Word Scroll-Linked Reveals ----
+            function initWordReveals() {
+                const reveals = document.querySelectorAll('[data-reveal="word"]');
+
+                reveals.forEach(container => {
+                    if (prefersReducedMotion) {
+                        gsap.set(container, { opacity: 1 });
+                        const wordEls = container.querySelectorAll('.word');
+                        wordEls.forEach(w => w.classList.add('visible'));
+                        return;
+                    }
+
+                    // Find all .word-reveal text containers
+                    const wordContainers = container.querySelectorAll('.word-reveal');
+
+                    wordContainers.forEach(wc => {
+                        // Split text into individual words
+                        const text = wc.textContent.trim();
+                        const words = text.split(/\s+/);
+                        wc.innerHTML = words.map(w => `<span class="word">${w}</span>`).join(' ');
+                    });
+
+                    // First, fade in the main thought
+                    const mainP = container.querySelector('.lone-thought > p:first-child');
+                    if (mainP) {
+                        gsap.set(mainP, { opacity: 0, y: 15 });
+
+                        ScrollTrigger.create({
+                            trigger: container,
+                            start: 'top 75%',
+                            onEnter: () => {
+                                gsap.to(mainP, {
+                                    opacity: 1, y: 0, duration: 1.2, ease: 'power3.out'
+                                });
+                            },
+                            onEnterBack: () => {
+                                gsap.to(mainP, {
+                                    opacity: 1, y: 0, duration: 0.6, ease: 'power3.out'
+                                });
+                            }
+                        });
+                    }
+
+                    // Word-by-word scroll-linked reveal for the dim thought
+                    const allWords = container.querySelectorAll('.word');
+                    if (allWords.length > 0) {
+                        gsap.set(container, { opacity: 1 });
+
+                        // Create a scroll-scrubbed animation for each word
+                        const wordTl = gsap.timeline({
+                            scrollTrigger: {
+                                trigger: container,
+                                start: 'top 65%',
+                                end: 'bottom 35%',
+                                scrub: 0.8,
+                            }
+                        });
+
+                        allWords.forEach((word, i) => {
+                            wordTl.to(word, {
+                                opacity: 1,
+                                duration: 0.1,
+                                ease: 'none'
+                            }, i * 0.08);
+                        });
+                    }
+                });
+            }
+
+            // ---- Separator Animations ----
+            function initSeparatorAnimations() {
+                const seps = document.querySelectorAll('.scene-separator');
+
+                seps.forEach(sep => {
+                    if (prefersReducedMotion) { gsap.set(sep, { opacity: 0.4 }); return; }
+
+                    gsap.set(sep, { opacity: 0 });
+
+                    const lines = sep.querySelectorAll('.separator-line');
+                    const diamond = sep.querySelector('.separator-diamond');
+
+                    gsap.set(lines, { scaleX: 0 });
+                    if (diamond) gsap.set(diamond, { scale: 0, rotation: 0 });
+
+                    ScrollTrigger.create({
+                        trigger: sep,
+                        start: 'top 85%',
+                        onEnter: () => {
+                            gsap.to(sep, { opacity: 0.5, duration: 0.5 });
+                            gsap.to(lines, { scaleX: 1, duration: 1, ease: 'power3.out', stagger: 0.1 });
+                            if (diamond) gsap.to(diamond, { scale: 1, rotation: 45, duration: 0.8, ease: 'back.out(2)', delay: 0.3 });
+                        }
+                    });
+                });
+            }
+
+            // ---- Progress Bar ----
+            function initProgressBar() {
+                const progressBar = document.getElementById('progress-bar');
+
+                gsap.to(progressBar, {
+                    width: '100%',
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: document.body,
+                        start: 'top top',
+                        end: 'bottom bottom',
+                        scrub: true,
+                    }
+                });
+            }
+
+            // ---- ScrollSpy (Chapter Navigation) ----
+            function initScrollSpy() {
+                const chapters = document.querySelectorAll('.chapter-section');
+                const dots = document.querySelectorAll('.chapter-dot');
+                const sidebarItems = document.querySelectorAll('.sidebar-item');
+
+                chapters.forEach((chapter, index) => {
+                    const theme = chapter.getAttribute('data-chapter-theme');
+
+                    ScrollTrigger.create({
+                        trigger: chapter,
+                        start: 'top 50%',
+                        end: 'bottom 50%',
+                        onEnter: () => {
+                            activateChapter(index, theme);
+                        },
+                        onEnterBack: () => {
+                            activateChapter(index, theme);
+                        }
+                    });
+                });
+
+                function activateChapter(index, theme) {
+                    // Theme transition
+                    applyChapterTheme(theme);
+
+                    // Update nav dots
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+
+                    // Update sidebar
+                    sidebarItems.forEach((item, i) => {
+                        item.classList.toggle('active', i === index);
+                    });
+                }
+
+                // Click handlers for navigation
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const target = dot.getAttribute('data-target');
+                        ensureStoryVisible();
+                        lenis.scrollTo(target, { duration: 2, offset: 0 });
+                    });
+                });
+
+                sidebarItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const target = item.getAttribute('data-target');
+                        ensureStoryVisible();
+                        lenis.scrollTo(target, { duration: 2, offset: 0 });
+                    });
+                });
+            }
+
+            function ensureStoryVisible() {
+                if (!storyWrapper.classList.contains('active')) {
+                    startStoryFlow();
+                }
+            }
+
+
+            // --------------------------------------------------------
+            // 10. FOCUS MODE
+            // --------------------------------------------------------
+            const focusBtn = document.getElementById('focus-btn');
+            const focusOnIcon = focusBtn ? focusBtn.querySelector('.icon-focus-on') : null;
+            const focusOffIcon = focusBtn ? focusBtn.querySelector('.icon-focus-off') : null;
+
+            if (focusBtn) {
+                focusBtn.addEventListener('click', () => {
+                    const isActive = document.body.classList.toggle('focus-active');
+
+                    if (focusOnIcon && focusOffIcon) {
+                        focusOnIcon.classList.toggle('icon-hidden', isActive);
+                        focusOffIcon.classList.toggle('icon-hidden', !isActive);
+                    }
+
+                    if (!isActive) {
+                        header.classList.remove('focus-peek');
+                    }
+                });
+
+                // Reveal header on hover near top in focus mode
+                window.addEventListener('mousemove', (e) => {
+                    if (document.body.classList.contains('focus-active')) {
+                        header.classList.toggle('focus-peek', e.clientY < 70);
+                    }
+                });
+            }
+
+
+            // --------------------------------------------------------
+            // 11. REPLAY EXPERIENCE
+            // --------------------------------------------------------
+            const replayBtn = document.getElementById('replay-btn');
+
+            if (replayBtn) {
+                replayBtn.addEventListener('click', () => {
+                    // Re-show landing
+                    landingSection.style.display = '';
+                    landingSection.classList.remove('exiting');
+
+                    gsap.to(landingSection, {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 1.2,
+                        ease: 'power3.out'
+                    });
+
+                    // Hide story
+                    storyWrapper.classList.remove('active');
+                    header.classList.remove('visible');
+                    sidebar.classList.remove('visible');
+
+                    // Reset theme
+                    document.body.removeAttribute('data-chapter-theme');
+                    currentTheme = 'landing';
+                    updateParticleTheme('landing');
+
+                    // Scroll to top
+                    lenis.scrollTo(0, { immediate: true });
+
+                    // Kill existing ScrollTriggers and recreate on next begin
+                    ScrollTrigger.getAll().forEach(st => st.kill());
+                    initProgressBar(); // Keep progress bar
+                });
+            }
+
+
+            // --------------------------------------------------------
+            // 12. AMBIENT AUDIO ENGINE (Web Audio API)
+            // --------------------------------------------------------
+            const audioBtn = document.getElementById('audio-btn');
+            const audioWaves = document.getElementById('audio-waves');
+
+            let audioCtx = null;
+            let synthPlaying = false;
+            let masterGain = null;
+            let padOsc1 = null, padOsc2 = null, padGain = null;
+            let melodyTimeout = null;
+
+            // C pentatonic scale
+            const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25, 783.99];
+
+            function initAudio() {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+                masterGain = audioCtx.createGain();
+                masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+                masterGain.connect(audioCtx.destination);
+
+                // Warm drone pad
+                padOsc1 = audioCtx.createOscillator();
+                padOsc1.type = 'triangle';
+                padOsc1.frequency.value = 130.81; // C3
+
+                padOsc2 = audioCtx.createOscillator();
+                padOsc2.type = 'sine';
+                padOsc2.frequency.value = 196.00; // G3
+
+                padGain = audioCtx.createGain();
+                padGain.gain.value = 0.22;
+
+                // Delay for spaciousness
+                const delay = audioCtx.createDelay(1.5);
+                delay.delayTime.value = 0.75;
+
+                const delayFeedback = audioCtx.createGain();
+                delayFeedback.gain.value = 0.32;
+
+                const delayFilter = audioCtx.createBiquadFilter();
+                delayFilter.type = 'lowpass';
+                delayFilter.frequency.value = 700;
+
+                delay.connect(delayFeedback);
+                delayFeedback.connect(delayFilter);
+                delayFilter.connect(delay);
+
+                padOsc1.connect(padGain);
+                padOsc2.connect(padGain);
+                padGain.connect(masterGain);
+                padGain.connect(delay);
+                delay.connect(masterGain);
+
+                padOsc1.start();
+                padOsc2.start();
+            }
+
+            function playFluteNote() {
+                if (!synthPlaying || !audioCtx) return;
+
+                const freq = scale[Math.floor(Math.random() * scale.length)];
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                const filter = audioCtx.createBiquadFilter();
+
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+
+                // Vibrato LFO
+                const lfo = audioCtx.createOscillator();
+                const lfoGain = audioCtx.createGain();
+                lfo.type = 'sine';
+                lfo.frequency.value = 4.5;
+                lfoGain.gain.value = freq * 0.01;
+                lfo.connect(lfoGain);
+                lfoGain.connect(osc.frequency);
+
+                filter.type = 'lowpass';
+                filter.frequency.value = 1100;
+
+                // Envelope
+                const now = audioCtx.currentTime;
+                gain.gain.setValueAtTime(0, now);
+                gain.gain.linearRampToValueAtTime(0.3, now + 0.5);
+                gain.gain.setValueAtTime(0.3, now + 1.2);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 3);
+
+                osc.connect(filter);
+                filter.connect(gain);
+
+                // Note delay
+                const noteDelay = audioCtx.createDelay(1);
+                noteDelay.delayTime.value = 0.5;
+                const noteDelayGain = audioCtx.createGain();
+                noteDelayGain.gain.value = 0.2;
+
+                gain.connect(masterGain);
+                gain.connect(noteDelay);
+                noteDelay.connect(noteDelayGain);
+                noteDelayGain.connect(masterGain);
+
+                osc.start();
+                lfo.start();
+
+                setTimeout(() => {
+                    try {
+                        osc.stop(); lfo.stop();
+                        osc.disconnect(); lfo.disconnect();
+                        filter.disconnect(); gain.disconnect();
+                        noteDelay.disconnect(); noteDelayGain.disconnect();
+                    } catch (e) { /* ignore */ }
+                }, 3500);
+
+                melodyTimeout = setTimeout(playFluteNote, 2400 + Math.random() * 2200);
+            }
+
+            function startAudio() {
+                if (!audioCtx) initAudio();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+                masterGain.gain.linearRampToValueAtTime(0.07, audioCtx.currentTime + 1.5);
+
+                synthPlaying = true;
+                audioWaves.classList.add('playing');
+                melodyTimeout = setTimeout(playFluteNote, 800);
+            }
+
+            function stopAudio() {
+                if (!audioCtx) return;
+
+                masterGain.gain.setValueAtTime(masterGain.gain.value, audioCtx.currentTime);
+                masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1);
+
+                synthPlaying = false;
+                audioWaves.classList.remove('playing');
+
+                if (melodyTimeout) {
+                    clearTimeout(melodyTimeout);
+                    melodyTimeout = null;
+                }
+            }
+
+            if (audioBtn) {
+                audioBtn.addEventListener('click', () => {
+                    if (synthPlaying) stopAudio();
+                    else startAudio();
+                });
+            }
+
+
+            // --------------------------------------------------------
+            // 13. PERFORMANCE: Visibility Change
+            // --------------------------------------------------------
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    if (synthPlaying) stopAudio();
+                    if (particleAnimFrame) {
+                        cancelAnimationFrame(particleAnimFrame);
+                        particleAnimFrame = null;
+                    }
+                } else {
+                    if (!particleAnimFrame && !prefersReducedMotion && ctx) {
+                        animateParticles();
+                    }
+                }
+            });
+
+
+            // --------------------------------------------------------
+            // 14. HEADER BRAND CLICK → Scroll to Top
+            // --------------------------------------------------------
+            const headerBrand = document.getElementById('header-brand');
+            if (headerBrand) {
+                headerBrand.addEventListener('click', () => {
+                    lenis.scrollTo(0, { duration: 2 });
+                });
+                headerBrand.style.cursor = 'pointer';
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telugu Ammai — Act I | Romance & Determination</title>
+    <meta name="description" content="A young Telugu girl's pursuit of her artistic dreams and dance, fighting family doubt.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Telugu Ammai</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Telugu Ammai</span>
+            <span class="header-brand-sub">Romance & Determination</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Introduction">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Introduction</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Introduction</span>
+                    <span class="sb-desc">ఒక కల… ఒక పోరాటం… ఒక విజయం</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Telugu Ammai.png" alt="Telugu Ammai — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Telugu Ammai">Telugu Ammai</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Romance & Determination</div>
+                <div class="landing-meta" id="landing-meta">A young Telugu girl's pursuit of her artistic dreams and dance, fighting family doubt.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Telugu Ammai story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Introduction             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0" aria-label="Chapter 1: Introduction">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Introduction</h2>
+                    <p class="chapter-synopsis">ఒక కల… ఒక పోరాటం… ఒక విజయం</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">ఒక కల… ఒక పోరాటం… ఒక విజయం</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">చిన్న ఊరు లో ఒక అమ్మాయి ఉందీ.... పేరు శ్రావణి.... తానా జీవితం చాల సింపుల్.... Ŧgల్, ఇంటో పని, కొనిz నవులు.... కానీ తన గుండెలో మాత ం ఒక పెదx కల ఉండేది.... డాన్....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">సంగీతం వింటేనే తన కళ్లలో ఒక మెరుపు.... బాడీ ఆటోమేటిక్ గా మూవ్ అవుతుంది.... అద్దంం ముందు నిల్చోనీ.... తన ప్రతిబింబాన్ని చూసి.... “నేను స్టేజ్ మీద చేస్తాను” అని ఊహించుకోండి.... చప్పట Ʉండ్ కూడా వినపిŁv ంది తన ǎండ్ లో.... అది తన ప పంచం....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">కానీ నిజ జీవితం అంత తేలిక కాదు.... ఒక రోజు తానా అమ్మ చూసింది.... తానా డ్యాన్స్ ప్రాక్టీస్....“శ్రావణి.... ఇది టైం వేస్ట్ కదా అమ్మా.... ఎగ్జామ్స్ దగ్గర ఉన్నాయ్.... ఫోకస్ పెట్టు...” అని ప్రశాంతంగా చెప్పింది.... తానా నాన్న మాత్రంం నేరుగా గా.... “డాన్స్ తో లైఫ్ సెట్ అవ్వడు.... చదువులు ముఖ్యం....” అని ఫైనల్ గా చెప్పడు.... ఆ మాటల తరువతా.... తన అడుగులు నెమ్మదిగా అÌయ్....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">సంగీతం ఉన్నా కూడా....తన కాళ్ళు కదులుతాయి అవ్వలేకపోయాయి.... రూమ్ లో కూర్చోనీ.... కిటికీ బైటకి చూŁv .... ఒక లోతైన నిő qరు{ వేసి.... “నా కల ఇంకా ఉందా? లేక అయిపోయిందా?....” అని ఆలోచిŁv ంది....</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">రోజులు గడుస్తున్నాయి అయ్యా.... శ్రావణి మల్లి నార్మల్ లైఫ్ లో కలిసిపోయింది.... కానీ తన నవ్వులో ఓక శూన్యం.... తానా హార్ట్ లో మాత ం డాన్ ఇంకా బ తికేనే ఉంది.... సైƇంట్ గా....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ఒక రోజు స్కూల్ లో అనౌన్స్ మెంట్ వచ్చింది.... “వార్షిక దినోతవ వేడుక.... డాన్ పోటీ ఉంĬంది....”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">అంధరు ఉత్సాహంగా.... ఫ్రెంండ్స్ అందరికి ఎనర్జీ ఫుల్.... తానా బెస్ట్ ఫ్రెంండ్ ఒచ్చి అడిగింది.... “రా శ్రావణి.... నుľ పాǶi ను అవాలి.... నీ టాƇంట్ వే­q అవకూడదు....”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">శ్రావణి కొంచెం నవ్వింది.... కని కళ్ళు లో సందేహం.... “నాకు పర్మిషన్ ఇవ్వరూ.... నేను ఎలా?....” అని స్లోగా చెప్పింది.... ఆ రాత్రి.... తానా రూమ్ లో.... లైట్ ఆఫ్.... ఫోన్ లో ఒక పాత డ్యాన్స్ వీడియో చూసింది.... తన సొంత ప్రదర్శన.... ఆ వీడియో చుస్తుంంటే.... తన కళలో కనీzŅ .... కానీ ఆ కనీzళ లో ఒక ఫైర్ కూడా ఉంది....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">“ఒక్క ఛాన్ ఇచుlకుంటే.... నేను నా జీవితం మారుlకోగలనా?....” అని తన హృదయానిz కదిలింÝంది....</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">మరుసటి రోజు.... ధైర్యం తెచ్చుకొని.... తానా తల్లిదండ్రులు ముందు నిలిచారు.... “నాన్నా.... అమా.... నేను డాన్ ǀ చెయాలి.... ఒకg ఛాన్ ఇవండి.... ఫెయిల్ అయినా పరలేదు.... కానీ ǀ చేయకపోతే నేను నాకు నేనే సమాధానం ఇవలేను....” అని నిజాయితీగా చెప{ండి....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ఇంట్లో నిశ్శబ్దంం....కొన్ని సెకన్లు భారంగా అనిపించాయి.... చివరగా.... తానా అమ్మ చూసింది.... తానా నాన్న కూడా దీప్ గా ఆలోచించి.... “ఒక్క పరిసిw తి.... చదువులు రాజీ కాకూడదు....” అని చెప{రు....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ఒక్క క్షణం.... శ్రావణి కి ప్రపంచం మొత్తమ్ మారండి.... తానా ముఖంలో చిరునవు.... కŅ లో కాంతి.... గుండెలో శకిv</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ప్రాక్టీస్ స్టార్ట్ అయ్యండి.... ఉదయం, సాయంత్రంం, రాత్రి.... తానా పూర్తి అంకితభావం.... కాళ్ల నొĶ{లు.... చెమట.... తĶ{లు.... అనీz వచాlయి.... కానీ తాన ఆగలేదు....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">చివరగా.... పోటీ రోజు ఒచ్చింది.... రంగస్థలం మీద లైట్ పాడింది.... మ్యూజిక్ స్టార్ట్ అయింది.... మొదటి అడుగు వేసినప్పుడే.... తానా భయం మొతv మ్ పోవడం సాq ¨q అయింది....</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">డాన్స్ చేస్తా.... తానా కథ చెప్పింది.... తానా బాధ....తన కలలు....తానా పోరాటం....అనిz ఉదమాలలో చూìంÝంది....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ఆడియన్స్ సైలెంట్....తరువాత హఠాత్తుగా భారీ చప్పట్లు స్టాంండింగ్ ఒవేషన్....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">జడ్జిలు రిజల్ట్ ప్రకటించారు.... “ఫస్ట్ Ǌ జ్.... ÐɌ వణి....”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ఆ క్షణం లో....తన కళ్లలో కన్నీళ్లు.... కానీ అవి ఆనందం కన్నీళ్లు.... తానా పేరెంట్ ఆడియన్ లో నిలోlని కా ప్ చేŁv నాzరు.... గరంగా ఉంది....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">శ్రావణి స్మైల్ చేసి ఆలోచించింది.... “డ్రీమ్ ఈజీ కావు.... కానీ మనం వదిలిపెటq కపోతే.... అవి మĠ వదులుకోవు....”</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Telugu Ammai</h3>
+                    <p class="epilogue-sub">Romance & Determination</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

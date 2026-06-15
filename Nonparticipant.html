@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nonparticipant — Act I | Grief & Calmness</title>
+    <meta name="description" content="Observing life from the borders. The peaceful isolation of a silent witness.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Nonparticipant</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Nonparticipant</span>
+            <span class="header-brand-sub">Grief & Calmness</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: NONPARTICIPANT">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · NONPARTICIPANT</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: INTRO">
+                <span class="dot-label">II</span>
+                <span class="dot-tooltip">Chapter 2 · INTRO</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: CHAPTER 4">
+                <span class="dot-label">III</span>
+                <span class="dot-tooltip">Chapter 3 · CHAPTER 4</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">NONPARTICIPANT</span>
+                    <span class="sb-desc">A Psychological Collapse</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch2">
+                <span class="sb-num">02</span>
+                <div class="sb-info">
+                    <span class="sb-name">INTRO</span>
+                    <span class="sb-desc">Monitor flat ayye mundu oka void laaga silence. Reports lo cardiac failure ani raa...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch3">
+                <span class="sb-num">03</span>
+                <div class="sb-info">
+                    <span class="sb-name">CHAPTER 4</span>
+                    <span class="sb-desc">Pressure ippudu loud ga kaadu. It learned silence. City lo announcements thaggayi,...</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/NONPARTICIPANT.png" alt="Nonparticipant — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Nonparticipant">Nonparticipant</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Grief & Calmness</div>
+                <div class="landing-meta" id="landing-meta">Observing life from the borders. The peaceful isolation of a silent witness.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Nonparticipant story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — NONPARTICIPANT             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0" aria-label="Chapter 1: NONPARTICIPANT">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">NONPARTICIPANT</h2>
+                    <p class="chapter-synopsis">A Psychological Collapse</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">A Psychological Collapse</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.90">City aa roju special ani evariki anipinchaledu. Morning routine usual ga start ayindi. Traffic lights time ki marayi, street vendors stalls open chesaru, buses signal daggara aagi unnayi. Sound undi, movement undi, kaani oka subtle mismatch undi — responses late ga unnayi. Horn kotte vaadu undadu, cross cheyyadaniki evaru hurry kaaledu. City work chestunnattu kanipinchindi, kaani adhi react avvatledu. Oka narrow street lo car door open ga undi. Driver seat meeda blood splatter ayyi undi — too neat ga kaadu, too violent ga kaadu. Window glass intact. Steering meeda grip marks levu. Body ledu. Accident signs levu. Blood undi ante fight jarigindi ani expect chestaru, kani ikkada fight jariginattu evidence ledu. Police tape veyyadam jarigindi, photos teesaru, statements record chesaru. Kaani blood matram emi cheppaledu. Hospitals lo confusion slow ga build ayindi. Admissions ekkuva kaaledu, emergencies kuda normal range lone unnayi. Kani doctors notice chesina oka common detail unnadi — patients scream cheyyaledu. Help adagaledu. Last moments lo panic ledu.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 2 — INTRO             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch2" data-chapter-theme="fear" data-chapter-index="1" aria-label="Chapter 2: INTRO">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">02</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 02</span>
+                    <h2 class="chapter-title">INTRO</h2>
+                    <p class="chapter-synopsis">Monitor flat ayye mundu oka void laaga silence. Reports lo “cardiac failure” ani raasaru, kani doctors lopala okate d...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="1.00">Monitor flat ayye mundu oka void laaga silence. Reports lo “cardiac failure” ani raasaru, kani doctors lopala okate doubt: heart fail avvadam kaadu, response stop avvadam. Hostels lo corridors silent ga unnayi. Doors open ga unnayi. Beds disturbed unnayi, blankets half- folded. Phones charging lo unnayi. Mess lo plates half-eaten ga tables meeda unnayi. Floors meeda blood marks unnayi, kani drag signs levu, struggle marks levu. As if people oka second lo ikkada undadam enduku? ani decide chesinattu. Nobody ran. Nobody resisted. Nobody asked. News channels situation ni loud ga handle chesayi. “Mass incident”, “Unknown threat”, “Psychological emergency” ani headlines vachayi. Experts panels lo matladaru — brain chemistry, fear response, collective panic, god hypothesis. Andaru explanations icharu. Kani explanations tho bhayam thaggaledu. Endukante city lo slow ga oka pattern circulate avuthundi — official ga kaadu, whisper laaga.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Respond chesevallu disappear avuthunnaru. Respond cheyyani vallu miguluthunnaru.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="release" data-intensity="0.60">Evaru rule declare cheyyaledu. Evaru enforce cheyyaledu. Kani andaru feel ayyaru. Phone ring ayithe lift cheyyadam postpone chesaru. Message vachina ventane reply ivvadam aapesaru. Office lo meetings silent ga jarigayi. Silence weakness kaadu ani first time city realise ayyindi. Silence oka filter laaga work cheyyatam start chesindi. Aa same city lo, oka abbayi roju laage lechadu. Alarm ring ayyaka off chesadu. Brush chesadu. Notebook open chesadu. News app open cheyyaledu. Calls silent lo petti pakkana pettadu. Routine lo okka change kuda ledu. Panic ledu. Curiosity ledu. Explanation avasaram ledu. Endukante vaadiki first day nunde ardham ayyindi — idi attack kaadu. Idi rescue kaadu. Idi warning kuda kaadu. Idi invitation.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.90">CHAPTER - 1 City aa roju special ani evariki anipinchaledu. Morning routine usual ga ne start ayindi. Traffic lights time ki marayi, buses signal daggara aagi unnayi, shops shutters half-open ga unnayi. Sound undi, kani movement lo urgency ledu. Hornlu ekkuva ga vinipinchaledu, evaru hurry ga cross cheyyaledu. City pani chestunnattu kanipistondi, kani react avvatledu ani oka subtle mismatch lopala settle ayyindi. Oka side street lo oka car road madhya lo aagi undi. Engine off kaadu, headlights on unnayi. Driver door open ga undi. Seat meeda blood undi. Fresh kaadu, completely dry kuda kaadu. Window glass intact. Steering straight. Tyres meeda skid marks levu. Body ledu. Accident signs levu. Fight jarigindi ani cheppadaniki struggle marks levu. Blood undi ante violence anukuntaru, kani ikkada blood oka leftover laaga undi — explanation lekunda, intention lekunda.Police tape vesaru. Photos teesaru. Statements record chesaru. Case number assign chesaru. Routine follow ayyindi. Kani aa place lo work chesina vallaki oka feeling vadalaledu. Ikkada jarigindi physical ga kaadu ani. Ikkada jarigindi visible kaadu ani. Blood cheppalsina story cheppaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.75">Hospitals lo first day chaos ledu. Admissions normal range lone unnayi. Emergency bells usual ga ring ayyayi. Kani doctors notice chesina oka common detail unnadi. Patients scream cheyyaledu. Help adagaledu. Last moments lo panic kanipinchaledu. Monitor flat ayye mundu sudden ga oka stillness. Reports lo “cardiac failure” ani raasaru. Kani aa reports rasina doctors lopala okate doubt undi — heart fail avvadam kaadu idi, response fail avvadam .Hostels lo corridors silent ga unnayi. Doors open ga unnayi. Beds disturbed unnayi, blankets half-folded. Phones charging lo unnayi. Mess lo plates half-eaten ga tables meeda unnayi. Floors meeda blood marks unnayi, kani drag signs levu, struggle levu . As if people oka second lo ikkada undadam enduku ani decide chesinattu, next second lo react cheyyadam aapesinattu. News channels situation ni loud ga handle chesayi. Headlines vachayi. Panels lo experts matladaru. Brain chemistry gurinchi, collective panic gurinchi, unknown threat gurinchi, god gurinchi. Andaru explanations icharu. Kani explanations valla bhayam thaggaledu. Endukante city lo slow ga oka pattern circulate avuthundi. Official kaadu. Announce cheyyaledu. Kani andariki telusu anipinchindi.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="release" data-intensity="0.60">Respond chesevallu disappear avuthunnaru. Respond cheyyani vallu miguluthunnaru. Phones ring ayina ventane lift cheyyadam aapesaru. Messages vachina immediate reply ivvadam aapesaru. Meetings silent ga jarigayi. People matladadam aapesaru ani kaadu — respond cheyyadam aapesaru. Silence weakness kaadu ani city first time nerchukundi. Silence oka filter laaga behave cheyyatam start chesindi. Aa same city lo oka abbayi roju laage lechadu. Alarm off chesadu. Brush chesadu. Notebook open chesadu. News app open cheyyaledu. Calls silent lo petti pakkana pettadu. Routine lo okka change kuda ledu. Panic ledu. Curiosity ledu. Vaadiki idi attack kaadu ani telusu. Rescue kaadu ani telusu. Warning kuda kaadu ani telusu. Idi invitation ani vaadiki first day nunde ardham ayyindi. And vaadu oka decision malli repeat chesadu — dramatic kaadu, heroic kaadu, loud kaadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.90">CHAPTER - 2 City lo silence spread avuthunnadi ani vaadu first notice chesindi sound valla kaadu, delay valla. Messages ki replies late ga raavadam start ayyayi. Calls ring ayyi aagipothunnayi. Questions adigina answers immediate ga raavatledu. Ee lag vaadiki bhayam laaga anipinchaledu. Idi world slow ga correct avuthunnattu anipinchindi. Pace thaggindi, pressure loose ayyindi. Silence ikkada empty kaadu, controlled. Vaadu tana world ni chinna ga chesadu. Two rooms, oka notebook, oka fixed route. Same time lechadam, same time tinadam, same time nadavadam. Evaru approach ayina vaadu matladadu ani kaadu; vaadu react avvadu. Difference adi. Face calm ga undi, body steady ga undi. Lopala thoughts nadustunnayi, kani bayata entry ivvaledu. Isolation vaadiki punishment kaadu. Idi boundary. Boundary undadam valla vaadu intact ga unnadu. Ade city lo, ade silence ni vaadu hunger laaga feel chesadu. Calls lift cheyyatledu, messages ki replies raavatledu, meetings lo eyes down ayipoyayi. Authority ki echo ledu. Vaadu tone penchadu, urgency try chesadu, fear use chesadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="1.00">Kani response raaledu. Silence lo control kanipinchaledu. Control lekapothe existence ledu ani vaadiki clear ga ardham ayyindi. Silence vaadini target cheyyatledu; silence vaadini ignore chestunnadi. Vaadu streets lo nadustunnappudu blood stains kanipinchayi. Close ga vellaledu. Look ivvaledu. Body language change kaaledu. Blood vaadiki threat kaadu. Idi result. Respond chesina vaallu collapse ayyaru ani vaadiki ardam ayyindi. Proof avasaram ledu. Test cheyyalsina avasaram ledu. Vaadi survival instinct loud kaadu; still. Stillness lo clarity undi. Ade blood ni vaadu signal laaga chusadu. Fear create cheyyadaniki kaadu, fear already undi ani telusu. Blood ni reminder ga vaadukundam ani decide chesadu. Attention pull cheyyadaniki, narrative control cheyyadaniki. Blood undi ante reaction vasthundi ani vaadu nammadam start chesadu. Silence ni shock tho replace cheyyagalanu ani anukunnadu. Vaadu routine ni inka tight chesadu. Time fixed. Food simple. Sleep exact. News lo collapse gurinchi cheppina kuda vaadu news open cheyyaledu. Endukante vaadiki oka rule clear ga undi—information kuda participation. Isolation deepen ayyindi, kani loneliness kaadu. Control vaadi chethilo undadam valla silence heavy kaadu, stable.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.75">Vaadu information ni weapon ga marchadu. Theories spread chesadu. Rumours circulate chesadu. Fear ni feed chesadu. People matladuthunnaru, kani respond cheyyatledu ani vaadu notice chesadu. Vaadi words return avvatledu. Echo ledu. Vaadu shout chestunnadu, kani room empty. Empty room lo shout chesinappudu vaadi own voice kuda vaadini bhayapettadam start ayyindi. Vaadu okasari mirror mundu nilchunnadu. Face lo fear ledu. Relief kuda ledu. Just oka line lopala repeat ayyindi—idi yuddham kaadu. Idi offer. Offer ni accept cheyyadam optional ani vaadiki telusu. Vaadu already reject chesadu. Ade moment lo vaadiki realization vachindi. Oka person consistently react avvatledu. Vaadu approach avvaledu. Force cheyyaledu. Smile vachindi. Endukante vaadiki clear ayyindi—control fail avvadam start ayina chota obsession start avuthundi. Obsession unte, game undi ani. Vaadu isolation ni deepen chesadu. Vaadu pressure ni increase chesadu. Same city, same silence, same blood. Opposite intentions. And aa rendu intentions madhya lo city breathing aapesindi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">CHAPTER - 3 Silence ippudu habit kaadu. Adi structure ayipoyindi. City lo matladadam jarugutondi, kani respond avvadam systematic ga thaggipothondi. Shops open unnayi, transactions jarugutunnayi, kani faces lo urgency ledu. Questions adigite answers raavatledu ani kaadu — answers avasaram anipinchatledu. World slow ga oka decision ki vachinattu anipinchindi, kani evaru aa decision ni announce cheyyaledu. Vaadu tana routine ni disturb cheyyakunda continue chesadu. Morning walk same route lo, same pace lo. Street corners daggara police vehicles kanipinchayi, barricades unnayi, kani vaadu stop avvaledu. Eye contact cheyyaledu. Explanation ivvaledu. Uniform vaadini intimidate cheyyaledu. Endukante vaadu fear ni identify cheyyatam aapesadu. Fear reaction meeda depend avuthundi ani vaadiki clear.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">First loss silent ga vachindi. Phone ring avvadam aapesindi. Not silent mode valla kaadu. Ring avvaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.90">Friends ledu ani kaadu. Numbers unnayi. Network unnadi. Kani calls initiate avvatledu. Vaadu check cheyyaledu. Try cheyyaledu. Endukante try cheyyadam kuda participation. Oka void create ayyindi, kani aa void lo panic ledu. Just absence. Same time lo vaadi presence notice cheyyadam start ayyindi. Not by people. By system. Hostel office lo name miss ayyindi. Attendance sheet lo blank space vachindi. Class register lo vaadi name pencil tho erase chesinattu kanipinchindi. Nobody confronted him. Nobody asked. Vaadu record lo undadam aapesadu. Streets lo blood stains inka kanipisthunnayi, kani fresh kaadu. Old kaadu. City blood ni clean cheyyadaniki hurry cheyyatledu. As if aa marks ni reminder laaga accept chesinattu. Vaadu aa stains meeda nadichadu. Shoe meeda stain padina kuda wipe cheyyaledu. Endukante evidence erase cheyyadam reaction. Vaadu reaction ivvadam aapesadu. News lo deaths number increase ayyindi ani chepparu. Explanation ledu. Names ledu. Faces ledu. Just numbers. Numbers kuda day ki okasari update avuthunnayi. Continuous ga kaadu. Panic spread avvaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.60">Panic kuda response kosam wait chestundi. Response raakapothe panic kuda tired avuthundi ani city nerchukuntunnattu undi. Vaadu okasari public place lo nilchunnadu. Crowd ledu. Space undi. Chairs empty. Screens on unnayi. Announcements vachayi. Kani evaru respond avvaledu. Vaadu aa silence lo tana own breathing vinipinchukunnadu. Adi loud ga anipinchaledu. Stable ga anipinchindi. Stable breathing is power ani vaadiki ardham ayyindi. Ade roju vaadini first time directly approach chesaru. Not threat. Not warning. Just question. “You’re not reacting,” ani. Tone neutral ga undi. Accusation ledu. Concern kuda ledu. Vaadu answer ivvaledu. Look kuda ivvaledu. Just pause. Long pause. Question dissolve ayipoyindi. Person uncomfortable ga shift ayyadu. Conversation dead.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.45">Ikkade vaadiki cost clear ayyindi. Respond cheyyakapovadam survival kaadu. Respond cheyyakapovadam exile.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="instability" data-intensity="0.60">Vaadu exile ni resist cheyyaledu. Accept chesadu. Endukante exile lo clarity undi. Belonging lo confusion undi. Vaadu confusion ni already vadilesadu.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.90">Same night lo power cut jarigindi. Partial. Selected areas lo. Lights off ayyayi. Backup lights on ayyayi. Darkness complete kaadu. Controlled. City experiment chestunnattu anipinchindi. Darkness kuda response kosam wait chestundi ani vaadiki anipinchindi. Vaadu curtains open chesi darkness ni chusadu. No prayer. No fear. Just observation. Somewhere else in the city, silence ni break cheyyadaniki pressure increase avuthondi. Words louder avuthunnayi. Actions sharper avuthunnayi. Blood malli kanipisthondi. Not random. Placed. Attention kosam. Vaadu aa pattern ni notice chesadu. Pattern ni follow cheyyaledu. Chapter end lo vaadu oka simple realization ki vachadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">Silence ni hold cheyyadam easy kaadu. Silence ni continue cheyyadam cost. Vaadu aa cost ni bargain cheyyaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Discount adagaledu. Deadline set cheyyaledu. He stayed.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 3 — CHAPTER 4             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch3" data-chapter-theme="sadness" data-chapter-index="2" aria-label="Chapter 3: CHAPTER 4">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">03</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 03</span>
+                    <h2 class="chapter-title">CHAPTER 4</h2>
+                    <p class="chapter-synopsis">Pressure ippudu loud ga kaadu. It learned silence. City lo announcements thaggayi, barricades remain ayyayi, kani app...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="isolation" data-intensity="0.75">Pressure ippudu loud ga kaadu. It learned silence. City lo announcements thaggayi, barricades remain ayyayi, kani approach change ayyindi. Questions become polite. Requests become reasonable. Threats disguise avuthayi as concern. System vaadini test cheyyatam start chesindi — not to break him, but to pull a response. Vaadini office ki pilicharu. Not summons. Invitation. Chair comfortable ga undi. Water offer chesaru. Tone calm. “Just confirm cheyyali,” ani chepparu. “Routine follow avuthunnava?” ani adigaru. Vaadu head move cheyyaledu. Silence stretch ayyindi. Silence lo concern dissolve ayyindi. Conversation end ayyindi. Paper meeda tick mark padaledu. File incomplete ga close ayyindi. Outside, streets lo blood malli kanipinchindi. Not chaotic. Not spread. Placed. Corners lo, entrances lo, exits daggara. City fear ni manufacture cheyyatam kaadu; attention ni demand cheyyatam start chesindi. Screens lo visuals repeat ayyayi. Same frame. Same angle. Same stain. Repetition lo pressure undi. Pressure lo offer undi: react, and this stops.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="1.00">Vaadu route change cheyyaledu. Same streets. Same pace. Same eyes-down walk. People chusaru. People wait chesaru. Nobody spoke. Vaadu respond avvaledu. Silence hold chesadu. Hold cheyyadam ippudu discipline kaadu — strain. Aa roju evening vaadiki message vachindi. Short. Clear. Personal. Name undi. Relationship undi. Location undi. Time undi. Threat ledu. Request ledu. Just fact. City villanni vaadiki ivvadam start chesindi. Choice kaadu ani cheppadaniki choice laaga present chesindi. Vaadu velladu. Vellakapovadam kuda response ani telusu. Place quiet ga undi. Lights low. Chairs empty. Person already akkada unnadu. Familiar face. Voice soft. “Just okka maata,” ani cheppadu. “Nee silence vallaki damage chestondi.” Accusation ledu. Blame ledu. Care laaga undi. Care lo trap undi. Vaadu answer ivvaledu. Look kuda ivvaledu. Silence extend ayyindi. Air heavy ayyindi. Familiar face eyes lo something shift ayyindi — patience nundi fear ki. Fear nundi resentment ki. “Nuvvu ila undakudadhu,” ani cheppadu. Vaadu still. That was the last conversation.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.75">Next day, city news ni quiet ga handle chesindi. Name mention cheyyaledu. Details ivvaledu. Just oka line: unresponsive individual found. Vaadu ardham chesadu. Loss ki sound ledu. Funeral ki crowd ledu. Explanation ledu. Permanent ane word kuda raaledu. Kani permanent ani vaadiki telusu. Breaking point ikkada vachindi. Not scream. Not collapse. Compression. Chest lo pressure. Breath controlled. Hands steady. Brain loud. Vaadu oka moment lo almost matladadu. Almost. Almost is participation. Almost is entry. Almost is surrender. Vaadu aa almost ni cross cheyyaledu. City reaction kosam wait chesindi. Reaction raaledu. Pressure peak ayyindi ani andariki telusu. Kani peak taruvatha fall vastadi ani city marchipoyindi. Control reaction meeda bathukutundi. Reaction raakapothe control starves. Vaadu aa night routine break chesadu. Walk aapesadu. Notebook close chesadu. Light off chesadu. Darkness ni invite cheyyaledu. Darkness already undi. Loss undi. Pain undi. Kani response ledu. Silence intact. He didn’t win. He didn’t heal. He didn’t move on. He stayed.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.90">CHAPTER 5 Loss taruvatha city immediate ga react avvaledu. Mourning ledu. Anger ledu. Candle marches levu. City already tired. News lo oka small update vachindi, taruvatha silence. Name ekkada repeat kaaledu. Face ekkada kanipinchaledu. System loss ni process cheyyatam kaadu, absorb cheyyatam nerchukunnattu undi. Vaadu roju laage lechadu. Same time. Same movements. Kani oka detail missing. Message check cheyyalsina reflex ledu. Call wait cheyyalsina pause ledu. Loss routine lo gap laaga kanipinchaledu. Loss routine lo hole laaga undi. Fill cheyyalani anipinchaledu. Cover cheyyalani try cheyyaledu. People vaadini avoid cheyyatam start chesaru. Fear valla kaadu. Confusion valla. Vaadu react avvadu ani telusu. Reaction lekapothe interaction purpose lose avuthundi. Conversations vaadini skip chestunnayi. Vaadu crowd madhya lo unna kuda single entity laaga kanipinchadu. Shadow laaga kanipinchadu. Vaadu shadow avvadam ni resist cheyyaledu. Shadow lo clarity undi. Light lo explanation undi. Vaadu explanation ni already vadilesadu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.60">CHAPTER 6 City lo power imbalance visible ga start ayyindi. Orders vachayi, kani follow avvaledu. Warnings icharu, kani panic raaledu. Threats escalate ayyayi, kani reactions flat. People matladadam nerchukunnaru, kani respond cheyyatam nerchukoledu. Authority ki echo ledu. Echo lekapothe voice weak ayipothundi ani system first time experience chesindi. Villain voice lo frustration kanipinchindi. Not anger. Hunger. Attention kosam hunger. Reaction kosam hunger. Screens lo visuals repeat ayyayi. Announcements louder ayyayi. Blood malli kanipinchindi. More deliberate. More visible. City reaction kosam wait chesindi. Reaction raaledu. Vaadu streets lo nadustunnappudu aa visuals chusadu. Head turn cheyyaledu. Pace change cheyyaledu. Villain vaadini chudaledu ani kaadu. Villain vaadini reach cheyyalekapoyadu. Distance physical kaadu. Psychological. Ikkada villain ardham chesadu — control ni break cheyyadaniki fight avasaram ledu. Participation lekapothe control starve avuthundi.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.60">CHAPTER 7 Silence oka roju sudden ga vachindi ani kaadu. Adi slowly settle ayyindi. City lo matladadam malli start ayyindi, kani tone marindi. Earlier la urgency ledu. Expectation ledu. Demand ledu. Calls vastunnayi, kani reply avvalani pressure ledu. People matladuthunnaru, kani evaru evarni drag cheyyatledu. City collapse nundi bayataki raledu — city adjust ayyindi. Villain presence ippudu blur ayipoyindi. Name undi, kani bhayam ledu. Voice undi, kani echo ledu. Vaadu matladuthunnadu ani telusu, kani evaru vinatledu ani vaadiki kuda ardham ayipoyindi. Control anedi force kaadu ani, control anedi permission ani vaadu late ga nerchukunnadu. Permission lekapothe power sound chestundi, kani work avvadu. Vaadu oka roju morning lechadu. Alarm ring avvaledu ani kaadu. Vaadu alarm off chesadu. Difference adi. Window bayata city kanipinchindi. Destroy ayina city kaadu. Safe city kaadu. Just unowned city. Vaadu breathe chesadu. Breath lo relief ledu. Pain ledu. Just weight.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.75">Notebook open chesadu. Earlier pages lo observations unnayi. Lines unnayi. Patterns unnayi. Ee page blank ga undi. Blank page chustunte vaadiki loss gurtu vachindi. Aa name raayalani anipinchaledu. Raayakapothe marchipothanu ani bhayam ledu. Endukante marchipovadam vaadi choice kaadu. Carry cheyyadam vaadi choice. Vaadu oka line raasadu. Clean handwriting. No emphasis. “Participation lekapothe power ledu.” Pen pakkana pettadu. Page close cheyyaledu. Oka moment alane undipoyadu. Silence lo oka memory float ayyindi. Last look. Last pause. Last unspoken thing. Tears raaledu. Raakapovadam suppression kaadu. Tears kuda response ani vaadiki telusu. Vaadu walk ki velladu. Same street. Same signal. Same red light. Earlier la blood kanipinchaledu. Clean chesaru ani kaadu. Time cover chesindi. Vaadu aa spot daggara aagi undaledu. Cross kuda cheyyaledu. Just nadustunnadu. Carry chestunnadu. City vaadini notice cheyyaledu. Vaadini celebrate cheyyaledu.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="release" data-intensity="0.60">Vaadini blame cheyyaledu. Anduke vaadu free. Freedom ante happy ending kaadu ani vaadiki telusu. Freedom ante no one owning your reaction. Story ikkada end avvatledu ani vaadiki telusu. Kani narration ikkade aaguthundi. Endukante ee story resolution gurinchi kaadu. Ee story decision gurinchi. Vaadu world ni marchaledu. World vaadini kuda marchaledu. Kani ee madhya lo okati jarigindi. Vaadu thana soul ni give cheyyaledu.</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Nonparticipant</h3>
+                    <p class="epilogue-sub">Grief & Calmness</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

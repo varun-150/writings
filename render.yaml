@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: wr-narrative-archive
+    env: static
+    buildCommand: "" # No build step required (Vanilla HTML, CSS & JavaScript)
+    publishPath: "." # Serve from the root directory containing index.html
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600

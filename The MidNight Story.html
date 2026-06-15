@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Midnight Story — Act I | Suspense & Tension</title>
+    <meta name="description" content="What happens when the clock hits midnight? A gripping night adventure in the city.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">The Midnight Story</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">The Midnight Story</span>
+            <span class="header-brand-sub">Suspense & Tension</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Introduction">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Introduction</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Introduction</span>
+                    <span class="sb-desc">S u r y a l i f e l o f i r s t n u n c h i o k a r e s t l e s s e n e r g y u n ...</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Midnight Escape.png" alt="The Midnight Story — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="The Midnight Story">The Midnight Story</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Suspense & Tension</div>
+                <div class="landing-meta" id="landing-meta">What happens when the clock hits midnight? A gripping night adventure in the city.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="The Midnight Story story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Introduction             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0" aria-label="Chapter 1: Introduction">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Introduction</h2>
+                    <p class="chapter-synopsis">S u r y a l i f e l o f i r s t n u n c h i o k a r e s t l e s s e n e r g y u n d e d i . R u l e s , r o u t i n e...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">S u r y a l i f e l o f i r s t n u n c h i o k a r e s t l e s s e n e r g y u n d e d i . R u l e s , r o u t i n e s , f i x e d p a t h s … a v i a n n i t a n a k i s u i t a v v a l e d u . A a y a n a k i l i f e a n t e e x p l o r a t i o n — p l a c e s m a r c h a d a m , p e o p l e m a r c h a d a m , e x p e r i e n c e s c o l l e c t c h e y y a d a m . E k k a d a s e t t l e a v v a d a m a n t e a a y a n a k i s l o w g a s u f f o c a t e a v v a d a m l a g a a n i p i n c h e d i . K a a n i a a f r e e d o m e k k u v a r o j u l u u n d a l e d u . F a m i l y s l o w g a t a n a l i f e l o e n t e r a y y i , r e s p o n s i b i l i t y a n e p e r u t h o c h a i n s v e s i n d i . “ C a r e e r , ” “ f u t u r e , ” “ f a m i l y n a m e ” a n e w o r d s t h o t a n a w o r l d n i r e s t r i c t c h e s a r u . A l a S u r y a , t a n a k i i s h t a m l e k u n d a , f a m i l y b u s i n e s s l o i n v o l v e a y y a d u . O k a r o j u k i o k a s t e p k a a d u … c o m p l e t e g a t a n a l i f e d i r e c t i o n m a r c h i p o y i n d i . 6 y e a r s … S u r y a a l m o s t t a n a l i f e m a r c h i p o y a d u . L a t e n i g h t s , n o s l e e p , c o n t i n u o u s p r e s s u r e … c o m p a n y b u i l d c h e y y a d a m k o s a m t a n a e n e r g y m o t h a m v a d i l e s a d u .</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">S u c c e s s v a c h i n d i … b u s i n e s s p e r i g i n d i … k a a n i S u r y a l o p a l a e m p t y a y y a d u . A a y a n a c h e s e p a n i t a n a l i f e k a a d u a n i c l e a r g a t e l u s u , k a a n i d a n i n u n d i b a y a t a k i r a v a d a n i k i c o u r a g e l e d u . L o v e k u d a a a t i m e l o t a n a l i f e l o e n t e r a y y i n d i , k a a n i a d h i k u d a s l o w g a o k a b u r d e n a i p o y i n d i . C a r e a n i s t a r t a y i n a r e l a t i o n … c o n t r o l l a g a f e e l a y y i n d i . F a m i l y e x p e c t a t i o n s , r e l a t i o n s h i p p r e s s u r e , r e s p o n s i b i l i t i e s … a n n i k a l i s i t a n a b r e a t h n i t i g h t g a p a t t u k u n n a r o p e l a g a m a r i p o y a y i . A a c h a o s m a d h y a S a m e e r a e n t e r a y y i n d i . A a m e S u r y a l a a g e — r u l e s k i b a y a t a , s o c i e t y k i d o o r a m , f r e e d o m m e e d a n a m m a k a m u n n a s o u l . A a m e S u r y a n i c h a n g e c h e y y a d a n i k i t r y c h e y y a l e d u … a a m e t a n a l a a g e u n d a d a m c h a l u a n i a n u k u n d i . O k a r o j u a a m e s i m p l e g a c h e p p i n d i , “ C h a i n s a n n i v a d i l e s i v e l d a a m … m a n a l a g a l i f e l i v e c h e d d a m . ” A a l i n e S u r y a k i e s c a p e k a a d u … o k a c h a n c e l a g a a n i p i n c h i n d i .</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">I n k o k a t h o u g h t k u d a l e k u n d a … o k a n i g h t , r e n d u b a g s t h o … b i k e s t a r t c h e s a d u . S a m e e r a b a c k s e a t l o k u r c h u n i … e v a r u l o o k b a c k c h e y y a l e d u . R o a d m e e d h a a a f i r s t r i d e l o … S u r y a f i r s t t i m e g a b r e a t h e t e e s u k u n n a d u . P l a n l e d u , d e s t i n a t i o n l e d u … k a a n i f r e e d o m u n d i . G o a l o f i r s t s t o p . B e a c h , m u s i c , s t r a n g e r s , r a n d o m c o n v e r s a t i o n s … l i f e s l o w g a f l o w a v v a d a m s t a r t a y y i n d i . S u r y a o k a s m a l l s h a c k l o c h e f g a w o r k s t a r t c h e s a d u . C o o k i n g m u n d u h o b b y , i p u d u n e c e s s i t y , t a r v a t a p a s s i o n a i p o y i n d i . S a m e e r a k u d a o k a p l a c e l o a t t a c h a v v a l e d u . V a l l u r e n d u k a l i s i o k a r h y t h m c r e a t e c h e s a r u — s t a y , l i v e , l e a v e . N o p r o m i s e s , n o f u t u r e p l a n n i n g … j u s t m o m e n t s . N i g h t s l o f i r e d a g g a r a k u r c h u n i g u i t a r p l a y c h e s t u , m o r n i n g s l o u n k n o w n g a s t a r t a y y e d a y s … l i f e s i m p l e g a u n d i , k a a n i d e e p g a u n d i .</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">O f f i c e l i g h t s , s l e e p l e s s n i g h t s , f a t h e r v o i c e , p r e s s u r e … a a e c h o e s a a y a n a n i v a d i l e s i v e l l a l e d u . S a m e e r a o k a r o j u a d i g i n d i , “ E s c a p e a v t h u n n a v a … l e k a s e a r c h c h e s t h u n n a v a ? ” S u r y a k i a n s w e r t e l i y a l e d u . D i f f e r e n c e a r d h a m k a a l e d u . A p p u d e a a y a n a k i f i r s t t i m e c l a r i t y v a c h i n d i a a y a n a f r e e k a a d u … a a y a n a r u n a v t u n n a d u . V a l l u j o u r n e y c o n t i n u e c h e s a r u . G o a n u n c h i v e r e p l a c e s … v e r e f a c e s … v e r e n i g h t s . K a a n i p a t t e r n m a r a l e d u . S u r y a e s c a p e a n i t e l i s i k u d a c o n t i n u e c h e s a d u . S a m e e r a a a p a l e d u , p u s h c h e y y a l e d u … j u s t p a k k a n a n a d i c h i n d i . M i d n i g h t l o o k a f o r e s t s i d e c a m p f i r e d a g g a r a k u r c h u n i u n d a g a … s i l e n c e m a d h y a o k a r e a l i z a t i o n v a c h i n d i . F r e e d o m a n t e c h a i n s l e k u n d a u n d a d a m k a a d u … c h a i n s u n n a k u d a m a n a k i m a n a c h o i c e u n d a d a m . A a m o m e n t l o v a l l u e k k a d o c h e r a r u … k a a n i j o u r n e y a p a l e d u .</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">A a n i g h t t a r v a t a … o k a u n e x p e c t e d b r e a k . R e n d u p h o n e s o k e s a r i r i n g a y y a y i . S u r y a s c r e e n l o “ H o m e ” … S a m e e r a p h o n e l o “ M o m ” . C a l l s l i f t c h e s a k a … r e n d u s i d e s n u n c h i o k a t e w o r d s “ I n t i k i r a n d i … c o m e h o m e . ” N o a n g e r , n o f o r c e … j u s t c a l l b a c k . A a s i l e n c e l o d e c i s i o n h e a v y a i p o y i n d i . V e l t h e m a l l i a d e l i f e , v e l a k a p o t h e i n c o m p l e t e j o u r n e y . F i n a l g a S u r y a c h e p p a d u , “ F r e e d o m a n t e v e l a k a p o v a d a m k a a d u … v e l i n a t a r v a t a k u d a m a n a l a g a u n d a d a m . ” S a m e e r a s m i l e c h e s i “ L e t ’ s g o ” a n i c h e p p i n d i . E e s a r i j o u r n e y r u n k a a d u … r e t u r n . H o u s e g a t e m u n d h u b i k e s t o p a y y i n d i . S a m e p l a c e … k a a n i S u r y a k i i d h i t a n a w o r l d k a a d u i p p u d u . I n s i d e h a l l l o f a m i l i e s w a i t c h e s t u n n a r u . S i s t e r s p a p e r s i v v a r u p r o p e r t y s h a r e s , c o m p a n y d i v i s i o n , s i g n a t u r e s k o s a m . 6 y e a r s l i f e … f e w p a p e r s l o r e d u c e a i p o y i n d i . S u r y a p a p e r s c h u s i o k a q u e s t i o n a d i g a d u “ E d i a n t h a k o s a m a a ? ” A n s w e r r a l e d u .</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">I n s t e a d a c c u s a t i o n s v a c h a y i . R e s p o n s i b i l i t y , s e l f i s h n e s s , f a i l u r e … w o r d s b u l l e t s l a g a v a c h a y i . S a m e e r a s i l e n t g a v i n n a d i , S u r y a k u d a . R e a c t i o n l e d u . F i n a l g a S u r y a f a t h e r v o i c e … “ E e h o u s e k i v a l u e t e l i y a n i v a l l a k i i k k a d a p l a c e l e d u . ” A a l i n e t a r v a t a s i l e n c e . S u r y a p e n t i s k u n n a d u … k a a n i s i g n c h e y y a l e d u . P e n t a b l e m e e d h a p e t t i c a l m g a c h e p p a d u , “ V a l u e t e l i y a n i v a l l u m e m u k a a d u … v a l u e k o s a m l i f e v a d i l e s i n a v a l l u m e e r u . ” S a m e e r a f o r w a r d s t e p v e s i n d i , “ M a n a k i e e p r o p e r t y a v a s a r a m l e d u . ” S u r y a c o n t i n u e c h e s a d u , “ 6 y e a r s i c h a … i n k e m i v v a l e n u . ” P a p e r s a k k a d e v a d i l e s i , v a l l u r e n d u t u r n a y y a r u . E v a r u a a p a l e d u . A a p a d a n i k i w o r d s l e v u .</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">O u t s i d e a i r f r e s h g a a n i p i n c h i n d i . B i k e m a l l i s t a r t a y y i n d i . E e s a r i l a s t t i m e a a p l a c e n u n c h i . N o l o o k i n g b a c k . N o g u i l t . N o h e s i t a t i o n . S a m e e r a b a c k n u n c h i h u g c h e s i a d i g i n d i , “ F r e e a h ? ” S u r y a s l i g h t s m i l e t h o c h e p p a d u , “ F i r s t t i m e … r e a l g a . ” B i k e s p e e d p e r i g i n d i . R o a d o p e n g a u n d i . E e s a r i r u n k a a d u … e s c a p e k a a d u … p u r e c h o i c e . M i d n i g h t s t o r y a k k a d a e n d k a a l e d u . E v a r u a a p a l e d u . A a p a d a n i k i w o r d s l e v u .</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">The Midnight Story</h3>
+                    <p class="epilogue-sub">Suspense & Tension</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

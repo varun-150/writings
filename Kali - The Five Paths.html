@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kali — Act I | Tragedy & Tension</title>
+    <meta name="description" content="The Five Paths. An epic struggle through conflict, choice, and absolute cosmic destiny.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Kali</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Kali</span>
+            <span class="header-brand-sub">Tragedy & Tension</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Introduction">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Introduction</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: SUMMARY:">
+                <span class="dot-label">II</span>
+                <span class="dot-tooltip">Chapter 2 · SUMMARY:</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Introduction</span>
+                    <span class="sb-desc">Introduction</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch2">
+                <span class="sb-num">02</span>
+                <div class="sb-info">
+                    <span class="sb-name">SUMMARY:</span>
+                    <span class="sb-desc">TeamKali is an elite covert team established by Raghav Kaur, the head of India’s i...</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Kali.png" alt="Kali — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Kali">Kali</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Tragedy & Tension</div>
+                <div class="landing-meta" id="landing-meta">The Five Paths. An epic struggle through conflict, choice, and absolute cosmic destiny.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Kali story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Introduction             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0" aria-label="Chapter 1: Introduction">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Introduction</h2>
+                    <p class="chapter-synopsis">Introduction</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">Introduction</p>
+                </div>
+                <div class="content-block quote-block">
+                    <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+                    <blockquote>
+                        In every age, when darkness rises, light descends — not always from the heavens, but often through the hearts of those chosen to carry the ﬂame.
+                    </blockquote>
+                    <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">In the depths of Kali Yuga — the dark age prophesied across civilizations — evil began to take form not only as demons in myth, but as systems, syndicates, ideologies, and the silent corrosion of human values. In Hindu scriptures, Kali is not just a being — he is time, decay, corruption. The Bhagavata Purana foretells the rise of Kali and the eventual descent of Sri Maha Vishnu as Kalki, the warrior avatar destined to restore Dharma.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">But the echoes of this prophecy are not limited to India.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="instability" data-intensity="0.45">In the Bible, the Book of Revelation speaks of the “beast” rising from the pit, of the ﬁnal war between the faithful and the deceiver. The Quran warns of the time of ﬁtna — great confusion and moral collapse. The Norse Eddas foretell Ragnarok. The Bhagavad Gita, the Torah, and even ancient Hopi and Mayan prophecies agree: there comes a time when humanity stands on the brink, and must either awaken… or fall.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">In India, that time came quietly.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">Following waves of unrest and terrorism, the government, in a classiﬁed eﬀort, assembled a covert task force in 1982 — Team Kali. Their mission: to counter forces that had inﬁltrated the heart of society — criminals, ideologues, traitors in robes of power. But as swiftly as it was formed, the agency was buried under layers of secrecy.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Until the bomb blasts of 2005 shattered the illusion of safety. At the Prime Minister’s special request, Team Kali was resurrected.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">No longer just an agency — they were symbolic warriors, modern-day Pandavas ﬁghting a dharma war where the battleﬁeld was the mind, the street, and the network.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">Led by the brilliant yet broken Wazir, the lion-hearted Dhanish Ali, the stoic Omkar Nadh, the deadly sniper Khalid, and the elusive spy Qurashi, each member of Team Kali embodied one of the ﬁve ancient paths to spiritual victory: Wisdom, Courage, Endurance, Precision, and Discretion.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">They were guided by Advay, a mentor in the mold of Krishna — not a warrior with weapons, but with words, patience, and philosophy. He reminded them:</p>
+                </div>
+                <div class="content-block quote-block">
+                    <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+                    <blockquote>
+                        The war is not just against evil men, but against the evil within men.
+                    </blockquote>
+                    <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">Their journey would take them across geographies and into the darkest folds of ideology, betrayal, and grief. From confronting terror in bustling cities to dismantling networks in sacred lands, from personal sacriﬁces to moral dilemmas, the members of Team Kali would be tested not just in battle, but in soul.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The story is not only of bullets and codes, but of choices.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Of a woman — Roohi — who began as an ally, but fell into the shadows and became Kali, challenging everything the team stood for.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Of a man — Wazir — who loved her, lost her, and had to rise again to save others from the legacy she left behind.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">This is not a story of superheroes. This is the story of seekers of light in an age of darkness. A story of the eternal war — the one fought between righteousness and ruin, not in history books, but in every human heart.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">1 . Introduction</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">2. Team Kali – The Five Paths</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Meet the Warriors of the New Dharma Yuga 3. Mission 1: Dark Lord_001</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">4. Mission 2: Octane Sub</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">6. Mission 4: The Guardians of Kashmir</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">7. Character Proﬁles</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Deep Insights into the Members of Team Kali 8. Advay's Teachings</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Spiritual Lessons from the Strategist of Light 9. Legacy of Kali (Roohi)</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.45">10. The Path Forward</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">11. Appendix A: Mythological Parallels</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.45">12. Appendix B: Timeline of Key Events</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">13. Acknowledgements 14. About the Author</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">5. Mission 3: The Unforgettable Sacriﬁce</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">TheRiseofKali–Myth,Prophecy, and Reality</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Contents</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">Love, Death, and the Fall of Roohi</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">TheBirthoftheShadowWar–Inﬁltrationand Betrayal</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Hope in the Valley – A Redemption of Hearts and Minds</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">The Woman Who Walked the Line Between Light and Shadow</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The Syndicate of Smugglers – Old Wounds and New Enemies</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">WhatTeamKaliTrulyFightsFor–DharmaintheModern Age</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">From1982tothePresent–MajorMissionsandTurning Points</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Kalki,Revelation,Ragnarok,andtheUniversalCycleof Justice</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Team Kali – The Five Paths</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The Team A new team consists of ﬁve friends, each having</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">diﬀerent skills: Dhanish Ali: Commander (Lion) Wazir:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Technical Hacker (Eagle)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Omkar Nadh: Combat Fighter (Elephant)</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Khalid: Sniper Shooter (Tiger)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Qurashi: Spy (Snake)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Omkar Nadh, the Combat Fighter of Team Kali, represents the strength and resilience of an elephant. Omkar’s unmatched physical strength and unshakeable courage make him the</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Dhanish Ali, the Commander of Team Kali, leads with the strength and wisdom of a lion. As the strategic pillar of the team, his leadership is deﬁned by his unwavering courage and decisiveness in high-stakes operations. Known for his calm under pressure, Dhanish ensures the team stays focused, guiding them through chaos with clear vision and unmatched resolve. His natural authority and ﬁerce loyalty to his team make him the rock upon which their missions depend.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Wazir, the Technical Hacker, embodies the sharp vision and precision of an eagle. He is the team’s expert in the digital realm, inﬁltrating systems, gathering vital intelligence, and crippling enemy communications. Wazir's mind is always several steps ahead, able to predict threats and outsmart adversaries with a combination of intellect and technical expertise. His calculated approach and eagle-eyed attention to detail make him an invaluable asset, constantly staying ahead of the ever-evolving technological warfare landscape.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Dhanish Ali: Commander (Lion)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Wazir: Technical Hacker (Eagle)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Omkar Nadh: Combat Fighter (Elephant)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">team's backbone during confrontations. Whether in close-quarter combat or defending his team under ﬁre, Omkar's calm demeanor and sturdy resolve ensure that he is always there to protect his comrades. His loyalty and physical prowess echo the elephant’s enduring power and steady presence in times of crisis.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Khalid, the Sniper Shooter, channels the ﬁerce precision of a tiger. He is a master of stealth and long-range combat, capable of neutralizing threats from a distance with deadly accuracy. Khalid’s ability to stay calm under ﬁre, combined with his instinctive tactical awareness, makes him a fearsome force in the ﬁeld. His focused, independent nature and ability to strike from the shadows ensure that his targets are eliminated swiftly and eﬃciently, like a tiger in the wild.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Qurashi, the Spy, is as calculating and elusive as the snake he symbolizes. A master of inﬁltration, manipulation, and intelligence gathering, Qurashi’s talents lie in navigating the shadows and gathering critical information unnoticed. His ability to read people, exploit weaknesses, and act with precision make him an expert in espionage. Like a snake, Qurashi strikes only when necessary, ensuring that his actions leave lasting consequences, while maintaining the subtlety and adaptability needed for success in the world of covert operations.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Qurashi: Spy (Snake)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Khalid: Sniper Shooter (Tiger)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Mission 1: Dark Lord_001</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="instability" data-intensity="0.45">The mission commenced on 25 October 2006, shrouded in secrecy. Team Kali, a covert group of operatives, had been tasked with dismantling a sprawling network of over 180 terrorist organizations threatening national stability. At the center of this chaos was Dhaka, a mastermind who thrived in the shadows. Protected by political power and manipulation, he evaded justice at every turn, making him the embodiment of a seemingly insurmountable adversary.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">To inﬁltrate and neutralize this network, Team Kali adopted new identities, each role carefully chosen to operate unnoticed. Wazir, the composed leader of the group, posed as a news reporter. Dhanish Ali, code-named Kage, became the silent shadow, moving undetected. Omkar Nadh played the part of a chess coach, his strategic mind crucial to their success. Qurashi blended in as a junior lecturer, while Khalid used his biker persona to move swiftly through urban chaos. Together, they formed a tightly-knit unit, bound by their mission and trust in one another.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">The team’s guiding force was Advay, a former intelligence oﬃcer whose wisdom shaped their strategies. He often reminded them, “Victory is not deﬁned by defeating your enemies but by staying true to your purpose. Even when the road is painful, you must walk it for the greater good.” His words grounded them during moments of doubt, keeping their focus sharp and their determination unyielding.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.60">Roohi, an informant within the R&A Wing, became an unexpected ally. Her intelligence led them to Afroz, a key ﬁgure in Dhaka’s network and a former tourism minister turned criminal mastermind. The team devised a plan to intercept Afroz, setting their trap at the Central Library. However, the operation took an unexpected turn. Roohi, whose loyalty had been questioned, revealed her betrayal in the heat of the battle. Her actions endangered the team, but in the chaos, she was mortally wounded. As she lay dying, Roohi’s regret surfaced. “I made mistakes… but I couldn’t let this end without giving you the truth,” she whispered. With her ﬁnal breath, she handed over critical information about Afroz’s ultimate plan to destabilize the government. Her death left the team shaken, a mix of betrayal and sacriﬁce that weighed heavily on their hearts. Wazir, deeply aﬀected, struggled to make sense of it all. “Was it all worth it? The trust, the loss?” he asked Advay. In response, Advay said, “The path we walk is never easy. Betrayal and loss are the shadows of this ﬁght. But remember, even in her ﬁnal moments, Roohi chose to do the right thing. Sometimes, redemption comes at the highest cost.”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">Roohi’s death marked a turning point for Team Kali. It was a reminder that their mission was far greater than themselves, a battle against forces that thrived on fear and division. Though grief lingered, it fueled their resolve to press forward. Dhaka and his network would not prevail, not as long as Team Kali stood united in their purpose. Their ﬁght was far from over, but their will to see it through burned brighter than ever.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Mission 2: Octane Sub</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.45">Months after their ﬁrstmission,Team Kaliwas assigned another critical operation. This time, they faced a powerful smuggling syndicate operating between Goa, Tirupati, and Sri Lanka. The group traﬃcked elephant tusks, drugs, and humans, leaving a trail of devastation in their wake. Breaking this network was vital—not just to protect wildlife but to save countless innocent lives.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Advay, the team’s strategist, played a pivotal role in unraveling the syndicate’s operations. His deep understanding of human psychology helped the team predict their adversaries' next moves, staying ahead of their schemes. “Victory comes from knowing your enemy’s mind before they act,” Advay said, guiding the team through the complexities of the mission. The operation was divided into two teams. Team A—Dhanish, Omkar, and Karnan</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.45">—went undercover in Goa’s bustling markets to gather intelligence and intercept a shipment of elephant tusks and drugs. Team B—Khalid, Wazir, and Shati—worked behind the scenes, gathering digital intelligence to map the syndicate’s sprawling network of 25 key members. Every piece of information brought them closer to the syndicate’s leader, Vikram Rao, a ruthless man who operated with precision and fear.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The team’s eﬀorts paid oﬀ when they forced the smugglers to rush a shipment, setting the stage for an ambush at the port. The operation unfolded in a storm of tension and adrenaline as Team Kali intercepted the shipment. Shati, with unyielding determination, confronted Vikram Rao in a heated showdown. The confrontation revealed the depth of the syndicate’s operations—and uncovered a shocking truth that left the team reeling.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Roohi, long thought dead after the Central Library mission, appeared alive and working against them. She had taken on a new role, not as an ally, but as a dangerous player in the dark world of crime. “You didn’t think I’d let you win so easily, did you?” she said, her voice calm yet laced with menace. The revelation shook the team, reopening old wounds and stirring doubts about everything they had fought for.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Wazir, stunned and betrayed, faltered. “How can we ﬁght when even those we trusted turn against us?” he asked Advay, his voice heavy with disbelief. Advay’s reply was ﬁrm and steady. “The weight of betrayal is heavy, but do not let it blind you. Even in the shadows, there is light. You ﬁght not for the past but for the future— because the world you defend is worth more than the pain you carry.”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">With those words, the team regrouped, determined to ﬁnish what they started. Vikram Rao was captured, but the mission was far from over. Roohi’s return as a powerful force in the criminal underworld added a new layer of complexity to their ﬁght. She had risen to lead the very darkness they sought to destroy, calling herself Kali, a ruler of shadows and chaos.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">As Team Kali retreated to regroup and plan their next move, Wazir vowed, “This isn’t the end. We’ll face her and the darkness she commands. No matter how far she’s fallen, we’ll bring her down. Because this isn’t just a mission—it’s a ﬁght for what’s right.” With their</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">resolve renewed, Team Kali prepared for the battles yet to come, knowing that their greatest challenge lay ahead.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Mission 3:The unforgettable sacriﬁce</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">As Team Kali pursued Roohi, now revealed as Kali, the mastermind behind many of their struggles, Wazir faced a devastating inner conﬂict. The woman he had loved, the woman who had once stood beside him in their ﬁght for justice, had become his greatest adversary. He grappled with the complex nature of her betrayal and his unresolved feelings. Advay’s teachings echoed in his mind, reminding him of the complexity of human nature, of how even the most trusted allies could be led astray by their beliefs.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.60">One fateful day, Wazir tracked down Afroz to an abandoned warehouse in Colombo. Their confrontation was inevitable. Wazir had trained for this moment his entire life, but nothing had prepared him for the weight of it. Afroz had long been a symbol of everything wrong with the world they sought to change. “Justice demands sacriﬁce,” Wazir muttered to himself as he pulled the trigger, ending Afroz’s reign of chaos. But even as the man's body fell, Wazir felt the emptiness of the act. Killing Afroz had not brought the resolution he had expected. His mind raced as he moved</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">toward his next challenge—Roohi. She was no longer the woman he had known. She had become Kali, the embodiment of everything he had fought against. The love that once deﬁned them now clashed with the enemy she had become. When</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">they ﬁnally met, Roohi’s eyes locked with his, ﬁlled with a mix of regret and determination. “I didn’t want this to happen,” she said, her voice calm yet broken. “I believed in something greater, something more than the rules we followed. I thought the world needed a new order, one where power would be used to change everything.” Wazir, struggling to reconcile the woman he loved with the one who had caused so much harm, spoke through clenched teeth. “You were always my ally, Roohi. But now you stand against everything we fought for.” Roohi’s lips curled into a sad smile. “You still don’t</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">understand, do you? I never sought power for myself. I wanted to destroy the system, the very thing that failed us all. I believed —” “You believed in the wrong things,” Wazir interrupted, his voice hoarse with emotion. “Look at what you’ve become.”</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="violence" data-intensity="0.45">Roohi remained silent for a moment, then slowly took the gun from Wazir’s trembling hands. “Perhaps I’ve become what I needed to be,” she whispered. “But if this is the price of my belief, then I accept it. Let this be the end of my story.”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.60">In that moment, Roohi, or Kali as she now called herself, raised the gun to her chest. “This is the end of a chapter, Wazir,” she said softly. “You must rise from this—learn from the mistakes of those before you. I chose this path, but you… you are diﬀerent.”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.60">Wazir, unable to stop her, watched in horror as she ended her own life in his arms. The weight of her death crushed him. The woman he had loved, now lost forever, had chosen her fate, and he had been powerless to change it. His heart felt torn between love and duty, between his memories of Roohi and the danger she had become. As he knelt beside her, Advay’s voice, calm and steady, reverberated in his mind. “The greatest warriors face not just external enemies, but the battles within. Pain does not deﬁne you. How you rise from it does.” Wazir’s grief was overwhelming, but Advay’s words</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">brought clarity. He had always known that their mission was bigger than any one individual, but he hadn’t prepared for the personal toll it would take. The pain of losing Roohi, and of realizing the weight of her choices, was more than he could bear.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">"I have carried this burden long enough," Wazir said quietly, as he left the body of Roohi behind. "I cannot ﬁght this war while I am torn in two. The past cannot be my anchor." And so, Wazir chose to leave Team Kali. The ﬁght against the darkness had cost him too much—his heart was broken, and the ideals that had once driven him now felt far too distant. He sought solace in the quiet beauty of the world, visiting the places that had once been shared with Roohi, hoping to ﬁnd some peace in solitude. But even in his silence, Advay’s teachings lingered. They guided him, reminding him that life was not deﬁned by pain, but by how one chose to move forward. And though Wazir had left Team Kali, the wisdom of his mentor would continue to guide him, wherever his path led.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Mission 4:The Guardians of Kashmir</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Months after leaving the team, Wazir lived in solitude, reﬂecting on his past with Roohi and the choices that led them to this point. However, he soon realized that the ideological network Roohi had built still posed a serious threat to the world. Unable to stay away, he rejoined Team Kali, bringing a renewed sense of purpose.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.60">Their mission focused on dismantling extremist networks and addressing the issues that led people to radicalization. Advay was there every step of the way, providing not just strategic guidance but also moral clarity, reminding the team that they weren’t just ﬁghting terrorists, but the root causes of extremism. During a mission in Kashmir, Team Kali intercepted a plot to recruit vulnerable youth into terrorist groups. Wazir spoke to these recruits about his own experiences, sharing his story of love, loss, and redemption. His words helped some of them reconsider their choices and gave them hope for a better future. When a terrorist attack was planned at a public event, Advay guided the team with his strategies. Each member played a vital role: Omkar gathered intelligence, Khalid led the ground assault, Qurashi coordinated with local law enforcement, and Wazir neutralized the terrorists' communications. The operation was a success, and the city was saved. In the end, Advay's teachings reminded them that their ﬁght was not just against the physical threat, but against the hate and division that led people down dark paths. “The enemy is not just the one with weapons,” Advay said. “The true enemy is the one who plants seeds of hatred in the minds of people. You are ﬁghting for hope, for peace.”</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="release" data-intensity="0.45">Wazir, now no longer burdened by his past, embraced his role in guiding others. He understood that his true mission was to create hope and oﬀer alternatives to those who had lost their way, just as Advay had done for him.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Character Proﬁles</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">DeepInsightsintotheMembers of Team Kali</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Wazir:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.60">Wazir's journey transforms him from a man weighed down by grief into a determined and visionary leader. Using the lessons drawn from his shared past with Roohi, he emerges as a force for justice, channeling his pain into actionable change. His resilience and introspection become the foundation for dismantling the threats posed by Roohi's lingering legacy.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Roohi:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Although gone, Roohi’s inﬂuence echoes throughout the team’s journey. Her dual role as both an ally and adversary leaves an indelible mark, serving as a reminder of the thin line between ideals and extremism. Her actions and beliefs drive Wazir and Team Kali to confront the darker elements of her legacy, transforming her memory into a catalyst for growth and learning.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Khalid</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Khalid acts as the team’s unwavering enforcer. His combat expertise and fearless leadership in intense situations make him indispensable. His readiness to act in the line of ﬁre showcases his commitment to safeguarding his teammates and fulﬁlling their mission with deter mination.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Omkharnadh:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">Omkharnadh thrives as the team’s undercover specialist. His adaptability and sharp intellect are vital in unearthing critical intelligence. Operating in the background, he plays a pivotal role in maintaining the team’s edge over their adversaries, embodying strategy and ingenuity.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Qurashi:</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Qurashi’s ability to manage external collaborations highlights his strength as a coordinator. By working seamlessly with law enforcement and other partners, he ensures that Team Kali operates as an eﬃcient and cohesive unit. His leadership and organizational ﬁnesse bridge the gap between the ﬁeld and external support systems.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Dhanish</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Dhanish is the team’s guiding force during operations. From the command center, his analytical thinking and calm decision-making enable the team to navigate critical moments eﬀectively. His role as a strategist ensures that Team Kali remains one step ahead, even in the most complex scenarios.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Karnan and Shati:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.45">The newest members of the team, Karnan and Shati, bring fresh perspectives and local expertise. Shati’s bravery in confronting key adversaries like Vikram Rao proves her worth, while Karnan’s deep understanding of the terrain enhances the team’s operational eﬃciency. Together, they reﬂect the adaptability and inclusivity of Team Kali.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Team Kali:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">As a unit, Team Kali exempliﬁes resilience, teamwork, and an unyielding commitment to justice. Their ability to adapt, grow, and learn from their collective experiences strengthens their resolve to face the challenges ahead. They stand as a symbol of hope and courage, uniﬁed by their mission to protect and serve.</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 2 — SUMMARY:             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch2" data-chapter-theme="resolution" data-chapter-index="1" aria-label="Chapter 2: SUMMARY:">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">02</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 02</span>
+                    <h2 class="chapter-title">SUMMARY:</h2>
+                    <p class="chapter-synopsis">TeamKali is an elite covert team established by Raghav Kaur, the head of India’s intelligence agency RAW, to combat a...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">TeamKali is an elite covert team established by Raghav Kaur, the head of India’s intelligence agency RAW, to combat and neutralize dangerous criminal syndicates, terrorist networks, and insurgent movements that threaten national security. The team operates in secrecy, often facing formidable and unseen enemies, and their missions take them across diﬀerent parts of the world. The team is led by Wazir, a brilliant tactician with a dark past, who is haunted by the betrayal of someone he once loved—Roohi—who turns out to be the mastermind behind many of the missions they undertake.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Advay, a seasoned strategist and former intelligence oﬃcer, serves as the spiritual and intellectual mentor of Team Kali. Much like Lord Krishna guided the Pandavas in the Mahabharata, Advay provides crucial moral and strategic counsel to the team, ensuring they do not lose sight of their core mission: to safeguard the nation and bring peace. His wisdom helps the team navigate through emotional dilemmas, betrayals, and complex decisions, making him the key ﬁgure behind their success. The story begins with Team Kali being assigned a critical mission to capture Dhaka, a notorious criminal mastermind linked to numerous terrorist groups in India and beyond. These groups have caused widespread instability and are involved in illegal activities like arms traﬃcking, insurgency, and organized crime. Dhaka has managed to escape justice multiple times due to political pressures and corruption. Using a mole from India’s R&A</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">Wing, Roohi, the team uncovers Afroz, a former tourism minister who has become a criminal mastermind. As they plan to capture him, the mission takes an unexpected turn when they are ambushed by a rogue sniper. In the chaos of the ﬁreﬁght, Roohi is revealed as the mole, betraying Team Kali. Before her death, Roohi provides crucial intelligence about Afroz’s plot to destabilize the government. Her betrayal is painful, especially for Wazir, who had once trusted and loved her. However, Advay encourages the team to stay focused on their ultimate goal and reminds Wazir that the ﬁght for justice must continue despite personal loss. In the next mission, Team Kali is tasked with dismantling a smuggling syndicate that is operating between Goa, Tirupati, and Sri Lanka, dealing in illegal elephant tusks, drugs, and human traﬃcking. This mission is critical for both environmental conservation and national security. The team is split into two sub-teams: Team A (led by Dhanish, Omkar, and Karnan) investigates the market and intercepts an illegal shipment scheduled to leave Goa for Sri Lanka, while Team B (led by Khalid, Wazir, and Shati) gathers online intelligence and uncovers the scope of the smuggling network, which has over 25 key operatives.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">When a terrorist attack is planned during a public event in Kashmir, Team Kali works together seamlessly. Each member plays a crucial role: Omkar gathers intelligence and feeds real-time updates to the team. Khalid leads the ground operation, ensuring that</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">The team successfully intercepts the shipment, but during the operation, they learn that the syndicate is much larger and more organized than they initially thought. The shocking twist comes when it is revealed that Roohi, who had been believed to be dead, is alive and secretly leading operations against the team from the shadows. This revelation shocks everyone, but Advay encourages them to stay calm and continue their mission, despite the betrayal. Team Kali now faces a bigger challenge than ever before, and they must adapt quickly to bring down this powerful and elusive syndicate.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">Roohi, now revealed as Kali, emerges as the true mastermind behind many of the team’s struggles. Wazir, who has been emotionally torn by his past connection with her, faces a painful confrontation with her. In a ﬁnal, tragic act of deﬁance, Roohi reveals that her actions, including her betrayal, were not motivated by greed or power, but by her belief in creating real change and justice in a broken world.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">However, in a heartbreaking twist, Roohi takes Wazir’s gun and points it at her chest, choosing to end her own life rather than face capture. Wazir is left devastated by her death, feeling the weight of their shared past and the burden of his own love and betrayal. He decides to leave Team Kali, unable to carry the emotional weight of his past while continuing to ﬁght.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.60">In his solitude, Advay reaches out to Wazir, urging him to remember that pain is a part of the journey, but it does not deﬁne who you are. He tells Wazir, “Your duty is not to carry the burden of the past but to guide others toward a better future.” These words inspire Wazir to eventually return to the team, determined to bring hope to those still caught in the web of Roohi’s dangerous ideology. Months after leaving the team, Wazir returns to</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Team Kali after realizing that Roohi’s legacy still poses a serious threat. The extremist networks she built are continuing to recruit vulnerable youth and spread radical ideologies. Advay encourages Wazir to focus on dismantling these networks from within and to address the root causes of extremism— societal frustration, lack of opportunities, and a sense of injustice.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">The team uncovers a plot to recruit disillusioned youth into terrorism, and Wazir, using his personal story of loss and redemption, speaks to the recruits, helping many of them reconsider their choices. His compassionate approach is guided by Advay's teachings, emphasizing understanding and empathy over force.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">civilians are safe. Qurashi coordinates with local law enforcement to neutralize the threat. Wazir takes down the terrorists' communications network, ensuring they cannot coordinate their attack.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">The mission ends successfully, with Advay reminding the team that their work is far from over. He emphasizes the importance of hope, unity, and understanding, which are the true weapons against extremism. Wazir, now at peace with his past, has found his true calling: to mentor others and provide hope to those who have been misled by dangerous ideologies. Advay remains the guiding force of Team Kali throughout their journey. His wisdom and teachings help them navigate through diﬃcult decisions and emotional struggles. Much like Lord Krishna did for the Pandavas, Advay helps them understand that the true battle is not just against external enemies, but also against the internal battles that shape one’s character. Team Kali is not just ﬁghting to defeat their enemies, but to create a better, more peaceful world for future generations. As Wazir and the team move forward, Advay’s inﬂuence stays with them, ensuring that they remain focused on their mission to bring hope, justice, and peace to a world threatened by darkness.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Advay’s Teachings</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Spiritual Lessons from the Strategist of Light</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Advay, the mentor of Team Kali, is more than a former intelligence oﬃcer — he is a philosopher-warrior who carries the timeless wisdom of the scriptures into the modern battleﬁeld. Drawing inspiration from Krishna’s guidance to Arjuna, his teachings transcend tactics. He reminds the team that their ﬁght is not for vengeance, but for dharma — righteousness rooted in compassion.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.45">Key Teachings:</p>
+                </div>
+                <div class="content-block quote-block">
+                    <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+                    <blockquote>
+                        Do not be deﬁned by pain; rise from it.” “Justice is not revenge. It is restoration.” “To ﬁght the world’s darkness, ﬁrst silence your own.” “You may not save everyone. But saving even one soul with love is victory.
+                    </blockquote>
+                    <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.45">Through every loss and betrayal, Advay’s wisdom keeps Team Kali grounded, turning their mission into a sacred duty.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Legacy of Kali (Roohi)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">The Woman Who Walked the Line Between Light and Shadow</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">Roohi was once more than just an informant — she was the soul of promise. A brilliant operative with unmatched intellect and a ﬁre in her heart to see the world change for the better. She moved with purpose, spoke with conviction, and believed that systems — when righteous — could save people. In those early days, she stood shoulder to shoulder with Team Kali, oﬀering intelligence, intuition, and insight. To some, she was a comrade. To Wazir, she was something far more — a conﬁdante, a kindred spirit, and perhaps, his only vulnerability.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">But somewhere along the way, the cracks in the world broke something within her.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">The betrayal wasn’t sudden. It was gradual — born of disillusionment. Roohi saw the same rot the team fought against, but where Team Kali chose to work within the system, she began to believe that the system itself was the enemy. The laws that protected criminals. The bureaucracy that slowed justice. The masks of power that wore smiles but fed darkness.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="instability" data-intensity="0.45">Her fall was not into villainy for power or wealth. It was the descent of someone who once burned for justice but could no longer bear the hypocrisy that justice stood upon. In her mind, Kali was not a monster — she was liberation. Her rage was not wild — it was surgical. Her ideology was not madness — it was twisted clarity.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">She became what she had sworn to destroy — to destroy what destroyed others.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">🔥 Her legacy is layered and irreversible:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="sadness" data-intensity="0.60">A warning: that even the noblest ideals, if tainted by pain and unchecked fury, can forge the most dangerous enemies. A mirror: reﬂecting the truth that the line between savior and destroyer is heartbreakingly thin. A symbol: that the greatest wars are not fought with bullets, but within the soul — where ideals clash, love turns into grief, and belief transforms into ﬁre.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">To Wazir, Roohi was both a wound and a mirror. She represented the life he could have had — one rooted in love, shared vision, and justice. But she also became the reﬂection of everything he feared within himself: What if he, too, one day lost his way in the name of righteousness?</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="tension" data-intensity="0.45">To Team Kali, she became the fallen spark — the ﬂame that, in her ﬁnal breath, reignited their own purpose. Her betrayal was painful, her choices devastating. But her presence reminded them that no one is beyond corruption… or redemption. That even the darkest soul might once have carried light. And that understanding your enemy may one day be the only way to stop them.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.45">The Path Forward</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">WhatTeamKaliTrulyFightsFor–Dharmain the Modern Age</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.45">Team Kali's battle is not just one of bullets, blueprints, or intelligence brieﬁngs. It is a war waged in silence — against the invisible corrosion of values, the erosion of truth, and the subtle rise of spiritual decay that eats away at the soul of a civilization.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">While the enemies they confront wear masks of terror, greed, or power — the deeper enemy is harder to name: Hatred dressed as ideology. Injustice masked as law. Fear sold as patriotism. Division whispered through religion, caste, and class.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">Every mission, every sacriﬁce, every drop of blood spilled by Team Kali is not to defeat a man — but to correct a narrative. They ﬁght not for revenge… but for restoration.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Their true objectives are rooted in dharma — not as tradition, but as timeless truth:</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">To restore hope in the disillusioned, who have stopped believing that justice is possible. To oﬀer alternatives to the radicalized, who were lured by shadows when no hand of light reached for them. To heal wounds where systems have failed, by stepping in where silence and corruption have paralyzed response. To protect the innocent, especially those unheard — the children, the forgotten, the silenced.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="instability" data-intensity="0.45">In this era — where the lines between good and evil blur under the weight of media, power, and false prophets — Team Kali ﬁghts to preserve the soul of the nation.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Not with slogans, but with actions. Not with ideology, but with clarity. Not with anger, but with unshakable purpose.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">Their path is not paved with glory. It is carved through loss, betrayal, and sacriﬁce. Yet they walk it with eyes open, hearts awake, and a code that no bullet can destroy:</p>
+                </div>
+                <div class="content-block quote-block">
+                    <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+                    <blockquote>
+                        Dharma is not what you follow. It is what follows you — when you act with truth, even in darkness.
+                    </blockquote>
+                    <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">This is the legacy they carry. This is the war they were born to ﬁght. Not to destroy the world… but to save what is still worth saving in it.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Appendix A: Mythological Parallels</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Kalki, Revelation, Ragnarök, andtheUniversal CycleofJustice</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.45">Across time and continents, across scriptures and stories, every civilization whispers of an end — and a beginning.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.60">Not merely the end of the world as we know it, but the end of falsehood, corruption, and spiritual blindness. And in those ﬁnal moments, it is said, a ﬁgure shall rise — not for conquest, but to restore balance.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Kalki Avatar – The Final Incarnation (Hinduism)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">According to the Bhagavata Purana, when evil reaches its peak in Kali Yuga, Vishnu shall descend once again — not as a preacher, but as a warrior: Kalki. Clad in white, riding a celestial horse, wielding a sword of ﬂame, Kalki is said to cleanse the world, slaying the wicked and rekindling Dharma (righteousness) before the dawn of a new Yuga.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">But what if Kalki doesn’t come from the clouds? What if he rises from the dirt, with scars instead of armor, and carries not a sword — but a will that refuses to break?</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The Book of Revelation – The Final War (Christianity)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">In the ﬁnal book of the Bible, Revelation, there is a prophecy of the ultimate showdown — where the Lamb faces the Beast, and truth rides into battle against the corrupt kingdoms of the earth.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Plagues, judgment, ﬁre, and the fall of Babylon are foretold — but through it all, the message is clear: Light may be delayed, but it is never defeated.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.45">Just like Team Kali, the forces of good are often small, hidden, doubted — yet driven by divine purpose.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Ragnarök – The Twilight of the Gods (Norse Mythology)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">In the Norse sagas, the gods themselves are not spared. Ragnarök foretells a cosmic war where giants rise, the world is submerged, and even Odin falls. But it ends not in ruin, but rebirth.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">A green earth rises again. Survivors rebuild. From death, a new order is born.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">Team Kali, too, knows that not all victories are clean. Sometimes, you must walk through ﬁre so others may walk in light.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The Yuga Cycle – Rise and Fall of Consciousness (Sanatana Dharma)</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">In Hindu cosmology, time is cyclical. From Satya Yuga (Truth) to Kali Yuga (Chaos), humanity descends — only to rise again. Like the heartbeat of the universe, this cycle reminds us: darkness is never the end.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Every descent demands an ascent. And every warrior who rises against the tide of corruption is part of that ascent.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Team Kali – Modern Reﬂections of Eternal Truths</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Team Kali is not born of mythology. They wear no divine crowns. They ride no white horses.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">But like the avatars, saints, prophets, and rebels of old, they stand up when others bow. They ﬁght not for personal glory, but for the survival of hope.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.60">They are the quiet warriors. The forgotten protectors. The ﬂawed, broken, and burdened humans… who still choose to act.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Because maybe, in our time, the avatars don’t descend from heaven.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Maybe they are those who rise from within us… when we refuse to let the world fall.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.45">Appendix B: Timeline of Key Events</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">From 1982 to the Present – Major Missions and Turning Points</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Present</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Event</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Formation of Team Kali by the Indian Government.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Initial covert operations launched in Punjab and Kashmir.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Team disbanded due to political pressure.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Bomb blasts lead to reactivation request by the PM.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Mission 1 – Dark Lord_001: Team Kali takes on Dhaka's network.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Mission 2 – Octane Sub: Operation against smuggling syndicate.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">Mission 3 – The Unforgettable Sacriﬁce: Roohi’s death.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Wazir leaves the team temporarily.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Mission 4 – Guardians of Kashmir: Wazir rejoins with a renewed vision.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">Team Kali continues operating in shadow, ﬁghting the war beyond headlines.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Acknowledgements</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="isolation" data-intensity="0.45">Tothe unseen warriorsof therealworld — Those who walk the unlit corridors of danger, not for fame or applause, but because someone must. Those who bleed without medals, speak truth in silence, and bear the burden of a peaceful nation on weary shoulders. This story is for you — not because the world sees you, but because it must remember you.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">But this story is not only about outer battles.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.60">It is also about the unseen war within — The war against ignorance, fear, ego, and illusion that haunts the chambers of the inner body. Each mission, each loss, each act of courage in this book is also a symbol of what lies within us all: A hidden Kali, a sleeping Kalki, and the eternal question — who do we choose to awaken?</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">To the spiritual teachers, ancient texts, and inner revelations that inspired this universe — From the ﬁres of the Mahabharata, to the warnings of the Book of Revelation, to the mirror of self in the Upanishads — thank you for giving voice to what cannot always be seen, but must be fought.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="fear" data-intensity="0.45">To the modern minds, thinkers, warriors of awareness, and those who are not afraid to look inward and confront their own shadows — You are the reason this story breathes.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="instability" data-intensity="0.45">And to you, the reader — May this not just be a story you ﬁnish. Let it be a call you hear. To ﬁght not only the chaos around you — But the ignorance that hides within. Because true victory begins not on the battleﬁeld… But in the silent place where clarity is born</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">About the Author – WR</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="curiosity" data-intensity="0.45">Hidden Symbolism in the Story:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="romance" data-intensity="0.45">ﬁve senses of the human body, each uniquely skilled but often led astray. When aligned through wisdom and purpose, they become instruments of transformation. Roohi, the fallen comrade turned adversary, is not merely a villain. She symbolizes Tamas — the force of ignorance, lethargy, ego, and unawakened intelligence. Her journey is a tragic mirror of what happens when one's ideals lose direction. Wazir, wounded by love and loss, reﬂects the conﬂicted mind, pulled between duty and emotion, clarity and chaos — and his transformation is the journey every seeker must take.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">he ﬁve warriors ofTeam Kali are notjustoperatives — they represent the</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">WR, the pen name of Varun,is a visionary storyteller and the original creator of KALI – The Five Paths. This work is not adapted, copied, or ghostwritten — it is entirely written by the author himself, born from years of reﬂection, spiritual inquiry, and creative exploration.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Rooted in the author's deep interest in mythology, Indian epics, spiritual philosophy, and the psychology of war, this story is a bridge between the ancient and the modern, the external battleﬁelds and the internal wars we all face.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">This book draws from sacred texts such as:</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The Bhagavad Gita The Puranas and Upanishads The Bible (Book of Revelation) The Quran (concepts of ﬁtna and spiritual struggle) Norse prophecies like Ragnarök</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">As well as modern spiritualinterpretations andmoralstrugglesin literature</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Advay, the silent strategist, is the inner guru, echoing Krishna’s wisdom to Arjuna. He speaks not only to the team but to the reader’s conscience.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Written entirely by WR (Varun) — with no ghostwriters, no outsourcing — this is a story of authenticity, intensity, and inner ﬁre.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">This is not just a book. It is a battleﬁeld of ideas. A spiritual allegory. A warning and a weapon. A personal creation — but a universal call</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Kali</h3>
+                    <p class="epilogue-sub">Tragedy & Tension</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

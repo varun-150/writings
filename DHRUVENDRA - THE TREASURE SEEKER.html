@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dhruvendra — Act I | Suspense & Adventure</title>
+    <meta name="description" content="The Treasure Seeker. An epic pursuit of ancient secrets, dangers, and the costs of obsession.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Dhruvendra</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Dhruvendra</span>
+            <span class="header-brand-sub">Suspense & Adventure</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Introduction">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Introduction</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: Chapter 1: The Dream of the Flute">
+                <span class="dot-label">II</span>
+                <span class="dot-tooltip">Chapter 2 · Chapter 1: The Dream of the Flute</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: Chapter 2: Echoes in the Palace Walls">
+                <span class="dot-label">III</span>
+                <span class="dot-tooltip">Chapter 3 · Chapter 2: Echoes in the Palace Walls</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch4" aria-label="Chapter 4: Chapter 3: Farewell to Friendship">
+                <span class="dot-label">IV</span>
+                <span class="dot-tooltip">Chapter 4 · Chapter 3: Farewell to Friendship</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch5" aria-label="Chapter 5: Chapter 4: The Trial of Fire">
+                <span class="dot-label">V</span>
+                <span class="dot-tooltip">Chapter 5 · Chapter 4: The Trial of Fire</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch6" aria-label="Chapter 6: Chapter 5: The Lover's Last Look">
+                <span class="dot-label">VI</span>
+                <span class="dot-tooltip">Chapter 6 · Chapter 5: The Lover's Last Look</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch7" aria-label="Chapter 7: Chapter 6: The Talking Mirror">
+                <span class="dot-label">VII</span>
+                <span class="dot-tooltip">Chapter 7 · Chapter 6: The Talking Mirror</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch8" aria-label="Chapter 8: Chapter 7: Hunger in the Silent Lands">
+                <span class="dot-label">VIII</span>
+                <span class="dot-tooltip">Chapter 8 · Chapter 7: Hunger in the Silent Lands</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch9" aria-label="Chapter 9: Chapter 8: The Monk and the Sword">
+                <span class="dot-label">IX</span>
+                <span class="dot-tooltip">Chapter 9 · Chapter 8: The Monk and the Sword</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch10" aria-label="Chapter 10: Chapter 9: The Edge of the Map">
+                <span class="dot-label">X</span>
+                <span class="dot-tooltip">Chapter 10 · Chapter 9: The Edge of the Map</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch11" aria-label="Chapter 11: Chapter 10: The Treasure Without Name">
+                <span class="dot-label">XI</span>
+                <span class="dot-tooltip">Chapter 11 · Chapter 10: The Treasure Without Name</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Introduction</span>
+                    <span class="sb-desc">To seek the treasure is to renounce the world—not to escape it, but to transcend i...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch2">
+                <span class="sb-num">02</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 1: The Dream of the Flute</span>
+                    <span class="sb-desc">Night draped itself over Aranyapura like a velvet curtain, heavy and still. From t...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch3">
+                <span class="sb-num">03</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 2: Echoes in the Palace Walls</span>
+                    <span class="sb-desc">The corridors of Aranyapura’s grand library were silent at dawn, save for the dist...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch4">
+                <span class="sb-num">04</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 3: Farewell to Friendship</span>
+                    <span class="sb-desc">There, waiting at the archway, stood Raj Aryan—his frail form clad in patched robe...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch5">
+                <span class="sb-num">05</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 4: The Trial of Fire</span>
+                    <span class="sb-desc">Dawn’s first light painted the training yard of Aranyapura in soft amber, gilding ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch6">
+                <span class="sb-num">06</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 5: The Lover's Last Look</span>
+                    <span class="sb-desc">Scorching the air where his sleeve had been.He staggered back, heart pounding. Raj...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch7">
+                <span class="sb-num">07</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 6: The Talking Mirror</span>
+                    <span class="sb-desc">The ruined temple of mirrors stood at the edge of a mist-shrouded lagoon—a once-gr...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch8">
+                <span class="sb-num">08</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 7: Hunger in the Silent Lands</span>
+                    <span class="sb-desc">His heart clenched. Against Raj Aryan’s warning glance, he sank to his knees. Dhru...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch9">
+                <span class="sb-num">09</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 8: The Monk and the Sword</span>
+                    <span class="sb-desc">Dawn’s first light gilded the jagged pinnacles of the Skyfall Cliffs, where black ...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch10">
+                <span class="sb-num">10</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 9: The Edge of the Map</span>
+                    <span class="sb-desc">Dawn’s first light filtered through the palace windows of Aranyapura, gilding marb...</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch11">
+                <span class="sb-num">11</span>
+                <div class="sb-info">
+                    <span class="sb-name">Chapter 10: The Treasure Without Name</span>
+                    <span class="sb-desc">Varun WR is a storyteller and seeker who blends myth, mysticism, and meaning into ...</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Dhruvendra.png" alt="Dhruvendra — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Dhruvendra">Dhruvendra</h1>
+                <div class="landing-subtitle" id="landing-subtitle">Suspense & Adventure</div>
+                <div class="landing-meta" id="landing-meta">The Treasure Seeker. An epic pursuit of ancient secrets, dangers, and the costs of obsession.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Dhruvendra story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Introduction             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0" aria-label="Chapter 1: Introduction">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Introduction</h2>
+                    <p class="chapter-synopsis">To seek the treasure is to renounce the world—not to escape it, but to transcend it.” In an age of kingdoms and crown...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">To seek the treasure is to renounce the world—not to escape it, but to transcend it.” In an age of kingdoms and crowns, where valor is measured by conquest and legacy is weighed in gold, one prince dares to ask the question no one else will: What lies beyond power? This is the story of Dhruvendra, heir to the golden throne of Aranyapura, who chooses the flute’s haunting call over the fanfare of coronation. Haunted by dreams of a melody that comes not from this world but from deep within his soul, he sets forth on a path no map can truly chart—a path of surrender, transformation, and awakening. Along the way, he must part with everything he once called his: – a beloved friend turned rival, – a lover whose eyes hold both devotion and doubt, – and the crown he was born to wear but not meant to bear</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Each chapter is a step through fire, silence, loss, and inner reckoning—Until he faces the final truth: The greatest treasure is not hidden in gold or guarded in temples.It is the still point within the soul, waiting to be remembered. This book is not just a tale—it is an offering to every reader who has ever questioned the world’s noise and longed for a deeper music. Whether you are a seeker of truth, a lover of myth, or someone standing on the edge of change</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">May this story mirror your own journey home. Welcome to the silence. Welcome to Dhruvendra – the treasure seeker</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 2 — Chapter 1: The Dream of the Flute             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch2" data-chapter-theme="resolution" data-chapter-index="1" aria-label="Chapter 2: Chapter 1: The Dream of the Flute">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">02</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 02</span>
+                    <h2 class="chapter-title">Chapter 1: The Dream of the Flute</h2>
+                    <p class="chapter-synopsis">Night draped itself over Aranyapura like a velvet curtain, heavy and still. From the highest window of the palace, th...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">Night draped itself over Aranyapura like a velvet curtain, heavy and still. From the highest window of the palace, the moon spilled its silver light onto the marble floors of the prince’s chamber. But Dhruvendra could not sleep. He tossed beneath layers of royal silk, his brow damp, his breathing uneven. Then— the sound came again</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">A flute. Soft. Fragile. So far away it felt like it was being played from behind the stars. He opened his eyes with a gasp</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">No,” he whispered to himself. “Not again.” He sat up, heart pounding. For the third night in a row, the dream had returned. And with it, the song</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He rose from bed and walked barefoot to the arched window. The palace courtyard was quiet. The guards leaned lazily against their spears. The fountains glimmered under moonlight. He looked past it all—into the forests beyond</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">What are you trying to tell me?” He murmured.The flute's melody still lingered in his ears, though it had long stopped</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">It wasn't a tune he recognized. No bard in court had ever played it. It was beautiful—but it hurt. Suddenly, the doors to his chamber creaked open. A handmaiden stepped in, head bowed</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Your highness… I thought I heard you call.” Dhruvendra turned toward her slowly. “No. Just… a dream.” She hesitated</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The coronation is tomorrow. The people await their king.” He didn’t respond at first. Then softly: “Tell me something, Malini. Do you ever feel… as if everything you were taught to want is not what your soul wants</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">She blinked, surprised. “I.I am just a servant, my lord.” He smiled faintly. “Then you’re free</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Freer than I am.” He turned back to the window. “Tell the council I will see them at sunrise. But not before.” The handmaiden bowed and left silently, glancing back once with concern</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He was alone again. And then—his body went still.And then—his body went still</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The dream pulled him under like a tide.The dream he stood barefoot in a forest where no birds sang. Shadows stretched unnaturally long across the forest floor. Somewhere ahead, a flute played—faint, sorrowful. He began walking</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Branches tore at his robe. Thorns pricked his skin. He bled, but felt no pain. The sound led him. There—between two dying trees—a pedestal of black stone</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Upon it, a glowing orb, pulsing like a heart made of light. He reached for it. But the moment his fingers touched the light, it turned to ash. The trees crumbled. The ground fell away</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He screamed— —and woke up. Breathless. On the floor. His handwas still outstretched. A voice echoed in his mind</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Not his own. "To find the treasure, you must lose all that holds you."He stared at the crown resting on a pedestal beside his bed. Gold. Jewels</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Power. It suddenly felt… empty</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He whispered aloud, “Maybe the dream is not a warning. Maybe it’s a summons.” He stood. Straightened his robe. And looked again into the darkness beyond the palace walls</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">If it is a path, I will walk it. Even if I walk it alone</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 3 — Chapter 2: Echoes in the Palace Walls             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch3" data-chapter-theme="resolution" data-chapter-index="2" aria-label="Chapter 3: Chapter 2: Echoes in the Palace Walls">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">03</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 03</span>
+                    <h2 class="chapter-title">Chapter 2: Echoes in the Palace Walls</h2>
+                    <p class="chapter-synopsis">The corridors of Aranyapura’s grand library were silent at dawn, save for the distant drip of water from a half-forgo...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">The corridors of Aranyapura’s grand library were silent at dawn, save for the distant drip of water from a half-forgotten fountain. Shafts of pale sunlight filtered through stained-glass windows, painting the marble floor in jewel-tones. Dhruvendra moved among the towering shelves like a shadow—his cloak drawn tightly around him, hood obscuring his face. The lofty rows of leather-bound tomes and scrolls, once symbols of his education, now felt like barriers between him and the truth he sought. He paused at a carved relief on the wall: A group of sages pointing toward a distant mountain</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He traced the stone patterns with his fingertips, recalling the old legend of the Ananta Map—a secret cartographic scroll said to chart the path to the treasure of ultimate awakening. The map had been split into fragments and hidden centuries ago among the palace’s deepest archives.Dhruvendra’s breath caught. The flute’s call had led him here—not to the throne room, nor to the priests’ chambers—but to this silent sanctum of knowledge</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He crouched beside a bronze brazier, its embers long cold, and drew a narrow blade from inside his cloak. With careful precision, he picked the lock on a nearby cabinet. The metal gave way with a soft click. Inside lay a dozen dusty scrolls sealed with wax bears. Each bore an emblem: A coiled serpent, a roaring lion, or a Lotus petal</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He ignored the familiar seals of state records, and instead retrieved an unmarked parchment tied with crimson cord. As he unrolled it, a distant cough echoed through the hall. Dhruvendra froze, heart pounding. He snapped the scroll shut and dropped it back into the cabinet. His hand hovered over the lock</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Footsteps approached—deliberate, slow. A guard’s boots on marble. Dhruvendra extinguished the small lantern at his side and melted into the shadow of a grand bookcase. His pulse throbbed in his ears louder than the approaching steps. The hood of his cloak slipped, revealing his dark hair and familiar profile</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He cursed under his breath.A guard’s silhouette passed by, lantern in hand, inspecting the aisles. The guard paused beside the brazier, shining light into the empty bowl</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra held his breath, back pressed flat against the cool stone. Guard (muttering)</span>
+                        <p class="dialogue-text">“All clear.Must be some rat dragged in old scrolls. Nothing for a prince to trouble himself with.” The guard moved on, footsteps fading</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra exhaled, sliding the lantern back onto the brazier. With trembling fingers, he re- unlocked the cabinet and withdrew the crimson-tied scroll once more. Unfurling it beneath the lantern’s glow, he saw intricate lines and symbols. A mountain range, a winding river, and—at its heart—a circle of five petals surrounding an empty space. Beside it, a notation in archaic script</span>
+                        <p class="dialogue-text">“When full moon’s silver kiss graces the Lotus of Ash, the path will open</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">His pulse quickened. This was only a fragment—but every piece mattered. Carefully, he traced the petal pattern onto a blank page of his journal.He pocketed the scroll, re- sealed the cabinet, and replaced the lock. As he did, the lantern sputtered, and a slender beam of sunlight fell upon a dust-covered statue of a raven</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He paused</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">A raven: Messenger between worlds. In his dream-forest, ravens had circled overhead, black as night. The memory stirred something deep inside—an omen, perhaps. He straightened and tucked the journal into his cloak. Rising, he prepared to leave—but then a whisper drifted on the air, so faint he wasn’t sure he’D heard it: “Truth does not hide in silence, but in the echoes of choice</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Dhruvendra’s breath caught. The voice seemed to come from the statue itself. His fingers brushed the raven’s beak, and he felt a thrill of warmth under his palm—as if the stone were alive for a heartbeat. Shaking his head, he slipped away from the cabinet, slowing his steps as he retraced his path through the labyrinth of shelves. The library’s main entrance lay just ahead, guarded by two royal sentinels</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He ducked into a narrow side corridor instead, emerging near the inner courtyard where the morning guards were changing. He paused behind a marble column, mopping sweat from his brow.He dared a glance back at the towering library doors. Somewhere within, the missing fragments of the Ananta Map awaited</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">And likely, hidden traps of scholarship and statecraft, designed to deter any who sought them. He pressed his back to the cold column and folded the cloak’s hood more tightly around his face. In his hand, the journal felt soft and pliant against the steel of his resolve. A distant bell tolled across the palace grounds—calling the council to gather. Dhruvendra knew the courtiers would be waiting, expecting their absent prince</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">His note of renunciation lay in the council chambers, sealed with royal wax. Once they broke that seal, there would be no turning back. Either they would mount a search, or they would accept his absence— and his abdication. He closed his eyes and recalled the flute’s melody. It had whispered of loss and promise—of surrender and revelation</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">It was no longer enough to glimpse the map: He must follow it.A light breeze rustled the courtyard banners, carrying with it a soft rustle of ravens in the distant trees.Dhruvendra pressed forward, moving through the guards and across sunlit tiles toward the outer gate</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 4 — Chapter 3: Farewell to Friendship             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch4" data-chapter-theme="resolution" data-chapter-index="3" aria-label="Chapter 4: Chapter 3: Farewell to Friendship">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">04</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 04</span>
+                    <h2 class="chapter-title">Chapter 3: Farewell to Friendship</h2>
+                    <p class="chapter-synopsis">There, waiting at the archway, stood Raj Aryan—his frail form clad in patched robes, peacock feather pinned to his sh...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">There, waiting at the archway, stood Raj Aryan—his frail form clad in patched robes, peacock feather pinned to his shoulder. His sharp eyes, though lined with age, shone with recognition. Dhruvendra (startled)</span>
+                        <p class="dialogue-text">“Raj Aryan! You—how did you—?” Raj Aryan (smiling): “Did you think secrets of this palace never reached my ears</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The flute’s call is loud for those who listen. Come.” He beckoned Dhruvendra to follow him down a narrow rampart overlooking the eastern woods. Below, a tangle of trees and hidden paths shimmered in morning light. Dhruvendra: “I found a fragment— an ink-worn petal circle, and words about the Lotus of Ash</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan (nodding)</span>
+                        <p class="dialogue-text">“As I knew you would. That fragment is only the beginning. But beware—powerful forces will seek to claim the treasure for themselves.” Dhruvendra: “Veerath will not rest.” Raj Aryan: “Then you must move faster</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Seek the other pieces: In the Cavern of Cinders, the Moonlit Lake</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The ruined temple, and the silent lands. Only when all five align under the full moon will the path reveal itself.” Dhruvendra exhaled, heart racing with purpose. The adventure had truly begun: Fragments to find, allies to convince, enemies to evade. And each location held its own trial —physical, mental, and spiritual</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra</span>
+                        <p class="dialogue-text">“Tomorrow night, at the Cavern of Cinders?” Raj Aryan: “When the embers glow, so will the next clue. But first—return to the council. Let them believe you remain their heir. Use their trust as your shield, until you need it no longer</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">The priest-sage laid a hand on Dhruvendra’s shoulder. A simple gesture, yet it carried the weight of tradition and destiny. Raj Aryan</span>
+                        <p class="dialogue-text">“Go now. And remember: Every echo you chase in these walls must guide you back to yourself.” Dhruvendra bowed his head</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The map’s fragment burned bright in his mind. He turned and strode back toward the palace interior, hood still drawn, steps sure.As he disappeared through the courtyard arch, the ravens in the branches above cawed once</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">An ancient acknowledgement of the quest underway</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 5 — Chapter 4: The Trial of Fire             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch5" data-chapter-theme="resolution" data-chapter-index="4" aria-label="Chapter 5: Chapter 4: The Trial of Fire">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">05</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 05</span>
+                    <h2 class="chapter-title">Chapter 4: The Trial of Fire</h2>
+                    <p class="chapter-synopsis">Dawn’s first light painted the training yard of Aranyapura in soft amber, gilding the stone walls and the rows of pra...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">Dawn’s first light painted the training yard of Aranyapura in soft amber, gilding the stone walls and the rows of practice dummies with a promise of new beginnings. Yet for Dhruvendra, promise had turned to burden. Cloaked in simple traveling garb, he slipped through the side gate—journal securely stowed in his cloak, fragment of the Ananta Map pressing against his side like a heartbeat. He paused at the edge of the yard. Across the open field, the clatter of wooden swords against shields echoed as trainees sparred under the watchful eyes of veteran instructors</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">And there, at the center of the ring, moved his childhood friend and rival: Veerath. Veerath’s frame was lean and powerful, every motion measured. His black-etched armor—symbolic of serpentsglinted even in the early light. He stood before a younger recruit, demonstrating a feint that sent the sun glinting off his gauntlet. At the sight of Dhruvendra, Veerath’s head snapped up</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">For a heartbeat, their gazes locked across the yard: Prince and warrior-prince, friend and rival</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Then Veerath’s lips curved in a half- smile—one part welcome, two parts challenge. Dhruvendra swallowed. Each step forward felt heavy, as though the ground itself remembered the quarrel he would soon provoke. Yet he had chosen his path, and here there was no turning back. Veerath lowered his blade and gestured</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Dhruvendra! To what do I owe the honor? Come to watch me humiliate these recruits?” Dhruvendra drew level beside him. “I needed fresh air—and a moment away from the council chambers</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He inclined his head toward the scuffed training dummy. “You train as if preparing for war…” Veerath’s smile sharpened. “And isn’t that what we do? The world is not kind to the soft-hearted.” He tapped Dhruvendra’s shoulder</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Come. Let us spar, as always. A proper greeting between friends.”Dhruvendra’s heart clenched. He had not come to spar— but to send a message</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Still, he could not refuse. With a sigh, he unbuckled his cloak and laid aside his journal. Pulling a practice blade from his belt, he stepped into the circle. The other trainees fell back, forming a silent ring around them. Even the instructors paused</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Here was no ordinary match: Two princes, heirs to different visions.Veerath saluted with his blade, bowing low. “May your blade stay as true as your heart, old friend.” Dhruvendra returned the salute. “And yours as steadfast as your cause</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">They advanced. Wooden swords clashed with a rhythmic thud, sparks of dust rising where oak met oak. Veerath pressed the attack, each strike precise, controlled—like the serpent he symbolized. Dhruvendra parried, stepping back, measuring distance. “You’ve changed,” Veerath said between blows</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Last time you would have driven me back by now.” Dhruvendra’s arm stung as he blocked a swift overhead cut. “I have changed.” They circled. Veerath feinted low; Dhruvendra responded by striking high</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Their blades locked. Muscles tensed.Veerath (softly)</span>
+                        <p class="dialogue-text">“Word is— your heart is elsewhere now. You chase dreams instead of duty.” Dhruvendra’s chest tightened</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Better a dream than a crown I do not want.”Veerath’s eyes darkened. He shoved forward, forcing Dhruvendra back several steps</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">You renounce your bloodline. You renounce your kingdom. What are you then?” Dhruvendra steadied himself and answered with a low blow that knocked Veerath’s blade aside. “I am myself</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Veerath’s gaze flicked to the emblem on Dhruvendra’s cloak—the raven from the library’s statue. “Claiming selfhood doesn’t make you free. It binds you to your selfish whims.” Dhruvendra’s breath quavered. “Selfish</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">I would save our people from a throne that breeds complacency.” A hush fell. Even the wind seemed to hold its breath. Veerath’s lips curled into a bitter smile. He raised his blade and struck—a move too swift to block</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The wooden sword splintered in Dhruvendra’s hand. The yard erupted in gasps. Dhruvendra stumbled back, blinking at the broken hilt. His heart pounded—not from exertion, but from betrayal.Veerath stood over him, blade poised</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">So be it,” he said quietly. “If you turn your back on duty, you are no friend of mine.” Dhruvendra dropped the splintered wood. “I never asked you to follow me.” His voice trembled, but he forced calm</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Nor would I keep you from your path</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Veerath’s eyes flicked toward the palace gates beyond the yard, then back to Dhruvendra. “Then don’t stand between me and my destiny.” He turned and strode away, the spectators parting like waves. Dhruvendra watched him go, chest heaving. The weight of what he had done now pressed upon him: Severed ties, broken bond, a friendship rent in two</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">He sank to one knee and closed his eyes, the echo of Veerath’s words lingering in his mind. A hand touched his shoulder. He looked up to see Raj Aryan’s gentle face, sorrow soft in his eyes. Raj Aryan</span>
+                        <p class="dialogue-text">“Every path demands a sacrifice.” Dhruvendra: “I have sacrificed a friend</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan</span>
+                        <p class="dialogue-text">“A friend who could not share your vision. Better to walk alone than stumble together into darkness.” Dhruvendra nodded, swallowing the sting of loss. He rose and picked up his broken blade, raising it as if in salute. Dhruvendra: “May your path be true, Veerath</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He turned away from the yard, stepping toward the carved gates leading out of the palace. Each footfall sounded like a tolling bell</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Announcing the end of what was, and the beginning of what must be. Beyond the walls lay the Cavern of Cinders, where Veerath would never tread. There, under the molten glow, Dhruvendra would face the trial of fire—and perhaps forge himself anew. As he crossed the threshold, the morning sun broke fully over Aranyapura, illuminating both the kingdom he left behind and the journey that lay ahead</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The air grew thick with sulfur as Dhruvendra picked his way through the jagged inlet of the Cavern of Cinders. Molten rock glowed behind every crack in the basalt walls, casting flickering orange shadows that danced like restless spirits. Steam hissed from fissures at his feet, and each breath tasted of smoke and brimstone. At his side walked Raj Aryan, his patched robes and weathered face illuminated by the Cavern’s molten veins. The sage’s calm presence steadied Dhruvendra’s racing heart</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra (voice low)</span>
+                        <p class="dialogue-text">“I can feel the heat through my cloak. How much farther?” Raj Aryan (softly): “To the Ember Blade. It lies at the heart of this furnace. But first—you must prove your resolve</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Dhruvendra swallowed against the stinging air. He gripped the hilt of his broken practice sword, its jagged wood now sheathed at his belt. The promise of the Ember Blade weighed on his mind: A weapon said to burn away illusions, revealing truth beneath.They descended a narrow stair etched into the lava rock. Each step rang hollow in the Cavern’s vastness</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Occasional rocks tumbled from above, landing in molten pools with sizzling plumes</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Suddenly, Raj Aryan halted. Ahead lay a broad chamber, its floor a sea of blackened stone, and at its center, a pedestal wrought from cooled magma. Upon it rested a sword with a blade like glowing Ember—its steel rimmed in molten orange that pulsed like a heartbeat. Raj Aryan</span>
+                        <p class="dialogue-text">“There it is. But the trial awaits</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He raised a weathered hand, and the flickering heat at their backs coalesced into a figure: A warrior clad in smoldering armor, his helm horned like a fire demon. His eyes shone white-hot. Flame Warden (voice echoing): “Who dares seek the Ember Blade?” Dhruvendra stepped forward, mouth dry. Dhruvendra: “I am Dhruvendra of Aranyapura</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">I seek only the truth that this blade reveals.” The Flame Warden swung his helm back, revealing a face lined with soot and embers. Flame Warden: “Truth? You come to a furnace and speak of truth? Prove you are not consumed by your own fire</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">With that, he drew a molten spear from the ground and hurled it at Dhruvendra. Instinctively, Dhruvendra raised his arm in defense. The spear burst apart in a shower of sparks</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 6 — Chapter 5: The Lover's Last Look             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch6" data-chapter-theme="resolution" data-chapter-index="5" aria-label="Chapter 6: Chapter 5: The Lover's Last Look">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">06</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 06</span>
+                    <h2 class="chapter-title">Chapter 5: The Lover's Last Look</h2>
+                    <p class="chapter-synopsis">Scorching the air where his sleeve had been.He staggered back, heart pounding. Raj Aryan offered a steadying hand. Ra...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Scorching the air where his sleeve had been.He staggered back, heart pounding. Raj Aryan offered a steadying hand. Raj Aryan</span>
+                        <p class="dialogue-text">“Trust the trial. Face the fire within</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra closed his eyes and recalled the flute’s melody—soft, urging, insistent. He felt fear coil in his chest like a serpent. This was not only a test of strength, but of surrender. He opened his eyes and squared his shoulders. Dhruvendra</span>
+                        <p class="dialogue-text">“I face my fear</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He advanced, stepping around a pool of molten rock. Each footfall trembled through his bones. The Flame Warden met him at the edge of the pedestal chamber, spear raised. They clashed. The warden’s strikes were fierce, each swing sending embers spraying into the gloom</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra parried with the practice sword’s shattered hilt, sparks hissing where metal met wood.Flame Warden</span>
+                        <p class="dialogue-text">“Give in to the heat! Let your doubts melt away!” Dhruvendra’s breath came in ragged gasps. Doubts rose—was this trial too much</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Would he be consumed here, forgotten beneath the rock? He pressed forward, hand trembling</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Hand trembling. He locked eyes with the warden, and in that moment, he saw not an enemy, but a mirror: The fear within himself, taking form. Dhruvendra (softly): “I will not be burned by my own doubt.” He let go of his blade’s hilt. It clattered to the stone floor</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">For a heartbeat, silence fell. The molten sword on the pedestal glowed brighter, as if responding. The warden hesitated, spear wavering. Embers around him dimmed. Flame Warden (quietly)</span>
+                        <p class="dialogue-text">“Then prove it</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Dhruvendra took a steadying breath. He stepped forward, barefoot, across the cooling stone and toward the Ember Blade. The heat licked at his skin, but he felt only calm—an unburdening as each doubt wept away in sweat. At the pedestal, he reached out. For a moment, the blade glowed so bright it became white light</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Then, touching the hilt, the glow settled into a steady warmth—like a welcome pulse.He lifted the sword. It felt alive—balanced, true, and humming with clarity. The warden’s form flickered and dissolved into sparks that drifted to the Cavern’s ceiling, extinguishing one by one. Dhruvendra turned to Raj Aryan, the new blade cradled in both hands</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan (smiling)</span>
+                        <p class="dialogue-text">“You have passed the trial of fire. Doubt melted away, leaving only purpose.” Dhruvendra: “The heat did not destroy me. It purified me.” Raj Aryan: “Carry this clarity forward</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The next fragment awaits at the Moonlit Lake. But remember—the trials will grow harder, and the shadows longer.” Dhruvendra nodded, sheathing the Ember Blade. Its glow dimmed to a soft Ember-blue as it nestled at his side. Dhruvendra: “I am ready</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Together, they retraced their steps through the hissing fissures and up the molten-lit stairs. As they emerged into the pale light of dawn, the distant peaks of the Moonlit Lake shimmered like silver glass. Beyond, the world awaited—wilder, more beautiful, and more dangerous than any kingdom. Yet Dhruvendra walked forward without fear, the Ember Blade at his side, and the flute’s melody guiding him onward</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra (softly)</span>
+                        <p class="dialogue-text">“I will find it</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">But first—” he bowed to the sage. Words caught in his throat. Raj Aryan placed a steady hand on his shoulder. Raj Aryan: “Go. And remember that love need not bind; it can set free</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">With that blessing, Dhruvendra slipped away along a winding path of smooth stones, each step drawing him closer to the pavilion where Agnika waited.The pavilion was built upon stilts in the center of the lake, reached by a narrow wooden bridge. Lanterns hung from its eaves, casting gentle ripples of light across the water. There, seated on a carved bench, was Agnika—her figure draped in pale blue silk that shimmered like a moonbeam. She turned at his approach, eyes bright with silent questions</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">The flute pendant around her neck—the one she had given him—gleamed in the lantern glow. Agnika (voice trembling)</span>
+                        <p class="dialogue-text">“You came.” Dhruvendra closed the final steps of the bridge in three strides, kneeling before her. His cloak fell away, revealing the simple tunic beneath. He reached into his breast and withdrew the folded map fragment, then hesitated</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra</span>
+                        <p class="dialogue-text">“I carry a part of the Ananta Map, and tonight I must press onward.” Agnika’s gaze flicked to the fragment and back to his eyes. Agnika: “The Moonlit Lotus. Its petals</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Bloom only under the full moon’s kiss. You have already faced fire— now you must face sorrow.”He offered her the fragment. She traced the inked petals with a delicate finger. Dhruvendra: “This fragment guides me, but it tears my heart to leave you</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Agnika folded the parchment and placed it gently back in his hand. Agnika</span>
+                        <p class="dialogue-text">“You do what you must. But promise me one thing—when this quest ends, if you still find a heart within you, return to me.” He swallowed hard, voice catching. Dhruvendra: “I promise—if I return with what I seek, I will return to you</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">She stood, and he rose to meet her. Under the lantern’s light, they stood silent, the gap between them charged with words unspoken. Suddenly, Agnika’s hand slipped behind her back. She drew forth a small velvet pouch and untied its cord. From inside she withdrew the flute pendant, its silver keys and pearl inlay glinting</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Agnika</span>
+                        <p class="dialogue-text">“This was mine. Now it is yours. Let its song guide you when my voice cannot</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra’s eyes glistened as he accepted it. Dhruvendra</span>
+                        <p class="dialogue-text">“Every note I hear, I will think of you.” She smiled sadly. He lifted the pendant and, with a breath, hung it round his own neck, above his tunic close to his heart.Agnika: “Then we are never apart</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">He bowed and pressed a gentle kiss to her hand. The silk whispered through his fingers. Dhruvendra</span>
+                        <p class="dialogue-text">“One last song, before I go?” Her face brightened. She lifted a simple reed flute to her lips</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">As she played, the pavilion filled with a haunting melody—soft, melancholic, yet filled with a fierce beauty. Dhruvendra closed his eyes, letting every note imprint itself upon his soul. When she finished, silence settled like a blanket. He reached to hold her hand, but she drew back, tears shining in her eyes. Agnika</span>
+                        <p class="dialogue-text">“Go now, before daylight finds us here</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">He nodded, voice thick. Dhruvendra</span>
+                        <p class="dialogue-text">“Farewell, my Flame of the heart.” She brushed her fingertips across his cheek</p>
+                    </div>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Agnika</span>
+                        <p class="dialogue-text">“Farewell, my seeker of truth.” He turned, stepping onto the bridge.She watched him go, her flute pendant catching moonlight. With each step, the gap between them widened, until he reached dry land.He paused at the forest’s edge, looking back</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Agnika stood beneath the willow’s branches, small in the lantern glow, her figure framed by the pavilion’s gentle arcs. He raised his hand once, a solitary wave. Her lips moved in a silent farewell. Dhruvendra exhaled, tight with longing, and turned toward the lake’s western shore. There, floating upon mirrored waters, he saw countless Lotus blossoms— ghostly white petals shimmering in the moonlight</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He knelt at the water’s edge and lifted a single Lotus. Its petals were cool and soft, dew gathering at their tips like liquid stars. In the center lay the final clue inked upon a hidden petal— “Where love and sacrifice meet under moon and stillness, the path is whole.” With reverent fingers, he plucked the petal and pressed it between the pages of his journal</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He glanced once more toward the pavilion. The lanterns had gone dark. Agnika’s presence was gone, but her song lingered in the mist. Dhruvendra pressed the Lotus to his heart, closing his eyes. “Your melody will guide me,” he whispered</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Rising, he tucked the journal beneath his cloak, bound the Lotus petal within its folds, and set off along a hidden path skirting the lake’s edge. The silver glow of dawn was faint on the horizon, promising that time grew short. Ahead lay the ruined temple of mirrors and the trial of identity. But in his heart burned a new resolve, tempered by love and loss. As the moon dipped low and the first birds stirred in the reeds, Dhruvendra—flute pendant at his throat, Lotus petal in his journal— stepped into the night’s final embrace, guided by memory and the promise of reunion</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 7 — Chapter 6: The Talking Mirror             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch7" data-chapter-theme="resolution" data-chapter-index="6" aria-label="Chapter 7: Chapter 6: The Talking Mirror">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">07</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 07</span>
+                    <h2 class="chapter-title">Chapter 6: The Talking Mirror</h2>
+                    <p class="chapter-synopsis">The ruined temple of mirrors stood at the edge of a mist-shrouded lagoon—a once-grand sanctuary now half-submerged an...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">The ruined temple of mirrors stood at the edge of a mist-shrouded lagoon—a once-grand sanctuary now half-submerged and overgrown with vines. Twilight’s pale light filtered through shattered glass panels, scattering fractured reflections across waterlogged marble floors. Dhruvendra stepped onto the crumbling portico, each footfall echoing in the hushed rot. He drew his cloak tighter as Raj Aryan joined him at the entrance. The sage’s lantern cast dancing beams that caught on shards of glass embedded in stone pillars</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan (softly)</span>
+                        <p class="dialogue-text">“Within these halls, truth is spoken by the mirror —but only to those who look without pretension.” Dhruvendra: “And if I see what I fear?” Raj Aryan: “Then you face it—and become more than what you were.” They entered a vast chamber where floor-to-ceiling mirrors—cracked, fogged, and tilted—lined the walls. In the center stood a circular pool of still water, like molten silver</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">At its edge, Meera knelt, her small frame reflected sixteen times over. In her lap lay a slender scroll tied with indigo ribbon</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Seeing Dhruvendra, she rose silently, eyes bright with recognition. She gestured to the scroll, then placed a hand over her heart and inclinedher head. Dhruvendra approached and untied the ribbon. He unrolled the parchment: A single sentence written in delicate ink.“When you face the self that hides behind masks, the path will reveal its mirror</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">He looked up at Meera, who pointed toward a shattered mirror behind them. Each jagged shard caught a different fragment of his image— prince, seeker, friend, lover, warrior. Dhruvendra (murmuring)</span>
+                        <p class="dialogue-text">“All these faces… which is real?” He stepped before the mirror shards, gazing into each reflection in turn. In one, his royal robes gleamed with gold; in another, his traveling cloak was torn and stained; elsewhere, he stood alone, hooded and resolute</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">A whisper, barely audible, drifted through the hall</span>
+                        <p class="dialogue-text">“Choose the face that speaks your truth.” He closed his eyes. The memories surged—Veerath’s betrayal, Agnika’s farewell, the fire’s purging heat</p>
+                    </div>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">All had shaped him. But beneath each layer lay a single constant: His own heartbeat, his own soul seeking beyond illusion. Opening his eyes, he turned to the largest mirror shard—a jagged fragment that reflected his hooded form, unseen by the world.Dhruvendra (voice steady): “I am neither prince nor warrior alone. I am the seeker—free of titles and ties</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">At his words, the shard shimmered. The broken glass dissolved into mist, revealing a hidden alcove behind it. Within lay a crystalline mirror framed by intricate vines of silver—untouched by time. He stepped forward and peered into the polished surface. The mirror was smooth as water, reflecting not his face but a vast night sky filled with stars</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan</span>
+                        <p class="dialogue-text">“The mirror of the self shows the soul’s expanse, beyond the confines of mortal form.” Dhruvendra reached out. As his fingers grazed the glass, he felt a gentle pull —an invitation. Dhruvendra: “What is written here?”He withdrew a folded petal pressed between pages of his journal—the Lotus petal from the Moonlit Lake— and placed it against the mirror’s frame</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The petals’ dew glowed softly</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">And words appeared etched in light upon the surface</span>
+                        <p class="dialogue-text">“Only when the self is whole will the final petal bloom.”A soft chime sounded as vines of silver unfurled, revealing a hidden compartment at the mirror’s base. Inside lay a vellum fragment, its edges shaped like petals, inked with the fifth and final piece of the Ananta Map. Dhruvendra lifted it reverently, pressing the petals together in his journal until the map glowed faintly on the page—five interlocking petals surrounding the empty space of truth. Meera placed a gentle hand on his arm, then drew a symbol in the air—an unbroken circle—before stepping back into the shadows</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan</span>
+                        <p class="dialogue-text">“You carry the whole now. When the full moon crowns the Lotus of Ash, the path will open.” Dhruvendra: “And the treasure will be revealed?” Raj Aryan: “Not the treasure you expect—but the one you need.” With the map complete, Dhruvendra felt a calm clarity settle within him</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The mirrored chamber no longer fractured his image; instead, it affirmed his singular purpose. He bowed to both sage and oracle, then slipped the map into his journal and secured it beneath his cloak</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra</span>
+                        <p class="dialogue-text">“The silent lands await. I go to face hunger and silence.” Raj Aryan nodded, and together they left the temple. As they emerged onto the mossy steps, the first star of evening blinked above—a silent herald of the journey’s final stretch. Ahead lay the desert of shades, where only the pure of heart survived the ordeal</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">But Dhruvendra walked on, guided by the map’s promise and the knowledge that his true reflection was no longer hidden behind any mask</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">A pale dawn found Dhruvendra and Raj Aryan at the threshold of the silent lands—a vast desert of gray dunes where no birds flew and no breeze stirred. The sand, dust-fine and cold, stretched like a sea of ash beneath a steel sky. An oppressive hush blanketed the world, broken only by their footsteps. Raj Aryan (quietly)</span>
+                        <p class="dialogue-text">“Here, the desert tests not your strength, but your compassion and will.” Dhruvendra: “And those who fail</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan</span>
+                        <p class="dialogue-text">“Vanish into silence, their souls claimed by the sands.” They advanced in single file, the complete Ananta Map rolled inside Dhruvendra’s cloak. With every step, the dunes shifted—as if alive— erasing their footprints behind them. Hours passed. Hunger gnawed at Dhruvendra’s belly</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">His throat parched. Raj Aryan offered only a sip of water from a leather flask. Dhruvendra (hesitant)</span>
+                        <p class="dialogue-text">“Master, I… I cannot continue like this.” Raj Aryan: “Endurance is a gift of the mind, not the body.” Dhruvendra pressed on, vision blurring as thirst tightened its grip</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">At last, he collapsed onto a dune’s crest. Beneath the hazy light, he saw a frail figure half-buried in sand—a small child, eyes closed, lips cracked</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 8 — Chapter 7: Hunger in the Silent Lands             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch8" data-chapter-theme="resolution" data-chapter-index="7" aria-label="Chapter 8: Chapter 7: Hunger in the Silent Lands">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">08</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 08</span>
+                    <h2 class="chapter-title">Chapter 7: Hunger in the Silent Lands</h2>
+                    <p class="chapter-synopsis">His heart clenched. Against Raj Aryan’s warning glance, he sank to his knees. Dhruvendra: “Child!” He brushed sand fr...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">His heart clenched. Against Raj Aryan’s warning glance, he sank to his knees. Dhruvendra</span>
+                        <p class="dialogue-text">“Child!” He brushed sand from the girl’s face. Weakly, she opened her eyes, ashen with desperation</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Child (whispering)</span>
+                        <p class="dialogue-text">“Water… please…” Dhruvendra tore open his cloak and produced the flask, tilting it for her parched lips. She drank greedily, tears carving sandy trails down her cheeks. When she finished, she pressed his hand and fell silent again. Raj Aryan (softly): “Compassion bears its reward.” He pointed to the horizon where the dunes parted, revealing a dark stone obelisk crowned with a metal Basin</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Inside, dew collected—tiny pearls of life. Dhruvendra (relieved)</span>
+                        <p class="dialogue-text">“The Basin of Mercy.” They staggered toward it. As Dhruvendra dipped his hands, the Basin’s water rippled with silver light. He filled the flask</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan brushed the child’s hair as she stirred. Raj Aryan</span>
+                        <p class="dialogue-text">“You saved her. In return, the desert grants you passage.Behind them, the dunes reshaped, forming a clear path through the gray sea. Dhruvendra helped the child to her feet and placed her upon his shoulders</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Together, they walked the newly formed trail toward the Basin’s edge. Child (softly)</span>
+                        <p class="dialogue-text">“Thank you… seeker.” Dhruvendra smiled through his pain, carrying hope itself upon his shoulders. Dhruvendra: “May you find your own path beyond these sands.” As they reached firmer ground, the child’s form flickered like morning mist—and vanished, leaving Dhruvendra alone once more</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">But where she had stood, a single silver pebble lay gleaming in the dust. Raj Aryan retrieved it and handed it to Dhruvendra. Raj Aryan</span>
+                        <p class="dialogue-text">“A token of mercy. When needed, it will guide you through the darkest silence.” Dhruvendra slipped the pebble into his pouch</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">The map’s petals glowed softly at his heart, and for the first time, the desert’s hush felt less oppressive— more like respectful silence. Dhruvendra</span>
+                        <p class="dialogue-text">“The trial is over.” Raj Aryan nodded. Beyond the dunes, the forest of whispers awaited, and with it, the final confrontation before the treasure’s sanctuary. Together, they strode from the silent lands, carrying water, hope, and a soul tempered by compassion</p>
+                    </div>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">At the edge of the forest of whispers, ancient banyans arched overhead, their broad roots snaking across mossy stones. A thin mist curled among the trunks, carrying faint murmurs—as though the trees themselves spoke secrets. Dhruvendra walked beside Raj Aryan, each footfall silent on the carpet of fallen leaves. Raj Aryan (softly)</span>
+                        <p class="dialogue-text">“Here you will meet the monk who guards the Key of Silence. He tests not your strength or kindness, but your heart’s humility</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra</span>
+                        <p class="dialogue-text">“And if I fail?” Raj Aryan: “Then your journey ends in the echo of your own pride.” They rounded a bend to find a clearing at the forest’s heart. A lone figure knelt before a stone altar: A monk in simple gray robes, his shaved head bowed. Beside him lay an ancient sword, its scabbard carved with Lotus motifs</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra stepped forward, and the monk rose without a sound. His eyes, dark and still as deep water, regarded Dhruvendra with calm intensity.Monk (voice gentle)</span>
+                        <p class="dialogue-text">“Seeker, you bear the map of five petals and the Ember Blade’s Flame. Yet you have not earned the key</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra</span>
+                        <p class="dialogue-text">“I have faced fire, sorrow, and silence. I come seeking what you guard.”The monk nodded and drew the Lotus-carved sword from its scabbard. It glimmered with pale light, though no sun pierced the canopy. Monk: “To claim the Key of Silence, you must lay down your sword</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra’s hand tightened on the hilt of his Ember Blade. He glanced at Raj Aryan, whose face was unreadable. Dhruvendra (hesitant)</span>
+                        <p class="dialogue-text">“This blade has guided me through truth. Without it —” Monk: “Without it, you prove that your path is not of weapons, but of wisdom.” Silence stretched</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">The only sound was a distant drip of water. Finally, Dhruvendra exhaled and sheathed the Ember Blade. He stepped forward and placed its scabbard at the monk’s feet. Dhruvendra</span>
+                        <p class="dialogue-text">“I trust that true power lies not in steel, but in the choices we make.” The monk studied him, then inclined his head</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">He knelt and lifted the Ember Blade, placing it gently on the altar. Monk</span>
+                        <p class="dialogue-text">“You understand. Now receive the Key of Silence</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">From a hidden recess beneath the altar, he drew a small, ornate key forged of moon-white steel. Its bow was shaped like a closed Lotus bud. Monk</span>
+                        <p class="dialogue-text">“This key opens the final gate to the heart of stillness. But remember—silence is not absence of sound, but presence of clarity.” Dhruvendra accepted the key reverently and slipped it into a pouch at his belt</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">The monk then replaced the Ember Blade in Dhruvendra’s hand. Monk</span>
+                        <p class="dialogue-text">“Your blade returns, tempered by humility. Go now—only the heart of stillness remains.” Dhruvendra bowed deeply. Dhruvendra: “Thank you, teacher</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">As the monk retreated into the forest’s shadows, Raj Aryan stepped forward. Raj Aryan</span>
+                        <p class="dialogue-text">“Humility opens gates that force cannot. With the key, you may now unlock what you have sought.” Dhruvendra: “Next—the Skyfall Cliffs, and then the sanctuary itself.” Together they turned from the clearing</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Above, the trees whispered blessings in a language older than kingdoms. Dhruvendra lifted the Ember Blade, its glow now gentle as dawn. The Key of Silence nestled at his side. Beyond the forest’s edge</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">The jagged Skyfall Cliffs loomed— gateway to the hidden isle where the treasure’s secret awaited.Dhruvendra (to himself)</span>
+                        <p class="dialogue-text">“One final leap—one final truth.” He strode onward, heart steady, mind clear, guided by wisdom that had grown with each trial</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 9 — Chapter 8: The Monk and the Sword             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch9" data-chapter-theme="resolution" data-chapter-index="8" aria-label="Chapter 9: Chapter 8: The Monk and the Sword">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">09</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 09</span>
+                    <h2 class="chapter-title">Chapter 8: The Monk and the Sword</h2>
+                    <p class="chapter-synopsis">Dawn’s first light gilded the jagged pinnacles of the Skyfall Cliffs, where black stone plunged into churning seas fa...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dawn’s first light gilded the jagged pinnacles of the Skyfall Cliffs, where black stone plunged into churning seas far below. A narrow ledge wound its way along the cliff face—only wide enough for one man’s stride—but it was the only path to the hidden isle said to cradle the treasure’s final sanctuary. Dhruvendra stood at the cliff’s mouth, the Key of Silence heavy at his belt, the Ember Blade resting in its scabbard. Raj Aryan lingered behind, the sage’s peacock feather fluttering in the stiff sea breeze. Dhruvendra (quietly)</span>
+                        <p class="dialogue-text">“The wind will knock me into the abyss if I falter</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan (softly)</span>
+                        <p class="dialogue-text">“Trust in what you have become. The path does not open for the timid.” He nodded and stepped onto the ledge. Below, the waves roared like a living beast. Each careful foot-fall sent tiny stones clattering into the void</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Halfway along, the ledge narrowed further, worn smooth by countless storms. Dhruvendra pressed his back to the cliff, heart hammering. Before him, a sheer drop; behind, only thin air and the sound of his own breath. He paused and drew the Key of Silence. Its Lotus-bud bow gleamed faintly, catching the rising sun</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">He whispered an invocation he had learned from Meera’S mirror</span>
+                        <p class="dialogue-text">“In silence, find strength. In stillness, find clarity.”As the words fell from his lips, the ledge beneath his boot glowed with pale light. A hidden path of stone spiraled outward—an arching causeway no wider than his sword’s blade—revealed where once there was nothing. Dhruvendra inhaled, steeled himself, and stepped onto the newly illuminated path</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Though dizzying, it felt solid and true. He moved forward, each step guided by the glow of the key. Halfway across the invisible bridge, a gale struck—sea spray drenching his cloak, wind ripping at his hair. He stumbled but regained balance. He gripped the Ember Blade’s hilt for steadiness</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra (softly, to himself)</span>
+                        <p class="dialogue-text">“I am not merely flesh. I am purpose made manifest.”He continued until the last of the hidden stones faded back into the cliff face. Before him lay a small rocky island, crowned by an ancient stone door carved with five interlocking petals. Dhruvendra approached, the wind still roaring around him</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The door’s surface was etched with the full Ananta Map</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Now complete, its petals forming a perfect star.In the center was an indentation shaped like the Key of Silence. He knelt and inserted the key. It fit seamlessly. With a measured twist, the lock clicked—and the stone door swung inward on hidden hinges, revealing a dark corridor lit by flickering torchlight within</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan joined him at the threshold. Raj Aryan</span>
+                        <p class="dialogue-text">“Beyond this door lies the heart of stillness. There you will meet the last guardian—and the truth you seek.” Dhruvendra: “I am ready.” He sheathed the Ember Blade and stepped inside</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">The door closed behind him with a muted thud, and the corridor lights brightened, guiding him through smooth walls carved like Lotus petals unfolding. At the corridor’s end lay a circular chamber. In its center hovered a golden chalice upon a pedestal of white marble. No guardian stood watch—yet the air thrummed with quiet power. Dhruvendra approached, breath shallow</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Above the chalice, a single beam of sunlight pierced through a high oculus, illuminating the empty space at the pedestal’s center</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">He recalled the prophecy of the flute: That the real treasure lay not in gold or power, but in the soul’s release. He lifted the chalice, expecting weight, but it was nearly weightless, as if filled with air. Perplexed, he pressed his palm to its rim. Then the flute’s melody, faint and clear, echoed in his mind. “The treasure withouta name is the self set free</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Suddenly, the chalice’s surface rippled like water. Within its golden depths, Dhruvendra saw visions: His former life as prince—crowds cheering, ceremonies ablaze with color. Then Veerath’s proud smile in the training yard. Then Agnika’s soft flute under moonlight. Then the Ember Blade, the mirror, the desert, the forest, and finally, himself, standing here</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Tears welled as he understood: The chalice reflected his journey, each trial, each sacrifice. It held no jewels because the treasure was the purity of his own awakened heart. He whispered: Dhruvendra: “I sought a prize beyond imagining… only to find that the journey itself was the gift.” He set the chalice back upon the pedestal. Immediately, the chamber grew stiller—the very air settling into perfect calm</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">The stone door behind him opened once more, revealing Raj Aryan’S kindly faceraj aryan</span>
+                        <p class="dialogue-text">“You have found the treasure of stillness: The soul freed from its chains.” Dhruvendra: “And the flute’s call… I hear it always.” Raj Aryan: “It was never beyond you. It guided you home.” The sage stepped inside, placing a hand upon Dhruvendra’s shoulder</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Raj Aryan</span>
+                        <p class="dialogue-text">“Return now—your kingdom awaits, but you no longer serve the crown. You serve wisdom.” Dhruvendra nodded, heart luminous with peace. He turned and strode back through the corridor, the chalice’s vision still glowing in his mind. As he stepped onto the causeway once more, the hidden path revealed itself again —just long enough to carry him home</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Above the swirling seas, the wind carried a single note of flute—a farewell and a greeting all at once.Dhruvendra (softly)</span>
+                        <p class="dialogue-text">“I come back not as a prince, but as a seeker fulfilled.” With that, he crossed the threshold out of the cliffs, chalice and key in hand, ready to share the wisdom of the five paths with a world that had long forgotten its own song</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 10 — Chapter 9: The Edge of the Map             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch10" data-chapter-theme="resolution" data-chapter-index="9" aria-label="Chapter 10: Chapter 9: The Edge of the Map">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">10</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 10</span>
+                    <h2 class="chapter-title">Chapter 9: The Edge of the Map</h2>
+                    <p class="chapter-synopsis">Dawn’s first light filtered through the palace windows of Aranyapura, gilding marble halls in soft gold. Word of Dhru...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">Dawn’s first light filtered through the palace windows of Aranyapura, gilding marble halls in soft gold. Word of Dhruvendra’s journey had spread—some whispered of madness, others of a dreamer’s folly. Yet none dared question the quiet authority in his stride as he returned, the golden chalice and Key of Silence secured beneath his cloak. He crossed the throne hall, its vaulted ceiling frescoed with ancestral kings, and paused before the empty dais. The royal court— nobles, priests, and guards—fell silent, their eyes fixed on the figure who once renounced his crown</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">When Dhruvendra spoke, his voice carried the calm certainty of one who has seen beyond illusion. Dhruvendra</span>
+                        <p class="dialogue-text">“I have walked five paths —through Flame, sorrow, reflection, silence, and humility—and found no gem, no coin, no scepter more precious than the stillness of the soul.” A murmur rippled among the courtiers. The chief minister stepped forward, scroll in hand. Minister: “My lord, we feared you lost</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Why return without claim to the throne</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra lifted the chalice so all could see its empty brilliance. Dhruvendra</span>
+                        <p class="dialogue-text">“This cup is the vessel of the heart. Its treasure is nameless, for it lies within each of us, waiting to awaken.” He turned, key gleaming at his belt. Dhruvendra: “I offer you the Key of Silence—not to lock away power, but to unlock the truth in every soul</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">He inserted the key into the dais’s hidden lock. With a soft click, the floor slid open, revealing a simple stone bench beneath. On it lay five petals carved in mosaic—each corresponding to the trials he endured. Dhruvendra</span>
+                        <p class="dialogue-text">“Let these petals remind us: Courage burns away doubt; sorrow kindles compassion; reflection reveals self; silence grants clarity; humility crowns wisdom.” He placed the chalice upon the bench, the petals glowing briefly under its presence</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra</span>
+                        <p class="dialogue-text">“Rule not with iron or gold, but with the stillness that hears the voiceless, feels the broken, and guides the lost.”Silence reigned as the court absorbed his words. One by one, tears glimmered on hardened faces—generals, priests, even the stern minister</p>
+                    </div>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">In that hush, the palace itself seemed to breathe a new promise. Up above, through the oculus in the ceiling, a shaft of light illuminated the chalice and petals—a silent benediction. Raj Aryan appeared at Dhruvendra’s side, placing a hand on his shoulder. Raj Aryan</span>
+                        <p class="dialogue-text">“The true treasure has no name, no price, no confines. It is the still point in spinning worlds</p>
+                    </div>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">Dhruvendra bowed to the gathered court. Dhruvendra</span>
+                        <p class="dialogue-text">“May this city stand not as a monument to kings, but as a beacon for seekers.” He stepped down from the dais, chalice in hand. The nobles knelt in reverence; the guards lowered their spears. Outside, ravens circled above the palace, their calls echoing like the flute’s final note</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">In the days that followed, Aranyapura transformed. Decisions were made not by decree alone, but in silent meditation before the chalice. Justice balanced with compassion. Festivals honored inner light as much as earthly bounty. And when new leaders rose, they carried the petals’ mosaic—five paths etched into their banners</p>
+                </div>
+                <div class="content-block dialogue-block">
+                    <div class="dialogue-item">
+                        <span class="speaker-label">At the edge of the throne room, Dhruvendra paused one last time. He placed the Key of Silence upon a pedestal beside the chalice. Dhruvendra (whisper)</span>
+                        <p class="dialogue-text">“For those who seek.” He turned and walked through the palace gates—no crown upon his head, but a tranquil smile upon his lips. Beyond awaited forests, deserts, lakes, and cliffs—the wider world thirsting for the treasure he now carried within</p>
+                    </div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">As the flute’s final melody drifted on the breeze, Dhruvendra, the seeker of truth, stepped into the dawn of a new era—one where every heart might become its own sanctuary of stillness</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Dhruvendra – The treasure seeker role: Protagonist essence: From prince to pilgrim. A soul awakened by sacrifice and trial. Once heir to the kingdom of Aranyapura, Dhruvendra walks away from power to seek a truth hidden in dream and Flame. His strength lies not in his sword, but in his growing clarity of heart. 🧙‍♂️Raj Aryan – The guide role: Mentor / Spiritual teacher essence: Wisdom cloaked in humility</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">A former royal philosopher turned wanderer, Raj Aryan leads Dhruvendra through five spiritual trials—not by instructing, but by provoking self-realization. 💔Agnika – The Flame of the heart role: Lover / Emotional anchor essence: Love without possession. A gifted poet and Dhruvendra’s beloved. Though her heart aches for him, she empowers his quest, offering memory, melody, and unconditional grace. 🗡Veerath – The rival role: Antagonist / Shadow self essence: Power without purpose</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Dhruvendra’s childhood friend turned adversary. He represents what Dhruvendra might have become— ambitious, logical, and driven by conquest</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Meera – The silent oracle role: Seer / Inner voice essence: Innocent truth. Mute but mystical, Meera communicates through drawings, gestures, and silence. Her presence helps Dhruvendra face his ego and deepest fears. 🕯The shadow voice role: Illusory temptation essence: The whisper of ego and falsehood. This non-physical presence takes the form of familiar voices to misguide Dhruvendra at his weakest moments</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">To defeat it is to face the self</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">To the ancient texts and timeless traditions of the east that inspired this story’s soul. To my readers, mentors, and every seeker who’s ever walked away from comfort to answer a deeper call. To the quiet voice within that whispered, “Write this.” And to the divine—however you name it —that made every word feel like a return</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 11 — Chapter 10: The Treasure Without Name             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch11" data-chapter-theme="resolution" data-chapter-index="10" aria-label="Chapter 11: Chapter 10: The Treasure Without Name">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">11</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 11</span>
+                    <h2 class="chapter-title">Chapter 10: The Treasure Without Name</h2>
+                    <p class="chapter-synopsis">Varun WR is a storyteller and seeker who blends myth, mysticism, and meaning into fiction. With a deep reverence for ...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">Varun WR is a storyteller and seeker who blends myth, mysticism, and meaning into fiction. With a deep reverence for ancient wisdom and a passion for narrative, he crafts tales that inspire reflection, transformation, and inner awakening. When he’s not writing, Varun explores the intersections of art, ai, and inner truth—always guided by silence, sincerity, and the sound of a distant flute</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Dhruvendra</h3>
+                    <p class="epilogue-sub">Suspense & Adventure</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+</html>

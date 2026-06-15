@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kadha Laga Modhalaina — Act I | Romance & Nostalgia</title>
+    <meta name="description"
+        content="Oka Parichayam. An elegant Telugu romance that unfolds gently through simple gestures.">
+    <meta name="theme-color" content="#050504">
+
+    <!-- Fonts (preconnect for speed) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Design System -->
+    <link rel="stylesheet" href="story-cinematic.css">
+</head>
+
+<body>
+
+    <!-- ============================================ -->
+    <!-- PRELOADER                                    -->
+    <!-- ============================================ -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <span class="preloader-title">Kadha Laga Modhalaina</span>
+        <div class="preloader-line"></div>
+        <span class="preloader-sub">Entering The Story</span>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- CINEMATIC OVERLAYS                           -->
+    <!-- ============================================ -->
+    <div class="film-grain" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- AMBIENT PARTICLE CANVAS                      -->
+    <!-- ============================================ -->
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <!-- ============================================ -->
+    <!-- CURSOR GLOW                                  -->
+    <!-- ============================================ -->
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <!-- ============================================ -->
+    <!-- READING PROGRESS BAR                         -->
+    <!-- ============================================ -->
+    <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0"
+        aria-valuemax="100"></div>
+
+    <!-- ============================================ -->
+    <!-- FOCUS MODE INDICATOR                         -->
+    <!-- ============================================ -->
+    <div class="focus-indicator" aria-live="polite">Focus Reading Mode — Hover Top To Reveal Controls</div>
+
+    <!-- ============================================ -->
+    <!-- HEADER NAVIGATION                            -->
+    <!-- ============================================ -->
+    <header class="glass-header" id="main-header" role="banner">
+        <div class="header-brand" id="header-brand">
+            <span class="header-brand-name">Kadha Laga Modhalaina</span>
+            <span class="header-brand-sub">Romance & Nostalgia</span>
+        </div>
+
+        <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+            <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Introduction">
+                <span class="dot-label">I</span>
+                <span class="dot-tooltip">Chapter 1 · Introduction</span>
+            </button>
+            <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: SO INKA HYPE VADHU">
+                <span class="dot-label">II</span>
+                <span class="dot-tooltip">Chapter 2 · SO INKA HYPE VADHU</span>
+            </button>
+        </nav>
+
+        <div class="header-controls">
+            <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode"
+                aria-label="Toggle focus reading mode">
+                <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                </svg>
+                <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                </svg>
+            </button>
+            
+        </div>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- SIDEBAR CHAPTER NAVIGATION                   -->
+    <!-- ============================================ -->
+    <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+        <span class="sidebar-label">The Story</span>
+        <div class="sidebar-items">
+            <button class="sidebar-item" data-target="#ch1">
+                <span class="sb-num">01</span>
+                <div class="sb-info">
+                    <span class="sb-name">Introduction</span>
+                    <span class="sb-desc">Kadha Laga Modhalaina Oka Parichayam</span>
+                </div>
+            </button>
+            <button class="sidebar-item" data-target="#ch2">
+                <span class="sb-num">02</span>
+                <div class="sb-info">
+                    <span class="sb-name">SO INKA HYPE VADHU</span>
+                    <span class="sb-desc">1972… oka samayam… agni la undi ee bhoomi… slogans, protests, manushula madhya
+                        rek...</span>
+                </div>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- LANDING EXPERIENCE                           -->
+    <!-- ============================================ -->
+    <section class="landing-section" id="landing" aria-label="Story introduction">
+        <div class="landing-ambient" aria-hidden="true"></div>
+
+        <div class="landing-content">
+            <!-- Book Cover with 3D Parallax -->
+            <div class="cover-wrapper">
+                <div class="cover-3d" id="cover-3d">
+                    <img src="New cover/Not Every Relationship Lasts — but Some Endings Create the Sweetest Memories. - 1.png"
+                        alt="Kadha Laga Modhalaina — Book Cover" id="cover-img">
+                    <div class="cover-sheen" aria-hidden="true"></div>
+                </div>
+            </div>
+
+            <!-- Typography Group -->
+            <div class="landing-text">
+                <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+                <h1 class="landing-title" id="landing-title" data-text="Kadha Laga Modhalaina">Kadha Laga Modhalaina
+                </h1>
+                <div class="landing-subtitle" id="landing-subtitle">Romance & Nostalgia</div>
+                <div class="landing-meta" id="landing-meta">Oka Parichayam. An elegant Telugu romance that unfolds
+                    gently through simple gestures.</div>
+                <button class="begin-btn" id="begin-btn">
+                    <span>Begin Story</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="scroll-hint" id="scroll-hint">
+            <span>Scroll to walk through time</span>
+            <div class="scroll-hint-line"></div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- STORY EXPERIENCE                             -->
+    <!-- ============================================ -->
+    <main class="story-wrapper" id="story-wrapper" role="main" aria-label="Kadha Laga Modhalaina story chapters">
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 1 — Introduction             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch1" data-chapter-theme="resolution" data-chapter-index="0"
+            aria-label="Chapter 1: Introduction">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">01</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 01</span>
+                    <h2 class="chapter-title">Introduction</h2>
+                    <p class="chapter-synopsis">Kadha Laga Modhalaina Oka Parichayam</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="resolution" data-intensity="0.30">Kadha Laga Modhalaina Oka
+                        Parichayam</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Introduction</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Ee kadhalo hero ledu… heroine ledu.
+                    </p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Idi manchi ani, adi chedhu ani judge
+                        cheyyadaniki kuda kaadhu. Prathi aarambham lo oka thipi gurtu untundi, Prathi parichayam lo
+                        konchem chedhu kuda kalisuntundi. Jeevitham ala nadusthune untundi… Manam ardham chesina,
+                        chesakapoyina. Kaani chivariki Matti lo kalisaka migiledhi oka gnyapakam maatrame. Memories
+                        manchi aina, chedhu aina… Kaalam tho vati sambandham undadhu. Avi akkadey nilichipothayi. Kaani
+                        nijam enti ante Chivari kshanam varaku, Okarikosam eduruchuse nirishna manishi vadilipettadu.
+                    </p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">“Marpu” ane peru tho… Manalo unna
+                        nijamaina manam ni maname champesthunnaam. Endhuku? “Neeku kosam brathuku… society kosam kaadhu”
+                        ani cheppe ade society,</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Malli “status undali, image maintain
+                        cheyyali” ani pressure peduthundi. Nee tappu ani cheppalem…</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Society tappu ani simple ga blame
+                        cheyyalem. Mari inka aavaru?</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Allaga charitra lo leni socity lo
+                        unna mistakes ni correct chedam ani try chesi last ki ade matilo kalisina....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Oka chinna kadha
+                        ..............................</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">“Chinna kadha” ante thakkuva rojulu
+                        garijina kadha ani kadhu .........</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">society ki enta chepina
+                        vinpinchaledu ani “oka chinna kadha “ ani cheppanu</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Ee kadha ippudu jarigindhi kaadhu.
+                        Ilanti kathalu eppatiki jarugutune untayi. Kaani prathi sari okate tag pettadam</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">#societydown, #systemfail ani
+                        simplify chesthe,Aa kadha lo unna nijamaina value taggipothundi.</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Endhukante…</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Prathi kadha blame kosam kaadhu.
+                        Konni kathalu ardham kosam. Konni reflection kosam.</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Society ni blame cheyyadam easy…
+                        Kaani manam, mana bhayam, mana compromises</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Ivvi kuda aa kathalo part avuthayi.
+                    </p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Anduke…</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">Kadha oka incident kaadhu, Oka
+                        mirror la undali. Chuse vallaki vallane chupinchadaniki.....</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">ee kadha lo unna characters ani kuda
+                        individual ga unatai .. no body knows what was goining kanni ee kadha modhalu pettindi ee
+                        society aa .....</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">so slow ga story loki podam raa</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">edi fantasy kadha kadhu ... edi
+                        rekhala guram medha vache raja kumarudi kadha kadu ............</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">edi mana kadha .... prathi manishi
+                        lo nundi vachina kadha</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">attha raa kada ee lokam
+                        .............. nuvvu em chesina antha maya jevitham anta mayee........ “nenu nenu , nadhi “ anta
+                        maye kada raa...... marri aa maya chesedi nuvvu kadhu , nenu kadhu .... anta shiva tatvam
+                        ...........................</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">andhuke unna ani rojulu unndadam
+                        kosam brakadhu ................ brathkadam kosam brathuku .......</p>
+                </div>
+                <div class="content-block scene-separator" aria-hidden="true">
+                    <div class="separator-line"></div>
+                    <div class="separator-diamond"></div>
+                    <div class="separator-line"></div>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">nuvvu sontosham ga undali ........
+                        andharu annadam ga unadi</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">nuvvu andham kosam kadu , nijam
+                        kosam nadithe darri lo puvulu undavu .............. adhi oka śmaśāna lo unna anta nishabdam raa
+                    </p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="resolution" data-intensity="0.30">nuvvu vesse prathi adugu kuda neku
+                        adhi machi - chedu , thapu - oppu tho pani em ledu. Just YOU ..!</p>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- CHAPTER 2 — SO INKA HYPE VADHU             -->
+        <!-- ======================================== -->
+        <section class="chapter-section" id="ch2" data-chapter-theme="calmness" data-chapter-index="1"
+            aria-label="Chapter 2: SO INKA HYPE VADHU">
+            <div class="chapter-intro">
+                <div class="chapter-watermark" aria-hidden="true">02</div>
+                <div class="chapter-intro-inner">
+                    <span class="chapter-num-label">Chapter 02</span>
+                    <h2 class="chapter-title">SO INKA HYPE VADHU</h2>
+                    <p class="chapter-synopsis">1972… oka samayam… agni la undi ee bhoomi… slogans, protests, manushula
+                        madhya rekhalu kanipinche rojulu… aa rojullo ...</p>
+                    <div class="chapter-scroll-cue">
+                        <span>Scroll to begin</span>
+                        <div class="cue-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chapter-body">
+                <div class="content-block">
+                    <p class="story-p first-para" data-mood="calmness" data-intensity="0.45">1972… oka samayam… agni la
+                        undi ee bhoomi… slogans, protests, manushula madhya rekhalu kanipinche rojulu… aa rojullo oka
+                        chinna parichayam… varsham padutundi bus stop daggara iddaru nilabadi unnaru… okaru ikkada vaadu
+                        kaadu, inkokaru ikkade puttina ammayi… “meeru kotha vaara?” ani aame… “avunu… kani ikkada naaku
+                        naa anipinchadam ledu…” ani atadu… aame navvindi… “meeru try chesthe vastundi…” aa navvu lo, aa
+                        maatallo oka aarambham undi… slow ga maatallo, silence lo valliddari madhya edho perugutundi…
+                        loud ga kaadhu… kanipinchakunda perige oka bhaavam…</p>
+                </div>
+                <div class="content-block">
+                    <p class="story-p" data-mood="calmness" data-intensity="0.45">1972… oka samayam… agni la undi ee
+                        bhoomi… slogans, protests, manushula madhya rekhalu kanipinche rojulu… aa rojullo oka chinna
+                        parichayam… varsham padutundi bus stop daggara iddaru nilabadi unnaru… okaru ikkada vaadu kaadu,
+                        inkokaru ikkade puttina ammayi… “meeru kotha vaara?” ani aame… “avunu… kani ikkada naaku naa
+                        anipinchadam ledu…” ani atadu… aame navvindi… “meeru try chesthe vastundi…” aa navvu lo, aa
+                        maatallo oka aarambham undi… slow ga maatallo, silence lo valliddari madhya edho perugutundi…
+                        loud ga kaadhu… kanipinchakunda perige oka bhaavam…</p>
+                </div>
+
+                <!-- ============================================ -->
+                <!-- STORY EPILOGUE                               -->
+                <!-- ============================================ -->
+                <div class="story-epilogue" id="story-epilogue">
+                    <div class="epilogue-ornament">❖</div>
+                    <h3 class="epilogue-title">Kadha Laga Modhalaina</h3>
+                    <p class="epilogue-sub">Romance & Nostalgia</p>
+                    <div class="epilogue-divider"></div>
+                    <button class="replay-btn" id="replay-btn">
+                        <span>Replay Experience</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================ -->
+    <!-- CORE CDN DEPENDENCIES                        -->
+    <!-- ============================================ -->
+    <!-- GSAP Core + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+    <!-- Cinematic Engine -->
+    <script src="story-cinematic.js"></script>
+
+</body>
+
+</html>
