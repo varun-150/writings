@@ -63,39 +63,9 @@ The portfolio is lightweight, responsive, and runs entirely client-side using st
   * **GSAP & ScrollTrigger:** Drives the paragraph fades, word reveals, and chapter entrance animations.
 * **Effects:** HTML5 Canvas particles and custom SVG noise filters for realistic film grain.
 
----
 
-## 🚀 Running the Portfolio Locally
 
-Since the narratives load custom scripts and fonts, running the files via a local server ensures proper local previewing:
 
-1. **Using Python (built-in):**
-   ```bash
-   python -m http.server 8000
-   ```
-   *Navigate to `http://localhost:8000` to view the bookshelf.*
-
-2. **Using Node/npm:**
-   ```bash
-   npx http-server ./
-   ```
-
-3. **Using VS Code Extension:**
-   Right-click `index.html` and select **"Open with Live Server"**.
-
----
-
-## 🌐 Deploying to the Web (Render)
-
-This repository includes a [render.yaml](file:///e:/Story%20Books/HTML%20Doc/render.yaml) configuration file for zero-config deployments on **Render**.
-
-### Steps to Deploy:
-1. Push this codebase to a GitHub repository.
-2. Log in to [Render](https://render.com/).
-3. Navigate to **Blueprints** in your dashboard and click **New Blueprint Instance**.
-4. Select your connected repository. Render will automatically read the `render.yaml` file, detect it as a static site, and spin up a secure, globally distributed CDN for your creative portfolio.
-
----
 
 ## 📬 Contact & Connections
 
