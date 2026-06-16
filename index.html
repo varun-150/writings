@@ -18,7 +18,7 @@
             --surface: #0e0e12;
             --surface-hover: #16161c;
             --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
+            --text-secondary: #cbd5e1;
             --accent: #d4af37;
             --accent-glow: rgba(212, 175, 55, 0.35);
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -455,6 +455,54 @@
             transform: translateX(4px);
         }
 
+        .author-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(6, 6, 8, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            padding: 0.35rem 0.7rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            z-index: 4;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .book-card:hover .author-badge {
+            border-color: #fff;
+            color: #fff;
+            background: rgba(6, 6, 8, 0.95);
+        }
+
+        .read-story-cta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-top: 0.6rem;
+            opacity: 0.85;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .book-card:hover .read-story-cta {
+            color: #fff;
+            transform: translateX(4px);
+        }
+
         .book-info-footer {
             padding: 1.2rem 1.5rem;
             background: var(--surface);
@@ -469,21 +517,22 @@
 
         .book-info-footer h3 {
             font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             letter-spacing: 0.05em;
         }
 
         .book-info-footer p {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            font-weight: 500;
         }
 
         /* Hover Interactions */
@@ -580,7 +629,27 @@
                 gap: 1rem;
             }
 
+            .archive-catalog-controls {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                margin-bottom: 4rem;
+            }
 
+            .featured-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .featured-cover-container {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+
+            .bookshelf {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
 
             .bookshelf-wrapper {
                 padding: 1rem 6vw 15vw 6vw;
@@ -1561,7 +1630,7 @@
            ------------------------------------------------------------- */
         .featured-recommendation {
             width: 100%;
-            margin-bottom: 4rem;
+            margin-bottom: 6rem;
             position: relative;
             z-index: 10;
         }
@@ -1726,7 +1795,8 @@
             display: grid;
             grid-template-columns: 1fr 380px;
             gap: 3rem;
-            margin-bottom: 4rem;
+            margin-top: 2rem;
+            margin-bottom: 6rem;
             align-items: center;
             position: relative;
             z-index: 10;
@@ -1821,12 +1891,13 @@
 
         .stat-label {
             color: var(--text-secondary);
-            font-size: 0.6rem;
-            opacity: 0.7;
+            font-size: 0.7rem;
+            opacity: 0.85;
         }
 
         .stat-val {
             color: #fff;
+            font-size: 0.85rem;
             font-weight: 500;
         }
 
@@ -1835,8 +1906,8 @@
             border-top: 1px dashed rgba(212, 175, 55, 0.2);
             padding-top: 0.6rem;
             margin-top: 0.8rem;
-            font-size: 0.6rem;
-            opacity: 0.6;
+            font-size: 0.7rem;
+            opacity: 0.75;
         }
 
         /* -------------------------------------------------------------
@@ -1856,7 +1927,7 @@
             display: flex;
             justify-content: space-between;
             font-family: monospace;
-            font-size: 0.68rem;
+            font-size: 0.78rem;
             color: var(--accent);
             border-bottom: 1px dashed rgba(212, 175, 55, 0.2);
             padding-bottom: 0.5rem;
@@ -1878,25 +1949,25 @@
         }
 
         .catalog-line {
-            font-size: 0.72rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
             margin-bottom: 0.4rem;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
         .catalog-line strong {
             color: var(--accent);
             font-family: monospace;
-            font-size: 0.68rem;
+            font-size: 0.78rem;
             letter-spacing: 0.05em;
             display: inline-block;
-            width: 55px;
+            width: 65px;
         }
 
         .catalog-synopsis {
             font-family: 'Inter', sans-serif;
-            font-size: 0.76rem;
-            line-height: 1.5;
+            font-size: 0.86rem;
+            line-height: 1.6;
             color: var(--text-secondary);
             margin-top: 0.8rem;
             padding-top: 0.8rem;
@@ -2162,6 +2233,7 @@
             <div class="book-card" data-category="devotion-spiritual"
                 onclick="window.location.href='Abhinayam.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Abhinayam.png" alt="Abhinayam Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2182,12 +2254,14 @@
                 <div class="book-info-footer">
                     <h3>Abhinayam</h3>
                     <p>Act I · The Echo Of A Previous Life</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
             <!-- Almost -->
             <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Almost.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Almost.png" alt="Almost Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2208,12 +2282,14 @@
                 <div class="book-info-footer">
                     <h3>Almost</h3>
                     <p>INFJ Relationship Story</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
             <!-- Dharshan -->
             <div class="book-card" data-category="devotion-spiritual" onclick="window.location.href='Dharshan.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Dharshan.png" alt="Dharshan Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2234,6 +2310,7 @@
                 <div class="book-info-footer">
                     <h3>Dharshan</h3>
                     <p>A Timeless Devotional Journey</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2241,6 +2318,7 @@
             <div class="book-card" data-category="adventure-fantasy"
                 onclick="window.location.href='DHRUVENDRA%20-%20THE%20TREASURE%20SEEKER.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Dhruvendra.png" alt="Dhruvendra Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2261,6 +2339,7 @@
                 <div class="book-info-footer">
                     <h3>Dhruvendra</h3>
                     <p>The Treasure Seeker</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2268,6 +2347,7 @@
             <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='Green%20Hollow%20ACT%20-%201.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Green Hollow ACT - 1.png" alt="Green Hollow Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2288,6 +2368,7 @@
                 <div class="book-info-footer">
                     <h3>Green Hollow</h3>
                     <p>Act I · The Shadows of the Woods</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2295,6 +2376,7 @@
             <div class="book-card" data-category="social-drama"
                 onclick="window.location.href='Kadha%20Laga%20Modhalaina%20Oka%20Parichayam.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Not Every Relationship Lasts — but Some Endings Create the Sweetest Memories. - 1.png"
                         alt="Kadha Laga Cover" loading="lazy">
                     <div class="glare"></div>
@@ -2316,6 +2398,7 @@
                 <div class="book-info-footer">
                     <h3>Kadha Laga Modhalaina</h3>
                     <p>Oka Parichayam</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2323,6 +2406,7 @@
             <div class="book-card" data-category="mythological-action-thriller"
                 onclick="window.location.href='Kali%20-%20The%20Five%20Paths.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Kali.png" alt="Kali Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2343,6 +2427,7 @@
                 <div class="book-info-footer">
                     <h3>Kali</h3>
                     <p>The Five Paths</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2350,6 +2435,7 @@
             <div class="book-card" data-category="romance nostalgia"
                 onclick="window.location.href='Malli%20Kalisi%E2%80%A6.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Malli Kalisi….png" alt="Malli Kalisi Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2370,6 +2456,7 @@
                 <div class="book-info-footer">
                     <h3>Malli Kalisi…</h3>
                     <p>Reunion of Echoes</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2377,6 +2464,7 @@
             <div class="book-card" data-category="psychological-drama"
                 onclick="window.location.href='Midnight%20Escape.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Midnight Escape.png" alt="Midnight Escape Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2396,6 +2484,7 @@
                 <div class="book-info-footer">
                     <h3>Midnight Escape</h3>
                     <p>Freedom Was Never the Destination</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2403,6 +2492,7 @@
             <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='Nonparticipant.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/NONPARTICIPANT.png" alt="Nonparticipant Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2423,12 +2513,14 @@
                 <div class="book-info-footer">
                     <h3>Nonparticipant</h3>
                     <p>A Silent Witness</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
             <!-- Short and Sweet -->
             <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Short%20and%20Sweet.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Short and Sweet.png" alt="Short and Sweet Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2449,6 +2541,7 @@
                 <div class="book-info-footer">
                     <h3>Short and Sweet</h3>
                     <p>Lighthearted Encounters</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2456,6 +2549,7 @@
             <div class="book-card" data-category="determination-success"
                 onclick="window.location.href='Telugu%20Ammai.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Telugu Ammai.png" alt="Telugu Ammai Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2476,12 +2570,14 @@
                 <div class="book-info-footer">
                     <h3>Telugu Ammai</h3>
                     <p>Pursuit of Dance</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
             <!-- The Midnight Story -->
             <div class="book-card" data-category="psychological-drama" onclick="window.location.href='The%20MidNight%20Story.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/Midnight Escape.png" alt="The Midnight Story Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2502,6 +2598,7 @@
                 <div class="book-info-footer">
                     <h3>The Midnight Story</h3>
                     <p>A Night Under Shadow</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
@@ -2509,6 +2606,7 @@
             <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='THE%20NIGHT%20ONLY%20I%20REMEMBER.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/A Quiet Place Inside Me.png" alt="The Night Only I Remember Cover"
                         loading="lazy">
                     <div class="glare"></div>
@@ -2530,12 +2628,14 @@
                 <div class="book-info-footer">
                     <h3>The Night Only I Remember</h3>
                     <p>Memories in the Void</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 
             <!-- Unsaid -->
             <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Unsaid.html'">
                 <div class="book-cover-container">
+                    <span class="author-badge">Narrative by WR</span>
                     <img src="New cover/UNSAID.png" alt="Unsaid Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
@@ -2556,6 +2656,7 @@
                 <div class="book-info-footer">
                     <h3>Unsaid</h3>
                     <p>Silence in Love</p>
+                    <div class="read-story-cta">Read Story &rarr;</div>
                 </div>
             </div>
 

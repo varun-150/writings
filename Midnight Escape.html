@@ -627,6 +627,12 @@ body.font-large {
 }
 
 @media (max-width: 600px) {
+    body {
+        font-size: clamp(16px, 1.2vw, 18px);
+    }
+    .story-content p {
+        font-size: 1.15rem;
+    }
     .hero {
         padding: 5rem 1.25rem 3rem;
     }
