@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Narrative Archive — Premium Cinematic Experiences</title>
+    <title>The Story Vault of wazir — Premium Cinematic Experiences</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -640,76 +640,59 @@
             font-size: clamp(1.8rem, 4.5vw, 3rem);
             font-weight: 400;
             letter-spacing: 0.15em;
-            color: #ffffff;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            background: linear-gradient(90deg, #ffffff 0%, #ffeaa7 50%, #ffffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
             opacity: 0;
             transform: translateY(15px);
-            animation: splashFadeInUp 1.2s ease forwards 0.5s;
+            animation: splashFadeInUp 1.2s ease forwards 0.5s, goldShimmer 6s linear infinite;
         }
 
-        .splash-loader-container {
-            width: 240px;
-            height: 2px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-bottom: 1rem;
+        @keyframes goldShimmer {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .splash-phrase {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            font-style: italic;
+            letter-spacing: 0.15em;
+            color: var(--accent);
             opacity: 0;
-            animation: splashFadeIn 1s ease forwards 0.8s;
-            transition: opacity 0.5s ease;
+            transform: translateY(10px);
+            animation: splashFadeInUp 1.8s ease forwards 1.2s;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
         }
 
-        .splash-loader-bar {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-dim), var(--accent));
-            box-shadow: 0 0 8px var(--accent);
-            transition: width 0.05s linear;
+        .splash-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9999;
+            animation: atmosphericPulse 8s ease-in-out infinite alternate;
         }
 
-        .splash-status {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            opacity: 0;
-            animation: splashFadeIn 1s ease forwards 0.8s;
-            transition: opacity 0.5s ease;
-        }
-
-        .enter-btn {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            background: transparent;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 0.9rem 2.2rem;
-            border-radius: 40px;
-            cursor: pointer;
-            display: none;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.02);
-        }
-
-        .enter-btn.visible {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .enter-btn.visible:hover {
-            color: #060608;
-            background-color: #ffffff;
-            border-color: #ffffff;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
-            transform: scale(1.02);
+        @keyframes atmosphericPulse {
+            0% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
 
         @keyframes splashFadeInUp {
@@ -719,10 +702,1325 @@
             }
         }
 
+        /* -------------------------------------------------------------
+           INTERACTIVE Q&A CONSOLE STYLE
+           ------------------------------------------------------------- */
+        .qa-section {
+            position: relative;
+            z-index: 10;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 4rem 8vw;
+        }
+
+        .qa-container {
+            background: rgba(14, 14, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.02);
+            transition: var(--transition);
+        }
+
+        .qa-container:hover {
+            border-color: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.05);
+        }
+
+        .qa-header {
+            margin-bottom: 2.5rem;
+            text-align: left;
+            position: relative;
+        }
+
+        .qa-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: #fff;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        .qa-header p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .qa-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            min-height: 450px;
+        }
+
+        .qa-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .qa-search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .qa-search-box input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            transition: var(--transition);
+        }
+
+        .qa-search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.03);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.08);
+        }
+
+        .qa-search-box .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .qa-questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-height: 380px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        /* Custom Scrollbar for list and terminal */
+        .qa-questions-list::-webkit-scrollbar,
+        .qa-terminal-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .qa-questions-list::-webkit-scrollbar-track,
+        .qa-terminal-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .qa-questions-list::-webkit-scrollbar-thumb,
+        .qa-terminal-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .qa-questions-list::-webkit-scrollbar-thumb:hover,
+        .qa-terminal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        .qa-q-btn {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-secondary);
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .qa-q-btn:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateX(3px);
+        }
+
+        .qa-q-btn.active {
+            color: #fff;
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.04);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.05);
+            font-weight: 500;
+        }
+
+        .qa-display {
+            background: #09090c;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .qa-terminal-header {
+            background: #0d0d12;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .terminal-dots .dot.red {
+            background: #ff5f56;
+        }
+
+        .terminal-dots .dot.yellow {
+            background: #ffbd2e;
+        }
+
+        .terminal-dots .dot.green {
+            background: #27c93f;
+        }
+
+        .terminal-title {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .qa-terminal-body {
+            padding: 1.8rem;
+            flex-grow: 1;
+            overflow-y: auto;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            max-height: 380px;
+        }
+
+        .console-prompt {
+            color: var(--accent);
+            font-family: monospace;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .interactive-prompt-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .quick-question-btn {
+            background: transparent;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            color: var(--text-secondary);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            width: fit-content;
+        }
+
+        .quick-question-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.03);
+            transform: translateX(5px);
+        }
+
+        /* Layout for printed answers */
+        .qa-answer-container {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .qa-answer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .qa-answer-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .qa-answer-text strong {
+            color: #fff;
+        }
+
+        .qa-answer-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .qa-answer-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .qa-answer-list li::before {
+            content: '◆';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            font-size: 0.7rem;
+        }
+
+        .qa-answer-list li strong {
+            color: #fff;
+        }
+
+        .qa-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .qa-contact-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .qa-contact-card:hover {
+            background: rgba(212, 175, 55, 0.05);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Simulated Cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: var(--accent);
+            margin-left: 4px;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .story-list-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .story-mini-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .story-mini-card:hover {
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .story-mini-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+
+        .story-mini-card p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 992px) {
+            .qa-content {
+                grid-template-columns: 1fr;
+            }
+
+            .qa-questions-list {
+                max-height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .qa-section {
+                padding: 3rem 6vw;
+            }
+
+            .qa-container {
+                padding: 1.5rem;
+            }
+
+            .story-list-mini {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @keyframes splashFadeIn {
             to {
                 opacity: 0.6;
             }
+        }
+
+        /* -------------------------------------------------------------
+           INTERACTIVE Q&A CONSOLE STYLE
+           ------------------------------------------------------------- */
+        .qa-section {
+            position: relative;
+            z-index: 10;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 4rem 8vw;
+        }
+
+        .qa-container {
+            background: rgba(14, 14, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.02);
+            transition: var(--transition);
+        }
+
+        .qa-container:hover {
+            border-color: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.05);
+        }
+
+        .qa-header {
+            margin-bottom: 2.5rem;
+            text-align: left;
+            position: relative;
+        }
+
+        .qa-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: #fff;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        .qa-header p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .qa-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            min-height: 450px;
+        }
+
+        .qa-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .qa-search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .qa-search-box input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            transition: var(--transition);
+        }
+
+        .qa-search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.03);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.08);
+        }
+
+        .qa-search-box .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .qa-questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-height: 380px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        /* Custom Scrollbar for list and terminal */
+        .qa-questions-list::-webkit-scrollbar,
+        .qa-terminal-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .qa-questions-list::-webkit-scrollbar-track,
+        .qa-terminal-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .qa-questions-list::-webkit-scrollbar-thumb,
+        .qa-terminal-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .qa-questions-list::-webkit-scrollbar-thumb:hover,
+        .qa-terminal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        .qa-q-btn {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-secondary);
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .qa-q-btn:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateX(3px);
+        }
+
+        .qa-q-btn.active {
+            color: #fff;
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.04);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.05);
+            font-weight: 500;
+        }
+
+        .qa-display {
+            background: #09090c;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .qa-terminal-header {
+            background: #0d0d12;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .terminal-dots .dot.red {
+            background: #ff5f56;
+        }
+
+        .terminal-dots .dot.yellow {
+            background: #ffbd2e;
+        }
+
+        .terminal-dots .dot.green {
+            background: #27c93f;
+        }
+
+        .terminal-title {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .qa-terminal-body {
+            padding: 1.8rem;
+            flex-grow: 1;
+            overflow-y: auto;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            max-height: 380px;
+        }
+
+        .console-prompt {
+            color: var(--accent);
+            font-family: monospace;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .interactive-prompt-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .quick-question-btn {
+            background: transparent;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            color: var(--text-secondary);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            width: fit-content;
+        }
+
+        .quick-question-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.03);
+            transform: translateX(5px);
+        }
+
+        /* Layout for printed answers */
+        .qa-answer-container {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .qa-answer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .qa-answer-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .qa-answer-text strong {
+            color: #fff;
+        }
+
+        .qa-answer-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .qa-answer-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .qa-answer-list li::before {
+            content: '◆';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            font-size: 0.7rem;
+        }
+
+        .qa-answer-list li strong {
+            color: #fff;
+        }
+
+        .qa-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .qa-contact-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .qa-contact-card:hover {
+            background: rgba(212, 175, 55, 0.05);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Simulated Cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: var(--accent);
+            margin-left: 4px;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .story-list-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .story-mini-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .story-mini-card:hover {
+            border-color: var(--accent);
+            background: rgba(212, 175, 55, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .story-mini-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+
+        .story-mini-card p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 992px) {
+            .qa-content {
+                grid-template-columns: 1fr;
+            }
+
+            .qa-questions-list {
+                max-height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .qa-section {
+                padding: 3rem 6vw;
+            }
+
+            .qa-container {
+                padding: 1.5rem;
+            }
+
+            .story-list-mini {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* -------------------------------------------------------------
+           FEATURED RECOMMENDATION SECTION
+           ------------------------------------------------------------- */
+        .featured-recommendation {
+            width: 100%;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .featured-card {
+            background: rgba(14, 14, 18, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 3rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.01);
+            transition: var(--transition);
+        }
+
+        .featured-card:hover {
+            border-color: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.04);
+        }
+
+        .featured-cover-container {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.05);
+            transform: rotateY(-5deg) rotateX(2deg);
+            transform-style: preserve-3d;
+            transition: var(--transition);
+        }
+
+        .featured-card:hover .featured-cover-container {
+            transform: rotateY(-2deg) rotateX(0deg) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(212, 175, 55, 0.1);
+        }
+
+        .featured-cover-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: transform 1s ease;
+        }
+
+        .featured-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.08) 35%, transparent 40%);
+            transform: translateX(-100%);
+            transition: transform 1.2s ease;
+        }
+
+        .featured-card:hover .featured-glare {
+            transform: translateX(100%);
+        }
+
+        .featured-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .curator-tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        .featured-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #fff;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .featured-hook {
+            font-family: 'Cinzel', serif;
+            font-style: italic;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        .featured-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            border-top: 1px dashed rgba(255, 255, 255, 0.05);
+            padding-top: 1.2rem;
+        }
+
+        .featured-meta strong {
+            color: #fff;
+        }
+
+        .featured-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .featured-btn:hover {
+            background: rgba(212, 175, 55, 0.08);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+            color: #fff;
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .featured-btn svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* -------------------------------------------------------------
+           ARCHIVE CATALOG CONTROLS (FILTERS + METADATA CARD)
+           ------------------------------------------------------------- */
+        .archive-catalog-controls {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-shelf {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .catalog-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .filter-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.8rem;
+        }
+
+        .filter-link {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .filter-link::before {
+            content: '•';
+            color: var(--accent);
+            margin-right: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .filter-link:hover,
+        .filter-link.active {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+        }
+
+        .filter-link.active::before,
+        .filter-link:hover::before {
+            opacity: 1;
+        }
+
+        .archival-stats-card {
+            background: rgba(212, 175, 55, 0.02);
+            border: 1px dashed rgba(212, 175, 55, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: monospace;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+        }
+
+        .stats-header {
+            color: var(--accent);
+            text-align: center;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.2);
+            padding-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.6rem;
+            opacity: 0.7;
+        }
+
+        .stat-val {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .stats-footer {
+            text-align: center;
+            border-top: 1px dashed rgba(212, 175, 55, 0.2);
+            padding-top: 0.6rem;
+            margin-top: 0.8rem;
+            font-size: 0.6rem;
+            opacity: 0.6;
+        }
+
+        /* -------------------------------------------------------------
+           LIBRARIAN CATALOG PREVIEW OVERLAY
+           ------------------------------------------------------------- */
+        .library-catalog-card {
+            background: rgba(8, 8, 10, 0.97) !important;
+            border: 1px solid rgba(212, 175, 55, 0.22) !important;
+            border-radius: 8px;
+            padding: 1.5rem !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.95);
+            text-align: left;
+            justify-content: flex-start !important;
+        }
+
+        .catalog-card-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: monospace;
+            font-size: 0.68rem;
+            color: var(--accent);
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.2);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .catalog-card-body {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .catalog-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .catalog-line {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+            line-height: 1.4;
+        }
+
+        .catalog-line strong {
+            color: var(--accent);
+            font-family: monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.05em;
+            display: inline-block;
+            width: 55px;
+        }
+
+        .catalog-synopsis {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.76rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* -------------------------------------------------------------
+           LOCAL READING MEMORY BOOKMARK (RIBBON)
+           ------------------------------------------------------------- */
+        .reading-bookmark {
+            position: fixed;
+            top: 0;
+            right: 8vw;
+            width: 180px;
+            background: #d4af37;
+            color: #060608;
+            padding: 1.5rem 1rem;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            transform: translateY(-100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .reading-bookmark.visible {
+            transform: translateY(0);
+        }
+
+        .reading-bookmark:hover {
+            transform: translateY(10px);
+        }
+
+        /* Ribbon cut styling */
+        .reading-bookmark::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 90px solid #d4af37;
+            border-right: 90px solid #d4af37;
+            border-bottom: 15px solid transparent;
+        }
+
+        .bookmark-tag {
+            font-family: monospace;
+            font-size: 0.55rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .bookmark-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.05rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .bookmark-chapter {
+            font-size: 0.68rem;
+            margin-bottom: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        .bookmark-progress-container {
+            width: 100%;
+            height: 3px;
+            background: rgba(6, 6, 8, 0.15);
+            border-radius: 2px;
+            position: relative;
+            margin-bottom: 1.2rem;
+        }
+
+        .bookmark-progress-bar {
+            height: 100%;
+            background: #060608;
+            width: 0%;
+            border-radius: 2px;
+        }
+
+        .bookmark-percent {
+            position: absolute;
+            right: 0;
+            top: -14px;
+            font-size: 0.6rem;
+            font-weight: bold;
+        }
+
+        .bookmark-btn {
+            background: #060608;
+            color: #d4af37;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .bookmark-btn:hover {
+            background: #fff;
+            color: #060608;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
         }
     </style>
 </head>
@@ -731,14 +2029,11 @@
 
     <!-- Cinematic Splash Screen -->
     <div id="splash-screen">
+        <div class="splash-glow"></div>
         <div class="splash-content">
             <div class="splash-brand">WR Presents</div>
-            <h1 class="splash-title">DIGITAL NARRATIVE ARCHIVE</h1>
-            <div class="splash-loader-container" id="splash-loader-wrap">
-                <div class="splash-loader-bar" id="splash-loader-bar"></div>
-            </div>
-            <div class="splash-status" id="splash-status">LOADING ARCHIVE &bull; 0%</div>
-            <button id="enter-archive-btn" class="enter-btn">ENTER ARCHIVE</button>
+            <h1 class="splash-title">THE STORY VAULT</h1>
+            <div class="splash-phrase">Every Story Leaves a Trace.</div>
         </div>
     </div>
 
@@ -753,25 +2048,118 @@
     <header>
         <div class="brand">
             <div class="brand-logo-container">
-                <img src="New cover/Logo.png" alt="Digital Narrative Archive Logo" class="brand-logo">
+                <img src="New cover/Logo.png" alt="The Story Vault Logo" class="brand-logo">
             </div>
             <div class="brand-text">
-                <h1>Digital Narrative Archive</h1>
+                <h1>The Story Vault</h1>
                 <div class="subtitle">Premium Cinematic Experiences</div>
             </div>
         </div>
         <div class="header-controls">
-            
+            <button id="qa-toggle-btn" class="control-btn">
+                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                Archive Guide
+            </button>
         </div>
     </header>
 
 
 
     <main class="bookshelf-wrapper">
+
+        <!-- Continue Reading Bookmark Ribbon -->
+        <div id="reading-bookmark" class="reading-bookmark">
+            <div class="bookmark-tag">Current Log</div>
+            <h4 class="bookmark-title" id="bookmark-title">Almost</h4>
+            <div class="bookmark-chapter" id="bookmark-chapter">Chapter II</div>
+            <div class="bookmark-progress-container">
+                <div class="bookmark-progress-bar" id="bookmark-progress-bar"></div>
+                <span class="bookmark-percent" id="bookmark-percentage">45%</span>
+            </div>
+            <a href="#" class="bookmark-btn" id="bookmark-link">Resume Journey</a>
+        </div>
+
+        <!-- Featured Curator Recommendation -->
+        <div class="featured-recommendation">
+            <div class="featured-card">
+                <div class="featured-cover-container">
+                    <img src="New cover/Abhinayam.png" alt="Abhinayam Featured Cover">
+                    <div class="featured-glare"></div>
+                </div>
+                <div class="featured-details">
+                    <span class="curator-tag">Curator Recommendation</span>
+                    <h2 class="featured-title">Abhinayam</h2>
+                    <p class="featured-hook">"The Gopika Who Returned — A lifetimes-spanning narrative of devotion,
+                        separation, and spiritual longing."</p>
+                    <p class="featured-description">Experience the journey of a Gopika whose love for Krishna transcends
+                        eras, presented through a custom cinematic scroll-driven storytelling flow. Environmental
+                        colors, dynamic lighting, and word reveals synchronize directly with your pacing.</p>
+                    <div class="featured-meta">
+                        <span><strong>Genre:</strong> Romance, Devotion & Tragedy</span>
+                        <span><strong>Tone:</strong> Devotional & Melancholic</span>
+                        <span><strong>Duration:</strong> ~45 Mins</span>
+                    </div>
+                    <button class="featured-btn" onclick="window.location.href='Abhinayam.html'">
+                        Begin Experience
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Archive Catalog Controls (Filter + Monospace Statistics) -->
+        <div class="archive-catalog-controls">
+            <div class="filter-shelf">
+                <span class="catalog-label">Archive Catalog Shelves</span>
+                <div class="filter-links">
+                    <button class="filter-link active" data-filter="all">All Logs</button>
+                    <button class="filter-link" data-filter="devotion-spiritual">Devotion / Spiritual</button>
+                    <button class="filter-link" data-filter="romance">Romance</button>
+                    <button class="filter-link" data-filter="nostalgia">Nostalgia</button>
+                    <button class="filter-link" data-filter="determination-success">Determination / Success</button>
+                    <button class="filter-link" data-filter="adventure-fantasy">Adventure / Fantasy</button>
+                    <button class="filter-link" data-filter="thriller-mystery">Thriller / Mystery</button>
+                    <button class="filter-link" data-filter="psychological-drama">Psychological Drama</button>
+                    <button class="filter-link" data-filter="mythological-action-thriller">Mythological Action Thriller</button>
+                    <button class="filter-link" data-filter="social-drama">Social Drama</button>
+                </div>
+            </div>
+            <div class="archival-stats-card">
+                <div class="stats-header">ARCHIVAL METADATA RECORD</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">CATALOGED WORKS</span>
+                        <span class="stat-val">15 Stories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">RECORDED WORDS</span>
+                        <span class="stat-val">~85,200 Words</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">GENRES EXPLORED</span>
+                        <span class="stat-val">9 Categories</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">READING TIME</span>
+                        <span class="stat-val">~7.0 Hours Total</span>
+                    </div>
+                </div>
+                <div class="stats-footer">Accession Code: WR-ARC-2026.01</div>
+            </div>
+        </div>
+
         <div class="bookshelf">
 
             <!-- Abhinayam -->
-            <div class="book-card" data-category="Love comes from Devotion"
+            <div class="book-card" data-category="devotion-spiritual"
                 onclick="window.location.href='Abhinayam.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Abhinayam.png" alt="Abhinayam Cover" loading="lazy">
@@ -798,7 +2186,7 @@
             </div>
 
             <!-- Almost -->
-            <div class="book-card" data-category="romance calmness" onclick="window.location.href='Almost.html'">
+            <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Almost.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Almost.png" alt="Almost Cover" loading="lazy">
                     <div class="glare"></div>
@@ -824,7 +2212,7 @@
             </div>
 
             <!-- Dharshan -->
-            <div class="book-card" data-category="calmness" onclick="window.location.href='Dharshan.html'">
+            <div class="book-card" data-category="devotion-spiritual" onclick="window.location.href='Dharshan.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Dharshan.png" alt="Dharshan Cover" loading="lazy">
                     <div class="glare"></div>
@@ -850,7 +2238,7 @@
             </div>
 
             <!-- DHRUVENDRA -->
-            <div class="book-card" data-category="tension"
+            <div class="book-card" data-category="adventure-fantasy"
                 onclick="window.location.href='DHRUVENDRA%20-%20THE%20TREASURE%20SEEKER.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Dhruvendra.png" alt="Dhruvendra Cover" loading="lazy">
@@ -877,7 +2265,7 @@
             </div>
 
             <!-- Green Hollow -->
-            <div class="book-card" data-category="tension"
+            <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='Green%20Hollow%20ACT%20-%201.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Green Hollow ACT - 1.png" alt="Green Hollow Cover" loading="lazy">
@@ -904,7 +2292,7 @@
             </div>
 
             <!-- Kadha Laga Modhalaina Oka Parichayam -->
-            <div class="book-card" data-category="romance"
+            <div class="book-card" data-category="social-drama"
                 onclick="window.location.href='Kadha%20Laga%20Modhalaina%20Oka%20Parichayam.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Not Every Relationship Lasts — but Some Endings Create the Sweetest Memories. - 1.png"
@@ -932,7 +2320,7 @@
             </div>
 
             <!-- Kali -->
-            <div class="book-card" data-category="tension sadness"
+            <div class="book-card" data-category="mythological-action-thriller"
                 onclick="window.location.href='Kali%20-%20The%20Five%20Paths.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Kali.png" alt="Kali Cover" loading="lazy">
@@ -959,7 +2347,7 @@
             </div>
 
             <!-- Malli Kalisi… -->
-            <div class="book-card" data-category="romance sadness"
+            <div class="book-card" data-category="romance nostalgia"
                 onclick="window.location.href='Malli%20Kalisi%E2%80%A6.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Malli Kalisi….png" alt="Malli Kalisi Cover" loading="lazy">
@@ -985,8 +2373,34 @@
                 </div>
             </div>
 
+            <!-- Midnight Escape -->
+            <div class="book-card" data-category="psychological-drama"
+                onclick="window.location.href='Midnight%20Escape.html'">
+                <div class="book-cover-container">
+                    <img src="New cover/Midnight Escape.png" alt="Midnight Escape Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Midnight Escape</h4>
+                        <div class="overlay-mood">Psychological Drama</div>
+                        <div class="overlay-meta">Freedom Was Never the Destination. Surya and Sameera's search for choice and freedom beyond family expectations.</div>
+                        <button class="begin-btn">
+                            Begin Experience
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Midnight Escape</h3>
+                    <p>Freedom Was Never the Destination</p>
+                </div>
+            </div>
+
             <!-- Nonparticipant -->
-            <div class="book-card" data-category="sadness calmness"
+            <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='Nonparticipant.html'">
                 <div class="book-cover-container">
                     <img src="New cover/NONPARTICIPANT.png" alt="Nonparticipant Cover" loading="lazy">
@@ -1013,7 +2427,7 @@
             </div>
 
             <!-- Short and Sweet -->
-            <div class="book-card" data-category="romance" onclick="window.location.href='Short%20and%20Sweet.html'">
+            <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Short%20and%20Sweet.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Short and Sweet.png" alt="Short and Sweet Cover" loading="lazy">
                     <div class="glare"></div>
@@ -1039,7 +2453,7 @@
             </div>
 
             <!-- Telugu Ammai -->
-            <div class="book-card" data-category="romance calmness"
+            <div class="book-card" data-category="determination-success"
                 onclick="window.location.href='Telugu%20Ammai.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Telugu Ammai.png" alt="Telugu Ammai Cover" loading="lazy">
@@ -1066,7 +2480,7 @@
             </div>
 
             <!-- The Midnight Story -->
-            <div class="book-card" data-category="tension" onclick="window.location.href='The%20MidNight%20Story.html'">
+            <div class="book-card" data-category="psychological-drama" onclick="window.location.href='The%20MidNight%20Story.html'">
                 <div class="book-cover-container">
                     <img src="New cover/Midnight Escape.png" alt="The Midnight Story Cover" loading="lazy">
                     <div class="glare"></div>
@@ -1092,7 +2506,7 @@
             </div>
 
             <!-- THE NIGHT ONLY I REMEMBER -->
-            <div class="book-card" data-category="sadness tension"
+            <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='THE%20NIGHT%20ONLY%20I%20REMEMBER.html'">
                 <div class="book-cover-container">
                     <img src="New cover/A Quiet Place Inside Me.png" alt="The Night Only I Remember Cover"
@@ -1120,7 +2534,7 @@
             </div>
 
             <!-- Unsaid -->
-            <div class="book-card" data-category="romance sadness" onclick="window.location.href='Unsaid.html'">
+            <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Unsaid.html'">
                 <div class="book-cover-container">
                     <img src="New cover/UNSAID.png" alt="Unsaid Cover" loading="lazy">
                     <div class="glare"></div>
@@ -1148,35 +2562,115 @@
         </div>
     </main>
 
+    <!-- Q&A Console Section -->
+    <section class="qa-section" id="archive-guide">
+        <div class="qa-container">
+            <div class="qa-header">
+                <h2>Archive Guide & Q&A</h2>
+                <p>Interact with the archive system to learn about the stories, philosophy, and tech stack.</p>
+            </div>
+            <div class="qa-content">
+                <div class="qa-sidebar">
+                    <div class="qa-search-box">
+                        <input type="text" id="qa-search" placeholder="Search archive logs...">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <div class="qa-questions-list" id="qa-questions-list">
+                        <!-- Questions dynamically loaded -->
+                    </div>
+                </div>
+                <div class="qa-display">
+                    <div class="qa-terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">wazir-archive-terminal:~</span>
+                    </div>
+                    <div class="qa-terminal-body" id="qa-terminal-body">
+                        <!-- Output dynamic -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
-            <p>WR &bull; Digital Narrative Archive &bull; Reimagined Cinematic Storytelling</p>
+            <p>WR &bull; The Story Vault &bull; Reimagined Cinematic Storytelling</p>
             <div class="footer-contact">
                 <a href="mailto:akurivarun@gmail.com" class="contact-link">
-                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
                     akurivarun@gmail.com
                 </a>
                 <a href="tel:+917893710452" class="contact-link">
-                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
                     +91 7893710452
                 </a>
-                <a href="https://linkedin.com/in/akuri-venkata-surya-varun50b244366" target="_blank" rel="noopener noreferrer" class="contact-link">
-                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                <a href="https://linkedin.com/in/akuri-venkata-surya-varun50b244366" target="_blank"
+                    rel="noopener noreferrer" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
                     LinkedIn
                 </a>
                 <a href="https://github.com/varun-150" target="_blank" rel="noopener noreferrer" class="contact-link">
-                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
                     GitHub
                 </a>
-                <a href="https://www.instagram.com/writings_of_wazirv/" target="_blank" rel="noopener noreferrer" class="contact-link">
-                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <a href="https://www.instagram.com/writings_of_wazirv/" target="_blank" rel="noopener noreferrer"
+                    class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
                     Instagram
                 </a>
             </div>
         </div>
     </footer>
 
+    <!-- Core Scroll and Animation CDN dependencies -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
     <script>
+        // Initialize Lenis Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            touchMultiplier: 1.2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
         // -------------------------------------------------------------
         // 1. DYNAMIC CURSOR
         // -------------------------------------------------------------
@@ -1210,10 +2704,15 @@
             }
             requestAnimationFrame(updateCursor);
 
-            // Active Class
-            document.querySelectorAll('a, button, .book-card').forEach(el => {
-                el.addEventListener('mouseenter', () => document.body.classList.add('cursor-active'));
-                el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-active'));
+            // Active Class (using delegation for dynamic elements)
+            document.addEventListener('mouseover', (e) => {
+                if (!window.matchMedia("(pointer: fine)").matches) return;
+                const target = e.target.closest('a, button, .book-card, .qa-q-btn, .story-mini-card, .qa-contact-card, .quick-question-btn');
+                if (target) {
+                    document.body.classList.add('cursor-active');
+                } else {
+                    document.body.classList.remove('cursor-active');
+                }
             });
         }
 
@@ -1302,49 +2801,591 @@
         // -------------------------------------------------------------
         window.addEventListener('DOMContentLoaded', () => {
             const splashScreen = document.getElementById('splash-screen');
-            const loaderBar = document.getElementById('splash-loader-bar');
-            const loaderStatus = document.getElementById('splash-status');
-            const enterBtn = document.getElementById('enter-archive-btn');
-            const loaderWrap = document.getElementById('splash-loader-wrap');
+            const canvas = document.getElementById('particle-canvas');
 
-            let progress = 0;
-            const loadingDuration = 1800; // 1.8 seconds loading simulation
-            const intervalTime = 30;
-            const steps = loadingDuration / intervalTime;
-            const progressIncrement = 100 / steps;
+            // Float particles on top of splash screen during opening sequence
+            if (canvas) {
+                canvas.style.zIndex = '10001';
+            }
 
-            const loadingInterval = setInterval(() => {
-                progress += progressIncrement + (Math.random() * 2); // add some jitter for realism
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(loadingInterval);
-                    
-                    // Trigger loader transition
-                    loaderBar.style.width = '100%';
-                    loaderStatus.textContent = 'ARCHIVE READY';
-                    
-                    setTimeout(() => {
-                        // Fade out loading items
-                        loaderWrap.style.opacity = '0';
-                        loaderStatus.style.opacity = '0';
-                        
-                        setTimeout(() => {
-                            loaderWrap.style.display = 'none';
-                            loaderStatus.style.display = 'none';
-                            // Show enter button
-                            enterBtn.classList.add('visible');
-                        }, 500);
-                    }, 400);
-                } else {
-                    loaderBar.style.width = `${progress}%`;
-                    loaderStatus.textContent = `LOADING ARCHIVE • ${Math.round(progress)}%`;
+            // Elegant automatic fade out after 2.5 seconds
+            setTimeout(() => {
+                if (splashScreen) {
+                    splashScreen.classList.add('fade-out');
                 }
-            }, intervalTime);
+                // Return canvas to z-index 1 so it sits behind text
+                setTimeout(() => {
+                    if (canvas) {
+                        canvas.style.zIndex = '1';
+                    }
+                }, 1200); // matching splash transition fade time
+            }, 2500);
+                // -------------------------------------------------------------
+                // INTERACTIVE Q&A CONSOLE ENGINE
+                // -------------------------------------------------------------
+                const qaData = {
+                    'who-is-wr': {
+                        title: "Who is WR?",
+                        command: "query_archive --agent who_is_wr",
+                        intro: "WR represents the personal creative writing portfolio of Akuri Venkata Surya Varun, an Indian writer and digital creator who specializes in craft-focused, character-driven storytelling.",
+                        contentHtml: `
+                        <ul class="qa-answer-list">
+                            <li><strong>Creative Persona:</strong> Varun writes under the moniker WR, exploring themes of romance, tragedy, mythology, devotion, suspense, and human connection.</li>
+                            <li><strong>Visual Narrator:</strong> Believes that in a digital world, storytelling should extend beyond static documents and become an immersive multisensory experience.</li>
+                            <li><strong>Interactive Developer:</strong> Built and designed this custom portfolio website from scratch to showcase these stories dynamically.</li>
+                        </ul>
+                    `
+                    },
+                    'about-portfolio': {
+                        title: "What is this Portfolio?",
+                        command: "cat archive_manifest.json",
+                        intro: "Welcome to The Story Vault. Rather than presenting stories as plain static text, this platform combines original creative writing with cinematic design, visual pacing, and responsive motion.",
+                        contentHtml: `
+                        <p class="qa-answer-text">The collection represents my journey as both a writer and digital creator. Key focuses include:</p>
+                        <ul class="qa-answer-list">
+                            <li><strong>Emotional Depths:</strong> Narratives exploring deep emotional, psychological, and spiritual spaces.</li>
+                            <li><strong>Atmospheric Immersion:</strong> Creating a unified experience where design directly reinforces the prose.</li>
+                            <li><strong>Reader Focus:</strong> A curated reading experience engineered to minimize distractions and maximize immersion.</li>
+                        </ul>
+                    `
+                    },
+                    'why-i-built-wr': {
+                        title: "Why I Built WR",
+                        command: "query_archive --intent why_built",
+                        intro: "Most stories online are presented as static pages. I wanted to explore how interaction, motion, atmosphere, and visual design could deepen emotional engagement without distracting from the narrative itself.",
+                        contentHtml: `
+                        <p class="qa-answer-text">WR became an experiment in combining storytelling, UX design, and front-end development into a single immersive experience.</p>
+                    `
+                    },
+                    'featured-works': {
+                        title: "Featured Works & Stories",
+                        command: "list_works --status active",
+                        intro: "Here are the primary works currently showcased in this archive. You can hover/click any card on the shelf above to enter the experience, or click on a work below to highlight it on the shelf:",
+                        contentHtml: `
+                        <div class="story-list-mini">
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Abhinayam')">
+                                <h4>Abhinayam</h4>
+                                <p>Romance, Devotion & Tragedy</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Almost')">
+                                <h4>Almost</h4>
+                                <p>Quiet Romance & Calmness</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Dharshan')">
+                                <h4>Dharshan</h4>
+                                <p>Devotional Calmness</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Dhruvendra')">
+                                <h4>Dhruvendra</h4>
+                                <p>Adventure & Suspense</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Green Hollow')">
+                                <h4>Green Hollow</h4>
+                                <p>Mystery & Tension</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Kadha Laga Modhalaina')">
+                                <h4>Kadha Laga Modhalaina</h4>
+                                <p>Romance & Nostalgia (Telugu)</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Kali')">
+                                <h4>Kali: The Five Paths</h4>
+                                <p>Tragedy & Mythic Fantasy</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Malli Kalisi…')">
+                                <h4>Malli Kalisi…</h4>
+                                <p>Romance & Tragedy</p>
+                            </div>
+                        </div>
+                    `
+                    },
+                    'storytelling-engine': {
+                        title: "Interactive Storytelling Engine",
+                        command: "diagnose --engine",
+                        intro: "To bridge the gap between literature and visual art, the stories are presented through a custom web-based reading engine featuring:",
+                        contentHtml: `
+                        <ul class="qa-answer-list">
+                            <li><strong>Emotional Theme Transitions:</strong> Screen colors and canvas particles shift automatically as you scroll to reflect narrative mood shifts (e.g., sunset, cosmic, grief, tension).</li>
+                            <li><strong>Word-by-Word Reveals:</strong> Synchronized ScrollTrigger animations fade in sentences word-by-word to pace the reader.</li>
+                            <li><strong>Focus Mode:</strong> A toggle that wipes away all headers, sidebars, and UI to create a pure, distraction-free environment.</li>
+                            <li><strong>3D Bookshelf Interface:</strong> A responsive grid utilizing perspective tilts and glare effects to create a physical shelf feel.</li>
+                            <li><strong>Cinematic preloader:</strong> A loading sequence that establishes the brand intro and sets the tone before reading.</li>
+                        </ul>
+                    `
+                    },
+                    'creative-philosophy': {
+                        title: "Creative Philosophy",
+                        command: "cat philosophy.txt",
+                        intro: "I believe stories are experiences rather than documents. The written word carries its own resonance, but technology allows us to frame those words in a way that elevates engagement.",
+                        contentHtml: `
+                        <ul class="qa-answer-list">
+                            <li><strong>Inhabiting Worlds:</strong> Designing environments with custom palettes, particle filters, and typography so readers don't just read the story, but inhabit it.</li>
+                            <li><strong>Restraint in Tech:</strong> Visual effects should always serve the prose, not distract from it. Animations are smooth, subtle, and tied directly to scroll momentum.</li>
+                            <li><strong>Meaningful Connection:</strong> Exploring psychological, emotional, and mythic arcs that challenge the reader's perspective.</li>
+                        </ul>
+                    `
+                    },
+                    'technical-implementation': {
+                        title: "Technical Implementation",
+                        command: "sys_info --version",
+                        intro: "The application is built completely with standard frontend technologies to maximize performance, customizability, and load speed:",
+                        contentHtml: `
+                        <ul class="qa-answer-list">
+                            <li><strong>Core Structure:</strong> Semantic HTML5 elements for text readability combined with Vanilla CSS for layouts.</li>
+                            <li><strong>Motion Physics:</strong> Powered by <strong>GSAP</strong> (GreenSock Animation) & <strong>ScrollTrigger</strong> for interactive text revealing, combined with <strong>Lenis</strong> for smooth scroll physics.</li>
+                            <li><strong>Visual FX:</strong> Dynamic HTML5 Canvas particles and custom SVG turbulence filters to generate realistic film grain overlays.</li>
+                            <li><strong>Accessibility:</strong> Built with responsive layouts, fluid clamp typography, and reduced-motion detection.</li>
+                        </ul>
+                    `
+                    },
+                    'contact-info': {
+                        title: "Contact & Connections",
+                        command: "finger varun",
+                        intro: "Feel free to reach out to connect, collaborate, or inquire about the storytelling engine. Here are my active channels:",
+                        contentHtml: `
+                        <div class="qa-contact-grid">
+                            <a href="mailto:akurivarun@gmail.com" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                akurivarun@gmail.com
+                            </a>
+                            <a href="tel:+917893710452" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                +91 7893710452
+                            </a>
+                            <a href="https://linkedin.com/in/akuri-venkata-surya-varun50b244366" target="_blank" rel="noopener noreferrer" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                                LinkedIn
+                            </a>
+                            <a href="https://github.com/varun-150" target="_blank" rel="noopener noreferrer" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                GitHub
+                            </a>
+                            <a href="https://www.instagram.com/writings_of_wazirv/" target="_blank" rel="noopener noreferrer" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                                Instagram
+                            </a>
+                        </div>
+                    `
+                    }
+                };
 
-            enterBtn.addEventListener('click', () => {
-                splashScreen.classList.add('fade-out');
+                const questionsList = document.getElementById('qa-questions-list');
+                const searchInput = document.getElementById('qa-search');
+                const terminalBody = document.getElementById('qa-terminal-body');
+                const qaToggleBtn = document.getElementById('qa-toggle-btn');
+                let typingTimer = null;
+                let activeId = null;
+
+                // Librarian catalog card database
+                const catalogDb = {
+                    'abhinayam': { 
+                        code: "ARC-DEV-001", 
+                        time: "45 MINS", 
+                        genre: "Devotion (Bhakti) · Reincarnation, Spiritual Love, Destiny", 
+                        tone: "Eternal devotion to Krishna beyond lifetimes.", 
+                        style: "Scroll-Driven Cinematic Prose", 
+                        synopsis: "The Gopika Who Returned. A lifetimes-spanning narrative exploring separation, devotion, and spiritual longing." 
+                    },
+                    'almost': { 
+                        code: "ARC-ROM-002", 
+                        time: "30 MINS", 
+                        genre: "Romance · Nostalgia, Emotional Growth, Destiny", 
+                        tone: "Some connections never disappear even when life moves on.", 
+                        style: "INFJ Relationship Study", 
+                        synopsis: "An INFJ relationship that failed perfectly, finding safety in silence and the beauty of unfinished endings." 
+                    },
+                    'dharshan': { 
+                        code: "ARC-DEV-003", 
+                        time: "20 MINS", 
+                        genre: "Devotional / Spiritual · Simplicity, Krishna Consciousness, Inner Peace", 
+                        tone: "Spiritual fulfillment through devotion and discipline.", 
+                        style: "Pilgrimage Narrative", 
+                        synopsis: "Aditya, Nandini, and Meera's walking pilgrimage to Tirupati, exploring faith, stability, and quiet companionship." 
+                    },
+                    'dhruvendra': { 
+                        code: "ARC-ADV-004", 
+                        time: "50 MINS", 
+                        genre: "Adventure Fantasy · Self-discovery, Spiritual Quest, Sacrifice", 
+                        tone: "The real treasure is inner awakening.", 
+                        style: "Mythic Heroic Quest", 
+                        synopsis: "An epic pursuit of ancient secrets, hidden treasures, and the heavy psychological consequences of obsession." 
+                    },
+                    'green hollow': { 
+                        code: "ARC-MYS-005", 
+                        time: "35 MINS", 
+                        genre: "Mystery / Thriller · Investigation, Suspense", 
+                        tone: "Dark secrets hidden beneath ordinary life.", 
+                        style: "Slow-burning Narrative", 
+                        synopsis: "A descent into a quiet forest town plagued by ancient curses, hidden intentions, and unexplained events." 
+                    },
+                    'kadha laga': { 
+                        code: "ARC-SOC-006", 
+                        time: "25 MINS", 
+                        genre: "Social Drama · Society, Identity, Human Nature", 
+                        tone: "Critique of societal expectations and change.", 
+                        style: "Telugu Romantic Prose", 
+                        synopsis: "Oka Parichayam. A nostalgic Telugu romantic narrative capturing the charm of quiet moments and conversations." 
+                    },
+                    'kali': { 
+                        code: "ARC-MYT-007", 
+                        time: "60 MINS", 
+                        genre: "Mythological Thriller · Action, Dharma, Good vs Evil", 
+                        tone: "Modern warriors fighting darkness and corruption.", 
+                        style: "Epic Narrative Journey", 
+                        synopsis: "The Five Paths. A story of cosmic destiny, sacrifice, and the irreversible choices that shape entire worlds." 
+                    },
+                    'malli kalisi…': { 
+                        code: "ARC-ROM-008", 
+                        time: "25 MINS", 
+                        genre: "Emotional Romance · Rebirth, Loss, Reunion", 
+                        tone: "Love continuing across lives and memories.", 
+                        style: "Reunion Narrative", 
+                        synopsis: "Explores the lingering echoes of lost promises and meeting again after years of separation and silence." 
+                    },
+                    'midnight escape': { 
+                        code: "ARC-PSD-015", 
+                        time: "25 MINS", 
+                        genre: "Psychological Drama · Freedom, Responsibility, Self-Discovery", 
+                        tone: "The search for freedom beyond external success.", 
+                        style: "Bilingual Telugu-English Narrative", 
+                        synopsis: "Surya and Sameera's midnight escape from family boundaries in search of true, unrestrained choices." 
+                    },
+                    'nonparticipant': { 
+                        code: "ARC-PSY-009", 
+                        time: "30 MINS", 
+                        genre: "Psychological Thriller · Existential Horror, Society, Mind", 
+                        tone: "What happens when people stop responding to reality?", 
+                        style: "Observer Reflection", 
+                        synopsis: "Observing life from the boundaries. The peaceful but stark isolation of a silent witness." 
+                    },
+                    'short and sweet': { 
+                        code: "ARC-ROM-010", 
+                        time: "20 MINS", 
+                        genre: "Youth Romance · Friendship, Farewell, Memories", 
+                        tone: "Simple school-age emotions and lasting moments.", 
+                        style: "Vignette Collection", 
+                        synopsis: "A collection of quiet moments, light laughter, and the gentle beginnings of romantic comfort." 
+                    },
+                    'telugu ammai': { 
+                        code: "ARC-DET-011", 
+                        time: "25 MINS", 
+                        genre: "Determination / Inspirational · Dreams, Dance, Perseverance", 
+                        tone: "Fighting against obstacles to achieve one's dream.", 
+                        style: "Character-driven Drama", 
+                        synopsis: "A young Telugu girl's pursuit of classical dance, defying family doubt to find her artistic rhythm." 
+                    },
+                    'the midnight story': { 
+                        code: "ARC-SUS-012", 
+                        time: "30 MINS", 
+                        genre: "Psychological Drama / Mystery · Freedom, Identity", 
+                        tone: "Escaping the life imposed by others.", 
+                        style: "Midnight City Adventure", 
+                        synopsis: "A gripping chase through the dark urban streetscape as midnight strikes and shadows lengthen." 
+                    },
+                    'the night only': { 
+                        code: "ARC-SCI-013", 
+                        time: "35 MINS", 
+                        genre: "Sci-Fi Thriller · Time Loop, Mystery, Survival", 
+                        tone: "A forgotten night that only one person remembers.", 
+                        style: "Memory Reconstruction", 
+                        synopsis: "A forgotten memory, a quiet street, and a secret carried by only one soul in the universe." 
+                    },
+                    'unsaid': { 
+                        code: "ARC-ROM-014", 
+                        time: "40 MINS", 
+                        genre: "Nostalgic Romance · Silent Love, Longing, Introversion", 
+                        tone: "Feelings that exist without being spoken.", 
+                        style: "Introspective Shared Silence", 
+                        synopsis: "Adhi and Manju's shared silence across college and life, exploring the weight of unspoken feelings." 
+                    }
+                };
+
+                // Reformat all card overlays to Librarian index cards dynamically on page load
+                document.querySelectorAll('.book-card').forEach(card => {
+                    const titleEl = card.querySelector('h3');
+                    if (!titleEl) return;
+                    const titleText = titleEl.textContent.trim().toLowerCase();
+
+                    let dbKey = Object.keys(catalogDb).find(k => titleText.includes(k) || k.includes(titleText));
+                    if (!dbKey) return;
+                    const data = catalogDb[dbKey];
+
+                    const overlay = card.querySelector('.card-overlay');
+                    if (overlay) {
+                        overlay.className = "card-overlay library-catalog-card";
+                        overlay.innerHTML = `
+                        <div class="catalog-card-header">
+                            <span class="shelf-no">SHELF NO: ${data.code}</span>
+                            <span class="est-time">${data.time}</span>
+                        </div>
+                        <div class="catalog-card-body">
+                            <h4 class="catalog-title">${titleEl.textContent.trim()}</h4>
+                            <div class="catalog-line"><strong>GENRE:</strong> ${data.genre}</div>
+                            <div class="catalog-line"><strong>TONE:</strong> ${data.tone}</div>
+                            <div class="catalog-line"><strong>STYLE:</strong> ${data.style}</div>
+                            <div class="catalog-synopsis">${data.synopsis}</div>
+                        </div>
+                        <button class="begin-btn" style="margin-top:auto;">
+                            Begin Journey
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:12px;height:12px;margin-left:5px;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    `;
+                    }
+                });
+
+                // Filter Shelf Logic
+                const filterLinks = document.querySelectorAll('.filter-link');
+                const cards = document.querySelectorAll('.book-card');
+                filterLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        filterLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                        const category = link.getAttribute('data-filter').toLowerCase();
+
+                        cards.forEach(card => {
+                            const cardCat = card.getAttribute('data-category').toLowerCase();
+                            const categories = cardCat.split(/\s+/);
+                            const matches = (category === 'all') || categories.includes(category);
+
+                            if (matches) {
+                                card.style.display = '';
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                                }, 50);
+                            } else {
+                                card.style.opacity = '0';
+                                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(0.95, 0.95, 0.95)';
+                                setTimeout(() => { card.style.display = 'none'; }, 400);
+                            }
+                        });
+                    });
+                });
+
+                // Check localStorage for reading progress and set Bookmark / Header button
+                const bookmarkEl = document.getElementById('reading-bookmark');
+                const bookmarkTitle = document.getElementById('bookmark-title');
+                const bookmarkChapter = document.getElementById('bookmark-chapter');
+                const bookmarkBar = document.getElementById('bookmark-progress-bar');
+                const bookmarkPercentage = document.getElementById('bookmark-percentage');
+                const bookmarkLink = document.getElementById('bookmark-link');
+
+                let latestProgress = null;
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith('wr-progress-')) {
+                        try {
+                            const data = JSON.parse(localStorage.getItem(key));
+                            if (!latestProgress || data.timestamp > latestProgress.timestamp) {
+                                latestProgress = data;
+                            }
+                        } catch (e) {
+                            console.error("Failed to parse bookmark data", e);
+                        }
+                    }
+                }
+
+                if (latestProgress && bookmarkEl) {
+                    bookmarkTitle.textContent = latestProgress.title;
+                    bookmarkChapter.textContent = latestProgress.chapter;
+                    bookmarkBar.style.width = `${latestProgress.percentage}%`;
+                    bookmarkPercentage.textContent = `${latestProgress.percentage}%`;
+                    bookmarkLink.href = latestProgress.url;
+
+                    const headerControls = document.querySelector('.header-controls');
+                    if (headerControls) {
+                        const continueBtn = document.createElement('a');
+                        continueBtn.className = "control-btn";
+                        continueBtn.href = latestProgress.url;
+                        continueBtn.style.textDecoration = "none";
+                        continueBtn.style.borderColor = "var(--accent)";
+                        continueBtn.innerHTML = `
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        Continue: ${latestProgress.title} (${latestProgress.percentage}%)
+                    `;
+                        headerControls.insertBefore(continueBtn, headerControls.firstChild);
+                    }
+
+                    setTimeout(() => {
+                        bookmarkEl.classList.add('visible');
+                    }, 1500);
+                } else if (bookmarkEl) {
+                    bookmarkEl.classList.add('hidden');
+                }
+
+                // Define global/window helper functions so inline HTML handlers can find them
+                window.selectQuestion = function (id) {
+                    if (id === activeId && typingTimer) {
+                        completeTyping(id);
+                        return;
+                    }
+
+                    if (typingTimer) {
+                        clearInterval(typingTimer);
+                        typingTimer = null;
+                    }
+
+                    activeId = id;
+
+                    document.querySelectorAll('.qa-q-btn').forEach(btn => {
+                        btn.classList.toggle('active', btn.getAttribute('data-id') === id);
+                    });
+
+                    const data = qaData[id];
+                    if (!data) return;
+
+                    terminalBody.innerHTML = `
+                    <span class="console-prompt">> ${data.command}</span>
+                    <div class="qa-answer-container">
+                        <h3 class="qa-answer-title">${data.title}</h3>
+                        <p class="qa-answer-text" id="typing-text-target"></p>
+                    </div>
+                `;
+
+                    const textTarget = document.getElementById('typing-text-target');
+                    let charIndex = 0;
+                    const introText = data.intro;
+
+                    const cursorSpan = document.createElement('span');
+                    cursorSpan.className = 'typing-cursor';
+                    textTarget.parentNode.insertBefore(cursorSpan, textTarget.nextSibling);
+
+                    typingTimer = setInterval(() => {
+                        if (charIndex < introText.length) {
+                            textTarget.textContent += introText.charAt(charIndex);
+                            charIndex++;
+                            terminalBody.scrollTop = terminalBody.scrollHeight;
+                        } else {
+                            clearInterval(typingTimer);
+                            typingTimer = null;
+                            cursorSpan.remove();
+                            const contentDiv = document.createElement('div');
+                            contentDiv.innerHTML = data.contentHtml;
+                            contentDiv.style.opacity = 0;
+                            contentDiv.style.transition = 'opacity 0.6s ease';
+                            textTarget.parentNode.appendChild(contentDiv);
+                            setTimeout(() => {
+                                contentDiv.style.opacity = 1;
+                                terminalBody.scrollTop = terminalBody.scrollHeight;
+                            }, 50);
+                        }
+                    }, 10);
+                };
+
+                function completeTyping(id) {
+                    if (typingTimer) {
+                        clearInterval(typingTimer);
+                        typingTimer = null;
+                    }
+                    const data = qaData[id];
+                    if (!data) return;
+
+                    const textTarget = document.getElementById('typing-text-target');
+                    if (textTarget) {
+                        textTarget.textContent = data.intro;
+                    }
+                    const cursor = terminalBody.querySelector('.typing-cursor');
+                    if (cursor) cursor.remove();
+
+                    const oldContent = textTarget.parentNode.querySelector('.qa-answer-list, .qa-contact-grid, .story-list-mini');
+                    if (!oldContent) {
+                        const contentDiv = document.createElement('div');
+                        contentDiv.innerHTML = data.contentHtml;
+                        textTarget.parentNode.appendChild(contentDiv);
+                    }
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
+                }
+
+                window.highlightAndScrollBook = function (bookName) {
+                    const cards = document.querySelectorAll('.book-card');
+                    let foundCard = null;
+                    cards.forEach(card => {
+                        const titleText = card.querySelector('h3') ? card.querySelector('h3').textContent.toLowerCase() : '';
+                        if (titleText.includes(bookName.toLowerCase())) {
+                            foundCard = card;
+                        }
+                    });
+
+                    if (foundCard) {
+                        lenis.scrollTo(foundCard, {
+                            duration: 1.5,
+                            offset: -100
+                        });
+
+                        foundCard.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease';
+                        foundCard.style.borderColor = 'var(--accent)';
+                        foundCard.style.boxShadow = '0 0 40px var(--accent)';
+                        foundCard.style.transform = 'scale(1.05)';
+
+                        setTimeout(() => {
+                            foundCard.style.transform = '';
+                            foundCard.style.borderColor = '';
+                            foundCard.style.boxShadow = '';
+                        }, 2500);
+                    }
+                };
+
+                function renderQuestions(filter = '') {
+                    questionsList.innerHTML = '';
+                    Object.keys(qaData).forEach(key => {
+                        const item = qaData[key];
+                        if (item.title.toLowerCase().includes(filter.toLowerCase()) ||
+                            item.intro.toLowerCase().includes(filter.toLowerCase())) {
+
+                            const btn = document.createElement('button');
+                            btn.className = `qa-q-btn ${key === activeId ? 'active' : ''}`;
+                            btn.setAttribute('data-id', key);
+                            btn.innerHTML = item.title;
+                            btn.addEventListener('click', () => selectQuestion(key));
+                            questionsList.appendChild(btn);
+                        }
+                    });
+                }
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        renderQuestions(e.target.value);
+                    });
+                }
+
+                if (qaToggleBtn) {
+                    qaToggleBtn.addEventListener('click', () => {
+                        const guideSection = document.getElementById('archive-guide');
+                        if (guideSection) {
+                            lenis.scrollTo(guideSection, { duration: 1.8 });
+                            if (!activeId) {
+                                setTimeout(() => selectQuestion('who-is-wr'), 1000);
+                            }
+                        }
+                    });
+                }
+
+                renderQuestions();
+                terminalBody.innerHTML = `
+                <div class="welcome-message" style="animation: fadeIn 0.8s ease;">
+                    <p class="console-prompt">> Select a question from the guide list to print details...</p>
+                    <div class="interactive-prompt-list">
+                        <button class="quick-question-btn" onclick="selectQuestion('who-is-wr')">Who is WR?</button>
+                        <button class="quick-question-btn" onclick="selectQuestion('storytelling-engine')">What is the Storytelling Engine?</button>
+                        <button class="quick-question-btn" onclick="selectQuestion('featured-works')">Tell me about the stories...</button>
+                    </div>
+                </div>
+            `;
+
+                document.addEventListener('mouseover', (e) => {
+                    const target = e.target.closest('a, button, .book-card, .qa-q-btn, .story-mini-card, .qa-contact-card, .quick-question-btn');
+                    if (target) {
+                        document.body.classList.add('cursor-active');
+                    } else {
+                        document.body.classList.remove('cursor-active');
+                    }
+                });
             });
-        });
     </script>
 </body>
 

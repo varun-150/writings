@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>M i d n i g h t</title>
+<meta name="description" content="E s c a p e — Freedom Was Never the Destination. - A premium reading experience">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --accent: #8899cc;
+    --accent-dark: #5566a0;
+    --accent-light: #c3cce5;
+    --accent-rgba-20: rgba(136,153,204,0.2);
+    --accent-rgba-25: rgba(136,153,204,0.25);
+    --accent-rgba-05: rgba(136,153,204,0.05);
+    --accent-dark-rgba-05: rgba(85,102,160,0.05);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #0d0d0f;
+    color: #f0ece4;
+    font-family: 'Lora', 'Georgia', serif;
+    line-height: 1.9;
+    font-size: clamp(15px, 1.1vw, 17px);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 20% 10%, var(--accent-rgba-05) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, var(--accent-dark-rgba-05) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--accent);
+    color: #0d0d0f;
+    padding: 8px;
+    z-index: 1001;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: top 0.2s;
+}
+
+.skip-link:focus-visible {
+    top: 0;
+}
+
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+    z-index: 1000;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px var(--accent);
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(13, 13, 15, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.header-logo {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6e6860;
+}
+
+.header-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.8rem;
+    color: #b8b0a0;
+    max-width: 40%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.btn-font {
+    background: #1c1c22;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #b8b0a0;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-font:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.btn-font:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.toc-sidebar {
+    position: fixed;
+    left: 3rem;
+    top: 10rem;
+    width: 220px;
+    max-height: calc(100vh - 15rem);
+    overflow-y: auto;
+    z-index: 10;
+    padding-right: 1rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.toc-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6e6860;
+    margin-bottom: 1rem;
+}
+
+.toc-list {
+    list-style: none;
+}
+
+.toc-item {
+    margin-bottom: 0.65rem;
+}
+
+.toc-link {
+    color: #6e6860;
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: color 0.2s;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.toc-link:hover, .toc-link.active {
+    color: var(--accent);
+}
+
+.toc-link.active {
+    font-weight: 600;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #1c1c22;
+    border: 1px solid var(--accent-rgba-20);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2.5rem;
+    animation: fadeInDown 0.8s ease forwards;
+}
+
+.hero-badge::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: .5;
+        transform: scale(1.4);
+    }
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #f0ece4;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s 0.1s ease forwards;
+    opacity: 0;
+}
+
+.hero-title .accent {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-family: 'Lora', 'Georgia', serif;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #b8b0a0;
+    font-style: italic;
+    margin-bottom: 3rem;
+    max-width: 60ch;
+    animation: fadeInUp 0.8s 0.2s ease forwards;
+    opacity: 0;
+}
+
+.hero-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 0 auto 3rem;
+    animation: fadeInUp 0.8s 0.3s ease forwards;
+    opacity: 0;
+}
+
+.hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6e6860;
+    animation: fadeInUp 0.8s 0.5s ease forwards;
+    opacity: 0;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.scroll-arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollDown 2s ease infinite;
+}
+
+@keyframes scrollDown {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(8px);
+        opacity: .5;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.reading-area {
+    max-width: 68ch;
+    margin: 0 auto;
+    padding: 2rem 2rem 8rem;
+}
+
+.chapter-header {
+    margin: 7rem 0 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.chapter-eyebrow {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.chapter-eyebrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent-rgba-20), transparent);
+}
+
+.chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: #f0ece4;
+    margin-bottom: 0.5rem;
+}
+
+.story-content p {
+    margin-bottom: 1.6rem;
+    color: #b8b0a0;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    text-align: justify;
+    hyphens: auto;
+}
+
+.story-content p.first-paragraph::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    font-weight: 800;
+    color: var(--accent);
+    float: left;
+    line-height: 0.75;
+    margin-right: 0.1em;
+    margin-top: 0.15em;
+}
+
+.story-content blockquote {
+    margin: 2.5rem 0;
+    padding: 1.5rem 2rem;
+    background: #1c1c22;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #f0ece4;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.intro-box {
+    background: #1c1c22;
+    border: 1px solid var(--accent-rgba-20);
+    border-radius: 12px;
+    padding: 2rem 2.5rem;
+    margin: 2rem 0 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.intro-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.intro-box p {
+    font-style: italic;
+    color: #b8b0a0;
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+}
+
+.index-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.index-card {
+    background: #16161a;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+    transition: all 0.25s;
+}
+
+.index-card:hover {
+    border-color: var(--accent-rgba-20);
+    background: #1c1c22;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.index-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #f0ece4;
+    margin-bottom: 0.5rem;
+}
+
+.index-card-desc {
+    font-family: 'Lora', 'Georgia', serif;
+    font-size: 0.88rem;
+    color: #6e6860;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.scene-break {
+    text-align: center;
+    font-size: 1.1rem;
+    letter-spacing: 0.5em;
+    color: var(--accent);
+    margin: 3.5rem 0;
+    opacity: 0.5;
+}
+
+.chapter-divider {
+    padding: 5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 4rem 0;
+}
+
+.divider-symbol {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+    letter-spacing: 0.5em;
+}
+
+.divider-line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    margin: 1.5rem auto;
+}
+
+.divider-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #b8b0a0;
+    font-style: italic;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(28, 28, 34, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #b8b0a0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+.back-to-top:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 4rem 2rem;
+    text-align: center;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    color: #6e6860;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #b8b0a0;
+    margin-bottom: 0.5rem;
+}
+
+::selection {
+    background: var(--accent-rgba-25);
+    color: #f0ece4;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0d0d0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+body.font-small {
+    font-size: 14px;
+}
+
+body.font-large {
+    font-size: 19px;
+}
+
+.noscript-warn {
+    background: #c46060;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+@media (max-width: 1200px) {
+    .toc-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 5rem 1.25rem 3rem;
+    }
+    .reading-area {
+        padding: 1.5rem 1.25rem 6rem;
+    }
+    .header-title {
+        display: none;
+    }
+    .back-to-top {
+        bottom: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+    }
+    body::before {
+        display: none;
+    }
+    header, footer, .hero, .btn-font, #progress-bar, .back-to-top, .skip-link, .hero-scroll, .toc-sidebar {
+        display: none !important;
+    }
+    .content-wrapper, .reading-area {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    p {
+        page-break-inside: avoid;
+    }
+}
+</style>
+</head>
+<body>
+<noscript>
+<div class="noscript-warn">Please enable JavaScript for reading progress tracking, responsive animations, and custom typography controls.</div>
+</noscript>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="progress-bar"></div>
+<header role="banner">
+<span class="header-logo">WR Stories</span>
+<span class="header-title">M i d n i g h t</span>
+<div class="header-actions" role="navigation" aria-label="Font Controls">
+<button class="btn-font" onclick="setFont('small')" aria-label="Decrease font size">A-</button>
+<button class="btn-font" onclick="setFont('normal')" aria-label="Reset font size">A</button>
+<button class="btn-font" onclick="setFont('large')" aria-label="Increase font size">A+</button>
+</div>
+</header>
+<div class="hero">
+<div class="hero-badge">4 min read</div>
+<h1 class="hero-title"><span class="accent">M i d n i g h t</span></h1>
+<p class="hero-subtitle">E s c a p e — Freedom Was Never the Destination.</p>
+<div class="hero-divider"></div>
+<button class="hero-scroll" aria-label="Scroll to read"><span>Begin Reading</span><div class="scroll-arrow"></div></button>
+</div>
+<div class="toc-sidebar" role="navigation" aria-label="Table of Contents">
+<div class="toc-title">Table of Contents</div>
+<ul class="toc-list">
+<li class="toc-item"><a href="#" class="toc-link">Cover</a></li>
+<li class="toc-item"><a href="#prologue" class="toc-link">Prologue</a></li>
+</ul>
+</div>
+<main id="main-content" role="main" class="content-wrapper">
+<div class="reading-area">
+<div class="chapter-header" id="prologue">
+<div class="chapter-eyebrow">NARRATIVE</div>
+<h2 class="chapter-title">Prologue</h2>
+</div>
+<div class="story-content">
+<p class="first-paragraph">Surya life lo first nunchi oka restless energy undedi. Rules, routines, fixed paths avi anni tana ki suit avvaledu. Aayana ki — life ante exploration places marchadam, people marchadam, experiences collect cheyyadam. Ekkada settle avvadam ante aayana ki slow ga suffocate avvadam laga anipinchedi. Kaani aa freedom ekkuva rojulu undaledu. Family slow ga tana life lo enter ayyi, responsibility ane</p>
+<blockquote>“ ”</blockquote>
+<p>peru tho chains vesindi. Career,</p>
+<blockquote>“ ”</blockquote>
+<blockquote>“ ”</blockquote>
+<p>future, family name ane words tho tana world ni restrict chesaru. Ala Surya, tanaki ishtam lekunda, family business lo involve ayyadu. Oka rojuki oka step kaadu complete ga tana life direction marchipoyindi. 6 years Surya almost tana life marchipoyadu. Late nights, no sleep, continuous pressure company build cheyyadam kosam tana energy motham vadilesadu.</p>
+<div class="scene-break">◈ &nbsp; ◈ &nbsp; ◈</div>
+<p>Success vachindi business perigindi kaani Surya lopala empty ayyadu. Aayana chese pani tana life kaadu ani clear ga telusu, kaani dani nundi bayataki ravadaniki courage ledu. Love kuda aa time lo tana life lo enter ayyindi, kaani adhi kuda slow ga oka burden aipoyindi. Care ani start ayina relation control laga feel ayyindi. Family expectations, relationship pressure, responsibilities anni kalisi tana breath ni tight ga pattukunna rope laga maripoyayi.Aa chaos madhya Sameera enter ayyindi. Aame Surya — laage rules ki bayata, society ki dooram, freedom meeda nammakam unna soul. Aame Surya ni change cheyyadaniki try cheyyaledu aame tana laage undadam chalu ani anukundi. Oka roju aame simple ga</p>
+<blockquote>“ cheppindi, Chains anni vadilesi veldaam mana laga life live ”</blockquote>
+<p>cheddam. Aa line Surya ki escape kaadu oka chance laga anipinchindi.</p>
+<div class="scene-break">◈ &nbsp; ◈ &nbsp; ◈</div>
+<p>Inkoka thought kuda lekunda oka night, rendu bags tho bike start chesadu. Sameera back seat lo kurchuni evaru look back cheyyaledu. Road meedha aa first ride lo Surya first time ga breathe teesukunnadu. Plan ledu, destination ledu kaani freedom undi. Goa lo first stop. Beach, music, strangers, random conversations life slow ga flow avvadam start ayyindi. Surya oka small shack lo chef ga work start chesadu. Cooking mundu hobby, ipudu necessity, tarvata passion aipoyindi. Sameera kuda oka place lo attach avvaledu. Vallu rendu kalisi — oka rhythm create chesaru stay, live, leave. No promises, no future planning just moments. Nights lo fire daggara kurchuni guitar play chestu, mornings lo unknown ga start ayye days life simple ga undi, kaani deep ga undi.</p>
+<div class="scene-break">◈ &nbsp; ◈ &nbsp; ◈</div>
+<p>Office lights, sleepless nights, father voice, pressure aa echoes aayana ni vadilesi vellaledu.</p>
+<blockquote>“ Sameera oka roju adigindi, Escape avthunnava leka search ?”</blockquote>
+<p>chesthunnava Surya ki answer teliyaledu. Difference ardham kaaledu. Appude aayana ki first time clarity vachindi aayana free kaadu aayana run avtunnadu. Vallu journey continue chesaru. Goa nunchi vere … … places vere faces vere nights. Kaani pattern maraledu. Surya escape ani telisi kuda continue chesadu. Sameera aapaledu, push cheyyaledu just pakkana nadichindi. Midnight lo oka forest side camp fire daggara kurchuni undaga silence madhya oka realization vachindi. Freedom ante chains lekunda undadam kaadu chains unna kuda manaki mana choice undadam. Aa moment lo vallu ekkado cheraru kaani journey apaledu.</p>
+<div class="scene-break">◈ &nbsp; ◈ &nbsp; ◈</div>
+<p>Aa night tarvata oka unexpected break. Rendu phones okesari ring</p>
+<blockquote>“ ”</blockquote>
+<p>… ayyayi. Surya screen lo Home</p>
+<blockquote>“ ”</blockquote>
+<p>Sameera phone lo Mom. Calls lift chesaka rendu sides nunchi okate</p>
+<blockquote>“ … ”</blockquote>
+<p>words Intiki randi come home. No anger, no force just call back. Aa silence lo decision heavy aipoyindi. Velthe malli ade life, velakapothe incomplete journey.</p>
+<blockquote>“ Final ga Surya cheppadu, Freedom ante velakapovadam kaadu velina ”</blockquote>
+<p>tarvata kuda mana laga undadam.</p>
+<blockquote>“ ’ ”</blockquote>
+<p>Sameera smile chesi Let s go ani cheppindi. Ee sari journey run kaadu return.House gate mundhu bike stop ayyindi. Same place kaani Surya ki idhi tana world kaadu ippudu. Inside hall lo families wait chestunnaru. Sisters papers ivvaru property shares, company division, signatures kosam. 6 years life few papers lo reduce aipoyindi. Surya papers chusi oka question adigadu</p>
+<blockquote>“?”</blockquote>
+<p>Edi antha kosam aa Answer raledu.</p>
+<div class="scene-break">◈ &nbsp; ◈ &nbsp; ◈</div>
+<p>Instead accusations vachayi. Responsibility, selfishness, failure words bullets laga vachayi. Sameera silent ga vinnadi, Surya kuda. Reaction ledu. Final ga Surya father …</p>
+<blockquote>“ voice Ee house ki value teliyani ”</blockquote>
+<p>vallaki ikkada place ledu. Aa line tarvata silence. Surya pen tiskunnadu kaani sign cheyyaledu. Pen table meedha petti calm ga</p>
+<blockquote>“ cheppadu, Value teliyani vallu memu kaadu value kosam life ”</blockquote>
+<p>vadilesinavallu meeru. Sameera</p>
+<blockquote>“ forward step vesindi, Manaki ee ”</blockquote>
+<p>property avasaram ledu. Surya</p>
+<blockquote>“ … continue chesadu, 6 years icha ”</blockquote>
+<p>inkem ivvalenu. Papers akkade vadilesi, vallu rendu turn ayyaru. Evaru aapaledu. Aapadaniki words levu.</p>
+<div class="scene-break">◈ &nbsp; ◈ &nbsp; ◈</div>
+<p>Outside air fresh ga anipinchindi. Bike malli start ayyindi. Ee sari last time aa place nunchi. No looking back. No guilt. No hesitation. Sameera back nunchi hug chesi</p>
+<blockquote>“?”</blockquote>
+<p>adigindi, Free ah Surya slight</p>
+<blockquote>“ … smile tho cheppadu, First time ”</blockquote>
+<p>real ga. Bike speed perigindi. Road open ga undi. Ee sari run kaadu escape kaadu pure choice. Midnight story akkada end kaaledu. Evaru aapaledu. Aapadaniki words levu. THEEND</p>
+</div>
+</div>
+</main>
+<button class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+<footer role="contentinfo">
+<div class="footer-brand">M i d n i g h t</div>
+<p>A premium reading experience &middot; Written by WR</p>
+</footer>
+<script>
+window.addEventListener('scroll', function() {
+    var d = document.documentElement;
+    var s = d.scrollTop || document.body.scrollTop;
+    var t = d.scrollHeight - d.clientHeight;
+    document.getElementById('progress-bar').style.width = (t > 0 ? (s / t) * 100 : 0) + '%';
+});
+
+function setFont(sz) {
+    document.body.classList.remove('font-small', 'font-large');
+    if(sz==='small') document.body.classList.add('font-small');
+    if(sz==='large') document.body.classList.add('font-large');
+    try { localStorage.setItem('rfz', sz); } catch(e) {}
+}
+try {
+    var sv = localStorage.getItem('rfz');
+    if(sv) setFont(sv);
+} catch(e) {}
+
+// Intersection Observer for scroll animations
+var obs = new IntersectionObserver(function(es) {
+    es.forEach(function(e) {
+        if(e.isIntersecting) {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.chapter-header, .intro-box, .index-card, .scene-break').forEach(function(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    obs.observe(el);
+});
+
+// Active TOC indicator scroll observer
+var activeLink = null;
+var tocObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+            var id = entry.target.getAttribute('id');
+            var link = document.querySelector('.toc-link[href="#' + id + '"]');
+            if (link) {
+                if (activeLink) activeLink.classList.remove('active');
+                link.classList.add('active');
+                activeLink = link;
+            }
+        }
+    });
+}, { threshold: 0.1, rootMargin: "-20% 0px -60% 0px" });
+
+document.querySelectorAll('.chapter-header, .intro-box, .index-grid').forEach(function(el) {
+    if (el.getAttribute('id')) {
+        tocObserver.observe(el);
+    }
+});
+
+// Smooth scroll for hero scroll indicator
+var heroScroll = document.querySelector('.hero-scroll');
+if (heroScroll) {
+    heroScroll.addEventListener('click', function() {
+        var firstSec = document.querySelector('.content-wrapper');
+        if (firstSec) {
+            firstSec.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+}
+
+// Back to top visibility
+var btt = document.querySelector('.back-to-top');
+if (btt) {
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 500) {
+            btt.classList.add('visible');
+        } else {
+            btt.classList.remove('visible');
+        }
+    });
+}
+</script>
+</body>
+</html>

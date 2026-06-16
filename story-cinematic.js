@@ -26,6 +26,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     requestAnimationFrame(raf);
 
+    // Save reading progress to localStorage
+    const pathParts = window.location.pathname.split('/');
+    const rawFileName = pathParts[pathParts.length - 1];
+    const storyId = decodeURIComponent(rawFileName).replace('.html', '').trim();
+    
+    lenis.on('scroll', (e) => {
+        if (e.limit <= 0) return;
+        const progress = Math.min(100, Math.round((e.scroll / e.limit) * 100));
+        
+        // Find current chapter
+        const chapters = document.querySelectorAll('.chapter-section');
+        let activeChapterTitle = 'Introduction';
+        chapters.forEach(ch => {
+            const rect = ch.getBoundingClientRect();
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                const titleEl = ch.querySelector('.chapter-title');
+                if (titleEl) {
+                    activeChapterTitle = titleEl.textContent.trim();
+                }
+            }
+        });
+
+        const titleEl = document.querySelector('.landing-title');
+        const storyTitle = titleEl ? titleEl.textContent.trim() : document.title.split('—')[0].split('|')[0].trim();
+        
+        localStorage.setItem(`wr-progress-${storyId}`, JSON.stringify({
+            id: storyId,
+            title: storyTitle,
+            percentage: progress,
+            chapter: activeChapterTitle,
+            url: window.location.href,
+            timestamp: Date.now()
+        }));
+    });
+
     // Sync GSAP ScrollTrigger with Lenis
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
