@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Story Vault of wazir — Premium Cinematic Experiences</title>
+    <title>The Story Vault</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1201,429 +1201,7 @@
             }
         }
 
-        /* -------------------------------------------------------------
-           INTERACTIVE Q&A CONSOLE STYLE
-           ------------------------------------------------------------- */
-        .qa-section {
-            position: relative;
-            z-index: 10;
-            max-width: 1800px;
-            margin: 0 auto;
-            padding: 4rem 8vw;
-        }
 
-        .qa-container {
-            background: rgba(14, 14, 18, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 2.5rem;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.02);
-            transition: var(--transition);
-        }
-
-        .qa-container:hover {
-            border-color: rgba(212, 175, 55, 0.15);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.05);
-        }
-
-        .qa-header {
-            margin-bottom: 2.5rem;
-            text-align: left;
-            position: relative;
-        }
-
-        .qa-header h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            color: #fff;
-            letter-spacing: 0.08em;
-            margin-bottom: 0.5rem;
-        }
-
-        .qa-header p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            letter-spacing: 0.05em;
-        }
-
-        .qa-content {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 2rem;
-            min-height: 450px;
-        }
-
-        .qa-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-
-        .qa-search-box {
-            position: relative;
-            width: 100%;
-        }
-
-        .qa-search-box input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 0.8rem 1rem 0.8rem 2.5rem;
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            letter-spacing: 0.05em;
-            transition: var(--transition);
-        }
-
-        .qa-search-box input:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(212, 175, 55, 0.03);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.08);
-        }
-
-        .qa-search-box .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 14px;
-            height: 14px;
-            color: var(--text-secondary);
-            pointer-events: none;
-        }
-
-        .qa-questions-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-            max-height: 380px;
-            overflow-y: auto;
-            padding-right: 0.5rem;
-        }
-
-        /* Custom Scrollbar for list and terminal */
-        .qa-questions-list::-webkit-scrollbar,
-        .qa-terminal-body::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .qa-questions-list::-webkit-scrollbar-track,
-        .qa-terminal-body::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.01);
-        }
-
-        .qa-questions-list::-webkit-scrollbar-thumb,
-        .qa-terminal-body::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-        }
-
-        .qa-questions-list::-webkit-scrollbar-thumb:hover,
-        .qa-terminal-body::-webkit-scrollbar-thumb:hover {
-            background: var(--accent);
-        }
-
-        .qa-q-btn {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 8px;
-            padding: 1rem;
-            color: var(--text-secondary);
-            text-align: left;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            line-height: 1.4;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .qa-q-btn:hover {
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.03);
-            transform: translateX(3px);
-        }
-
-        .qa-q-btn.active {
-            color: #fff;
-            border-color: var(--accent);
-            background: rgba(212, 175, 55, 0.04);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.05);
-            font-weight: 500;
-        }
-
-        .qa-display {
-            background: #09090c;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-        }
-
-        .qa-terminal-header {
-            background: #0d0d12;
-            padding: 0.8rem 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .terminal-dots {
-            display: flex;
-            gap: 6px;
-        }
-
-        .terminal-dots .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .terminal-dots .dot.red {
-            background: #ff5f56;
-        }
-
-        .terminal-dots .dot.yellow {
-            background: #ffbd2e;
-        }
-
-        .terminal-dots .dot.green {
-            background: #27c93f;
-        }
-
-        .terminal-title {
-            font-family: monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.05em;
-        }
-
-        .qa-terminal-body {
-            padding: 1.8rem;
-            flex-grow: 1;
-            overflow-y: auto;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.88rem;
-            line-height: 1.6;
-            color: var(--text-primary);
-            max-height: 380px;
-        }
-
-        .console-prompt {
-            color: var(--accent);
-            font-family: monospace;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .interactive-prompt-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-        }
-
-        .quick-question-btn {
-            background: transparent;
-            border: 1px dashed rgba(255, 255, 255, 0.12);
-            color: var(--text-secondary);
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            text-align: left;
-            cursor: pointer;
-            transition: var(--transition);
-            width: fit-content;
-        }
-
-        .quick-question-btn:hover {
-            color: var(--accent);
-            border-color: var(--accent);
-            background: rgba(212, 175, 55, 0.03);
-            transform: translateX(5px);
-        }
-
-        /* Layout for printed answers */
-        .qa-answer-container {
-            animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .qa-answer-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-            color: #fff;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 0.5rem;
-        }
-
-        .qa-answer-text {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-        }
-
-        .qa-answer-text strong {
-            color: #fff;
-        }
-
-        .qa-answer-list {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .qa-answer-list li {
-            position: relative;
-            padding-left: 1.5rem;
-            color: var(--text-secondary);
-        }
-
-        .qa-answer-list li::before {
-            content: '◆';
-            color: var(--accent);
-            position: absolute;
-            left: 0;
-            top: 0.1rem;
-            font-size: 0.7rem;
-        }
-
-        .qa-answer-list li strong {
-            color: #fff;
-        }
-
-        .qa-contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .qa-contact-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .qa-contact-card:hover {
-            background: rgba(212, 175, 55, 0.05);
-            border-color: var(--accent);
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Simulated Cursor */
-        .typing-cursor {
-            display: inline-block;
-            width: 8px;
-            height: 15px;
-            background-color: var(--accent);
-            margin-left: 4px;
-            animation: blink 0.8s infinite;
-            vertical-align: middle;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-        }
-
-        .story-list-mini {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .story-mini-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 0.8rem 1rem;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .story-mini-card:hover {
-            border-color: var(--accent);
-            background: rgba(212, 175, 55, 0.04);
-            transform: translateY(-2px);
-        }
-
-        .story-mini-card h4 {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            color: #fff;
-            margin-bottom: 0.2rem;
-        }
-
-        .story-mini-card p {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        @media (max-width: 992px) {
-            .qa-content {
-                grid-template-columns: 1fr;
-            }
-
-            .qa-questions-list {
-                max-height: 200px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .qa-section {
-                padding: 3rem 6vw;
-            }
-
-            .qa-container {
-                padding: 1.5rem;
-            }
-
-            .story-list-mini {
-                grid-template-columns: 1fr;
-            }
-        }
 
         /* -------------------------------------------------------------
            FEATURED RECOMMENDATION SECTION
@@ -2123,7 +1701,7 @@
             </div>
             <div class="brand-text">
                 <h1>The Story Vault</h1>
-                <div class="subtitle">Premium Cinematic Experiences</div>
+                <div class="subtitle">Some stories I wrote</div>
             </div>
         </div>
         <div class="header-controls">
@@ -2134,7 +1712,7 @@
                     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
                 </svg>
-                Archive Guide
+                About This Place
             </button>
         </div>
     </header>
@@ -2145,14 +1723,14 @@
 
         <!-- Continue Reading Bookmark Ribbon -->
         <div id="reading-bookmark" class="reading-bookmark">
-            <div class="bookmark-tag">Current Log</div>
+            <div class="bookmark-tag">Last Read</div>
             <h4 class="bookmark-title" id="bookmark-title">Almost</h4>
             <div class="bookmark-chapter" id="bookmark-chapter">Chapter II</div>
             <div class="bookmark-progress-container">
                 <div class="bookmark-progress-bar" id="bookmark-progress-bar"></div>
                 <span class="bookmark-percent" id="bookmark-percentage">45%</span>
             </div>
-            <a href="#" class="bookmark-btn" id="bookmark-link">Resume Journey</a>
+            <a href="#" class="bookmark-btn" id="bookmark-link">Keep reading</a>
         </div>
 
         <!-- Featured Curator Recommendation -->
@@ -2163,20 +1741,17 @@
                     <div class="featured-glare"></div>
                 </div>
                 <div class="featured-details">
-                    <span class="curator-tag">Curator Recommendation</span>
+                    <span class="curator-tag">A story to start with</span>
                     <h2 class="featured-title">Abhinayam</h2>
-                    <p class="featured-hook">"The Gopika Who Returned — A lifetimes-spanning narrative of devotion,
-                        separation, and spiritual longing."</p>
-                    <p class="featured-description">Experience the journey of a Gopika whose love for Krishna transcends
-                        eras, presented through a custom cinematic scroll-driven storytelling flow. Environmental
-                        colors, dynamic lighting, and word reveals synchronize directly with your pacing.</p>
+                    <p class="featured-hook">"I wrote this over three months. It's the longest story here, and it means a lot to me."</p>
+                    <p class="featured-description">A story about a Gopika's love for Krishna that lasts across lifetimes. I made this page change colors as you scroll so the visual matches the feeling.</p>
                     <div class="featured-meta">
-                        <span><strong>Genre:</strong> Romance, Devotion & Tragedy</span>
-                        <span><strong>Tone:</strong> Devotional & Melancholic</span>
-                        <span><strong>Duration:</strong> ~45 Mins</span>
+                        <span><strong>Mood:</strong> Devotion and sadness</span>
+                        <span><strong>Read time:</strong> ~45 minutes</span>
+                        <span><strong>Best read:</strong> Late at night, when it is quiet</span>
                     </div>
                     <button class="featured-btn" onclick="window.location.href='Abhinayam.html'">
-                        Begin Experience
+                        Read Story
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
@@ -2189,9 +1764,9 @@
         <!-- Archive Catalog Controls (Filter + Monospace Statistics) -->
         <div class="archive-catalog-controls">
             <div class="filter-shelf">
-                <span class="catalog-label">Archive Catalog Shelves</span>
+                <span class="catalog-label">Browse stories</span>
                 <div class="filter-links">
-                    <button class="filter-link active" data-filter="all">All Logs</button>
+                    <button class="filter-link active" data-filter="all">All</button>
                     <button class="filter-link" data-filter="devotion-spiritual">Devotion / Spiritual</button>
                     <button class="filter-link" data-filter="romance">Romance</button>
                     <button class="filter-link" data-filter="nostalgia">Nostalgia</button>
@@ -2204,26 +1779,26 @@
                 </div>
             </div>
             <div class="archival-stats-card">
-                <div class="stats-header">ARCHIVAL METADATA RECORD</div>
+                <div class="stats-header">A few numbers</div>
                 <div class="stats-grid">
                     <div class="stat-item">
-                        <span class="stat-label">CATALOGED WORKS</span>
-                        <span class="stat-val">15 Stories</span>
+                        <span class="stat-label">STORIES</span>
+                        <span class="stat-val">15</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">RECORDED WORDS</span>
-                        <span class="stat-val">~85,200 Words</span>
+                        <span class="stat-label">WORDS</span>
+                        <span class="stat-val">~85,200</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">GENRES EXPLORED</span>
-                        <span class="stat-val">9 Categories</span>
+                        <span class="stat-label">MOODS</span>
+                        <span class="stat-val">9</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-label">READING TIME</span>
-                        <span class="stat-val">~7.0 Hours Total</span>
+                        <span class="stat-label">READ TIME</span>
+                        <span class="stat-val">~7 hours</span>
                     </div>
                 </div>
-                <div class="stats-footer">Accession Code: WR-ARC-2026.01</div>
+                <div class="stats-footer">Started in 2024 · Still writing.</div>
             </div>
         </div>
 
@@ -2233,16 +1808,15 @@
             <div class="book-card" data-category="devotion-spiritual"
                 onclick="window.location.href='Abhinayam.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">My first story</span>
                     <img src="New cover/Abhinayam.png" alt="Abhinayam Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Abhinayam</h4>
-                        <div class="overlay-mood">Romance, Devotion & Tragedy</div>
-                        <div class="overlay-meta">The Gopika Who Returned. Experience the story of a Gopika whose love
-                            for Krishna transcends lifetimes, told through cinematic scroll-driven storytelling.</div>
+                        <div class="overlay-mood">Devotion & sadness</div>
+                        <div class="overlay-meta">I spent three months writing this. It is about a love that lasts across lifetimes.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2254,23 +1828,22 @@
                 <div class="book-info-footer">
                     <h3>Abhinayam</h3>
                     <p>Act I · The Echo Of A Previous Life</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
             <!-- Almost -->
             <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Almost.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">Written from memory</span>
                     <img src="New cover/Almost.png" alt="Almost Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Almost</h4>
-                        <div class="overlay-mood">Romance & Calmness</div>
-                        <div class="overlay-meta">An INFJ Relationship That Failed Perfectly. A story about safety in
-                            shared silence.</div>
+                        <div class="overlay-mood">Bittersweet & calm</div>
+                        <div class="overlay-meta">A story about two quiet people who go their separate ways, finding comfort in silence.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2282,23 +1855,22 @@
                 <div class="book-info-footer">
                     <h3>Almost</h3>
                     <p>INFJ Relationship Story</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
             <!-- Dharshan -->
             <div class="book-card" data-category="devotion-spiritual" onclick="window.location.href='Dharshan.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">After a trip to Tirupati</span>
                     <img src="New cover/Dharshan.png" alt="Dharshan Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Dharshan</h4>
-                        <div class="overlay-mood">Calmness & Devotion</div>
-                        <div class="overlay-meta">The Timeless Journey. Aditya, Nandini, and Meera's walk to Tirupati. A
-                            story of inner stability.</div>
+                        <div class="overlay-mood">Peaceful & calm</div>
+                        <div class="overlay-meta">Three people walking to a temple. It is simple, quiet, and about faith.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2310,7 +1882,7 @@
                 <div class="book-info-footer">
                     <h3>Dharshan</h3>
                     <p>A Timeless Devotional Journey</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2318,16 +1890,15 @@
             <div class="book-card" data-category="adventure-fantasy"
                 onclick="window.location.href='DHRUVENDRA%20-%20THE%20TREASURE%20SEEKER.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">My longest draft</span>
                     <img src="New cover/Dhruvendra.png" alt="Dhruvendra Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Dhruvendra</h4>
-                        <div class="overlay-mood">Suspense & Adventure</div>
-                        <div class="overlay-meta">The Treasure Seeker. An epic pursuit of ancient secrets, dangers, and
-                            the costs of obsession.</div>
+                        <div class="overlay-mood">Adventure & mystery</div>
+                        <div class="overlay-meta">What happens when you chase a secret too hard? An adventure story that grew longer than I planned.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2339,7 +1910,7 @@
                 <div class="book-info-footer">
                     <h3>Dhruvendra</h3>
                     <p>The Treasure Seeker</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2347,16 +1918,15 @@
             <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='Green%20Hollow%20ACT%20-%201.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">Part one of a mystery</span>
                     <img src="New cover/Green Hollow ACT - 1.png" alt="Green Hollow Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Green Hollow</h4>
-                        <div class="overlay-mood">Mystery & Tension</div>
-                        <div class="overlay-meta">Act 1. A descent into a quiet town plagued by ancient curses, hidden
-                            intentions, and fog.</div>
+                        <div class="overlay-mood">Tension & mystery</div>
+                        <div class="overlay-meta">A mystery about a quiet town in the woods. This is only the first part of a bigger story.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2368,7 +1938,7 @@
                 <div class="book-info-footer">
                     <h3>Green Hollow</h3>
                     <p>Act I · The Shadows of the Woods</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2376,17 +1946,16 @@
             <div class="book-card" data-category="social-drama"
                 onclick="window.location.href='Kadha%20Laga%20Modhalaina%20Oka%20Parichayam.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">Written in Telugu first</span>
                     <img src="New cover/Not Every Relationship Lasts — but Some Endings Create the Sweetest Memories. - 1.png"
                         alt="Kadha Laga Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Kadha Laga Modhalaina</h4>
-                        <div class="overlay-mood">Romance & Nostalgia</div>
-                        <div class="overlay-meta">Oka Parichayam. An elegant Telugu romance that unfolds gently through
-                            simple gestures.</div>
+                        <div class="overlay-mood">Warm & nostalgic</div>
+                        <div class="overlay-meta">I wanted to write a simple love story in Telugu because the words feel warmer that way.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2398,7 +1967,7 @@
                 <div class="book-info-footer">
                     <h3>Kadha Laga Modhalaina</h3>
                     <p>Oka Parichayam</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2406,16 +1975,15 @@
             <div class="book-card" data-category="mythological-action-thriller"
                 onclick="window.location.href='Kali%20-%20The%20Five%20Paths.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">Rewritten many times</span>
                     <img src="New cover/Kali.png" alt="Kali Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Kali</h4>
-                        <div class="overlay-mood">Tragedy & Tension</div>
-                        <div class="overlay-meta">The Five Paths. An epic struggle through conflict, choice, and
-                            absolute cosmic destiny.</div>
+                        <div class="overlay-mood">Heavy & intense</div>
+                        <div class="overlay-meta">A story of heroes, destiny, and hard choices. My most difficult write.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2427,7 +1995,7 @@
                 <div class="book-info-footer">
                     <h3>Kali</h3>
                     <p>The Five Paths</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2435,16 +2003,15 @@
             <div class="book-card" data-category="romance nostalgia"
                 onclick="window.location.href='Malli%20Kalisi%E2%80%A6.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">A story about meeting again</span>
                     <img src="New cover/Malli Kalisi….png" alt="Malli Kalisi Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Malli Kalisi…</h4>
-                        <div class="overlay-mood">Romance & Tragedy</div>
-                        <div class="overlay-meta">Meeting again after separations. A heartfelt look into lost echoes and
-                            promises.</div>
+                        <div class="overlay-mood">Sad & sweet</div>
+                        <div class="overlay-meta">Meeting someone again after years. I wrote this quickly because I could feel the characters clearly.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2456,7 +2023,7 @@
                 <div class="book-info-footer">
                     <h3>Malli Kalisi…</h3>
                     <p>Reunion of Echoes</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2464,15 +2031,15 @@
             <div class="book-card" data-category="psychological-drama"
                 onclick="window.location.href='Midnight%20Escape.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">Wrote this in one night</span>
                     <img src="New cover/Midnight Escape.png" alt="Midnight Escape Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Midnight Escape</h4>
-                        <div class="overlay-mood">Psychological Drama</div>
-                        <div class="overlay-meta">Freedom Was Never the Destination. Surya and Sameera's search for choice and freedom beyond family expectations.</div>
+                        <div class="overlay-mood">Restless & free</div>
+                        <div class="overlay-meta">Two people escaping their families at night. Freedom is not a place, it is a choice.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2484,7 +2051,7 @@
                 <div class="book-info-footer">
                     <h3>Midnight Escape</h3>
                     <p>Freedom Was Never the Destination</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2492,16 +2059,15 @@
             <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='Nonparticipant.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">A quiet story</span>
                     <img src="New cover/NONPARTICIPANT.png" alt="Nonparticipant Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Nonparticipant</h4>
-                        <div class="overlay-mood">Grief & Calmness</div>
-                        <div class="overlay-meta">Observing life from the borders. The peaceful isolation of a silent
-                            witness.</div>
+                        <div class="overlay-mood">Quiet & lonely</div>
+                        <div class="overlay-meta">What happens when someone just decides to watch life instead of living it?</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2513,23 +2079,22 @@
                 <div class="book-info-footer">
                     <h3>Nonparticipant</h3>
                     <p>A Silent Witness</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
             <!-- Short and Sweet -->
             <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Short%20and%20Sweet.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">Some light moments</span>
                     <img src="New cover/Short and Sweet.png" alt="Short and Sweet Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Short and Sweet</h4>
-                        <div class="overlay-mood">Romance & Calmness</div>
-                        <div class="overlay-meta">A collection of quiet moments, light laughter, and the beginnings of
-                            love.</div>
+                        <div class="overlay-mood">Happy & light</div>
+                        <div class="overlay-meta">A collection of happy moments. The lightest thing I have written.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2541,7 +2106,7 @@
                 <div class="book-info-footer">
                     <h3>Short and Sweet</h3>
                     <p>Lighthearted Encounters</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2549,16 +2114,15 @@
             <div class="book-card" data-category="determination-success"
                 onclick="window.location.href='Telugu%20Ammai.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">About a girl who dances</span>
                     <img src="New cover/Telugu Ammai.png" alt="Telugu Ammai Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Telugu Ammai</h4>
-                        <div class="overlay-mood">Romance & Determination</div>
-                        <div class="overlay-meta">A young Telugu girl's pursuit of her artistic dreams and dance,
-                            fighting family doubt.</div>
+                        <div class="overlay-mood">Determined & warm</div>
+                        <div class="overlay-meta">A girl who wants to dance, despite what her family thinks. I wanted her to win.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2570,23 +2134,22 @@
                 <div class="book-info-footer">
                     <h3>Telugu Ammai</h3>
                     <p>Pursuit of Dance</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
             <!-- The Midnight Story -->
             <div class="book-card" data-category="psychological-drama" onclick="window.location.href='The%20MidNight%20Story.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">Written at 2 AM</span>
                     <img src="New cover/Midnight Escape.png" alt="The Midnight Story Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">The Midnight Story</h4>
-                        <div class="overlay-mood">Suspense & Tension</div>
-                        <div class="overlay-meta">What happens when the clock hits midnight? A gripping night adventure
-                            in the city.</div>
+                        <div class="overlay-mood">Tense & uncertain</div>
+                        <div class="overlay-meta">A chase through the city at night. I wrote this while sitting in the dark.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2598,7 +2161,7 @@
                 <div class="book-info-footer">
                     <h3>The Midnight Story</h3>
                     <p>A Night Under Shadow</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2606,17 +2169,16 @@
             <div class="book-card" data-category="thriller-mystery"
                 onclick="window.location.href='THE%20NIGHT%20ONLY%20I%20REMEMBER.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">A very strange dream</span>
                     <img src="New cover/A Quiet Place Inside Me.png" alt="The Night Only I Remember Cover"
                         loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">The Night Only I Remember</h4>
-                        <div class="overlay-mood">Tragedy & Mystery</div>
-                        <div class="overlay-meta">A forgotten memory, a quiet street, and a secret carried by only one
-                            soul.</div>
+                        <div class="overlay-mood">Strange & quiet</div>
+                        <div class="overlay-meta">A secret memory that belongs to only one person. The loneliest kind of secret.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2628,23 +2190,22 @@
                 <div class="book-info-footer">
                     <h3>The Night Only I Remember</h3>
                     <p>Memories in the Void</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
             <!-- Unsaid -->
             <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Unsaid.html'">
                 <div class="book-cover-container">
-                    <span class="author-badge">Narrative by WR</span>
+                    <span class="author-badge">My personal favorite</span>
                     <img src="New cover/UNSAID.png" alt="Unsaid Cover" loading="lazy">
                     <div class="glare"></div>
                     <div class="card-overlay">
                         <h4 class="overlay-title">Unsaid</h4>
-                        <div class="overlay-mood">Romance & Quiet Tragedy</div>
-                        <div class="overlay-meta">They never said everything. Adhi and Manju's shared silence across
-                            college and life.</div>
+                        <div class="overlay-mood">Quiet & sad</div>
+                        <div class="overlay-meta">Two people who never said what they actually felt. It is my favorite.</div>
                         <button class="begin-btn">
-                            Begin Experience
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -2656,7 +2217,7 @@
                 <div class="book-info-footer">
                     <h3>Unsaid</h3>
                     <p>Silence in Love</p>
-                    <div class="read-story-cta">Read Story &rarr;</div>
+                    <div class="read-story-cta">Open &rarr;</div>
                 </div>
             </div>
 
@@ -2667,13 +2228,13 @@
     <section class="qa-section" id="archive-guide">
         <div class="qa-container">
             <div class="qa-header">
-                <h2>Archive Guide & Q&A</h2>
-                <p>Interact with the archive system to learn about the stories, philosophy, and tech stack.</p>
+                <h2>Notes from the writer</h2>
+                <p>You have questions. Here are my honest answers.</p>
             </div>
             <div class="qa-content">
                 <div class="qa-sidebar">
                     <div class="qa-search-box">
-                        <input type="text" id="qa-search" placeholder="Search archive logs...">
+                        <input type="text" id="qa-search" placeholder="Ask a question...">
                         <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="11" cy="11" r="8"></circle>
@@ -2691,7 +2252,7 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">wazir-archive-terminal:~</span>
+                        <span class="terminal-title">varun@story-vault:~</span>
                     </div>
                     <div class="qa-terminal-body" id="qa-terminal-body">
                         <!-- Output dynamic -->
@@ -2703,7 +2264,7 @@
 
     <footer>
         <div class="footer-content">
-            <p>WR &bull; The Story Vault &bull; Reimagined Cinematic Storytelling</p>
+            <p>Written and built by Varun &bull; 2024&ndash;present</p>
             <div class="footer-contact">
                 <a href="mailto:akurivarun@gmail.com" class="contact-link">
                     <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -2904,6 +2465,20 @@
             const splashScreen = document.getElementById('splash-screen');
             const canvas = document.getElementById('particle-canvas');
 
+            // Randomize splash screen phrase
+            const phrases = [
+                "Every story leaves a trace.",
+                "Welcome.",
+                "Pull up a chair.",
+                "Some stories I wrote.",
+                "Stay a while.",
+                "Stories await."
+            ];
+            const phraseEl = document.querySelector('.splash-phrase');
+            if (phraseEl) {
+                phraseEl.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+            }
+
             // Float particles on top of splash screen during opening sequence
             if (canvas) {
                 canvas.style.zIndex = '10001';
@@ -2926,122 +2501,113 @@
                 // -------------------------------------------------------------
                 const qaData = {
                     'who-is-wr': {
-                        title: "Who is WR?",
-                        command: "query_archive --agent who_is_wr",
-                        intro: "WR represents the personal creative writing portfolio of Akuri Venkata Surya Varun, an Indian writer and digital creator who specializes in craft-focused, character-driven storytelling.",
+                        title: "Who are you?",
+                        command: "about_me",
+                        intro: "My name is Varun. I write under 'WR' because I like how it looks. I write and build digital stories from India.",
                         contentHtml: `
                         <ul class="qa-answer-list">
-                            <li><strong>Creative Persona:</strong> Varun writes under the moniker WR, exploring themes of romance, tragedy, mythology, devotion, suspense, and human connection.</li>
-                            <li><strong>Visual Narrator:</strong> Believes that in a digital world, storytelling should extend beyond static documents and become an immersive multisensory experience.</li>
-                            <li><strong>Interactive Developer:</strong> Built and designed this custom portfolio website from scratch to showcase these stories dynamically.</li>
+                            <li><strong>Writing:</strong> I write about love, sadness, mythology, and human connection.</li>
+                            <li><strong>Design:</strong> I believe stories on the web should have atmosphere, not just black text on a white page.</li>
+                            <li><strong>Development:</strong> I coded and designed this archive myself from scratch.</li>
                         </ul>
                     `
                     },
                     'about-portfolio': {
-                        title: "What is this Portfolio?",
-                        command: "cat archive_manifest.json",
-                        intro: "Welcome to The Story Vault. Rather than presenting stories as plain static text, this platform combines original creative writing with cinematic design, visual pacing, and responsive motion.",
+                        title: "What is this place?",
+                        command: "about_vault",
+                        intro: "This is The Story Vault. It is a personal library of my stories, designed to be read on a screen with visual pacing and soft motion.",
                         contentHtml: `
-                        <p class="qa-answer-text">The collection represents my journey as both a writer and digital creator. Key focuses include:</p>
-                        <ul class="qa-answer-list">
-                            <li><strong>Emotional Depths:</strong> Narratives exploring deep emotional, psychological, and spiritual spaces.</li>
-                            <li><strong>Atmospheric Immersion:</strong> Creating a unified experience where design directly reinforces the prose.</li>
-                            <li><strong>Reader Focus:</strong> A curated reading experience engineered to minimize distractions and maximize immersion.</li>
-                        </ul>
+                        <p class="qa-answer-text">I wanted to create an experience where the design fits the mood of the writing.</p>
                     `
                     },
                     'why-i-built-wr': {
-                        title: "Why I Built WR",
-                        command: "query_archive --intent why_built",
-                        intro: "Most stories online are presented as static pages. I wanted to explore how interaction, motion, atmosphere, and visual design could deepen emotional engagement without distracting from the narrative itself.",
+                        title: "Why does this exist?",
+                        command: "why",
+                        intro: "Most stories online are just plain PDF links. I wanted to see if custom colors, scrolling text, and subtle effects could make reading feel more alive.",
                         contentHtml: `
-                        <p class="qa-answer-text">WR became an experiment in combining storytelling, UX design, and front-end development into a single immersive experience.</p>
+                        <p class="qa-answer-text">It is an experiment in merging writing, design, and code to create a better reading experience.</p>
                     `
                     },
                     'featured-works': {
-                        title: "Featured Works & Stories",
-                        command: "list_works --status active",
-                        intro: "Here are the primary works currently showcased in this archive. You can hover/click any card on the shelf above to enter the experience, or click on a work below to highlight it on the shelf:",
+                        title: "What stories are here?",
+                        command: "list_stories",
+                        intro: "Here is a quick list of stories in the vault. You can hover or click them on the shelf above, or click below to find them:",
                         contentHtml: `
                         <div class="story-list-mini">
                             <div class="story-mini-card" onclick="highlightAndScrollBook('Abhinayam')">
                                 <h4>Abhinayam</h4>
-                                <p>Romance, Devotion & Tragedy</p>
+                                <p>Devotion and sadness</p>
                             </div>
                             <div class="story-mini-card" onclick="highlightAndScrollBook('Almost')">
                                 <h4>Almost</h4>
-                                <p>Quiet Romance & Calmness</p>
+                                <p>Bittersweet and calm</p>
                             </div>
                             <div class="story-mini-card" onclick="highlightAndScrollBook('Dharshan')">
                                 <h4>Dharshan</h4>
-                                <p>Devotional Calmness</p>
+                                <p>Peaceful and calm</p>
                             </div>
                             <div class="story-mini-card" onclick="highlightAndScrollBook('Dhruvendra')">
                                 <h4>Dhruvendra</h4>
-                                <p>Adventure & Suspense</p>
+                                <p>Adventure and mystery</p>
                             </div>
                             <div class="story-mini-card" onclick="highlightAndScrollBook('Green Hollow')">
                                 <h4>Green Hollow</h4>
-                                <p>Mystery & Tension</p>
+                                <p>Tension and mystery</p>
                             </div>
                             <div class="story-mini-card" onclick="highlightAndScrollBook('Kadha Laga Modhalaina')">
                                 <h4>Kadha Laga Modhalaina</h4>
-                                <p>Romance & Nostalgia (Telugu)</p>
+                                <p>Warm and nostalgic (Telugu)</p>
                             </div>
                             <div class="story-mini-card" onclick="highlightAndScrollBook('Kali')">
                                 <h4>Kali: The Five Paths</h4>
-                                <p>Tragedy & Mythic Fantasy</p>
+                                <p>Heavy and intense</p>
                             </div>
                             <div class="story-mini-card" onclick="highlightAndScrollBook('Malli Kalisi…')">
                                 <h4>Malli Kalisi…</h4>
-                                <p>Romance & Tragedy</p>
+                                <p>Sad and sweet</p>
                             </div>
                         </div>
                     `
                     },
                     'storytelling-engine': {
-                        title: "Interactive Storytelling Engine",
-                        command: "diagnose --engine",
-                        intro: "To bridge the gap between literature and visual art, the stories are presented through a custom web-based reading engine featuring:",
+                        title: "How do the stories work?",
+                        command: "engine_details",
+                        intro: "The reading page uses simple custom code to adapt to your reading pace:",
                         contentHtml: `
                         <ul class="qa-answer-list">
-                            <li><strong>Emotional Theme Transitions:</strong> Screen colors and canvas particles shift automatically as you scroll to reflect narrative mood shifts (e.g., sunset, cosmic, grief, tension).</li>
-                            <li><strong>Word-by-Word Reveals:</strong> Synchronized ScrollTrigger animations fade in sentences word-by-word to pace the reader.</li>
-                            <li><strong>Focus Mode:</strong> A toggle that wipes away all headers, sidebars, and UI to create a pure, distraction-free environment.</li>
-                            <li><strong>3D Bookshelf Interface:</strong> A responsive grid utilizing perspective tilts and glare effects to create a physical shelf feel.</li>
-                            <li><strong>Cinematic preloader:</strong> A loading sequence that establishes the brand intro and sets the tone before reading.</li>
+                            <li><strong>Color shifts:</strong> The background color changes as you scroll to match the story's mood.</li>
+                            <li><strong>Word reveal:</strong> Sentences fade in word-by-word as you scroll down.</li>
+                            <li><strong>Focus mode:</strong> You can hide all menus to read with zero distractions.</li>
                         </ul>
                     `
                     },
                     'creative-philosophy': {
-                        title: "Creative Philosophy",
-                        command: "cat philosophy.txt",
-                        intro: "I believe stories are experiences rather than documents. The written word carries its own resonance, but technology allows us to frame those words in a way that elevates engagement.",
+                        title: "What is your philosophy?",
+                        command: "philosophy",
+                        intro: "I believe reading on a screen should be beautiful, but the effects must always serve the words, not distract from them.",
                         contentHtml: `
                         <ul class="qa-answer-list">
-                            <li><strong>Inhabiting Worlds:</strong> Designing environments with custom palettes, particle filters, and typography so readers don't just read the story, but inhabit it.</li>
-                            <li><strong>Restraint in Tech:</strong> Visual effects should always serve the prose, not distract from it. Animations are smooth, subtle, and tied directly to scroll momentum.</li>
-                            <li><strong>Meaningful Connection:</strong> Exploring psychological, emotional, and mythic arcs that challenge the reader's perspective.</li>
+                            <li><strong>Atmosphere:</strong> Using colors and shapes to set the scene.</li>
+                            <li><strong>Simplicity:</strong> Keeping animations gentle and smooth.</li>
                         </ul>
                     `
                     },
                     'technical-implementation': {
-                        title: "Technical Implementation",
-                        command: "sys_info --version",
-                        intro: "The application is built completely with standard frontend technologies to maximize performance, customizability, and load speed:",
+                        title: "How did you code this?",
+                        command: "tech_stack",
+                        intro: "I built this website using clean frontend technologies for speed and reliability:",
                         contentHtml: `
                         <ul class="qa-answer-list">
-                            <li><strong>Core Structure:</strong> Semantic HTML5 elements for text readability combined with Vanilla CSS for layouts.</li>
-                            <li><strong>Motion Physics:</strong> Powered by <strong>GSAP</strong> (GreenSock Animation) & <strong>ScrollTrigger</strong> for interactive text revealing, combined with <strong>Lenis</strong> for smooth scroll physics.</li>
-                            <li><strong>Visual FX:</strong> Dynamic HTML5 Canvas particles and custom SVG turbulence filters to generate realistic film grain overlays.</li>
-                            <li><strong>Accessibility:</strong> Built with responsive layouts, fluid clamp typography, and reduced-motion detection.</li>
+                            <li><strong>HTML & CSS:</strong> For the layout, structure, and text sizing.</li>
+                            <li><strong>GSAP & Lenis:</strong> For smooth scrolling and word reveals.</li>
+                            <li><strong>Canvas:</strong> For the soft floating particles on the background.</li>
                         </ul>
                     `
                     },
                     'contact-info': {
-                        title: "Contact & Connections",
-                        command: "finger varun",
-                        intro: "Feel free to reach out to connect, collaborate, or inquire about the storytelling engine. Here are my active channels:",
+                        title: "How can I reach you?",
+                        command: "contact",
+                        intro: "I read every message. If you want to talk about a story, ask about the code, or just say hello, please get in touch:",
                         contentHtml: `
                         <div class="qa-contact-grid">
                             <a href="mailto:akurivarun@gmail.com" class="qa-contact-card">
@@ -3079,124 +2645,124 @@
                 // Librarian catalog card database
                 const catalogDb = {
                     'abhinayam': { 
-                        code: "ARC-DEV-001", 
+                        code: "01", 
                         time: "45 MINS", 
-                        genre: "Devotion (Bhakti) · Reincarnation, Spiritual Love, Destiny", 
-                        tone: "Eternal devotion to Krishna beyond lifetimes.", 
-                        style: "Scroll-Driven Cinematic Prose", 
-                        synopsis: "The Gopika Who Returned. A lifetimes-spanning narrative exploring separation, devotion, and spiritual longing." 
+                        mood: "Devotion and sadness", 
+                        written: "Late 2024, at night", 
+                        bestRead: "Late at night", 
+                        curatorNote: "I spent three months writing this. It is about a love that lasts across lifetimes." 
                     },
                     'almost': { 
-                        code: "ARC-ROM-002", 
+                        code: "02", 
                         time: "30 MINS", 
-                        genre: "Romance · Nostalgia, Emotional Growth, Destiny", 
-                        tone: "Some connections never disappear even when life moves on.", 
-                        style: "INFJ Relationship Study", 
-                        synopsis: "An INFJ relationship that failed perfectly, finding safety in silence and the beauty of unfinished endings." 
+                        mood: "Bittersweet and calm", 
+                        written: "Over a quiet weekend", 
+                        bestRead: "On a rainy evening", 
+                        curatorNote: "A story about two quiet people who go their separate ways, finding comfort in silence." 
                     },
                     'dharshan': { 
-                        code: "ARC-DEV-003", 
+                        code: "03", 
                         time: "20 MINS", 
-                        genre: "Devotional / Spiritual · Simplicity, Krishna Consciousness, Inner Peace", 
-                        tone: "Spiritual fulfillment through devotion and discipline.", 
-                        style: "Pilgrimage Narrative", 
-                        synopsis: "Aditya, Nandini, and Meera's walking pilgrimage to Tirupati, exploring faith, stability, and quiet companionship." 
+                        mood: "Peaceful and calm", 
+                        written: "After a trip to Tirupati", 
+                        bestRead: "In the morning, with tea", 
+                        curatorNote: "Three people walking to a temple. It is simple, quiet, and about faith." 
                     },
                     'dhruvendra': { 
-                        code: "ARC-ADV-004", 
+                        code: "04", 
                         time: "50 MINS", 
-                        genre: "Adventure Fantasy · Self-discovery, Spiritual Quest, Sacrifice", 
-                        tone: "The real treasure is inner awakening.", 
-                        style: "Mythic Heroic Quest", 
-                        synopsis: "An epic pursuit of ancient secrets, hidden treasures, and the heavy psychological consequences of obsession." 
+                        mood: "Adventure and mystery", 
+                        written: "Over several months", 
+                        bestRead: "When you want to get lost in a world", 
+                        curatorNote: "What happens when you chase a secret too hard? An adventure story that grew longer than I planned." 
                     },
                     'green hollow': { 
-                        code: "ARC-MYS-005", 
+                        code: "05", 
                         time: "35 MINS", 
-                        genre: "Mystery / Thriller · Investigation, Suspense", 
-                        tone: "Dark secrets hidden beneath ordinary life.", 
-                        style: "Slow-burning Narrative", 
-                        synopsis: "A descent into a quiet forest town plagued by ancient curses, hidden intentions, and unexplained events." 
+                        mood: "Tension and mystery", 
+                        written: "During cold autumn nights", 
+                        bestRead: "In the dark, with headphones", 
+                        curatorNote: "A mystery about a quiet town in the woods. This is only the first part of a bigger story." 
                     },
                     'kadha laga': { 
-                        code: "ARC-SOC-006", 
+                        code: "06", 
                         time: "25 MINS", 
-                        genre: "Social Drama · Society, Identity, Human Nature", 
-                        tone: "Critique of societal expectations and change.", 
-                        style: "Telugu Romantic Prose", 
-                        synopsis: "Oka Parichayam. A nostalgic Telugu romantic narrative capturing the charm of quiet moments and conversations." 
+                        mood: "Warm and nostalgic", 
+                        written: "First in Telugu, then translated", 
+                        bestRead: "On a lazy Sunday afternoon", 
+                        curatorNote: "I wanted to write a simple love story in Telugu because the words feel warmer that way." 
                     },
                     'kali': { 
-                        code: "ARC-MYT-007", 
+                        code: "07", 
                         time: "60 MINS", 
-                        genre: "Mythological Thriller · Action, Dharma, Good vs Evil", 
-                        tone: "Modern warriors fighting darkness and corruption.", 
-                        style: "Epic Narrative Journey", 
-                        synopsis: "The Five Paths. A story of cosmic destiny, sacrifice, and the irreversible choices that shape entire worlds." 
+                        mood: "Heavy and intense", 
+                        written: "Rewritten four times in 2024", 
+                        bestRead: "When you have an hour to yourself", 
+                        curatorNote: "A story of heroes, destiny, and hard choices. My most difficult write." 
                     },
                     'malli kalisi…': { 
-                        code: "ARC-ROM-008", 
+                        code: "08", 
                         time: "25 MINS", 
-                        genre: "Emotional Romance · Rebirth, Loss, Reunion", 
-                        tone: "Love continuing across lives and memories.", 
-                        style: "Reunion Narrative", 
-                        synopsis: "Explores the lingering echoes of lost promises and meeting again after years of separation and silence." 
+                        mood: "Sad and sweet", 
+                        written: "Written in one evening", 
+                        bestRead: "When you feel nostalgic", 
+                        curatorNote: "Meeting someone again after years. I wrote this quickly because I could feel the characters clearly." 
                     },
                     'midnight escape': { 
-                        code: "ARC-PSD-015", 
+                        code: "09", 
                         time: "25 MINS", 
-                        genre: "Psychological Drama · Freedom, Responsibility, Self-Discovery", 
-                        tone: "The search for freedom beyond external success.", 
-                        style: "Bilingual Telugu-English Narrative", 
-                        synopsis: "Surya and Sameera's midnight escape from family boundaries in search of true, unrestrained choices." 
+                        mood: "Restless and free", 
+                        written: "In one sitting, late at night", 
+                        bestRead: "After midnight", 
+                        curatorNote: "Two people escaping their families at night. Freedom is not a place, it is a choice." 
                     },
                     'nonparticipant': { 
-                        code: "ARC-PSY-009", 
+                        code: "10", 
                         time: "30 MINS", 
-                        genre: "Psychological Thriller · Existential Horror, Society, Mind", 
-                        tone: "What happens when people stop responding to reality?", 
-                        style: "Observer Reflection", 
-                        synopsis: "Observing life from the boundaries. The peaceful but stark isolation of a silent witness." 
+                        mood: "Quiet and lonely", 
+                        written: "During a quiet week alone", 
+                        bestRead: "When the world is too loud", 
+                        curatorNote: "What happens when someone just decides to watch life instead of living it?" 
                     },
                     'short and sweet': { 
-                        code: "ARC-ROM-010", 
+                        code: "11", 
                         time: "20 MINS", 
-                        genre: "Youth Romance · Friendship, Farewell, Memories", 
-                        tone: "Simple school-age emotions and lasting moments.", 
-                        style: "Vignette Collection", 
-                        synopsis: "A collection of quiet moments, light laughter, and the gentle beginnings of romantic comfort." 
+                        mood: "Happy and light", 
+                        written: "Written here and there", 
+                        bestRead: "When you need a quick smile", 
+                        curatorNote: "A collection of happy moments. The lightest thing I have written." 
                     },
                     'telugu ammai': { 
-                        code: "ARC-DET-011", 
+                        code: "12", 
                         time: "25 MINS", 
-                        genre: "Determination / Inspirational · Dreams, Dance, Perseverance", 
-                        tone: "Fighting against obstacles to achieve one's dream.", 
-                        style: "Character-driven Drama", 
-                        synopsis: "A young Telugu girl's pursuit of classical dance, defying family doubt to find her artistic rhythm." 
+                        mood: "Determined and warm", 
+                        written: "Inspired by a conversation", 
+                        bestRead: "In the morning", 
+                        curatorNote: "A girl who wants to dance, despite what her family thinks. I wanted her to win." 
                     },
                     'the midnight story': { 
-                        code: "ARC-SUS-012", 
+                        code: "13", 
                         time: "30 MINS", 
-                        genre: "Psychological Drama / Mystery · Freedom, Identity", 
-                        tone: "Escaping the life imposed by others.", 
-                        style: "Midnight City Adventure", 
-                        synopsis: "A gripping chase through the dark urban streetscape as midnight strikes and shadows lengthen." 
+                        mood: "Tense and uncertain", 
+                        written: "At 2 AM", 
+                        bestRead: "Late at night", 
+                        curatorNote: "A chase through the city at night. I wrote this while sitting in the dark." 
                     },
                     'the night only': { 
-                        code: "ARC-SCI-013", 
+                        code: "14", 
                         time: "35 MINS", 
-                        genre: "Sci-Fi Thriller · Time Loop, Mystery, Survival", 
-                        tone: "A forgotten night that only one person remembers.", 
-                        style: "Memory Reconstruction", 
-                        synopsis: "A forgotten memory, a quiet street, and a secret carried by only one soul in the universe." 
+                        mood: "Strange and quiet", 
+                        written: "After a week of weird dreams", 
+                        bestRead: "Late night", 
+                        curatorNote: "A secret memory that belongs to only one person. The loneliest kind of secret." 
                     },
                     'unsaid': { 
-                        code: "ARC-ROM-014", 
+                        code: "15", 
                         time: "40 MINS", 
-                        genre: "Nostalgic Romance · Silent Love, Longing, Introversion", 
-                        tone: "Feelings that exist without being spoken.", 
-                        style: "Introspective Shared Silence", 
-                        synopsis: "Adhi and Manju's shared silence across college and life, exploring the weight of unspoken feelings." 
+                        mood: "Quiet and sad", 
+                        written: "My most personal story", 
+                        bestRead: "When you miss someone", 
+                        curatorNote: "Two people who never said what they actually felt. It is my favorite." 
                     }
                 };
 
@@ -3215,18 +2781,18 @@
                         overlay.className = "card-overlay library-catalog-card";
                         overlay.innerHTML = `
                         <div class="catalog-card-header">
-                            <span class="shelf-no">SHELF NO: ${data.code}</span>
+                            <span class="shelf-no">No. ${data.code}</span>
                             <span class="est-time">${data.time}</span>
                         </div>
                         <div class="catalog-card-body">
                             <h4 class="catalog-title">${titleEl.textContent.trim()}</h4>
-                            <div class="catalog-line"><strong>GENRE:</strong> ${data.genre}</div>
-                            <div class="catalog-line"><strong>TONE:</strong> ${data.tone}</div>
-                            <div class="catalog-line"><strong>STYLE:</strong> ${data.style}</div>
-                            <div class="catalog-synopsis">${data.synopsis}</div>
+                            <div class="catalog-line"><strong>Mood:</strong> ${data.mood}</div>
+                            <div class="catalog-line"><strong>Written:</strong> ${data.written}</div>
+                            <div class="catalog-line"><strong>Best Read:</strong> ${data.bestRead}</div>
+                            <div class="catalog-synopsis">${data.curatorNote}</div>
                         </div>
                         <button class="begin-btn" style="margin-top:auto;">
-                            Begin Journey
+                            Read Story
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:12px;height:12px;margin-left:5px;">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -3307,7 +2873,7 @@
                             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
                             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
                         </svg>
-                        Continue: ${latestProgress.title} (${latestProgress.percentage}%)
+                        Keep reading: ${latestProgress.title} (${latestProgress.percentage}%)
                     `;
                         headerControls.insertBefore(continueBtn, headerControls.firstChild);
                     }
@@ -3469,11 +3035,11 @@
                 renderQuestions();
                 terminalBody.innerHTML = `
                 <div class="welcome-message" style="animation: fadeIn 0.8s ease;">
-                    <p class="console-prompt">> Select a question from the guide list to print details...</p>
+                    <p class="console-prompt">> Pick a question from the list to read...</p>
                     <div class="interactive-prompt-list">
-                        <button class="quick-question-btn" onclick="selectQuestion('who-is-wr')">Who is WR?</button>
-                        <button class="quick-question-btn" onclick="selectQuestion('storytelling-engine')">What is the Storytelling Engine?</button>
-                        <button class="quick-question-btn" onclick="selectQuestion('featured-works')">Tell me about the stories...</button>
+                        <button class="quick-question-btn" onclick="selectQuestion('who-is-wr')">Who are you?</button>
+                        <button class="quick-question-btn" onclick="selectQuestion('storytelling-engine')">How do the stories work?</button>
+                        <button class="quick-question-btn" onclick="selectQuestion('featured-works')">What stories are here?</button>
                     </div>
                 </div>
             `;
