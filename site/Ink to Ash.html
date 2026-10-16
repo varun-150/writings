@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ink to Ash | An Overthinking Mind</title>
+  <meta name="description" content="A quiet story of Mara, who kept a thought for every silence, until the ink curled into smoke and she learned to begin again.">
+  <meta name="theme-color" content="#080808">
+
+  <!-- Fonts (preconnect for speed) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts (non-blocking; Kalam) -->
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap' media='print' onload="this.media='all'">
+  <noscript><link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap'></noscript>
+
+  <!-- Design System -->
+  <link rel='stylesheet' href='story-cinematic.css'>
+
+  <!-- Original Page Plates -->
+  <style>
+    .page-plate {
+      margin: 0 auto 5rem;
+      max-width: min(100%, 920px);
+      text-align: center;
+    }
+    .page-plate img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      background: #0a0a09;
+    }
+    .page-plate figcaption {
+      font-family: var(--font-ui, sans-serif);
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted, #8a8678);
+      margin-top: 1.1rem;
+    }
+    @media (max-width: 640px) {
+      .page-plate img {
+        border-radius: 8px;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="fire-cursor.css">
+</head>
+<body>
+
+<a href="#story-wrapper" class="skip-link">Skip to story content</a>
+  <!-- ============================================ -->
+  <!-- PRELOADER                  -->
+  <!-- ============================================ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <span class="preloader-title">Ink to Ash</span>
+    <div class="preloader-line"></div>
+    <span class="preloader-sub">Entering The Story</span>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- CINEMATIC OVERLAYS              -->
+  <!-- ============================================ -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- AMBIENT PARTICLE CANVAS           -->
+  <!-- ============================================ -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================ -->
+  <!-- CURSOR GLOW                 -->
+  <!-- ============================================ -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- READING PROGRESS BAR             -->
+  <!-- ============================================ -->
+
+  <!-- ============================================ -->
+  <!-- FOCUS MODE INDICATOR             -->
+  <!-- ============================================ -->
+  <div class="focus-indicator" aria-live="polite">Focus Reading Mode, Hover Top To Reveal Controls</div>
+
+  <!-- ============================================ -->
+  <!-- HEADER NAVIGATION              -->
+  <!-- ============================================ -->
+  <header class="glass-header" id="main-header" role="banner">
+    <button type="button" class="header-brand" id="header-brand" aria-label="Back to top" title="Back to top">
+      <span class="header-brand-name">Ink to Ash</span>
+      <span class="header-brand-sub">An overthinking mind</span>
+    </button>
+
+    <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+      <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: The Crowded Mind">
+        <span class="dot-label">I</span>
+        <span class="dot-tooltip">Chapter 1 · The Crowded Mind</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: A Bird &amp; A Bookseller">
+        <span class="dot-label">II</span>
+        <span class="dot-tooltip">Chapter 2 · A Bird &amp; A Bookseller</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: Ink to Ash">
+        <span class="dot-label">III</span>
+        <span class="dot-tooltip">Chapter 3 · Ink to Ash</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch4" aria-label="Chapter 4: Begin Again">
+        <span class="dot-label">IV</span>
+        <span class="dot-tooltip">Chapter 4 · Begin Again</span>
+      </button>
+    </nav>
+
+    <a class="header-library-link" href="index.html" aria-label="Return to the library" title="Return to the library">
+      <svg class="header-library-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5"></path>
+        <path d="M12 19l-7-7 7-7"></path>
+      </svg>
+      <span class="header-library-label">Library</span>
+    </a>
+
+    <div class="header-controls">
+      <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+        <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- SIDEBAR CHAPTER NAVIGATION          -->
+  <!-- ============================================ -->
+  <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+    <span class="sidebar-label">The Story</span>
+    <div class="sidebar-items">
+      <button class="sidebar-item" data-target="#ch1">
+        <span class="sb-num">01</span>
+        <div class="sb-info">
+          <span class="sb-name">The Crowded Mind</span>
+          <span class="sb-desc">Mara's thoughts</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch2">
+        <span class="sb-num">02</span>
+        <div class="sb-info">
+          <span class="sb-name">A Bird &amp; A Bookseller</span>
+          <span class="sb-desc">A writing to survive</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch3">
+        <span class="sb-num">03</span>
+        <div class="sb-info">
+          <span class="sb-name">Ink to Ash</span>
+          <span class="sb-desc">Letting go</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch4">
+        <span class="sb-num">04</span>
+        <div class="sb-info">
+          <span class="sb-name">Begin Again</span>
+          <span class="sb-desc">First sentence</span>
+        </div>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============================================ -->
+  <!-- LANDING EXPERIENCE              -->
+  <!-- ============================================ -->
+  <section class="landing-section" id="landing" aria-label="Story introduction">
+    <div class="landing-ambient" aria-hidden="true"></div>
+
+    <a class="header-library-link landing-library-link" href="index.html" aria-label="Return to the library" title="Return to the library">
+      <svg class="header-library-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+      <span class="header-library-label">Library</span>
+    </a>
+
+    <div class="landing-content">
+      <!-- Book Cover with 3D Parallax -->
+      <div class="cover-wrapper">
+        <div class="cover-3d" id="cover-3d">
+          <img src="New cover/Ink to Ash.png" alt="Ink to Ash, Book Cover" id="cover-img">
+          <div class="cover-sheen" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Typography Group -->
+      <div class="landing-text">
+        <div class="landing-tag" id="landing-tag">A Quiet Story</div>
+        <h1 class="landing-title" id="landing-title" data-text="Ink to Ash">Ink to Ash</h1>
+        <div class="landing-subtitle" id="landing-subtitle">An overthinking mind</div>
+        <div class="landing-meta" id="landing-meta">Mara had a thought for every silence, until the ink curled into smoke, and she learned to begin again.</div>
+        <button class="begin-btn" id="begin-btn">
+          <span>Begin Story</span>
+          <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="scroll-hint" id="scroll-hint">
+      <span>Scroll to begin again</span>
+      <div class="scroll-hint-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- STORY EXPERIENCE               -->
+  <!-- ============================================ -->
+  <main class="story-wrapper" id="story-wrapper" tabindex="-1" role="main" aria-label="Ink to Ash story chapters">
+  <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 1, The Crowded Mind       -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch1" data-chapter-theme="instability" data-chapter-index="0" aria-label="Chapter 1: The Crowded Mind">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">01</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 01</span>
+          <h2 class="chapter-title">The Crowded Mind</h2>
+          <p class="chapter-synopsis">Mara had a thought for every silence.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="instability" data-intensity="0.30">Mara had a thought for every silence.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.60">By morning, her notebook was full, and she was still afraid to begin.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p02.jpg" alt="Illustrated page, By morning, her notebook was full." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">She trusted the first thought for exactly three seconds.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.75">Then doubt arrived with a red pen.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p03.jpg" alt="Illustrated page, She trusted the first thought for three seconds." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.60">Every possibility walked beside her. None of them knew where they were going.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p04.jpg" alt="Illustrated page, Every possibility walked beside her." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">She ordered tea, then wondered if coffee would have made the decision easier.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p05.jpg" alt="Illustrated page, She ordered tea, then wondered about coffee." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.80">A small thought became a question. The question became a weather system.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p06.jpg" alt="Illustrated page, The question became a weather system." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Behind every door, she imagined another door. So she stayed in the hallway.</p>
+            <p class="thought-dim word-reveal">MAYBE, WHAT IF, TOMORROW, SOMEDAY, A DIFFERENT LIFE, ANOTHER WAY, START OVER, IF ONLY, BEGIN AGAIN, SOMETHING BETTER, WAIT LONGER, NOT YET, NOT HERE, NOT NOW, TURN BACK, MAYBE NOT</p>
+          </div>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p07.jpg" alt="Illustrated page, Behind every door, another door." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 2, A Bird & A Bookseller     -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch2" data-chapter-theme="curiosity" data-chapter-index="1" aria-label="Chapter 2: A Bird & A Bookseller">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">02</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 02</span>
+          <h2 class="chapter-title">A Bird &amp; A Bookseller</h2>
+          <p class="chapter-synopsis">Write something that cannot be improved.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">The bird arrived without an explanation. Mara envied its confidence.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p08.jpg" alt="Illustrated page, The bird arrived without an explanation." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">The pages moved in the wind, making a language out of unfinished things.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p09.jpg" alt="Illustrated page, A language out of unfinished things." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>Write something that cannot be improved,<br>the bookseller said.<br><br>Then see what survives.</blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p10.jpg" alt="Illustrated page, Write something that cannot be improved." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.60">The blank page was not empty. It was simply refusing to choose for her.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p11.jpg" alt="Illustrated page, The blank page was not empty." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Mara wrote:</p>
+            <p>&ldquo;I am here.&rdquo;</p>
+            <p class="thought-dim word-reveal">It was not original. It was true.</p>
+          </div>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p12.jpg" alt="Illustrated page, Mara wrote: I am here." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 3, Ink to Ash          -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch3" data-chapter-theme="release" data-chapter-index="2" aria-label="Chapter 3: Ink to Ash">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">03</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 03</span>
+          <h2 class="chapter-title">Ink to Ash</h2>
+          <p class="chapter-synopsis">The ink curled into smoke.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p" data-mood="sadness" data-intensity="0.75">She revised the truth until it almost disappeared.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p13.jpg" alt="Illustrated page, She revised the truth until it almost disappeared." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="sadness" data-intensity="0.60">For once, she did not solve the feeling. She let the rain name it.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p14.jpg" alt="Illustrated page, She let the rain name it." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="release" data-intensity="0.45">The words ran together. Their edges softened. Nothing ended.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p15.jpg" alt="Illustrated page, The words ran together." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p" data-mood="release" data-intensity="0.60">She had mistaken preservation for care. Some things needed to be released.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p16.jpg" alt="Illustrated page, Some things needed to be released." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="release" data-intensity="0.75">The ink curled into smoke. Her thoughts became lighter without becoming less real.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p17.jpg" alt="Illustrated page, The ink curled into smoke." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>What remained was not an answer.</p>
+            <p class="thought-dim word-reveal">It was room.</p>
+          </div>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p18.jpg" alt="Illustrated page, What remained was room." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 4, Begin Again          -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch4" data-chapter-theme="resolution" data-chapter-index="3" aria-label="Chapter 4: Begin Again">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">04</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 04</span>
+          <h2 class="chapter-title">Begin Again</h2>
+          <p class="chapter-synopsis">She left the first sentence where it landed.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.45">She opened the window before she knew why. The morning entered anyway.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p19.jpg" alt="Illustrated page, The morning entered anyway." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.45">The bird left no instructions. Mara was beginning to understand the gift.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p20.jpg" alt="Illustrated page, The bird left no instructions." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.60">Without a page to defend, her hands felt unfamiliar.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p21.jpg" alt="Illustrated page, Her hands felt unfamiliar." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>She chose left.</p>
+            <p class="thought-dim word-reveal">Not because it was right, but because it was a direction.</p>
+          </div>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p22.jpg" alt="Illustrated page, She chose left." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">The child did not ask what the boat meant. Mara admired that.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p23.jpg" alt="Illustrated page, The child did not ask what the boat meant." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.60">They made another one. The fold was crooked. It floated.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p24.jpg" alt="Illustrated page, The fold was crooked. It floated." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.60">The room had not changed. Her relationship with it had.</p>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p25.jpg" alt="Illustrated page, The room had not changed." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Mara began again.</p>
+            <p class="thought-dim word-reveal">This time, she left the first sentence where it landed.</p>
+          </div>
+        </div>
+
+        <figure class="content-block page-plate">
+          <img src="ink-to-ash/pages/p26.jpg" alt="Illustrated page, She left the first sentence where it landed." loading="lazy">
+          <figcaption>Original page</figcaption>
+        </figure>
+
+        <!-- ============================================ -->
+        <!-- STORY EPILOGUE                -->
+        <!-- ============================================ -->
+        <div class="story-epilogue" id="story-epilogue">
+          <div class="epilogue-ornament">❖</div>
+          <h3 class="epilogue-title">Ink to Ash</h3>
+          <p class="epilogue-sub">An overthinking mind</p>
+          <div class="epilogue-divider"></div>
+          <button class="replay-btn" id="replay-btn">
+            <span>Replay Experience</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================ -->
+  <!-- CORE CDN DEPENDENCIES            -->
+  <!-- ============================================ -->
+  <!-- GSAP Core + ScrollTrigger -->
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <!-- Lenis Smooth Scroll -->
+  <script src="vendor/lenis.min.js"></script>
+
+  <!-- Cinematic Engine -->
+  <script src="story-cinematic.js"></script>
+
+  <script src="fire-cursor.js"></script>
+</body>
+</html>

@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mind That Wouldn't Stop | Professional Overthinker</title>
+  <meta name="description" content="A fictional narrative about Varun, a B.Tech CSE student, and the project that challenged every thought in his restless mind.">
+  <meta name="theme-color" content="#080808">
+
+  <!-- Fonts (preconnect for speed) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts (non-blocking; Kalam) -->
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap' media='print' onload="this.media='all'">
+  <noscript><link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap'></noscript>
+
+  <!-- Design System -->
+  <link rel='stylesheet' href='story-cinematic.css'>
+  <link rel="stylesheet" href="fire-cursor.css">
+</head>
+<body>
+
+<a href="#story-wrapper" class="skip-link">Skip to story content</a>
+  <!-- ============================================ -->
+  <!-- PRELOADER                  -->
+  <!-- ============================================ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <span class="preloader-title">The Mind That Wouldn't Stop</span>
+    <div class="preloader-line"></div>
+    <span class="preloader-sub">Entering The Story</span>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- CINEMATIC OVERLAYS              -->
+  <!-- ============================================ -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- AMBIENT PARTICLE CANVAS           -->
+  <!-- ============================================ -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================ -->
+  <!-- CURSOR GLOW                 -->
+  <!-- ============================================ -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- READING PROGRESS BAR             -->
+  <!-- ============================================ -->
+
+  <!-- ============================================ -->
+  <!-- FOCUS MODE INDICATOR             -->
+  <!-- ============================================ -->
+  <div class="focus-indicator" aria-live="polite">Focus Reading Mode, Hover Top To Reveal Controls</div>
+
+  <!-- ============================================ -->
+  <!-- HEADER NAVIGATION              -->
+  <!-- ============================================ -->
+  <header class="glass-header" id="main-header" role="banner">
+    <button type="button" class="header-brand" id="header-brand" aria-label="Back to top" title="Back to top">
+      <span class="header-brand-name">The Mind That Wouldn't Stop</span>
+      <span class="header-brand-sub">Professional Overthinker</span>
+    </button>
+
+    <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+      <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: The Boy Who Thought Too Much">
+        <span class="dot-label">I</span>
+        <span class="dot-tooltip">Chapter 1 · The Boy Who Thought Too Much</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: The Announcement">
+        <span class="dot-label">II</span>
+        <span class="dot-tooltip">Chapter 2 · The Announcement</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: The Team Forms">
+        <span class="dot-label">III</span>
+        <span class="dot-tooltip">Chapter 3 · The Team Forms</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch4" aria-label="Chapter 4: Project Saarthi">
+        <span class="dot-label">IV</span>
+        <span class="dot-tooltip">Chapter 4 · Project Saarthi</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch5" aria-label="Chapter 5: The Notebook of Worries">
+        <span class="dot-label">V</span>
+        <span class="dot-tooltip">Chapter 5 · The Notebook of Worries</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch6" aria-label="Chapter 6: First Sprint">
+        <span class="dot-label">VI</span>
+        <span class="dot-tooltip">Chapter 6 · First Sprint</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch7" aria-label="Chapter 7: The First Collapse">
+        <span class="dot-label">VII</span>
+        <span class="dot-tooltip">Chapter 7 · The First Collapse</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch8" aria-label="Chapter 8: The Review">
+        <span class="dot-label">VIII</span>
+        <span class="dot-tooltip">Chapter 8 · The Review</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch9" aria-label="Chapter 9: Rain">
+        <span class="dot-label">IX</span>
+        <span class="dot-tooltip">Chapter 9 · Rain</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch10" aria-label="Chapter 10: The Weight of More">
+        <span class="dot-label">X</span>
+        <span class="dot-tooltip">Chapter 10 · The Weight of More</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch11" aria-label="Chapter 11: The Fight">
+        <span class="dot-label">XI</span>
+        <span class="dot-tooltip">Chapter 11 · The Fight</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch12" aria-label="Chapter 12: The Long Night">
+        <span class="dot-label">XII</span>
+        <span class="dot-tooltip">Chapter 12 · The Long Night</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch13" aria-label="Chapter 13: Home Call">
+        <span class="dot-label">XIII</span>
+        <span class="dot-tooltip">Chapter 13 · Home Call</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch14" aria-label="Chapter 14: The Bug That Hid">
+        <span class="dot-label">XIV</span>
+        <span class="dot-tooltip">Chapter 14 · The Bug That Hid</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch15" aria-label="Chapter 15: Breaking Point">
+        <span class="dot-label">XV</span>
+        <span class="dot-tooltip">Chapter 15 · Breaking Point</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch16" aria-label="Chapter 16: Team Rhythm">
+        <span class="dot-label">XVI</span>
+        <span class="dot-tooltip">Chapter 16 · Team Rhythm</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch17" aria-label="Chapter 17: The Mock Demo Disaster">
+        <span class="dot-label">XVII</span>
+        <span class="dot-tooltip">Chapter 17 · The Mock Demo Disaster</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch18" aria-label="Chapter 18: The Night Before">
+        <span class="dot-label">XVIII</span>
+        <span class="dot-tooltip">Chapter 18 · The Night Before</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch19" aria-label="Chapter 19: Final Evaluation Begins">
+        <span class="dot-label">XIX</span>
+        <span class="dot-tooltip">Chapter 19 · Final Evaluation Begins</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch20" aria-label="Chapter 20: The Demo">
+        <span class="dot-label">XX</span>
+        <span class="dot-tooltip">Chapter 20 · The Demo</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch21" aria-label="Chapter 21: The Question">
+        <span class="dot-label">XXI</span>
+        <span class="dot-tooltip">Chapter 21 · The Question</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch22" aria-label="Chapter 22: Results">
+        <span class="dot-label">XXII</span>
+        <span class="dot-tooltip">Chapter 22 · Results</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch23" aria-label="Chapter 23: The Quiet After">
+        <span class="dot-label">XXIII</span>
+        <span class="dot-tooltip">Chapter 23 · The Quiet After</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch24" aria-label="Chapter 24: The Mind That Learned to Pause">
+        <span class="dot-label">XXIV</span>
+        <span class="dot-tooltip">Chapter 24 · The Mind That Learned to Pause</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch25" aria-label="Chapter 25: The Mind That Wouldn't Stop">
+        <span class="dot-label">XXV</span>
+        <span class="dot-tooltip">Chapter 25 · The Mind That Wouldn't Stop</span>
+      </button>
+    </nav>
+
+    <a class="header-library-link" href="index.html" aria-label="Return to the library" title="Return to the library">
+      <svg class="header-library-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5"></path>
+        <path d="M12 19l-7-7 7-7"></path>
+      </svg>
+      <span class="header-library-label">Library</span>
+    </a>
+
+    <div class="header-controls">
+      <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
+        <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- SIDEBAR CHAPTER NAVIGATION          -->
+  <!-- ============================================ -->
+  <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+    <span class="sidebar-label">The Story</span>
+    <div class="sidebar-items">
+      <button class="sidebar-item" data-target="#ch1">
+        <span class="sb-num">01</span>
+        <div class="sb-info">
+          <span class="sb-name">The Boy Who Thought Too Much</span>
+          <span class="sb-desc">Twenty pages by night two</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch2">
+        <span class="sb-num">02</span>
+        <div class="sb-info">
+          <span class="sb-name">The Announcement</span>
+          <span class="sb-desc">The project arrives</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch3">
+        <span class="sb-num">03</span>
+        <div class="sb-info">
+          <span class="sb-name">The Team Forms</span>
+          <span class="sb-desc">Four signatures</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch4">
+        <span class="sb-num">04</span>
+        <div class="sb-info">
+          <span class="sb-name">Project Saarthi</span>
+          <span class="sb-desc">A guide</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch5">
+        <span class="sb-num">05</span>
+        <div class="sb-info">
+          <span class="sb-name">The Notebook of Worries</span>
+          <span class="sb-desc">The black notebook</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch6">
+        <span class="sb-num">06</span>
+        <div class="sb-info">
+          <span class="sb-name">First Sprint</span>
+          <span class="sb-desc">Progress 1</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch7">
+        <span class="sb-num">07</span>
+        <div class="sb-info">
+          <span class="sb-name">The First Collapse</span>
+          <span class="sb-desc">Logs first</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch8">
+        <span class="sb-num">08</span>
+        <div class="sb-info">
+          <span class="sb-name">The Review</span>
+          <span class="sb-desc">Good is temporary</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch9">
+        <span class="sb-num">09</span>
+        <div class="sb-info">
+          <span class="sb-name">Rain</span>
+          <span class="sb-desc">Rain joins the team</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch10">
+        <span class="sb-num">10</span>
+        <div class="sb-info">
+          <span class="sb-name">The Weight of More</span>
+          <span class="sb-desc">18 · PERSONAL · 01</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch11">
+        <span class="sb-num">11</span>
+        <div class="sb-info">
+          <span class="sb-name">The Fight</span>
+          <span class="sb-desc">Arguments are not version control</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch12">
+        <span class="sb-num">12</span>
+        <div class="sb-info">
+          <span class="sb-name">The Long Night</span>
+          <span class="sb-desc">Machine fuel</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch13">
+        <span class="sb-num">13</span>
+        <div class="sb-info">
+          <span class="sb-name">Home Call</span>
+          <span class="sb-desc">One thought aside</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch14">
+        <span class="sb-num">14</span>
+        <div class="sb-info">
+          <span class="sb-name">The Bug That Hid</span>
+          <span class="sb-desc">The Phantom</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch15">
+        <span class="sb-num">15</span>
+        <div class="sb-info">
+          <span class="sb-name">Breaking Point</span>
+          <span class="sb-desc">Concern · Action · Leave</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch16">
+        <span class="sb-num">16</span>
+        <div class="sb-info">
+          <span class="sb-name">Team Rhythm</span>
+          <span class="sb-desc">Risk with action</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch17">
+        <span class="sb-num">17</span>
+        <div class="sb-info">
+          <span class="sb-name">The Mock Demo Disaster</span>
+          <span class="sb-desc">Good recovery</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch18">
+        <span class="sb-num">18</span>
+        <div class="sb-info">
+          <span class="sb-name">The Night Before</span>
+          <span class="sb-desc">Support, not punishment</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch19">
+        <span class="sb-num">19</span>
+        <div class="sb-info">
+          <span class="sb-name">Final Evaluation Begins</span>
+          <span class="sb-desc">Ready enough</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch20">
+        <span class="sb-num">20</span>
+        <div class="sb-info">
+          <span class="sb-name">The Demo</span>
+          <span class="sb-desc">Eighty-two percent</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch21">
+        <span class="sb-num">21</span>
+        <div class="sb-info">
+          <span class="sb-name">The Question</span>
+          <span class="sb-desc">Good answer</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch22">
+        <span class="sb-num">22</span>
+        <div class="sb-info">
+          <span class="sb-name">Results</span>
+          <span class="sb-desc">Outstanding</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch23">
+        <span class="sb-num">23</span>
+        <div class="sb-info">
+          <span class="sb-name">The Quiet After</span>
+          <span class="sb-desc">Not an enemy</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch24">
+        <span class="sb-num">24</span>
+        <div class="sb-info">
+          <span class="sb-name">The Mind That Learned to Pause</span>
+          <span class="sb-desc">Professional problem solvers</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch25">
+        <span class="sb-num">25</span>
+        <div class="sb-info">
+          <span class="sb-name">The Mind That Wouldn't Stop</span>
+          <span class="sb-desc">Kinder</span>
+        </div>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ============================================ -->
+  <!-- LANDING EXPERIENCE              -->
+  <!-- ============================================ -->
+  <section class="landing-section" id="landing" aria-label="Story introduction">
+    <div class="landing-ambient" aria-hidden="true"></div>
+
+    <a class="header-library-link landing-library-link" href="index.html" aria-label="Return to the library" title="Return to the library">
+      <svg class="header-library-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+      <span class="header-library-label">Library</span>
+    </a>
+
+    <div class="landing-content">
+      <!-- Book Cover with 3D Parallax -->
+      <div class="cover-wrapper">
+        <div class="cover-3d" id="cover-3d">
+          <img src="New cover/Professional Overthinker - 1.png" alt="The Mind That Wouldn't Stop, Book Cover" id="cover-img">
+          <div class="cover-sheen" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Typography Group -->
+      <div class="landing-text">
+        <div class="landing-tag" id="landing-tag">A Fictional Narrative</div>
+        <h1 class="landing-title" id="landing-title" data-text="The Mind That Wouldn't Stop">The Mind That Wouldn't Stop</h1>
+        <div class="landing-subtitle" id="landing-subtitle">Professional Overthinker</div>
+        <div class="landing-meta" id="landing-meta">Varun can build a distributed emergency-response system. Turning off one thought is a different kind of engineering problem.</div>
+        <button class="begin-btn" id="begin-btn">
+          <span>Begin Story</span>
+          <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="scroll-hint" id="scroll-hint">
+      <span>Scroll to begin</span>
+      <div class="scroll-hint-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- STORY EXPERIENCE               -->
+  <!-- ============================================ -->
+  <main class="story-wrapper" id="story-wrapper" tabindex="-1" role="main" aria-label="The Mind That Wouldn't Stop story chapters">
+  <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 1, The Boy Who Thought Too Much -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch1" data-chapter-theme="instability" data-chapter-index="0" aria-label="Chapter 1: The Boy Who Thought Too Much">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">01</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 01</span>
+          <h2 class="chapter-title">The Boy Who Thought Too Much</h2>
+          <p class="chapter-synopsis">Varun rewrites his to-do list like a government document.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="instability" data-intensity="0.35">Varun was in the third year of B.Tech Computer Science Engineering at Suryanet Institute of Technology. He had good grades, neat handwriting, and the habit of rewriting a simple to-do list until it looked like a government document.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.45">His classmates called him &ldquo;Professor&rdquo; because he explained algorithms with patient detail. His roommate Kabir called him &ldquo;Disaster Simulator&rdquo; because Varun could imagine twelve ways for a normal day to collapse before breakfast.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.55">Before a lab submission, Varun checked the file name five times. Before sending an email, he read it until every word lost meaning. Before answering a question in class, he solved it mentally, doubted the solution, solved it again, and then someone else answered.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.30"><em>&ldquo;Varun, the answer was correct,&rdquo;</em> Professor Mehra once said after class.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">Varun nodded.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.65">Inside, another thought began.</p>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Correct this time.</p>
+            <p class="thought-dim word-reveal">what about next time?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 2, The Announcement       -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch2" data-chapter-theme="fear" data-chapter-index="1" aria-label="Chapter 2: The Announcement">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">02</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 02</span>
+          <h2 class="chapter-title">The Announcement</h2>
+          <p class="chapter-synopsis">The final semester project arrives with rules and pressure.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="fear" data-intensity="0.35">The final semester project announcement arrived on a humid Monday morning. Professor Mehra entered the lecture hall with a stack of forms and the expression of a man carrying both opportunity and trouble.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.45">&ldquo;This year, projects must solve real problems,&rdquo; he said. &ldquo;No recycled attendance systems. No basic library management portals. Build something meaningful.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">The room stirred. Professor Mehra wrote on the board: <strong>Smart Campus Emergency Response System.</strong></p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">&ldquo;Flooding, fire, medical incidents, crowding, unsafe zones. The campus needs a digital system that detects, reports, and guides response faster.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.60">Varun&rsquo;s pen stopped moving. The idea was ambitious: sensors, mobile alerts, maps, machine learning predictions, admin dashboard, and real-time notifications. Too many modules. Too many ways to fail.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Kabir leaned back. &ldquo;Sounds impossible.&rdquo; Neha, sitting beside him, smiled. &ldquo;Sounds interesting.&rdquo; Arjun opened his laptop instantly. &ldquo;Architecture design can begin today.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.70">Varun stared at the board. Real-time data. Network failures. False alarms. Deadlines. Demo crash. Public embarrassment.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.55">Then another thought, quieter:</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>Meaningful.</blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 3, The Team Forms        -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch3" data-chapter-theme="tension" data-chapter-index="2" aria-label="Chapter 3: The Team Forms">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">03</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 03</span>
+          <h2 class="chapter-title">The Team Forms</h2>
+          <p class="chapter-synopsis">The team forms around a single registration sheet.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="tension" data-intensity="0.35">By afternoon, teams began forming across campus. Varun stood near the notice board, watching names fill the registration sheet.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">Neha approached first, calm, precise, excellent with databases. Kabir followed, carrying a packet of chips and the confidence of someone who treated panic as background music. Arjun joined last, already discussing API design with no greeting.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.45">&ldquo;Team?&rdquo; Neha asked.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.60">Varun adjusted his glasses. &ldquo;The emergency response system needs hardware integration, prediction logic, backend, frontend, testing, and deployment. Timeline risk is severe.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Kabir grinned. &ldquo;So, yes.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.45">Arjun tapped the form. &ldquo;Varun handles system design. Neha manages data. Kabir handles interface. Arjun handles backend services.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.35">&ldquo;Arjun referring to Arjun in third person again,&rdquo; Kabir said.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.45">Neha wrote all four names. Varun watched the ink dry.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.60">Four signatures. One project. Countless failure points.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.65">Professor Mehra approved the team with a nod. &ldquo;Choose a project name by next week.&rdquo; Varun&rsquo;s mind supplied thirty-two names before sunset. None felt safe enough.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 4, Project Saarthi       -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch4" data-chapter-theme="curiosity" data-chapter-index="3" aria-label="Chapter 4: Project Saarthi">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">04</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 04</span>
+          <h2 class="chapter-title">Project Saarthi</h2>
+          <p class="chapter-synopsis">The project becomes a guide.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="curiosity" data-intensity="0.40">After three days of debate, discarded names, and one argument about whether a project name should sound &ldquo;technical&rdquo; or &ldquo;human,&rdquo; the team chose <strong>Saarthi</strong>. A guide.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">The system would detect emergency signals from simulated campus sensors, collect reports from students, predict risky zones, and guide security staff through a dashboard.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">Varun designed the first architecture on a whiteboard: sensor input layer, report verification engine, risk scoring model, alert distribution service, admin dashboard, student mobile interface, incident history database.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Kabir whistled. &ldquo;That board looks like a railway map after an earthquake.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.45">Neha studied the diagram. &ldquo;Complex, but possible.&rdquo; Arjun crossed his arms. &ldquo;Possible only with strict module boundaries.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.60">Varun nodded, but his marker hovered. What if boundaries fail? What if data comes late? What if alerts repeat? What if the model predicts danger where none exists?</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">Professor Mehra passed by the lab window and glanced inside. Varun saw his reflection in the glass: a student surrounded by arrows.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 5, The Notebook of Worries   -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch5" data-chapter-theme="fear" data-chapter-index="4" aria-label="Chapter 5: The Notebook of Worries">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">05</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Risk Log 05</span>
+          <h2 class="chapter-title">The Notebook of Worries</h2>
+          <p class="chapter-synopsis">A black notebook fills with risks.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="fear" data-intensity="0.45">Varun bought a black notebook and titled it <strong>Risks</strong>. By the second night, it had twenty pages.</p>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>What the notebook said:</p>
+            <p class="thought-dim word-reveal">01 · Sensor data delay</p>
+            <p class="thought-dim word-reveal">02 · Database overload</p>
+            <p class="thought-dim word-reveal">03 · Duplicate alerts</p>
+            <p class="thought-dim word-reveal">04 · Poor UI clarity</p>
+            <p class="thought-dim word-reveal">05 · Demo internet failure</p>
+            <p class="thought-dim word-reveal">06 · Team conflict</p>
+            <p class="thought-dim word-reveal">07 · Hidden bug during evaluation</p>
+            <p class="thought-dim word-reveal">08 · Project scope collapse</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Kabir found the notebook open during dinner. &ldquo;Risk 47: tea too hot?&rdquo; he said.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.45">Varun closed it. &ldquo;Preparation prevents disaster.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.35">&ldquo;Preparation also prevents sleep,&rdquo; Kabir replied.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.60">Varun smiled faintly, but that night he lay awake under the slow fan, replaying every module. The project had not failed, yet his mind created failure scenes with perfect lighting and sound.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.65">In one imagined scene, the dashboard froze before judges. In another, Professor Mehra sighed. In the worst one, teammates went silent.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.70">At 2:17 a.m., Varun opened his laptop again. The screen welcomed him like an accomplice.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 6, First Sprint         -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch6" data-chapter-theme="curiosity" data-chapter-index="5" aria-label="Chapter 6: First Sprint">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">06</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 06</span>
+          <h2 class="chapter-title">First Sprint</h2>
+          <p class="chapter-synopsis">The first features come alive.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="curiosity" data-intensity="0.45">The team began with discipline. Arjun built the backend skeleton using Python and Flask. Neha designed tables for incidents, reports, sensor logs, and user roles. Kabir created dashboard wireframes in deep blue and emergency red. Varun wrote integration logic and documentation.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">For one week, Saarthi grew beautifully. Buttons responded. APIs returned clean JSON. The database stored sample incidents. The map showed campus zones.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Neha tested a report submission. &ldquo;Medical alert near Block C. Saved successfully.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.35">Kabir raised both hands. &ldquo;The patient survives.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.40">Arjun checked logs. &ldquo;Response time: eighty milliseconds.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.55">Varun should have felt relieved. Instead, relief lasted only eight seconds.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.60">Sample data behaves. Real data misbehaves. Demo data may misbehave deliberately. What about concurrent reports? What about location mismatch?</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">He opened the risk notebook. Neha noticed. &ldquo;Progress also deserves recording.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">Varun paused. On a fresh page, he wrote: <em>Progress 1: Basic incident reporting works.</em></p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.45">The sentence looked unfamiliar. Almost suspicious.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 7, The First Collapse      -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch7" data-chapter-theme="tension" data-chapter-index="6" aria-label="Chapter 7: The First Collapse">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">07</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 07</span>
+          <h2 class="chapter-title">The First Collapse</h2>
+          <p class="chapter-synopsis">The first collapse brings the first lesson.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="tension" data-intensity="0.45">The first collapse came on a Friday evening. Arjun pushed an update to the alert service. Neha migrated the database schema. Varun merged both changes. Kabir refreshed the dashboard.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.65">Nothing loaded. Then the terminal filled with red errors.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">Kabir leaned closer. &ldquo;That color never means celebration.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.60">Neha checked the migration file. &ldquo;Column name mismatch.&rdquo; Arjun frowned. &ldquo;Backend expects incident_status. Database has status_code.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.70">Varun felt heat climb up his neck. He had reviewed the merge. He had seen the files. Somehow, the mismatch had slipped through.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.75">Careless. Too fast. Should have checked line by line. Should have prevented this.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.65">&ldquo;Rollback?&rdquo; Arjun asked. Varun stared at the terminal. For a few seconds, every thought arrived at once.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Then Neha&rsquo;s voice cut through. &ldquo;Varun, logs first.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.45">He inhaled. &ldquo;Yes. Logs first.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">They traced the error, fixed the schema, rebuilt the database, and restored the dashboard after two hours. Kabir clapped once. &ldquo;Disaster survived.&rdquo; Varun did not celebrate.</p>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>The notebook would not stop.</p>
+            <p class="thought-dim word-reveal">09 · Integration failure due to assumptions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 8, The Review          -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch8" data-chapter-theme="fear" data-chapter-index="7" aria-label="Chapter 8: The Review">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">08</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 08</span>
+          <h2 class="chapter-title">The Review</h2>
+          <p class="chapter-synopsis">Faculty review. Ten minutes. One question.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="fear" data-intensity="0.45">The first faculty review took place in Lab 204. Three professors sat behind a long table. Each team received ten minutes.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.55">Varun connected the laptop to the projector. His fingers felt too light, as if they belonged to someone else.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">Neha began. &ldquo;Saarthi is a smart campus emergency response system designed for faster detection, verification, and response.&rdquo; Kabir demonstrated the dashboard. Arjun explained APIs. Varun presented the risk scoring model.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.60">Professor Iyer interrupted. &ldquo;How will the system avoid panic during false alerts?&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.70">The room seemed to narrow. Varun had expected this question. Also five variations. Also several harsher versions.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">He opened the validation slide. &ldquo;Reports receive confidence scores based on source type, nearby sensor readings, repeated submissions, and admin confirmation. High-risk alerts go to response staff first. Student-wide alerts require threshold crossing.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Professor Iyer nodded. &ldquo;Good. Show that clearly in final demo.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">The review ended well. Outside, Kabir said, &ldquo;Passed.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">Varun looked at the feedback sheet.</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>Good is temporary.<br>Final is different.</blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 9, Rain             -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch9" data-chapter-theme="curiosity" data-chapter-index="8" aria-label="Chapter 9: Rain">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">09</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 09</span>
+          <h2 class="chapter-title">Rain</h2>
+          <p class="chapter-synopsis">The flood-risk module starts to matter.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="curiosity" data-intensity="0.40">Rain began in the second month. It drummed on hostel windows and turned pathways into brown streams. Campus drains overflowed near the mechanical block. The project suddenly felt less theoretical.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">One evening, the team stood under the library roof while students jumped over puddles. Neha pointed toward Block D. &ldquo;That area floods every year.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">Varun watched water gather near the steps. Saarthi&rsquo;s flood-risk module had been a small feature, almost decorative. Now it mattered.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">&ldquo;What if the system could rank flooded zones using rainfall input, sensor level, and student reports?&rdquo; Neha said.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">Arjun shook his head. &ldquo;Scope increase.&rdquo; Kabir added, &ldquo;Deadline attack.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.60">Varun&rsquo;s mind exploded with equations, datasets, missing sensors, messy inputs, and broken promises. Too much. Too late. But useful. But risky. But meaningful.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">The rain kept falling. Finally, Varun said, &ldquo;A lightweight flood-risk layer. Not full prediction. Zone scoring.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Arjun considered it. &ldquo;Feasible.&rdquo; Kabir sighed. &ldquo;Rain joined the team.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">The project changed that night. So did Varun.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 10, The Weight of More     -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch10" data-chapter-theme="tension" data-chapter-index="9" aria-label="Chapter 10: The Weight of More">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">10</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Risk Log 10</span>
+          <h2 class="chapter-title">The Weight of More</h2>
+          <p class="chapter-synopsis">The model and the mind share a flaw.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="curiosity" data-intensity="0.45">Adding flood-risk scoring made Saarthi stronger and heavier. Varun built a model using sample rainfall values, drain capacity estimates, elevation tags, and simulated water-level sensors.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">The first outputs were absurd. Zone A: Safe. Zone B: Extreme danger. Zone C: Safe. Zone D: Safe. But Zone B was on a slope and rarely flooded.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Kabir stared at the map. &ldquo;Apparently the basketball court is now a lake of doom.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.55">Neha checked the data. &ldquo;Elevation value entered as minus instead of plus.&rdquo; Varun corrected it. Another output appeared. Now every zone showed moderate risk.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.55">Arjun rubbed his forehead. &ldquo;Model has trust issues.&rdquo; Varun almost laughed, then realized the model resembled him. Everything looked dangerous when uncertainty ruled.</p>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>18 · Over-sensitive model creates unnecessary alerts.</p>
+            <p class="thought-dim word-reveal">PERSONAL · 01 · Over-sensitive mind creates unnecessary alarms.</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.60">He stared at the line. The notebook had finally turned around and looked back.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 11, The Fight          -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch11" data-chapter-theme="tension" data-chapter-index="10" aria-label="Chapter 11: The Fight">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">11</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 11</span>
+          <h2 class="chapter-title">The Fight</h2>
+          <p class="chapter-synopsis">Argument replaces version control for a while.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="tension" data-intensity="0.50">Pressure sharpened everyone. Arjun wanted cleaner APIs before adding features. Kabir wanted more time for interface animations. Neha wanted proper data validation. Varun wanted all of it completed, tested, documented, backed up, and rehearsed.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.60">One afternoon, after the fifth failed build, voices rose.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.65">&ldquo;Frontend cannot keep changing for every backend adjustment,&rdquo; Kabir said. &ldquo;Backend cannot support unclear screens,&rdquo; Arjun replied.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Neha closed her laptop. &ldquo;Arguments are not version control.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.60">Varun spoke too fast. &ldquo;If modules had followed the architecture exactly, this would not happen.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.70">The room went silent. Arjun&rsquo;s jaw tightened. &ldquo;Architecture changed six times because risk lists kept growing.&rdquo; Kabir looked away.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.65">The words hit harder than expected. Varun opened his mouth, then stopped. His thoughts scrambled for defense, explanation, apology, justification. None felt sufficient.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="sadness" data-intensity="0.55">Neha said softly, &ldquo;Fear is driving the project now.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">No one worked for several minutes. Rain tapped the window.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Varun finally said, &ldquo;Architecture freeze tonight. Only critical changes after that.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Arjun nodded. Kabir opened the UI file again. The team did not become cheerful, but it became honest.</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>Fear is driving<br>the project now.</blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 12, The Long Night       -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch12" data-chapter-theme="resolution" data-chapter-index="11" aria-label="Chapter 12: The Long Night">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">12</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 12</span>
+          <h2 class="chapter-title">The Long Night</h2>
+          <p class="chapter-synopsis">A long night in the lab.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="calmness" data-intensity="0.45">The architecture freeze became a long night in the lab. The campus emptied. Tube lights hummed. The security guard walked past twice and shook his head at the glowing screens.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">Varun wrote test cases: submit valid emergency report, reject empty location, merge duplicate incident, escalate high-risk alert, display flood score by zone, load dashboard under poor network.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Neha created seed data. Arjun stabilized endpoints. Kabir redesigned the alert screen so danger levels looked clear without looking dramatic.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">At midnight, Kabir placed four paper cups on the table. &ldquo;Machine fuel.&rdquo; Varun accepted one. The tea had gone lukewarm, but it helped.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.55">At 1:30 a.m., the duplicate report logic failed. At 2:10 a.m., the alert service looped endlessly. At 3:05 a.m., the dashboard finally displayed a clean incident timeline.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="sadness" data-intensity="0.40">No one cheered. Exhaustion had stolen sound.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Varun watched the screen update correctly. For once, his mind did not ask what could go wrong next.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">It simply whispered:</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>This works.</blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 13, Home Call          -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch13" data-chapter-theme="calmness" data-chapter-index="12" aria-label="Chapter 13: Home Call">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">13</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 13</span>
+          <h2 class="chapter-title">Home Call</h2>
+          <p class="chapter-synopsis">A mother's voice carries a quieter algorithm.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="calmness" data-intensity="0.40">On Sunday, Varun&rsquo;s mother called. He stepped outside the hostel, where wet leaves shone under streetlights.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">&ldquo;Food taken?&rdquo; she asked. &ldquo;Taken,&rdquo; Varun said. &ldquo;Sleep?&rdquo; He looked at the dark circles reflected in the phone screen. &ldquo;Enough.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">There was a pause. Mothers had ways of detecting false data without algorithms.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.45">&ldquo;Project pressure?&rdquo; she asked. &ldquo;Manageable.&rdquo; &ldquo;Thinking too much again?&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">Varun looked toward the lab building. One window still glowed. &ldquo;Maybe.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.50">His mother&rsquo;s voice softened. <em>&ldquo;A busy mind is not always a strong mind. Sometimes strength means keeping one thought aside.&rdquo;</em></p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">The sentence stayed. After the call, Varun did not return immediately. He sat on a bench damp at the edges and listened to distant traffic.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">His mind offered problems. He let them pass without writing every one down.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">For five minutes, nothing was solved. Nothing collapsed. The night remained whole.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 14, The Bug That Hid      -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch14" data-chapter-theme="fear" data-chapter-index="13" aria-label="Chapter 14: The Bug That Hid">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">14</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 14</span>
+          <h2 class="chapter-title">The Bug That Hid</h2>
+          <p class="chapter-synopsis">A bug that behaves like a ghost.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="fear" data-intensity="0.45">Two weeks before final evaluation, Saarthi developed a bug that behaved like a ghost. During testing, alerts sometimes failed to reach the dashboard. Not always. Not often. Only enough to destroy confidence.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.55">Arjun checked backend logs. Neha checked database transactions. Kabir checked WebSocket connections. Varun checked everything twice, then three times. The bug refused to appear under direct attention.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">Kabir named it &ldquo;The Phantom.&rdquo; &ldquo;The Phantom hates accountability,&rdquo; he declared.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.60">For three days, the team chased it. Tempers thinned again. Varun slept badly. His thoughts became sharp and repetitive.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.70">If this appears during evaluation, the project dies. If the project dies, months disappear. If months disappear, everyone regrets the team.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">On the fourth day, Neha noticed a pattern. &ldquo;Failed alerts have identical timestamps.&rdquo; Arjun searched the queue logic. &ldquo;Message ID collision.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Varun stared. The generator used timestamp alone for IDs. Under rapid alerts, two messages became one.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">The fix took twelve minutes. The lesson took longer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 15, Breaking Point       -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch15" data-chapter-theme="sadness" data-chapter-index="14" aria-label="Chapter 15: Breaking Point">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">15</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 15</span>
+          <h2 class="chapter-title">Breaking Point</h2>
+          <p class="chapter-synopsis">Thinking needs structure, not freedom.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="sadness" data-intensity="0.45">After the Phantom bug, Varun should have rested. Instead, he expanded testing until every module felt under trial.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">At 11:40 p.m., Kabir closed Varun&rsquo;s laptop. Varun looked up. &ldquo;Test run not complete.&rdquo; &ldquo;Varun not complete either,&rdquo; Kabir said.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="sadness" data-intensity="0.50">Arjun leaned against the table. &ldquo;Burnout risk is real.&rdquo; Neha pushed the black notebook toward him. &ldquo;Add that.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.65">Varun did not smile. The lab felt suddenly too bright. Too noisy. Too narrow. His chest tightened as if all possible failures had gathered there.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="sadness" data-intensity="0.60">&ldquo;I cannot stop thinking,&rdquo; he said. The sentence came out smaller than expected. No one joked.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Neha said, &ldquo;Then thinking needs structure, not freedom.&rdquo; She drew three boxes on paper: <strong>Concern &middot; Action &middot; Leave.</strong></p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">&ldquo;Every worry goes into one box. If action exists, assign it. If not, leave it.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Varun stared at the boxes. Simple. Almost childish.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">But that night, he sorted twenty worries. Only seven required action. The remaining thirteen remained uncomfortable, but no longer in charge.</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>I cannot stop thinking.</blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 16, Team Rhythm         -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch16" data-chapter-theme="resolution" data-chapter-index="15" aria-label="Chapter 16: Team Rhythm">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">16</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 16</span>
+          <h2 class="chapter-title">Team Rhythm</h2>
+          <p class="chapter-synopsis">The team finds a rhythm.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="resolution" data-intensity="0.45">The final week began with a new rule: no unplanned changes after 8 p.m., no solo debugging after midnight, no risk entry without an action column. The team rhythm improved.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Neha became the guardian of data quality. Arjun hardened the backend with graceful error handling. Kabir polished the dashboard until emergency cards appeared clear, calm, and readable. Varun coordinated integration and rehearsed the explanation.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">Saarthi now had a pulse: student report submission, sensor simulation panel, incident verification, flood-risk zone scoring, admin dashboard, alert routing, response status tracking.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">During rehearsal, Kabir played the role of a dramatic evaluator. &ldquo;What if five hundred students report a squirrel as a fire?&rdquo; Arjun replied, &ldquo;Rate limiting and verification.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">&ldquo;What if the rain lies?&rdquo; Neha replied, &ldquo;Rainfall alone cannot trigger critical status.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Kabir pointed at Varun. &ldquo;What if the presenter freezes?&rdquo; Varun looked at the slides. &ldquo;Backup presenter sequence begins with Neha.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Kabir blinked. &ldquo;Unexpectedly practical.&rdquo; Varun smiled. &ldquo;Risk with action.&rdquo;</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 17, The Mock Demo Disaster   -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch17" data-chapter-theme="tension" data-chapter-index="16" aria-label="Chapter 17: The Mock Demo Disaster">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">17</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 17</span>
+          <h2 class="chapter-title">The Mock Demo Disaster</h2>
+          <p class="chapter-synopsis">The map leaves society.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="tension" data-intensity="0.50">The mock demo took place in front of seniors. Everything worked for six minutes. Then the campus map failed to load. A blank grey rectangle appeared where colored zones should have been.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.55">Kabir whispered, &ldquo;The map has left society.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.60">Varun felt the old panic rise. But the new boxes appeared in his mind.</p>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Concern · Action · Leave</p>
+            <p class="thought-dim word-reveal">CONCERN · Map blank</p>
+            <p class="thought-dim word-reveal">ACTION · Check local tile service</p>
+            <p class="thought-dim word-reveal">LEAVE · Fear of humiliation</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Arjun opened logs. &ldquo;Tile path error after folder rename.&rdquo; Neha kept speaking to the seniors. &ldquo;Meanwhile, incident data remains visible in table format.&rdquo; Kabir switched to fallback view.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Varun fixed the path and refreshed. The map returned.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">A senior named Raghav nodded. &ldquo;Good recovery. Judges notice recovery more than perfection.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">That sentence mattered. Perfection had always been Varun&rsquo;s imaginary shield. Recovery, he realized, was a real tool.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">After the mock demo, the team added an offline fallback map. Risk 26 became: Visual layer failure. Action: Fallback table and cached map.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">No spiral followed. Only work.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 18, The Night Before      -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch18" data-chapter-theme="calmness" data-chapter-index="17" aria-label="Chapter 18: The Night Before">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">18</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 18</span>
+          <h2 class="chapter-title">The Night Before</h2>
+          <p class="chapter-synopsis">Preparation becomes support.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="calmness" data-intensity="0.45">The night before final evaluation, the team gathered in the seminar hall for one last setup check. Rows of empty chairs faced the stage. The projector hummed. Saarthi&rsquo;s dashboard glowed on the large screen.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.45">Varun walked through the presentation slowly. Problem statement. Architecture. Data flow. Risk scoring. Demo scenarios. Testing results. Future scope.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">Future scope was carefully limited. Earlier, Varun would have promised satellite rainfall data, drone alerts, AI voice calls, multilingual response, and predictive evacuation.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.45">Now the slide said: improved sensor accuracy, integration with campus security database, mobile app deployment, historical incident analytics.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Manageable. Honest.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Kabir tossed a marker in the air. &ldquo;Professional overthinker became professional editor.&rdquo; Neha smiled. &ldquo;Better title.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">Varun looked at the empty chairs. His mind still moved. It still calculated weak points and possible questions. But beneath the noise stood something steadier.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Preparation had become support, not punishment.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Before leaving, he placed the black notebook in his bag. Not as a weapon. As a record.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 19, Final Evaluation Begins   -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch19" data-chapter-theme="resolution" data-chapter-index="18" aria-label="Chapter 19: Final Evaluation Begins">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">19</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 19</span>
+          <h2 class="chapter-title">Final Evaluation Begins</h2>
+          <p class="chapter-synopsis">Ready enough.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="curiosity" data-intensity="0.45">Final evaluation day arrived bright and windless. Students filled the corridor outside the auditorium, carrying laptops, charts, cables, and nervous laughter.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Varun wore a clean blue shirt. Kabir wore sneakers too colorful for formal evaluation. Neha carried printed documentation. Arjun carried three backup drives.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Professor Mehra stood near the entrance. &ldquo;Saarthi team, ready?&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">The old Varun would have searched for the safest answer. The present Varun said, &ldquo;Ready enough.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">Inside, three evaluators sat with notebooks. A few students watched from the back.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Neha began with the problem. Her voice was steady. Kabir introduced the interface. Arjun explained backend reliability.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">Then Varun stepped forward.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.55">&ldquo;Saarthi is designed around one principle: during an emergency, information must become action quickly, but not carelessly.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">The sentence landed well. He moved through the architecture diagram. No rushing. No apology. No over-explaining every possible branch.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.50">For the first time, his thoughts lined up instead of crowding.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 20, The Demo          -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch20" data-chapter-theme="resolution" data-chapter-index="19" aria-label="Chapter 20: The Demo">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">20</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 20</span>
+          <h2 class="chapter-title">The Demo</h2>
+          <p class="chapter-synopsis">The demo holds.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="curiosity" data-intensity="0.45">Neha triggered a simulated water-level sensor near Block D. Kabir submitted two student reports from the same zone. Arjun monitored the backend console.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.55">The dashboard updated: Flood Risk, High. Incident Confidence, 82%. Recommended Action, Inspect Block D entrance and redirect foot traffic. A red-orange marker appeared on the campus map.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Varun explained, &ldquo;The system combines sensor data and human reports. Duplicate reports increase confidence only within controlled limits, preventing artificial panic.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.55">Evaluator 1 leaned forward. &ldquo;What happens if the sensor fails?&rdquo; Arjun disabled the sensor feed. The score adjusted: Flood Risk, Moderate. Status, Awaiting verification.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Varun said, &ldquo;The system reduces confidence and requests confirmation rather than issuing a critical alert.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Evaluator 2 asked, &ldquo;What about dashboard failure?&rdquo; Kabir clicked the fallback view. A table appeared with incident location, severity, time, and response status. &ldquo;Essential data remains available,&rdquo; Kabir said.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Professor Mehra watched without interrupting.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.55">Varun noticed his own hands. They were not shaking.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 21, The Question        -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch21" data-chapter-theme="resolution" data-chapter-index="20" aria-label="Chapter 21: The Question">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">21</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 21</span>
+          <h2 class="chapter-title">The Question</h2>
+          <p class="chapter-synopsis">Why choose this project?</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="tension" data-intensity="0.45">The final question came from Evaluator 3, a quiet professor from another college.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="tension" data-intensity="0.50">&ldquo;Technically strong,&rdquo; she said. &ldquo;But why choose this project? Many easier options existed.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="instability" data-intensity="0.50">The room waited. Varun looked at the screen, then at his teammates.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="curiosity" data-intensity="0.50">A prepared answer existed in the slides: campus safety, real-time systems, social relevance, scalable architecture. But another answer rose, clearer.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.55">&ldquo;Because difficult systems reveal hidden habits,&rdquo; Varun said. &ldquo;This project required code, but also judgment. Too many alerts create panic. Too few create danger. The same balance mattered during development. Excessive worry slowed decisions. No worry would have caused careless design. Saarthi became a technical project about emergencies and a personal lesson about response.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Silence followed. Kabir&rsquo;s eyebrows rose. Neha looked down, smiling.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Evaluator 3 wrote something in her notebook. &ldquo;Good answer.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">The presentation ended. The team stepped off the stage. Only then did Varun exhale fully.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 22, Results           -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch22" data-chapter-theme="resolution" data-chapter-index="21" aria-label="Chapter 22: Results">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">22</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 22</span>
+          <h2 class="chapter-title">Results</h2>
+          <p class="chapter-synopsis">The notice board speaks.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="curiosity" data-intensity="0.45">Results were announced in the afternoon. Students crowded around the department notice board. Names and grades appeared in neat rows.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Kabir pushed through first. &ldquo;Saarthi team&hellip;&rdquo; Neha joined him. Arjun adjusted his glasses.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="fear" data-intensity="0.50">Varun stayed behind for a moment, suddenly afraid of hoping too much.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.55">Kabir turned. &ldquo;Outstanding.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="release" data-intensity="0.55">The word reached Varun before the mark did.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Professor Mehra approached from the corridor. &ldquo;Not perfect,&rdquo; he said. Varun almost laughed. Of course.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">The professor continued, &ldquo;But thoughtful, useful, and well-defended. Strong teamwork. Strong recovery during questions.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Arjun shook Varun&rsquo;s hand. Neha handed him the documentation file like a trophy. Kabir announced that snacks were now academically mandatory.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Varun looked again at the notice board. For months, his mind had predicted collapse in endless detail. Reality had chosen something else.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Not because nothing went wrong. Because wrong things had been faced, fixed, and survived.</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>Project Saarthi,<br>Outstanding.</blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 23, The Quiet After       -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch23" data-chapter-theme="calmness" data-chapter-index="22" aria-label="Chapter 23: The Quiet After">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">23</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Progress Log 23</span>
+          <h2 class="chapter-title">The Quiet After</h2>
+          <p class="chapter-synopsis">The notebook turns around.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="calmness" data-intensity="0.45">That evening, Varun returned to the lab alone. The chairs were uneven. The whiteboard still carried faded arrows from Saarthi&rsquo;s earliest architecture. A forgotten sticky note read: <em>Check alert queue.</em></p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">He opened the black notebook. The first pages were crowded with fear. The later pages had tables, actions, decisions, and fewer dramatic warnings.</p>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Later entries lost some of their fear:</p>
+            <p class="thought-dim word-reveal">27 · Final demo completed</p>
+            <p class="thought-dim word-reveal">28 · Team stayed together</p>
+            <p class="thought-dim word-reveal">29 · Thinking became useful</p>
+            <p class="thought-dim word-reveal">PERSONAL · 02 · Mind may never fully stop</p>
+            <p class="thought-dim word-reveal">ACTION · Learn when to listen and when to let thoughts pass</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Outside, evening settled over campus. Students crossed the courtyard. Somewhere near Block D, the ground had dried after rain.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.50">Varun closed the notebook. His mind was still active. It still formed questions. It still searched edges and shadows.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.55">But it no longer felt like an enemy.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 24, The Mind That Learned to.. -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch24" data-chapter-theme="calmness" data-chapter-index="23" aria-label="Chapter 24: The Mind That Learned to Pause">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">24</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 24</span>
+          <h2 class="chapter-title">The Mind That Learned to Pause</h2>
+          <p class="chapter-synopsis">Professional problem solvers.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="calmness" data-intensity="0.45">Weeks later, Saarthi was displayed during the student innovation showcase. Visitors watched the dashboard light up with simulated alerts. Juniors asked about APIs, models, and teamwork. Faculty members discussed adapting parts of the system for campus drills.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Kabir placed a small printed label near the laptop: <em>Saarthi, Built by Team Professional Overthinkers.</em></p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">Neha crossed out the plural and wrote: <em>Professional Problem Solvers.</em></p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="release" data-intensity="0.50">Varun laughed. The sound surprised him.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.45">At the end of the showcase, Professor Mehra stood beside the display. &ldquo;Future plans?&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.50">Varun looked at the project, then at his teammates. &ldquo;Documentation cleanup. Code refactoring. A lighter version for actual campus testing.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.40">Kabir nodded solemnly. &ldquo;Snacks first.&rdquo;</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.50">The group packed up as the auditorium lights dimmed. Varun carried the laptop bag and the black notebook back across campus. The sky above Suryanet had turned deep violet.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.55">For once, the silence between thoughts did not frighten him.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 25, The Mind That Wouldn't Stop -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch25" data-chapter-theme="resolution" data-chapter-index="24" aria-label="Chapter 25: The Mind That Wouldn't Stop">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">25</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Final Entry 25</span>
+          <h2 class="chapter-title">The Mind That Wouldn't Stop</h2>
+          <p class="chapter-synopsis">The final entry.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para" data-mood="resolution" data-intensity="0.50">The mind that wouldn&rsquo;t stop had not become silent.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="calmness" data-intensity="0.55">It had become kinder.</p>
+        </div>
+        <div class="content-block">
+          <p class="story-p" data-mood="resolution" data-intensity="0.60">And sometimes, that was enough.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================ -->
+  <!-- STORY EPILOGUE                -->
+  <!-- ============================================ -->
+  <section class="story-epilogue" id="story-epilogue" aria-label="Story epilogue">
+    <div class="epilogue-ornament">❖</div>
+    <h3 class="epilogue-title">The Mind That Wouldn't Stop</h3>
+    <p class="epilogue-sub">
+      Professional Overthinker<br>
+      A fictional narrative about Varun, a B.Tech CSE student, and the project that challenged every thought in his restless mind.<br>
+      25 entries · 1 notebook · 1 team · Project Saarthi
+    </p>
+    <div class="epilogue-divider"></div>
+    <button class="replay-btn" id="replay-btn">
+      <span>Replay Experience</span>
+      <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+    </button>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- SCRIPTS                   -->
+  <!-- ============================================ -->
+  <!-- GSAP Core + ScrollTrigger -->
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <!-- Lenis Smooth Scroll -->
+  <script src="vendor/lenis.min.js"></script>
+  <!-- Story Cinematic Engine -->
+  <script src="story-cinematic.js"></script>
+  <script src="fire-cursor.js"></script>
+</body>
+</html>

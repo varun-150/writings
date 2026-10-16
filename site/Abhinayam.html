@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abhinayam, Act I | The Echo Of A Previous Life</title>
+  <meta name="description"
+    content="An award-winning interactive digital novel. Experience the story of a Gopika whose love for Krishna transcends lifetimes, told through cinematic scroll-driven storytelling.">
+  <meta name="theme-color" content="#080808">
+
+  <!-- Fonts (preconnect for speed) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Design System -->
+<link rel="stylesheet" href="story-cinematic.css">
+
+  <!-- Abhinayam design tokens + per-chapter palettes (additive over story-cinematic.css) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap"></noscript>
+  <style>
+    :root {
+
+      /* ---- Void Palette ---- */
+      --void: #0a0a0a;
+      --surface: #111111;
+      --surface-lift: #161616;
+      --surface-glass: rgba(17, 17, 17, 0.75);
+
+      /* ---- Default / Landing Theme ---- */
+      --bg-primary: #080808;
+      --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #161616 0%, #080808 100%);
+      --text-hero: #F5F0E8;
+      --text-primary: #F0EAE0;
+      --text-secondary: #B8B1A7;
+      --text-muted: #77716A;
+      --accent: #C11230;
+      --accent-bright: #E21A3B;
+      --accent-dim: #5C0B18;
+      --accent-rgb: 193, 18, 48;
+      --accent-glow: rgba(193, 18, 48, 0.15);
+      --accent-whisper: rgba(193, 18, 48, 0.04);
+
+      /* ---- Typography ---- */
+      --font-display: 'Kalam', cursive;
+      --font-body: 'Kalam', cursive;
+      --font-ui: 'Kalam', cursive;
+
+      /* ---- Fluid Type Scale ---- */
+      --fs-display: clamp(3.2rem, 7vw, 6.5rem);
+      --fs-chapter: clamp(2.8rem, 5.5vw, 5rem);
+      --fs-h2: clamp(1.8rem, 3vw, 2.8rem);
+      --fs-body: clamp(1.15rem, 1.15vw, 1.35rem);
+      --fs-body-lg: clamp(1.3rem, 1.4vw, 1.6rem);
+      --fs-quote: clamp(1.4rem, 1.6vw, 1.95rem);
+      --fs-ui: clamp(0.65rem, 0.7vw, 0.75rem);
+      --fs-ui-sm: clamp(0.55rem, 0.6vw, 0.65rem);
+
+      /* ---- Easing Library ---- */
+      --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-breath: cubic-bezier(0.645, 0.045, 0.355, 1);
+      --ease-sharp: cubic-bezier(0.77, 0, 0.175, 1);
+      --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+
+      /* ---- Spacing ---- */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 8rem;
+      --space-2xl: 12rem;
+
+      /* ---- Reading Area ---- */
+      --content-width: 720px;
+      --content-padding: clamp(1.25rem, 4vw, 3rem);
+    }
+
+    /* ---- Chapter theme: sunset ---- */
+    [data-chapter-theme="sunset"] {
+--bg-primary: #120A0A;
+      --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #241412 0%, #120A0A 100%);
+      --text-hero: #F7EEE6;
+      --text-primary: #EFE3D6;
+      --text-secondary: #C8B3A3;
+      --text-muted: #8A7A6E;
+      --accent: #E2263F;
+      --accent-bright: #F04A5E;
+      --accent-dim: #6E1020;
+      --accent-rgb: 226, 38, 63;
+      --accent-glow: rgba(226, 38, 63, 0.15);
+      --accent-whisper: rgba(226, 38, 63, 0.04);
+    }
+
+
+    /* ---- Chapter theme: midnight ---- */
+    [data-chapter-theme="midnight"] {
+--bg-primary: #0A0B0E;
+      --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #161A26 0%, #0A0B0E 100%);
+      --text-hero: #E8ECF4;
+      --text-primary: #D6DCE8;
+      --text-secondary: #AAB2C4;
+      --text-muted: #6E7685;
+      --accent: #A8122A;
+      --accent-bright: #D41E3E;
+      --accent-dim: #520A1A;
+      --accent-rgb: 168, 18, 42;
+      --accent-glow: rgba(168, 18, 42, 0.18);
+      --accent-whisper: rgba(168, 18, 42, 0.04);
+    }
+
+
+    /* ---- Chapter theme: cosmic ---- */
+    [data-chapter-theme="cosmic"] {
+--bg-primary: #0C0A10;
+      --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #1A1426 0%, #0C0A10 100%);
+      --text-hero: #ECE8F4;
+      --text-primary: #DAD4E6;
+      --text-secondary: #AEA4C2;
+      --text-muted: #726A84;
+      --accent: #D41833;
+      --accent-bright: #F02A48;
+      --accent-dim: #660816;
+      --accent-rgb: 212, 24, 51;
+      --accent-glow: rgba(212, 24, 51, 0.15);
+      --accent-whisper: rgba(212, 24, 51, 0.04);
+    }
+
+
+    /* ---- Chapter theme: gold ---- */
+    [data-chapter-theme="gold"] {
+--bg-primary: #100A08;
+      --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #221410 0%, #100A08 100%);
+      --text-hero: #F7EEE0;
+      --text-primary: #E8DCC8;
+      --text-secondary: #B3A183;
+      --text-muted: #756656;
+      --accent: #E21A3B;
+      --accent-bright: #F04A5E;
+      --accent-dim: #6E1020;
+      --accent-rgb: 226, 26, 59;
+      --accent-glow: rgba(226, 26, 59, 0.15);
+      --accent-whisper: rgba(226, 26, 59, 0.04);
+    }
+
+
+    /* ---- Chapter theme: lavender ---- */
+[data-chapter-theme="lavender"] {
+--bg-primary: #0E0A10;
+      --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #1E1426 0%, #0E0A10 100%);
+      --text-hero: #EFEAF4;
+      --text-primary: #DDD6EA;
+      --text-secondary: #B0A6C4;
+      --text-muted: #756C86;
+      --accent: #BF1130;
+      --accent-bright: #E01A3D;
+      --accent-dim: #5C0816;
+      --accent-rgb: 191, 17, 48;
+      --accent-glow: rgba(191, 17, 48, 0.15);
+      --accent-whisper: rgba(191, 17, 48, 0.04);
+    }
+
+  </style>
+  <link rel="stylesheet" href="fire-cursor.css">
+</head>
+
+<body>
+
+<a href="#story-wrapper" class="skip-link">Skip to story content</a>
+  <!-- ============================================ -->
+  <!-- PRELOADER                  -->
+  <!-- ============================================ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <span class="preloader-title">Abhinayam</span>
+    <div class="preloader-line"></div>
+    <span class="preloader-sub">Entering The Story</span>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- CINEMATIC OVERLAYS              -->
+  <!-- ============================================ -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- AMBIENT PARTICLE CANVAS           -->
+  <!-- ============================================ -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================ -->
+  <!-- CURSOR GLOW                 -->
+  <!-- ============================================ -->
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+  
+
+  <!-- ============================================ -->
+  <!-- FOCUS MODE INDICATOR             -->
+  <!-- ============================================ -->
+  <div class="focus-indicator" aria-live="polite">Focus Reading Mode, Hover Top To Reveal Controls</div>
+
+  <!-- ============================================ -->
+  <!-- HEADER NAVIGATION              -->
+  <!-- ============================================ -->
+  <header class="glass-header" id="main-header" role="banner">
+    <button type="button" class="header-brand" id="header-brand" aria-label="Back to top" title="Back to top">
+      <span class="header-brand-name">Abhinayam</span>
+      <span class="header-brand-sub">Act I</span>
+    </button>
+
+    <nav class="chapter-dots" id="chapter-dots" aria-label="Chapter navigation">
+      <button class="chapter-dot" data-target="#ch1" aria-label="Chapter 1: Anthima Veedkolu">
+        <span class="dot-label">I</span>
+        <span class="dot-tooltip">Chapter 1 · Anthima Veedkolu</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch2" aria-label="Chapter 2: Oka Janma Mugisindi">
+        <span class="dot-label">II</span>
+        <span class="dot-tooltip">Chapter 2 · Oka Janma Mugisindi</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch3" aria-label="Chapter 3: Maro Prayanam">
+        <span class="dot-label">III</span>
+        <span class="dot-tooltip">Chapter 3 · Maro Prayanam</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch4" aria-label="Chapter 4: Abhinaya Jananam">
+        <span class="dot-label">IV</span>
+        <span class="dot-tooltip">Chapter 4 · Abhinaya Jananam</span>
+      </button>
+      <button class="chapter-dot" data-target="#ch5" aria-label="Chapter 5: Ajnatha Gnapakalu">
+        <span class="dot-label">V</span>
+        <span class="dot-tooltip">Chapter 5 · Ajnatha Gnapakalu</span>
+      </button>
+    </nav>
+
+    <a class="header-library-link" href="index.html" aria-label="Return to the library" title="Return to the library">
+      <svg class="header-library-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 12H5"></path>
+        <path d="M12 19l-7-7 7-7"></path>
+      </svg>
+      <span class="header-library-label">Library</span>
+    </a>
+
+    <div class="header-controls">
+      <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode"
+        aria-label="Toggle focus reading mode">
+        <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+        <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+          <line x1="1" y1="1" x2="23" y2="23" />
+        </svg>
+      </button>
+      
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- SIDEBAR CHAPTER NAVIGATION          -->
+  <!-- ============================================ -->
+  <aside class="sidebar-nav" id="sidebar-nav" aria-label="Chapter sidebar">
+    <span class="sidebar-label">The Story</span>
+    <div class="sidebar-items">
+      <button class="sidebar-item" data-target="#ch1">
+        <span class="sb-num">01</span>
+        <div class="sb-info">
+          <span class="sb-name">Anthima Veedkolu</span>
+          <span class="sb-desc">The Departure from Vrindavan</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch2">
+        <span class="sb-num">02</span>
+        <div class="sb-info">
+          <span class="sb-name">Oka Janma Mugisindi</span>
+          <span class="sb-desc">A Lifetime Draws to a Close</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch3">
+        <span class="sb-num">03</span>
+        <div class="sb-info">
+          <span class="sb-name">Maro Prayanam</span>
+          <span class="sb-desc">The Cosmic Journey of a Soul</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch4">
+        <span class="sb-num">04</span>
+        <div class="sb-info">
+          <span class="sb-name">Abhinaya Jananam</span>
+          <span class="sb-desc">The Rebirth of Devotion</span>
+        </div>
+      </button>
+      <button class="sidebar-item" data-target="#ch5">
+        <span class="sb-num">05</span>
+        <div class="sb-info">
+          <span class="sb-name">Ajnatha Gnapakalu</span>
+          <span class="sb-desc">Visions from the Forgotten Banks</span>
+        </div>
+      </button>
+    </div>
+  </aside>
+
+
+  <!-- ============================================ -->
+  <!-- LANDING EXPERIENCE              -->
+  <!-- ============================================ -->
+  <section class="landing-section" id="landing" aria-label="Story introduction">
+    <div class="landing-ambient" aria-hidden="true"></div>
+
+    <a class="header-library-link landing-library-link" href="index.html" aria-label="Return to the library" title="Return to the library">
+      <svg class="header-library-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M12 19l-7-7 7-7"></path></svg>
+      <span class="header-library-label">Library</span>
+    </a>
+
+    <div class="landing-content">
+      <!-- Book Cover with 3D Parallax -->
+      <div class="cover-wrapper">
+        <div class="cover-3d" id="cover-3d">
+          <img src="New cover/Abhinayam.png" alt="Abhinayam, The Gopika Who Returned, Book Cover"
+            id="cover-img">
+          <div class="cover-sheen" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Typography Group -->
+      <div class="landing-text">
+        <div class="landing-tag" id="landing-tag">Digital Novel Experience</div>
+        <h1 class="landing-title" id="landing-title" data-text="Abhinayam">Abhinayam</h1>
+        <div class="landing-subtitle" id="landing-subtitle">The Gopika Who Returned</div>
+        <div class="landing-meta" id="landing-meta">Act I &bull; The Echo Of A Previous Life</div>
+        <button class="begin-btn" id="begin-btn">
+          <span>Begin Story</span>
+          <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="scroll-hint" id="scroll-hint">
+      <span>Scroll to walk through time</span>
+      <div class="scroll-hint-line"></div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- STORY EXPERIENCE               -->
+  <!-- ============================================ -->
+  <main class="story-wrapper" id="story-wrapper" tabindex="-1" role="main" aria-label="Abhinayam story chapters">
+  <div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 1, Anthima Veedkolu       -->
+    <!-- Emotion: Longing / Loss         -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch1" data-chapter-theme="sunset" data-chapter-index="0"
+      aria-label="Chapter 1: Anthima Veedkolu">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">01</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 01</span>
+          <h2 class="chapter-title">Anthima Veedkolu</h2>
+          <p class="chapter-synopsis">Dwapara Yuga antham. Krishna Vrindavan ni vadili velladam. Oka chinna
+            Gopika hrudayam virigipovadam.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para">Dwapara Yuga antham daggaraku vachindi. Vrindavan lo aa rojulu
+            maripothunnayi. Krishna Mathura ki velladaniki siddham ayyadu. Gramam motham baadha lo
+            munigipoyindi. Gopikalu andariki telusu... Krishna vellipothe malli aa rojulu tirigi ravu ani.
+          </p>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p">Aakasham kuda aa roju nisshabdanga undi. Yamuna teeram daggara oka chinna Gopika
+            nilchoni undi. Andaru Krishna ni Bhagavan ani pilustharu. Kaani aame matram eppudu alaa
+            pilavaledu.</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>
+            Aame hrudayam lo Krishna ante devudu kaadu. Aame jeevitham. Aame praanam. Aame prema.
+          </blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p">Krishna ratham munduku kadaladam modalayindi. Andaru edusthunaru. Kaani aa ammayi
+            maatram maatladalekapoyindi. Aame kallalo neeru nilichipoyindi.</p>
+        </div>
+
+        <div class="content-block dialogue-block">
+          <div class="dialogue-item">
+            <span class="speaker-label">Gopika</span>
+            <p class="dialogue-text">"Krishna..."</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p">Krishna venakki tirigi choosadu. Chinna navvu navvadu. Aa navvu aame jeevitham lo
+            chivari velugu ani aameku teliyadu. Ratham dooram avutoo undi. Krishna roopam chinnaga marutoo
+            undi. Aame gunde lo edo virigipoyindi.</p>
+        </div>
+
+        <div class="content-block dialogue-block">
+          <div class="dialogue-item">
+            <span class="speaker-label">Gopika</span>
+            <p class="dialogue-text">"Enduku vellipothunnavu Krishna?"</p>
+          </div>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Samadhanam ledu.</p>
+            <p class="thought-dim word-reveal">Kevalam dooram avutunna ratham matrame kanipinchindi. Aa roju
+              Vrindavan nundi Krishna vellaledu. Oka hrudayam nundi prema kuda vellipoyindi.</p>
+          </div>
+        </div>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 2, Oka Janma Mugisindi     -->
+    <!-- Emotion: Grief / Devotion        -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch2" data-chapter-theme="midnight" data-chapter-index="1"
+      aria-label="Chapter 2: Oka Janma Mugisindi">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">02</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 02</span>
+          <h2 class="chapter-title">Oka Janma Mugisindi</h2>
+          <p class="chapter-synopsis">Viraha vedana lo aa Gopika pranalu vidavadam.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para">Krishna vellina taruvata rojulu gadusthunnayi. Kaani aa Gopika
+            jeevitham matram akkade aagipoyindi. Andaru munduku saagipoyaru. Kaani aame prathi roju Yamuna
+            teeram ki velli Krishna kosam eduruchusedi.</p>
+        </div>
+
+        <div class="content-block dialogue-block">
+          <div class="dialogue-item">
+            <span class="speaker-label">Gopika</span>
+            <p class="dialogue-text">"Repu vastadu..."</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p">Aa repu eppudu raledu. Oka saayantram. Aame okkate koorchoni undi. Aakasham
+            orange rangulo merusthundi. Gaali mellaga veesthundi. Dooram nundi flute laanti shabdam
+            vinipinchindi. Aame navvindi.</p>
+        </div>
+
+        <div class="content-block dialogue-block">
+          <div class="dialogue-item">
+            <span class="speaker-label">Gopika</span>
+            <p class="dialogue-text">"Krishna vachava?"</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p">Kaani akkada evaru leru. Aame kallalo neeru cherindi.</p>
+        </div>
+
+        <div class="content-block dialogue-block">
+          <div class="dialogue-item">
+            <span class="speaker-label">Gopika</span>
+            <p class="dialogue-text">"Marichipoyava nannu?"</p>
+          </div>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Samadhanam ledu.</p>
+            <p class="thought-dim word-reveal">Aa raatri aame Krishna peru japistune nidrapoyindi. Malli
+              levaledu.</p>
+          </div>
+        </div>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 3, Maro Prayanam        -->
+    <!-- Emotion: Transcendence / Cosmic     -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch3" data-chapter-theme="cosmic" data-chapter-index="2"
+      aria-label="Chapter 3: Maro Prayanam">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">03</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 03</span>
+          <h2 class="chapter-title">Maro Prayanam</h2>
+          <p class="chapter-synopsis">Aame aatma punarjanma kosam prayanam modalupettadam.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para">Shariram bhoomi meeda migilipoyindi. Kaani prema migilindi. Aatma
+            migilindi.</p>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p">Aa aatma kaalam ane nadi lo prayaanam modalupettindi. Yugalu marayi. Rajyalu
+            puttayi. Rajyalu nashinchipoyayi. Kaani aa prema maatram maaraledu.</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>
+            Oka vaagdanam laa. Oka asampoorna kathala.
+          </blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Aa aatma malli puttadaniki siddham ayyindi.</p>
+            <p class="thought-dim word-reveal">Krishna ni malli vetakadaniki.</p>
+          </div>
+        </div>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 4, Abhinaya Jananam       -->
+    <!-- Emotion: Warmth / Hope / Rebirth     -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch4" data-chapter-theme="gold" data-chapter-index="3"
+      aria-label="Chapter 4: Abhinaya Jananam">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">04</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 04</span>
+          <h2 class="chapter-title">Abhinaya Jananam</h2>
+          <p class="chapter-synopsis">Dance parampara kutumbam lo Abhinaya puttadam.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para">Samvatsaralu gadichayi. Oka chinna rajyam. Krishna bhakti ki prasiddhi
+            pondina bhoomi. Akkada dance parampara unna kutumbam lo oka paapa puttindi. Intlo andaroo
+            santoshamga unnaru. Paapa puttina ventane navvindi.</p>
+        </div>
+
+        <div class="content-block dialogue-block">
+          <div class="dialogue-item">
+            <span class="speaker-label">Amma</span>
+            <p class="dialogue-text">"Mana intiki Lakshmi vachindi."</p>
+          </div>
+          <div class="dialogue-item">
+            <span class="speaker-label">Nanna</span>
+            <p class="dialogue-text">"Ee ammayi goppaga perugutundi."</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p">Aameku peru pettaru. &ldquo;Abhinaya&rdquo;. Aame peru pettina kshanam nundi
+            intlo unna deepam balanga veliginattu anipinchindi.</p>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Evariki teliyadu.</p>
+            <p class="thought-dim word-reveal">Kaani oka puratana prema malli bhoomi meeda adugu pettindi.
+            </p>
+          </div>
+        </div>
+
+        <div class="content-block scene-separator" aria-hidden="true">
+          <div class="separator-line"></div>
+          <div class="separator-diamond"></div>
+          <div class="separator-line"></div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================== -->
+    <!-- CHAPTER 5, Ajnatha Gnapakalu      -->
+    <!-- Emotion: Mystery / Recognition      -->
+    <!-- ======================================== -->
+    <section class="chapter-section" id="ch5" data-chapter-theme="lavender" data-chapter-index="4"
+      aria-label="Chapter 5: Ajnatha Gnapakalu">
+      <div class="chapter-intro">
+        <div class="chapter-watermark" aria-hidden="true">05</div>
+        <div class="chapter-intro-inner">
+          <span class="chapter-num-label">Chapter 05</span>
+          <h2 class="chapter-title">Ajnatha Gnapakalu</h2>
+          <p class="chapter-synopsis">Chinnappati nundi Krishna gurinchi vintunna kalalu.</p>
+          <div class="chapter-scroll-cue">
+            <span>Scroll to begin</span>
+            <div class="cue-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chapter-body">
+        <div class="content-block">
+          <p class="story-p first-para">Abhinaya chinnaga periguthundi. Migatha pillalu bommalatho
+            aadukuntaru. Kaani Abhinaya ki vere ishtalu. Aame eppudu Krishna bomma daggare untundi.</p>
+        </div>
+
+        <div class="content-block dialogue-block">
+          <div class="dialogue-item">
+            <span class="speaker-label">Amma</span>
+            <p class="dialogue-text">"Abhi, enduku eppudu Krishna daggare untavu?"</p>
+          </div>
+          <div class="dialogue-item">
+            <span class="speaker-label">Abhinaya</span>
+            <p class="dialogue-text">"Naku ayana ante chala ishtam."</p>
+          </div>
+          <div class="dialogue-item">
+            <span class="speaker-label">Amma</span>
+            <p class="dialogue-text">"Bhagavan kabatti kada?"</p>
+          </div>
+          <div class="dialogue-item">
+            <span class="speaker-label">Abhinaya</span>
+            <p class="dialogue-text">"Ledu..."</p>
+          </div>
+          <div class="dialogue-item">
+            <span class="speaker-label">Amma</span>
+            <p class="dialogue-text">"Marenduku?"</p>
+          </div>
+          <div class="dialogue-item">
+            <span class="speaker-label">Abhinaya</span>
+            <p class="dialogue-text">"Naku teliyadu... kaani ayana dooram vellipoyina feeling vastundi."</p>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <p class="story-p">Aa maataki amma navvindi. Kaani enduko aame gunde lo oka chinna bayam puttindi.
+            Aa raatri Abhinaya oka kala chusindi.</p>
+        </div>
+
+        <div class="content-block quote-block">
+          <span class="quote-mark open" aria-hidden="true">&ldquo;</span>
+          <blockquote>
+            Yamuna teeram.... Venugaanam.... Dooram vellipothunna Krishna....
+          </blockquote>
+          <span class="quote-mark close" aria-hidden="true">&rdquo;</span>
+        </div>
+
+        <div class="content-block special-reveal" data-reveal="word">
+          <div class="lone-thought">
+            <p>Kallu terichindi. Kallalo neeru undi. Tanaki ardham kaaledu.</p>
+            <p class="thought-dim word-reveal">Kaani oka vishayam maatram telusu. Ekkado... Eppudo... Tanu
+              Krishna ni kolpoyindi.</p>
+          </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- STORY EPILOGUE                -->
+        <!-- ============================================ -->
+        <div class="story-epilogue" id="story-epilogue">
+          <div class="epilogue-ornament">❖</div>
+          <h3 class="epilogue-title">Abhinayam</h3>
+          <p class="epilogue-sub">Act I, The Echo Of A Previous Life</p>
+          <div class="epilogue-divider"></div>
+          <button class="replay-btn" id="replay-btn">
+            <span>Replay Experience</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================ -->
+  <!-- CORE CDN DEPENDENCIES            -->
+  <!-- ============================================ -->
+  <!-- GSAP Core + ScrollTrigger -->
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <!-- Lenis Smooth Scroll -->
+  <script src="vendor/lenis.min.js"></script>
+
+  <!-- Cinematic Engine (shared) -->
+  <script src="story-cinematic.js"></script>
+
+
+  <script src="fire-cursor.js"></script>
+</body>
+
+</html>

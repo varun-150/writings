@@ -1,0 +1,3175 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'js');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
+    <title>The Story Vault</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #080808;
+            --surface: #111111;
+            --surface-hover: #161616;
+            --text-primary: #F5F0E8;
+            --text-secondary: #B8B1A7;
+            --accent: #C11230;
+            --accent-glow: rgba(193, 18, 48, 0.35);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Kalam', cursive;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 0%, #151515 0%, #080808 70%);
+        }
+
+        /* Custom Cursor for pointer devices */
+        @media (pointer: fine) {
+            body {
+                cursor: none;
+            }
+
+            .custom-cursor {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 8px;
+                height: 8px;
+                background-color: var(--accent);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transform: translate(-50%, -50%);
+                transition: width 0.2s, height 0.2s, background-color 0.2s;
+                box-shadow: 0 0 8px var(--accent);
+            }
+
+            .custom-cursor-ring {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 32px;
+                height: 32px;
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9998;
+                transform: translate(-50%, -50%);
+                transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s;
+            }
+
+            body.cursor-active .custom-cursor {
+                width: 14px;
+                height: 14px;
+                background-color: #fff;
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            }
+
+            body.cursor-active .custom-cursor-ring {
+                width: 50px;
+                height: 50px;
+                border-color: var(--accent);
+                background-color: rgba(193, 18, 48, 0.05);
+            }
+        }
+
+        /* Particle Background Canvas */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.2;
+        }
+
+        /* Film Grain + Vignette Overlays */
+        .noise-layer {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            pointer-events: none;
+            z-index: 998;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            animation: grain 8s steps(10) infinite;
+        }
+
+        @keyframes grain {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            10% {
+                transform: translate(-3%, -8%);
+            }
+
+            20% {
+                transform: translate(-8%, 4%);
+            }
+
+            30% {
+                transform: translate(5%, -15%);
+            }
+
+            40% {
+                transform: translate(-4%, 12%);
+            }
+
+            50% {
+                transform: translate(-10%, 6%);
+            }
+
+            60% {
+                transform: translate(10%, 0%);
+            }
+
+            70% {
+                transform: translate(0%, 8%);
+            }
+
+            80% {
+                transform: translate(2%, 18%);
+            }
+
+            90% {
+                transform: translate(-6%, 5%);
+            }
+        }
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 97;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.65) 100%);
+        }
+
+        /* Header Navigation */
+        header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4rem 8vw 2rem 8vw;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .brand-logo-container {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(193, 18, 48, 0.05);
+            padding: 5px;
+            transition: var(--transition);
+        }
+
+        .brand:hover .brand-logo-container {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(193, 18, 48, 0.12);
+            background: rgba(193, 18, 48, 0.03);
+        }
+
+        .brand-logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .brand h1 {
+            font-family: 'Kalam', cursive;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: #fff;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .brand .subtitle {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-family: 'Kalam', cursive;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .control-btn:hover {
+            color: #fff;
+            border-color: var(--accent);
+            background: rgba(193, 18, 48, 0.08);
+            box-shadow: 0 0 15px rgba(193, 18, 48, 0.1);
+        }
+
+        /* Audio visualizer waves */
+        .audio-waves {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            width: 16px;
+            height: 12px;
+        }
+
+        .audio-waves span {
+            display: block;
+            width: 2px;
+            background-color: currentColor;
+            height: 3px;
+        }
+
+        .audio-waves.playing span {
+            animation: waveAnimation 1.2s ease infinite alternate;
+        }
+
+        .audio-waves.playing span:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .audio-waves.playing span:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .audio-waves.playing span:nth-child(3) {
+            animation-delay: 0.0s;
+        }
+
+        .audio-waves.playing span:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes waveAnimation {
+            0% {
+                height: 2px;
+            }
+
+            100% {
+                height: 12px;
+            }
+        }
+
+
+
+        /* Bookshelf Main Layout */
+        .bookshelf-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 2rem 8vw 10vw 8vw;
+        }
+
+        .bookshelf {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 4vw;
+            perspective: 1200px;
+        }
+
+        .book-card {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            background-color: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transform-style: preserve-3d;
+            transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease, opacity 0.35s ease;
+            box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.6);
+            opacity: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card.hidden {
+            display: none;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .book-cover-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            overflow: hidden;
+            background: #0d0d0d;
+        }
+
+        .book-cover-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.85) contrast(1.05);
+            transition: transform 0.6s var(--transition), filter 0.4s ease;
+        }
+
+        .glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.12) 25%, transparent 30%);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Hover Reveal Overlay */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(8, 8, 8, 0.92) 35%, rgba(8, 8, 8, 0.55) 100%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem 1.5rem;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .overlay-title {
+            font-family: 'Kalam', cursive;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.25;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-mood {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .overlay-mood::before {
+            content: '';
+            width: 22px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .overlay-meta {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .begin-btn {
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            color: #F5F0E8;
+            font-family: 'Kalam', cursive;
+            font-weight: 600;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(193, 18, 48, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            outline-offset: 3px;
+        }
+
+        .begin-btn:hover,
+        .begin-btn:focus-visible {
+            background: #fff;
+            border-color: #fff;
+            color: #C11230;
+            box-shadow: 0 8px 22px rgba(193, 18, 48, 0.2);
+        }
+
+        .begin-btn svg {
+            width: 14px;
+            height: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .begin-btn:hover svg,
+        .begin-btn:focus-visible svg {
+            transform: translateX(4px);
+        }
+
+        .author-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(8, 8, 8, 0.85);
+            border: 1px solid rgba(193, 18, 48, 0.25);
+            color: var(--accent);
+            font-family: 'Kalam', cursive;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            padding: 0.35rem 0.7rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            z-index: 4;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.25s ease, color 0.25s ease;
+            pointer-events: none;
+            outline: 2px solid transparent;
+        }
+
+        .book-card:hover .author-badge,
+        .book-card:focus-visible .author-badge {
+            border-color: #fff;
+            color: #fff;
+            background: rgba(8, 8, 8, 0.95);
+        }
+
+        .read-story-cta {
+            font-family: 'Kalam', cursive;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-top: 0.6rem;
+            opacity: 0.85;
+            transition: color 0.25s ease, transform 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .book-card:hover .read-story-cta,
+        .book-card:focus-visible .read-story-cta {
+            color: #fff;
+            transform: translateX(4px);
+        }
+
+        .book-info-footer {
+            padding: 1.2rem 1.5rem;
+            background: var(--surface);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            transition: background-color 0.35s ease, border-color 0.35s ease;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .book-info-footer h3 {
+            font-family: 'Kalam', cursive;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.95);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.05em;
+        }
+
+        .book-info-footer p {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        /* Hover Interactions */
+        .book-card:hover,
+        .book-card:focus-visible {
+            box-shadow: 0 18px 36px -14px rgba(0, 0, 0, 0.7);
+            border-color: rgba(193, 18, 48, 0.35);
+        }
+
+        .book-card:hover .book-cover-container img,
+        .book-card:focus-visible .book-cover-container img {
+            transform: scale(1.04);
+            filter: brightness(0.88) contrast(1.02);
+        }
+
+        .book-card:hover .glare,
+        .book-card:focus-visible .glare {
+            transform: translateX(100%);
+            transition: transform 1s ease;
+        }
+
+        .book-card:hover .card-overlay,
+        .book-card:focus-visible .card-overlay {
+            opacity: 1;
+        }
+
+        .book-card:hover .book-info-footer,
+        .book-card:focus-visible .book-info-footer {
+            background-color: var(--surface-hover);
+            border-top-color: rgba(193, 18, 48, 0.2);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .book-card,
+            .book-card:hover {
+                transition: none !important;
+                transform: none !important;
+            }
+
+            /* S4: honour reduced-motion for all ambient/looping motion */
+            #particle-canvas {
+                display: none;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+
+            #splash-screen {
+                transition-duration: 0.01ms;
+            }
+        }
+
+        /* Footer styling */
+        footer {
+            position: relative;
+            z-index: 10;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 4rem 8vw;
+            text-align: center;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .contact-link {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            opacity: 0.75;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+            opacity: 1;
+            text-shadow: 0 0 8px rgba(193, 18, 48, 0.3);
+        }
+
+        .contact-icon {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 3rem 6vw 1.5rem 6vw;
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .brand {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .archive-catalog-controls {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                margin-bottom: 4rem;
+            }
+
+            .featured-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .featured-cover-container {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+
+            .bookshelf {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .bookshelf-wrapper {
+                padding: 1rem 6vw 15vw 6vw;
+            }
+
+            .custom-cursor,
+            .custom-cursor-ring {
+                display: none !important;
+            }
+        }
+
+        /* Splash Screen styling */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #080808;
+            background-image: radial-gradient(circle at 50% 50%, #151515 0%, #080808 80%);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s;
+        }
+
+        #splash-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* B1 (index): if scripting is unavailable the splash must never cover the page */
+        html.no-js #splash-screen {
+            display: none;
+        }
+
+        .splash-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+
+        .splash-brand {
+            font-family: 'Kalam', cursive;
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: splashFadeInUp 1s ease forwards 0.2s;
+        }
+
+        .splash-title {
+            font-family: 'Kalam', cursive;
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            background: linear-gradient(90deg, #F5F0E8 0%, #C11230 50%, #F5F0E8 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(193, 18, 48, 0.15);
+            opacity: 0;
+            transform: translateY(15px);
+            animation: splashFadeInUp 1.2s ease forwards 0.5s, crimsonShimmer 6s linear infinite;
+        }
+
+        @keyframes crimsonShimmer {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .splash-phrase {
+            font-family: 'Kalam', cursive;
+            font-size: 0.95rem;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: splashFadeInUp 1.8s ease forwards 1.2s;
+            text-shadow: 0 0 10px rgba(193, 18, 48, 0.2);
+        }
+
+        .splash-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(193, 18, 48, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9999;
+            animation: atmosphericPulse 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes atmosphericPulse {
+            0% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        @keyframes splashFadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* -------------------------------------------------------------
+           INTERACTIVE Q&A CONSOLE STYLE
+           ------------------------------------------------------------- */
+        .qa-section {
+            position: relative;
+            z-index: 10;
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 4rem 8vw;
+        }
+
+        .qa-container {
+            background: rgba(17, 17, 17, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2.5rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(193, 18, 48, 0.02);
+            transition: var(--transition);
+        }
+
+        .qa-container:hover {
+            border-color: rgba(193, 18, 48, 0.15);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9), 0 0 40px rgba(193, 18, 48, 0.05);
+        }
+
+        .qa-header {
+            margin-bottom: 2.5rem;
+            text-align: left;
+            position: relative;
+        }
+
+        .qa-header h2 {
+            font-family: 'Kalam', cursive;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: #fff;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        .qa-header p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .qa-content {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+            min-height: 450px;
+        }
+
+        .qa-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .qa-search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .qa-search-box input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 0.8rem 1rem 0.8rem 2.5rem;
+            color: #fff;
+            font-family: 'Kalam', cursive;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            transition: var(--transition);
+        }
+
+        .qa-search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(193, 18, 48, 0.03);
+            box-shadow: 0 0 15px rgba(193, 18, 48, 0.08);
+        }
+
+        .qa-search-box .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .qa-questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-height: 380px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        /* Custom Scrollbar for list and terminal */
+        .qa-questions-list::-webkit-scrollbar,
+        .qa-terminal-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .qa-questions-list::-webkit-scrollbar-track,
+        .qa-terminal-body::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .qa-questions-list::-webkit-scrollbar-thumb,
+        .qa-terminal-body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        .qa-questions-list::-webkit-scrollbar-thumb:hover,
+        .qa-terminal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        .qa-q-btn {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-secondary);
+            text-align: left;
+            font-family: 'Kalam', cursive;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .qa-q-btn:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateX(3px);
+        }
+
+        .qa-q-btn.active {
+            color: #fff;
+            border-color: var(--accent);
+            background: rgba(193, 18, 48, 0.04);
+            box-shadow: 0 0 15px rgba(193, 18, 48, 0.05);
+            font-weight: 500;
+        }
+
+        .qa-display {
+            background: #0c0c0c;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        .qa-terminal-header {
+            background: #101010;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .terminal-dots .dot.red {
+            background: #ff5f56;
+        }
+
+        .terminal-dots .dot.yellow {
+            background: #ffbd2e;
+        }
+
+        .terminal-dots .dot.green {
+            background: #27c93f;
+        }
+
+        .terminal-title {
+            font-family: 'Kalam', cursive;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .qa-terminal-body {
+            padding: 1.8rem;
+            flex-grow: 1;
+            overflow-y: auto;
+            font-family: 'Kalam', cursive;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            max-height: 380px;
+        }
+
+        .console-prompt {
+            color: var(--accent);
+            font-family: 'Kalam', cursive;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .interactive-prompt-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .quick-question-btn {
+            background: transparent;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            color: var(--text-secondary);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            font-family: 'Kalam', cursive;
+            font-size: 0.8rem;
+            text-align: left;
+            cursor: pointer;
+            transition: var(--transition);
+            width: fit-content;
+        }
+
+        .quick-question-btn:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(193, 18, 48, 0.03);
+            transform: translateX(5px);
+        }
+
+        /* Layout for printed answers */
+        .qa-answer-container {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .qa-answer-title {
+            font-family: 'Kalam', cursive;
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .qa-answer-text {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .qa-answer-text strong {
+            color: #fff;
+        }
+
+        .qa-answer-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .qa-answer-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .qa-answer-list li::before {
+            content: '◆';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            font-size: 0.7rem;
+        }
+
+        .qa-answer-list li strong {
+            color: #fff;
+        }
+
+        .qa-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .qa-contact-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .qa-contact-card:hover {
+            background: rgba(193, 18, 48, 0.05);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(193, 18, 48, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Simulated Cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: var(--accent);
+            margin-left: 4px;
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .story-list-mini {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .story-mini-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .story-mini-card:hover {
+            border-color: var(--accent);
+            background: rgba(193, 18, 48, 0.04);
+            transform: translateY(-2px);
+        }
+
+        .story-mini-card h4 {
+            font-family: 'Kalam', cursive;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+
+        .story-mini-card p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 992px) {
+            .qa-content {
+                grid-template-columns: 1fr;
+            }
+
+            .qa-questions-list {
+                max-height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .qa-section {
+                padding: 3rem 6vw;
+            }
+
+            .qa-container {
+                padding: 1.5rem;
+            }
+
+            .story-list-mini {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes splashFadeIn {
+            to {
+                opacity: 0.6;
+            }
+        }
+
+
+
+        /* -------------------------------------------------------------
+           FEATURED RECOMMENDATION SECTION
+           ------------------------------------------------------------- */
+        .featured-recommendation {
+            width: 100%;
+            margin-bottom: 6rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .featured-card {
+            background: rgba(17, 17, 17, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 3rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(193, 18, 48, 0.01);
+            transition: var(--transition);
+        }
+
+        .featured-card:hover {
+            border-color: rgba(193, 18, 48, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(193, 18, 48, 0.04);
+        }
+
+        .featured-cover-container {
+            width: 100%;
+            aspect-ratio: 2 / 3;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(193, 18, 48, 0.05);
+            transform: rotateY(-5deg) rotateX(2deg);
+            transform-style: preserve-3d;
+            transition: var(--transition);
+        }
+
+        .featured-card:hover .featured-cover-container {
+            transform: rotateY(-2deg) rotateX(0deg) scale(1.02);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(193, 18, 48, 0.1);
+        }
+
+        .featured-cover-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8);
+            transition: transform 1s ease;
+        }
+
+        .featured-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.08) 35%, transparent 40%);
+            transform: translateX(-100%);
+            transition: transform 1.2s ease;
+        }
+
+        .featured-card:hover .featured-glare {
+            transform: translateX(100%);
+        }
+
+        .featured-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .curator-tag {
+            font-family: 'Kalam', cursive;
+            font-size: 0.65rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+        }
+
+        .featured-title {
+            font-family: 'Kalam', cursive;
+            font-size: 2.2rem;
+            color: #fff;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .featured-hook {
+            font-family: 'Kalam', cursive;
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        .featured-description {
+            font-family: 'Kalam', cursive;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.8rem;
+            max-width: 900px;
+        }
+
+        .featured-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            border-top: 1px dashed rgba(255, 255, 255, 0.05);
+            padding-top: 1.2rem;
+        }
+
+        .featured-meta strong {
+            color: #fff;
+        }
+
+        .featured-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-family: 'Kalam', cursive;
+            font-weight: 500;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .featured-btn:hover {
+            background: rgba(193, 18, 48, 0.08);
+            box-shadow: 0 0 20px rgba(193, 18, 48, 0.15);
+            color: #fff;
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .featured-btn svg {
+            width: 12px;
+            height: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* -------------------------------------------------------------
+           ARCHIVE CATALOG CONTROLS (FILTERS + METADATA CARD)
+           ------------------------------------------------------------- */
+        .archive-catalog-controls {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 3rem;
+            margin-top: 2rem;
+            margin-bottom: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .filter-shelf {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .catalog-label {
+            font-family: 'Kalam', cursive;
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.5rem;
+        }
+
+        .filter-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.8rem;
+        }
+
+        .filter-link {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: 'Kalam', cursive;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            padding: 0.3rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .filter-link::before {
+            content: '•';
+            color: var(--accent);
+            margin-right: 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .filter-link:hover,
+        .filter-link.active {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+        }
+
+        .filter-link.active::before,
+        .filter-link:hover::before {
+            opacity: 1;
+        }
+
+        .archival-stats-card {
+            background: rgba(193, 18, 48, 0.02);
+            border: 1px dashed rgba(193, 18, 48, 0.15);
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Kalam', cursive;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            color: var(--text-secondary);
+            font-size: 0.72rem;
+        }
+
+        .stats-header {
+            color: var(--accent);
+            text-align: center;
+            border-bottom: 1px dashed rgba(193, 18, 48, 0.2);
+            padding-bottom: 0.6rem;
+            margin-bottom: 0.8rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.2rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+            opacity: 0.85;
+        }
+
+        .stat-val {
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .stats-footer {
+            text-align: center;
+            border-top: 1px dashed rgba(193, 18, 48, 0.2);
+            padding-top: 0.6rem;
+            margin-top: 0.8rem;
+            font-size: 0.7rem;
+            opacity: 0.75;
+        }
+
+        /* -------------------------------------------------------------
+           LIBRARIAN CATALOG PREVIEW OVERLAY
+           ------------------------------------------------------------- */
+        .library-catalog-card {
+            background: rgba(8, 8, 8, 0.92) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 14px;
+            padding: 1.6rem !important;
+            box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.6);
+            text-align: left;
+            justify-content: flex-start !important;
+            transition: border-color 0.35s ease;
+        }
+
+        .catalog-card-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Kalam', cursive;
+            font-size: 0.72rem;
+            color: var(--accent);
+            letter-spacing: 0.18em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
+            width: 100%;
+        }
+
+        .catalog-card-body {
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .catalog-title {
+            font-family: 'Kalam', cursive;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.25;
+            color: #fff;
+            margin-bottom: 0.6rem;
+            letter-spacing: 0.05em;
+        }
+
+        .catalog-line {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.35rem;
+            line-height: 1.5;
+        }
+
+        .catalog-line strong {
+            color: var(--accent);
+            font-family: 'Kalam', cursive;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            display: inline-block;
+            width: 68px;
+        }
+
+        .catalog-synopsis {
+            font-family: 'Kalam', cursive;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-top: 0.8rem;
+            margin-bottom: 1.2rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        /* -------------------------------------------------------------
+           LOCAL READING MEMORY BOOKMARK (RIBBON)
+           ------------------------------------------------------------- */
+        .reading-bookmark {
+            position: fixed;
+            top: 0;
+            right: 8vw;
+            width: 180px;
+            background: #C11230;
+            color: #F5F0E8;
+            padding: 1.5rem 1rem;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            transform: translateY(-100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .reading-bookmark.visible {
+            transform: translateY(0);
+        }
+
+        .reading-bookmark:hover {
+            transform: translateY(10px);
+        }
+
+        /* Ribbon cut styling */
+        .reading-bookmark::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 90px solid #C11230;
+            border-right: 90px solid #C11230;
+            border-bottom: 15px solid transparent;
+        }
+
+        .bookmark-tag {
+            font-family: 'Kalam', cursive;
+            font-size: 0.55rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .bookmark-title {
+            font-family: 'Kalam', cursive;
+            font-size: 1.05rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+        .bookmark-chapter {
+            font-size: 0.68rem;
+            margin-bottom: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        .bookmark-progress-container {
+            width: 100%;
+            height: 3px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 2px;
+            position: relative;
+            margin-bottom: 1.2rem;
+        }
+
+        .bookmark-progress-bar {
+            height: 100%;
+            background: #F5F0E8;
+            width: 0%;
+            border-radius: 2px;
+        }
+
+        .bookmark-percent {
+            position: absolute;
+            right: 0;
+            top: -14px;
+            font-size: 0.6rem;
+            font-weight: bold;
+        }
+
+        .bookmark-btn {
+            background: #F5F0E8;
+            color: #C11230;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Kalam', cursive;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .bookmark-btn:hover {
+            background: #fff;
+            color: #C11230;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
+        }
+
+        /* Late media block: base featured/catalog rules above are declared AFTER
+           the early responsive block, so this re-asserts stacking at small widths. */
+        @media (max-width: 768px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem;
+            }
+
+            .featured-details {
+                min-width: 0;
+            }
+
+            .featured-meta {
+                flex-wrap: wrap;
+                gap: 1rem 2rem;
+            }
+
+            .featured-btn {
+                width: fit-content;
+            }
+
+            .archive-catalog-controls {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                margin-bottom: 4rem;
+            }
+
+            .archival-stats-card {
+                min-width: 0;
+                width: 100%;
+            }
+        }
+        /* Skip link (keyboard-only affordance) */
+        .skip-link {
+            position: fixed;
+            top: 0.75rem;
+            left: 0.75rem;
+            z-index: 10050;
+            padding: 0.7rem 1.1rem;
+            background: #0D0D10;
+            color: #F5F0E8;
+            border: 2px solid #C11230;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            transform: translateY(-200%);
+            transition: transform 0.2s ease;
+        }
+        .skip-link:focus,
+        .skip-link:focus-visible {
+            transform: translateY(0);
+            outline: 2px solid #D21E3C;
+            outline-offset: 3px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<a href="#main-content" class="skip-link">Skip to stories</a>
+    <!-- Cinematic Splash Screen -->
+    <div id="splash-screen">
+        <div class="splash-glow"></div>
+        <div class="splash-content">
+            <div class="splash-brand">WR Presents</div>
+            <h1 class="splash-title">THE STORY VAULT</h1>
+            <div class="splash-phrase">Every Story Leaves a Trace.</div>
+        </div>
+    </div>
+
+    <div class="vignette"></div>
+    <div class="noise-layer"></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Custom Cursor elements -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-ring" id="cursor-ring"></div>
+
+    <header>
+        <div class="brand">
+            <div class="brand-text">
+                <h1>The Story Vault</h1>
+                <div class="subtitle">Some stories I wrote</div>
+            </div>
+        </div>
+        <div class="header-controls">
+            <button id="qa-toggle-btn" class="control-btn">
+                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                About This Place
+            </button>
+        </div>
+    </header>
+
+
+
+    <main class="bookshelf-wrapper" id="main-content">
+
+        <!-- Continue Reading Bookmark Ribbon -->
+        <div id="reading-bookmark" class="reading-bookmark">
+            <div class="bookmark-tag">Last Read</div>
+            <h4 class="bookmark-title" id="bookmark-title">Almost</h4>
+            <div class="bookmark-chapter" id="bookmark-chapter">Chapter II</div>
+            <div class="bookmark-progress-container">
+                <div class="bookmark-progress-bar" id="bookmark-progress-bar"></div>
+                <span class="bookmark-percent" id="bookmark-percentage">45%</span>
+            </div>
+            <a href="#" class="bookmark-btn" id="bookmark-link">Keep reading</a>
+        </div>
+
+        <!-- Featured Curator Recommendation -->
+        <div class="featured-recommendation">
+            <div class="featured-card">
+                <div class="featured-cover-container">
+                    <img src="New cover/Abhinayam.png" alt="Abhinayam Featured Cover">
+                    <div class="featured-glare"></div>
+                </div>
+                <div class="featured-details">
+                    <span class="curator-tag">A story to start with</span>
+                    <h2 class="featured-title">Abhinayam</h2>
+                    <p class="featured-hook">"I wrote this over three months. It's the longest story here, and it means a lot to me."</p>
+                    <p class="featured-description">A story about a Gopika's love for Krishna that lasts across lifetimes. I made this page change colors as you scroll so the visual matches the feeling.</p>
+                    <div class="featured-meta">
+                        <span><strong>Mood:</strong> Devotion and sadness</span>
+                        <span><strong>Read time:</strong> ~45 minutes</span>
+                        <span><strong>Best read:</strong> Late at night, when it is quiet</span>
+                    </div>
+                    <button class="featured-btn" onclick="window.location.href='Abhinayam.html'">
+                        Read Story
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Archive Catalog Controls (Filter + Monospace Statistics) -->
+        <div class="archive-catalog-controls">
+            <div class="filter-shelf">
+                <span class="catalog-label">Browse stories</span>
+                <div class="filter-links">
+                    <button class="filter-link active" data-filter="all">All</button>
+                    <button class="filter-link" data-filter="devotion-spiritual">Devotion / Spiritual</button>
+                    <button class="filter-link" data-filter="romance">Romance</button>
+                    <button class="filter-link" data-filter="nostalgia">Nostalgia</button>
+                    <button class="filter-link" data-filter="determination-success">Determination / Success</button>
+                    <button class="filter-link" data-filter="adventure-fantasy">Adventure / Fantasy</button>
+                    <button class="filter-link" data-filter="thriller-mystery">Thriller / Mystery</button>
+                    <button class="filter-link" data-filter="psychological-drama">Psychological Drama</button>
+                    <button class="filter-link" data-filter="mythological-action-thriller">Mythological Action Thriller</button>
+                    <button class="filter-link" data-filter="social-drama">Social Drama</button>
+                </div>
+            </div>
+            <div class="archival-stats-card">
+                <div class="stats-header">A few numbers</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">STORIES</span>
+                        <span class="stat-val">15</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">WORDS</span>
+                        <span class="stat-val">~85,200</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">MOODS</span>
+                        <span class="stat-val">9</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">READ TIME</span>
+                        <span class="stat-val">~7 hours</span>
+                    </div>
+                </div>
+                <div class="stats-footer">Started in 2024 · Still writing.</div>
+            </div>
+        </div>
+
+        <div class="bookshelf">
+
+            <!-- Abhinayam -->
+            <div class="book-card" data-category="devotion-spiritual"
+                onclick="window.location.href='Abhinayam.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">My first story</span>
+                    <img src="New cover/Abhinayam.png" alt="Abhinayam Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Abhinayam</h4>
+                        <div class="overlay-mood">Devotion & sadness</div>
+                        <div class="overlay-meta">I spent three months writing this. It is about a love that lasts across lifetimes.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Abhinayam</h3>
+                    <p>Act I · The Echo Of A Previous Life</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Almost -->
+            <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Almost.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">Written from memory</span>
+                    <img src="New cover/Almost.png" alt="Almost Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Almost</h4>
+                        <div class="overlay-mood">Bittersweet & calm</div>
+                        <div class="overlay-meta">A story about two quiet people who go their separate ways, finding comfort in silence.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Almost</h3>
+                    <p>INFJ Relationship Story</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Dharshan -->
+            <div class="book-card" data-category="devotion-spiritual" onclick="window.location.href='Dharshan.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">After a trip to Tirupati</span>
+                    <img src="New cover/Dharshan.png" alt="Dharshan Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Dharshan</h4>
+                        <div class="overlay-mood">Peaceful & calm</div>
+                        <div class="overlay-meta">Three people walking to a temple. It is simple, quiet, and about faith.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Dharshan</h3>
+                    <p>A Timeless Devotional Journey</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- DHRUVENDRA -->
+            <div class="book-card" data-category="adventure-fantasy"
+                onclick="window.location.href='DHRUVENDRA%20-%20THE%20TREASURE%20SEEKER.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">My longest draft</span>
+                    <img src="New cover/Dhruvendra.png" alt="Dhruvendra Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Dhruvendra</h4>
+                        <div class="overlay-mood">Adventure & mystery</div>
+                        <div class="overlay-meta">What happens when you chase a secret too hard? An adventure story that grew longer than I planned.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Dhruvendra</h3>
+                    <p>The Treasure Seeker</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Green Hollow -->
+            <div class="book-card" data-category="thriller-mystery"
+                onclick="window.location.href='Green%20Hollow%20ACT%20-%201.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">Part one of a mystery</span>
+                    <img src="New cover/Green Hollow ACT - 1.png" alt="Green Hollow Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Green Hollow</h4>
+                        <div class="overlay-mood">Tension & mystery</div>
+                        <div class="overlay-meta">A mystery about a quiet town in the woods. This is only the first part of a bigger story.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Green Hollow</h3>
+                    <p>Act I · The Shadows of the Woods</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Kadha Laga Modhalaina Oka Parichayam -->
+            <div class="book-card" data-category="social-drama"
+                onclick="window.location.href='Kadha%20Laga%20Modhalaina%20Oka%20Parichayam.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">Written in Telugu first</span>
+                    <img src="New cover/Kadha Laga Modhalaina Oka Parichayam.png"
+                        alt="Kadha Laga Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Kadha Laga Modhalaina</h4>
+                        <div class="overlay-mood">Warm & nostalgic</div>
+                        <div class="overlay-meta">I wanted to write a simple love story in Telugu because the words feel warmer that way.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Kadha Laga Modhalaina</h3>
+                    <p>Oka Parichayam</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Kali -->
+            <div class="book-card" data-category="mythological-action-thriller"
+                onclick="window.location.href='Kali%20-%20The%20Five%20Paths.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">Rewritten many times</span>
+                    <img src="New cover/Kali.png" alt="Kali Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Kali</h4>
+                        <div class="overlay-mood">Heavy & intense</div>
+                        <div class="overlay-meta">A story of heroes, destiny, and hard choices. My most difficult write.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Kali</h3>
+                    <p>The Five Paths</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Malli Kalisi… -->
+            <div class="book-card" data-category="romance nostalgia"
+                onclick="window.location.href='Malli%20Kalisi.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">A story about meeting again</span>
+                    <img src="New cover/Malli Kalisi.png" alt="Malli Kalisi Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Malli Kalisi…</h4>
+                        <div class="overlay-mood">Sad & sweet</div>
+                        <div class="overlay-meta">Meeting someone again after years. I wrote this quickly because I could feel the characters clearly.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Malli Kalisi…</h3>
+                    <p>Reunion of Echoes</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Midnight Escape -->
+            <div class="book-card" data-category="psychological-drama"
+                onclick="window.location.href='Midnight%20Escape.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">Wrote this in one night</span>
+                    <img src="New cover/Midnight Escape.png" alt="Midnight Escape Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Midnight Escape</h4>
+                        <div class="overlay-mood">Restless & free</div>
+                        <div class="overlay-meta">Two people escaping their families at night. Freedom is not a place, it is a choice.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Midnight Escape</h3>
+                    <p>Freedom Was Never the Destination</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Nonparticipant -->
+            <div class="book-card" data-category="thriller-mystery"
+                onclick="window.location.href='Nonparticipant.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">A quiet story</span>
+                    <img src="New cover/NONPARTICIPANT.png" alt="Nonparticipant Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Nonparticipant</h4>
+                        <div class="overlay-mood">Quiet & lonely</div>
+                        <div class="overlay-meta">What happens when someone just decides to watch life instead of living it?</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Nonparticipant</h3>
+                    <p>A Silent Witness</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Telugu Ammai -->
+            <div class="book-card" data-category="determination-success"
+                onclick="window.location.href='Telugu%20Ammai.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">About a girl who dances</span>
+                    <img src="New cover/Telugu Ammai.png" alt="Telugu Ammai Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Telugu Ammai</h4>
+                        <div class="overlay-mood">Determined & warm</div>
+                        <div class="overlay-meta">A girl who wants to dance, despite what her family thinks. I wanted her to win.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Telugu Ammai</h3>
+                    <p>Pursuit of Dance</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- THE NIGHT ONLY I REMEMBER -->
+            <div class="book-card" data-category="thriller-mystery"
+                onclick="window.location.href='THE%20NIGHT%20ONLY%20I%20REMEMBER.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">A very strange dream</span>
+                    <img src="New cover/A Quiet Place Inside Me.png" alt="The Night Only I Remember Cover"
+                        loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">The Night Only I Remember</h4>
+                        <div class="overlay-mood">Strange & quiet</div>
+                        <div class="overlay-meta">A secret memory that belongs to only one person. The loneliest kind of secret.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>The Night Only I Remember</h3>
+                    <p>Memories in the Void</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Unsaid -->
+            <div class="book-card" data-category="romance nostalgia" onclick="window.location.href='Unsaid.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">My personal favorite</span>
+                    <img src="New cover/UNSAID.png" alt="Unsaid Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Unsaid</h4>
+                        <div class="overlay-mood">Quiet & sad</div>
+                        <div class="overlay-meta">Two people who never said what they actually felt. It is my favorite.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Unsaid</h3>
+                    <p>Silence in Love</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- Ink to Ash -->
+            <div class="book-card" data-category="psychological-drama"
+                onclick="window.location.href='Ink%20to%20Ash.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">An overthinking mind</span>
+                    <img src="New cover/Ink to Ash.png" alt="Ink to Ash Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">Ink to Ash</h4>
+                        <div class="overlay-mood">Heavy &amp; releasing</div>
+                        <div class="overlay-meta">Mara had a thought for every silence, until the ink curled into smoke.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>Ink to Ash</h3>
+                    <p>An overthinking mind</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+            <!-- The Mind That Wouldn't Stop -->
+            <div class="book-card" data-category="determination-success"
+                onclick="window.location.href='The_Mind_That_Wouldnt_Stop.html'">
+                <div class="book-cover-container">
+                    <span class="author-badge">A story about overthinking</span>
+                    <img src="New cover/Professional Overthinker - 1.png" alt="The Mind That Wouldn't Stop Cover" loading="lazy">
+                    <div class="glare"></div>
+                    <div class="card-overlay">
+                        <h4 class="overlay-title">The Mind That Wouldn't Stop</h4>
+                        <div class="overlay-mood">Determined &amp; clear</div>
+                        <div class="overlay-meta">Varun can build a distributed emergency-response system. If only his mind would let him.</div>
+                        <button class="begin-btn">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="book-info-footer">
+                    <h3>The Mind That Wouldn't Stop</h3>
+                    <p>Professional Overthinker</p>
+                    <div class="read-story-cta">Open &rarr;</div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Q&A Console Section -->
+    <section class="qa-section" id="archive-guide">
+        <div class="qa-container">
+            <div class="qa-header">
+                <h2>Notes from the writer</h2>
+                <p>You have questions. Here are my honest answers.</p>
+            </div>
+            <div class="qa-content">
+                <div class="qa-sidebar">
+                    <div class="qa-search-box">
+                        <input type="text" id="qa-search" placeholder="Ask a question...">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <div class="qa-questions-list" id="qa-questions-list">
+                        <!-- Questions dynamically loaded -->
+                    </div>
+                </div>
+                <div class="qa-display">
+                    <div class="qa-terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="terminal-title">varun@story-vault:~</span>
+                    </div>
+                    <div class="qa-terminal-body" id="qa-terminal-body">
+                        <!-- Output dynamic -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>Written and built by Varun &bull; 2024&ndash;present</p>
+            <div class="footer-contact">
+                <a href="mailto:akurivarun@gmail.com" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    akurivarun@gmail.com
+                </a>
+                
+                <a href="https://linkedin.com/in/akuri-venkata-surya-varun50b244366" target="_blank"
+                    rel="noopener noreferrer" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                        <rect x="2" y="9" width="4" height="12" />
+                        <circle cx="4" cy="4" r="2" />
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/varun-150" target="_blank" rel="noopener noreferrer" class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://www.instagram.com/writings_of_wazirv/" target="_blank" rel="noopener noreferrer"
+                    class="contact-link">
+                    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                    Instagram
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core scroll dependency (vendored locally: no runtime CDN) -->
+    <script src="vendor/lenis.min.js"></script>
+
+    <script>
+        // Motion preference: reduced-motion users get native scrolling and no ambient animation.
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Initialize Lenis Smooth Scroll (guarded: a missing library must never
+        // abort the rest of this script and leave the splash screen stuck).
+        let lenis = null;
+        if (typeof Lenis !== 'undefined' && !prefersReduced) {
+            lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+                touchMultiplier: 1.2,
+                infinite: false,
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        }
+
+        // -------------------------------------------------------------
+        // 1. DYNAMIC CURSOR
+        // -------------------------------------------------------------
+        const cursor = document.getElementById('cursor');
+        const cursorRing = document.getElementById('cursor-ring');
+        let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
+
+        if (window.matchMedia("(pointer: fine)").matches) {
+            document.addEventListener('mousemove', (e) => {
+                mouse.targetX = e.clientX;
+                mouse.targetY = e.clientY;
+            });
+
+            // Lerp Cursor
+            function lerp(start, end, speed) {
+                return start + (end - start) * speed;
+            }
+
+            function updateCursor() {
+                mouse.x = lerp(mouse.x, mouse.targetX, 0.2);
+                mouse.y = lerp(mouse.y, mouse.targetY, 0.2);
+                cursor.style.left = mouse.x + 'px';
+                cursor.style.top = mouse.y + 'px';
+
+                let ringX = parseFloat(cursorRing.style.left || 0);
+                let ringY = parseFloat(cursorRing.style.top || 0);
+                cursorRing.style.left = lerp(ringX, mouse.targetX, 0.1) + 'px';
+                cursorRing.style.top = lerp(ringY, mouse.targetY, 0.1) + 'px';
+
+                requestAnimationFrame(updateCursor);
+            }
+            requestAnimationFrame(updateCursor);
+
+            // Active Class (using delegation for dynamic elements)
+            document.addEventListener('mouseover', (e) => {
+                if (!window.matchMedia("(pointer: fine)").matches) return;
+                const target = e.target.closest('a, button, .book-card, .qa-q-btn, .story-mini-card, .qa-contact-card, .quick-question-btn');
+                if (target) {
+                    document.body.classList.add('cursor-active');
+                } else {
+                    document.body.classList.remove('cursor-active');
+                }
+            });
+        }
+
+        // -------------------------------------------------------------
+        // 2. 3D PARALLAX TILT PHYSICS
+        // -------------------------------------------------------------
+        const cards = document.querySelectorAll('.book-card');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        if (!reduceMotion.matches && window.matchMedia('(pointer: fine)').matches) {
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const rotateX = ((y - centerY) / centerY) * -8;
+                    const rotateY = ((x - centerX) / centerX) * 8;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                });
+            });
+        }
+
+
+
+        // -------------------------------------------------------------
+        // 4. PARTICLE ENGINE
+        // -------------------------------------------------------------
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        if (!prefersReduced) {
+            for (let i = 0; i < 40; i++) {
+                particles.push({
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    radius: Math.random() * 2 + 1,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    alpha: Math.random() * 0.4 + 0.1
+                });
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                // Mouse push
+                if (mouse.targetX > 0) {
+                    let dx = p.x - mouse.targetX;
+                    let dy = p.y - mouse.targetY;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        p.x += (dx / dist) * 1.2;
+                        p.y += (dy / dist) * 1.2;
+                    }
+                }
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(193, 18, 48, ${p.alpha})`;
+                ctx.fill();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        if (!prefersReduced) requestAnimationFrame(animateParticles);
+
+        // -------------------------------------------------------------
+        // 5. KEYBOARD ACCESSIBILITY FOR SHELF CARDS
+        // Story cards navigate via an inline onclick but are plain <div>s,
+        // so keyboard / screen-reader users could never reach them (the
+        // :focus-visible styles below were unreachable). Expose each card
+        // as a focusable link and open it on Enter / Space.
+        // -------------------------------------------------------------
+        document.querySelectorAll('.book-card[onclick]').forEach(card => {
+            if (!card.hasAttribute('tabindex')) card.setAttribute('tabindex', '0');
+            if (!card.hasAttribute('role')) card.setAttribute('role', 'link');
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                    e.preventDefault();
+                    card.click();
+                }
+            });
+        });
+
+        // -------------------------------------------------------------
+        // 6. SPLASH SCREEN & LOADER LOGIC
+        // -------------------------------------------------------------
+        window.addEventListener('DOMContentLoaded', () => {
+            const splashScreen = document.getElementById('splash-screen');
+            const canvas = document.getElementById('particle-canvas');
+
+            // Randomize splash screen phrase
+            const phrases = [
+                "Every story leaves a trace.",
+                "Welcome.",
+                "Pull up a chair.",
+                "Some stories I wrote.",
+                "Stay a while.",
+                "Stories await."
+            ];
+            const phraseEl = document.querySelector('.splash-phrase');
+            if (phraseEl) {
+                phraseEl.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+            }
+
+            // Float particles on top of splash screen during opening sequence
+            if (canvas) {
+                canvas.style.zIndex = '10001';
+            }
+
+            // Elegant automatic fade out after 2.5 seconds
+            setTimeout(() => {
+                if (splashScreen) {
+                    splashScreen.classList.add('fade-out');
+                }
+                // Return canvas to z-index 1 so it sits behind text
+                setTimeout(() => {
+                    if (canvas) {
+                        canvas.style.zIndex = '1';
+                    }
+                }, 1200); // matching splash transition fade time
+            }, 2500);
+                // -------------------------------------------------------------
+                // INTERACTIVE Q&A CONSOLE ENGINE
+                // -------------------------------------------------------------
+                const qaData = {
+                    'who-is-wr': {
+                        title: "Who are you?",
+                        command: "about_me",
+                        intro: "My name is Varun. I write under 'WR' because I like how it looks. I write and build digital stories from India.",
+                        contentHtml: `
+                        <ul class="qa-answer-list">
+                            <li><strong>Writing:</strong> I write about love, sadness, mythology, and human connection.</li>
+                            <li><strong>Design:</strong> I believe stories on the web should have atmosphere, not just black text on a white page.</li>
+                            <li><strong>Development:</strong> I coded and designed this archive myself from scratch.</li>
+                        </ul>
+                    `
+                    },
+                    'about-portfolio': {
+                        title: "What is this place?",
+                        command: "about_vault",
+                        intro: "This is The Story Vault. It is a personal library of my stories, designed to be read on a screen with visual pacing and soft motion.",
+                        contentHtml: `
+                        <p class="qa-answer-text">I wanted to create an experience where the design fits the mood of the writing.</p>
+                    `
+                    },
+                    'why-i-built-wr': {
+                        title: "Why does this exist?",
+                        command: "why",
+                        intro: "Most stories online are just plain PDF links. I wanted to see if custom colors, scrolling text, and subtle effects could make reading feel more alive.",
+                        contentHtml: `
+                        <p class="qa-answer-text">It is an experiment in merging writing, design, and code to create a better reading experience.</p>
+                    `
+                    },
+                    'featured-works': {
+                        title: "What stories are here?",
+                        command: "list_stories",
+                        intro: "Here is a quick list of stories in the vault. You can hover or click them on the shelf above, or click below to find them:",
+                        contentHtml: `
+                        <div class="story-list-mini">
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Abhinayam')">
+                                <h4>Abhinayam</h4>
+                                <p>Devotion and sadness</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Almost')">
+                                <h4>Almost</h4>
+                                <p>Bittersweet and calm</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Dharshan')">
+                                <h4>Dharshan</h4>
+                                <p>Peaceful and calm</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Dhruvendra')">
+                                <h4>Dhruvendra</h4>
+                                <p>Adventure and mystery</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Green Hollow')">
+                                <h4>Green Hollow</h4>
+                                <p>Tension and mystery</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Kadha Laga Modhalaina')">
+                                <h4>Kadha Laga Modhalaina</h4>
+                                <p>Warm and nostalgic (Telugu)</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Kali')">
+                                <h4>Kali: The Five Paths</h4>
+                                <p>Heavy and intense</p>
+                            </div>
+                            <div class="story-mini-card" onclick="highlightAndScrollBook('Malli Kalisi…')">
+                                <h4>Malli Kalisi…</h4>
+                                <p>Sad and sweet</p>
+                            </div>
+                        </div>
+                    `
+                    },
+                    'storytelling-engine': {
+                        title: "How do the stories work?",
+                        command: "engine_details",
+                        intro: "The reading page uses simple custom code to adapt to your reading pace:",
+                        contentHtml: `
+                        <ul class="qa-answer-list">
+                            <li><strong>Color shifts:</strong> The background color changes as you scroll to match the story's mood.</li>
+                            <li><strong>Word reveal:</strong> Sentences fade in word-by-word as you scroll down.</li>
+                            <li><strong>Focus mode:</strong> You can hide all menus to read with zero distractions.</li>
+                        </ul>
+                    `
+                    },
+                    'creative-philosophy': {
+                        title: "What is your philosophy?",
+                        command: "philosophy",
+                        intro: "I believe reading on a screen should be beautiful, but the effects must always serve the words, not distract from them.",
+                        contentHtml: `
+                        <ul class="qa-answer-list">
+                            <li><strong>Atmosphere:</strong> Using colors and shapes to set the scene.</li>
+                            <li><strong>Simplicity:</strong> Keeping animations gentle and smooth.</li>
+                        </ul>
+                    `
+                    },
+                    'technical-implementation': {
+                        title: "How did you code this?",
+                        command: "tech_stack",
+                        intro: "I built this website using clean frontend technologies for speed and reliability:",
+                        contentHtml: `
+                        <ul class="qa-answer-list">
+                            <li><strong>HTML & CSS:</strong> For the layout, structure, and text sizing.</li>
+                            <li><strong>GSAP & Lenis:</strong> For smooth scrolling and word reveals.</li>
+                            <li><strong>Canvas:</strong> For the soft floating particles on the background.</li>
+                        </ul>
+                    `
+                    },
+                    'contact-info': {
+                        title: "How can I reach you?",
+                        command: "contact",
+                        intro: "I read every message. If you want to talk about a story, ask about the code, or just say hello, please get in touch:",
+                        contentHtml: `
+                        <div class="qa-contact-grid">
+                            <a href="mailto:akurivarun@gmail.com" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                akurivarun@gmail.com
+                            </a>
+                            
+                            <a href="https://linkedin.com/in/akuri-venkata-surya-varun50b244366" target="_blank" rel="noopener noreferrer" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                                LinkedIn
+                            </a>
+                            <a href="https://github.com/varun-150" target="_blank" rel="noopener noreferrer" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                GitHub
+                            </a>
+                            <a href="https://www.instagram.com/writings_of_wazirv/" target="_blank" rel="noopener noreferrer" class="qa-contact-card">
+                                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                                Instagram
+                            </a>
+                        </div>
+                    `
+                    }
+                };
+
+                const questionsList = document.getElementById('qa-questions-list');
+                const searchInput = document.getElementById('qa-search');
+                const terminalBody = document.getElementById('qa-terminal-body');
+                const qaToggleBtn = document.getElementById('qa-toggle-btn');
+                let typingTimer = null;
+                let activeId = null;
+
+                // Librarian catalog card database
+                const catalogDb = {
+                    'abhinayam': { 
+                        code: "01", 
+                        time: "45 MINS", 
+                        mood: "Devotion and sadness", 
+                        written: "Late 2024, at night", 
+                        bestRead: "Late at night", 
+                        curatorNote: "I spent three months writing this. It is about a love that lasts across lifetimes." 
+                    },
+                    'almost': { 
+                        code: "02", 
+                        time: "30 MINS", 
+                        mood: "Bittersweet and calm", 
+                        written: "Over a quiet weekend", 
+                        bestRead: "On a rainy evening", 
+                        curatorNote: "A story about two quiet people who go their separate ways, finding comfort in silence." 
+                    },
+                    'dharshan': { 
+                        code: "03", 
+                        time: "20 MINS", 
+                        mood: "Peaceful and calm", 
+                        written: "After a trip to Tirupati", 
+                        bestRead: "In the morning, with tea", 
+                        curatorNote: "Three people walking to a temple. It is simple, quiet, and about faith." 
+                    },
+                    'dhruvendra': { 
+                        code: "04", 
+                        time: "50 MINS", 
+                        mood: "Adventure and mystery", 
+                        written: "Over several months", 
+                        bestRead: "When you want to get lost in a world", 
+                        curatorNote: "What happens when you chase a secret too hard? An adventure story that grew longer than I planned." 
+                    },
+                    'green hollow': { 
+                        code: "05", 
+                        time: "35 MINS", 
+                        mood: "Tension and mystery", 
+                        written: "During cold autumn nights", 
+                        bestRead: "In the dark, with headphones", 
+                        curatorNote: "A mystery about a quiet town in the woods. This is only the first part of a bigger story." 
+                    },
+                    'kadha laga': { 
+                        code: "06", 
+                        time: "25 MINS", 
+                        mood: "Warm and nostalgic", 
+                        written: "First in Telugu, then translated", 
+                        bestRead: "On a lazy Sunday afternoon", 
+                        curatorNote: "I wanted to write a simple love story in Telugu because the words feel warmer that way." 
+                    },
+                    'kali': { 
+                        code: "07", 
+                        time: "60 MINS", 
+                        mood: "Heavy and intense", 
+                        written: "Rewritten four times in 2024", 
+                        bestRead: "When you have an hour to yourself", 
+                        curatorNote: "A story of heroes, destiny, and hard choices. My most difficult write." 
+                    },
+                    'malli kalisi…': { 
+                        code: "08", 
+                        time: "25 MINS", 
+                        mood: "Sad and sweet", 
+                        written: "Written in one evening", 
+                        bestRead: "When you feel nostalgic", 
+                        curatorNote: "Meeting someone again after years. I wrote this quickly because I could feel the characters clearly." 
+                    },
+                    'midnight escape': { 
+                        code: "09", 
+                        time: "25 MINS", 
+                        mood: "Restless and free", 
+                        written: "In one sitting, late at night", 
+                        bestRead: "After midnight", 
+                        curatorNote: "Two people escaping their families at night. Freedom is not a place, it is a choice." 
+                    },
+                    'nonparticipant': { 
+                        code: "10", 
+                        time: "30 MINS", 
+                        mood: "Quiet and lonely", 
+                        written: "During a quiet week alone", 
+                        bestRead: "When the world is too loud", 
+                        curatorNote: "What happens when someone just decides to watch life instead of living it?" 
+                    },
+                    'telugu ammai': { 
+                        code: "12", 
+                        time: "25 MINS", 
+                        mood: "Determined and warm", 
+                        written: "Inspired by a conversation", 
+                        bestRead: "In the morning", 
+                        curatorNote: "A girl who wants to dance, despite what her family thinks. I wanted her to win." 
+                    },
+                    'the night only': { 
+                        code: "14", 
+                        time: "35 MINS", 
+                        mood: "Strange and quiet", 
+                        written: "After a week of weird dreams", 
+                        bestRead: "Late night", 
+                        curatorNote: "A secret memory that belongs to only one person. The loneliest kind of secret." 
+                    },
+                    'unsaid': { 
+                        code: "15", 
+                        time: "40 MINS", 
+                        mood: "Quiet and sad", 
+                        written: "My most personal story", 
+                        bestRead: "When you miss someone", 
+                        curatorNote: "Two people who never said what they actually felt. It is my favorite." 
+                    }
+                };
+
+                // Reformat all card overlays to Librarian index cards dynamically on page load
+                document.querySelectorAll('.book-card').forEach(card => {
+                    const titleEl = card.querySelector('h3');
+                    if (!titleEl) return;
+                    const titleText = titleEl.textContent.trim().toLowerCase();
+
+                    let dbKey = Object.keys(catalogDb).find(k => titleText.includes(k) || k.includes(titleText));
+                    if (!dbKey) return;
+                    const data = catalogDb[dbKey];
+
+                    const overlay = card.querySelector('.card-overlay');
+                    if (overlay) {
+                        overlay.className = "card-overlay library-catalog-card";
+                        overlay.innerHTML = `
+                        <div class="catalog-card-header">
+                            <span class="shelf-no">No. ${data.code}</span>
+                            <span class="est-time">${data.time}</span>
+                        </div>
+                        <div class="catalog-card-body">
+                            <h4 class="catalog-title">${titleEl.textContent.trim()}</h4>
+                            <div class="catalog-line"><strong>Mood:</strong> ${data.mood}</div>
+                            <div class="catalog-line"><strong>Written:</strong> ${data.written}</div>
+                            <div class="catalog-line"><strong>Best Read:</strong> ${data.bestRead}</div>
+                            <div class="catalog-synopsis">${data.curatorNote}</div>
+                        </div>
+                        <button class="begin-btn" style="margin-top:auto;">
+                            Read Story
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:12px;height:12px;margin-left:5px;">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    `;
+                    }
+                });
+
+                // Filter Shelf Logic
+                const filterLinks = document.querySelectorAll('.filter-link');
+                const cards = document.querySelectorAll('.book-card');
+                filterLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        filterLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                        const category = link.getAttribute('data-filter').toLowerCase();
+
+                        cards.forEach(card => {
+                            const cardCat = card.getAttribute('data-category').toLowerCase();
+                            const categories = cardCat.split(/\s+/);
+                            const matches = (category === 'all') || categories.includes(category);
+
+                            if (matches) {
+                                card.style.display = '';
+                                setTimeout(() => {
+                                    card.style.opacity = '1';
+                                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                                }, 50);
+                            } else {
+                                card.style.opacity = '0';
+                                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(0.95, 0.95, 0.95)';
+                                setTimeout(() => { card.style.display = 'none'; }, 400);
+                            }
+                        });
+                    });
+                });
+
+                // Check localStorage for reading progress and set Bookmark / Header button
+                const bookmarkEl = document.getElementById('reading-bookmark');
+                const bookmarkTitle = document.getElementById('bookmark-title');
+                const bookmarkChapter = document.getElementById('bookmark-chapter');
+                const bookmarkBar = document.getElementById('bookmark-progress-bar');
+                const bookmarkPercentage = document.getElementById('bookmark-percentage');
+                const bookmarkLink = document.getElementById('bookmark-link');
+
+                let latestProgress = null;
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    if (key.startsWith('wr-progress-')) {
+                        try {
+                            const data = JSON.parse(localStorage.getItem(key));
+                            if (!latestProgress || data.timestamp > latestProgress.timestamp) {
+                                latestProgress = data;
+                            }
+                        } catch (e) {
+                            console.error("Failed to parse bookmark data", e);
+                        }
+                    }
+                }
+
+                if (latestProgress && bookmarkEl) {
+                    bookmarkTitle.textContent = latestProgress.title;
+                    bookmarkChapter.textContent = latestProgress.chapter;
+                    bookmarkBar.style.width = `${latestProgress.percentage}%`;
+                    bookmarkPercentage.textContent = `${latestProgress.percentage}%`;
+                    bookmarkLink.href = latestProgress.url;
+
+                    const headerControls = document.querySelector('.header-controls');
+                    if (headerControls) {
+                        const continueBtn = document.createElement('a');
+                        continueBtn.className = "control-btn";
+                        continueBtn.href = latestProgress.url;
+                        continueBtn.style.textDecoration = "none";
+                        continueBtn.style.borderColor = "var(--accent)";
+                        continueBtn.innerHTML = `
+                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                        </svg>
+                        Keep reading: ${latestProgress.title} (${latestProgress.percentage}%)
+                    `;
+                        headerControls.insertBefore(continueBtn, headerControls.firstChild);
+                    }
+
+                    setTimeout(() => {
+                        bookmarkEl.classList.add('visible');
+                    }, 1500);
+                } else if (bookmarkEl) {
+                    bookmarkEl.classList.add('hidden');
+                }
+
+                // Define global/window helper functions so inline HTML handlers can find them
+                window.selectQuestion = function (id) {
+                    if (id === activeId && typingTimer) {
+                        completeTyping(id);
+                        return;
+                    }
+
+                    if (typingTimer) {
+                        clearInterval(typingTimer);
+                        typingTimer = null;
+                    }
+
+                    activeId = id;
+
+                    document.querySelectorAll('.qa-q-btn').forEach(btn => {
+                        btn.classList.toggle('active', btn.getAttribute('data-id') === id);
+                    });
+
+                    const data = qaData[id];
+                    if (!data) return;
+
+                    terminalBody.innerHTML = `
+                    <span class="console-prompt">> ${data.command}</span>
+                    <div class="qa-answer-container">
+                        <h3 class="qa-answer-title">${data.title}</h3>
+                        <p class="qa-answer-text" id="typing-text-target"></p>
+                    </div>
+                `;
+
+                    const textTarget = document.getElementById('typing-text-target');
+                    let charIndex = 0;
+                    const introText = data.intro;
+
+                    const cursorSpan = document.createElement('span');
+                    cursorSpan.className = 'typing-cursor';
+                    textTarget.parentNode.insertBefore(cursorSpan, textTarget.nextSibling);
+
+                    typingTimer = setInterval(() => {
+                        if (charIndex < introText.length) {
+                            textTarget.textContent += introText.charAt(charIndex);
+                            charIndex++;
+                            terminalBody.scrollTop = terminalBody.scrollHeight;
+                        } else {
+                            clearInterval(typingTimer);
+                            typingTimer = null;
+                            cursorSpan.remove();
+                            const contentDiv = document.createElement('div');
+                            contentDiv.innerHTML = data.contentHtml;
+                            contentDiv.style.opacity = 0;
+                            contentDiv.style.transition = 'opacity 0.6s ease';
+                            textTarget.parentNode.appendChild(contentDiv);
+                            setTimeout(() => {
+                                contentDiv.style.opacity = 1;
+                                terminalBody.scrollTop = terminalBody.scrollHeight;
+                            }, 50);
+                        }
+                    }, 10);
+                };
+
+                function completeTyping(id) {
+                    if (typingTimer) {
+                        clearInterval(typingTimer);
+                        typingTimer = null;
+                    }
+                    const data = qaData[id];
+                    if (!data) return;
+
+                    const textTarget = document.getElementById('typing-text-target');
+                    if (textTarget) {
+                        textTarget.textContent = data.intro;
+                    }
+                    const cursor = terminalBody.querySelector('.typing-cursor');
+                    if (cursor) cursor.remove();
+
+                    const oldContent = textTarget.parentNode.querySelector('.qa-answer-list, .qa-contact-grid, .story-list-mini');
+                    if (!oldContent) {
+                        const contentDiv = document.createElement('div');
+                        contentDiv.innerHTML = data.contentHtml;
+                        textTarget.parentNode.appendChild(contentDiv);
+                    }
+                    terminalBody.scrollTop = terminalBody.scrollHeight;
+                }
+
+                window.highlightAndScrollBook = function (bookName) {
+                    const cards = document.querySelectorAll('.book-card');
+                    let foundCard = null;
+                    cards.forEach(card => {
+                        const titleText = card.querySelector('h3') ? card.querySelector('h3').textContent.toLowerCase() : '';
+                        if (titleText.includes(bookName.toLowerCase())) {
+                            foundCard = card;
+                        }
+                    });
+
+                    if (foundCard) {
+                        if (lenis) {
+                            lenis.scrollTo(foundCard, {
+                                duration: 1.5,
+                                offset: -100
+                            });
+                        }
+
+                        foundCard.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease';
+                        foundCard.style.borderColor = 'var(--accent)';
+                        foundCard.style.boxShadow = '0 0 40px var(--accent)';
+                        foundCard.style.transform = 'scale(1.05)';
+
+                        setTimeout(() => {
+                            foundCard.style.transform = '';
+                            foundCard.style.borderColor = '';
+                            foundCard.style.boxShadow = '';
+                        }, 2500);
+                    }
+                };
+
+                function renderQuestions(filter = '') {
+                    questionsList.innerHTML = '';
+                    Object.keys(qaData).forEach(key => {
+                        const item = qaData[key];
+                        if (item.title.toLowerCase().includes(filter.toLowerCase()) ||
+                            item.intro.toLowerCase().includes(filter.toLowerCase())) {
+
+                            const btn = document.createElement('button');
+                            btn.className = `qa-q-btn ${key === activeId ? 'active' : ''}`;
+                            btn.setAttribute('data-id', key);
+                            btn.innerHTML = item.title;
+                            btn.addEventListener('click', () => selectQuestion(key));
+                            questionsList.appendChild(btn);
+                        }
+                    });
+                }
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', (e) => {
+                        renderQuestions(e.target.value);
+                    });
+                }
+
+                if (qaToggleBtn) {
+                    qaToggleBtn.addEventListener('click', () => {
+                        const guideSection = document.getElementById('archive-guide');
+                        if (guideSection) {
+                            if (lenis) lenis.scrollTo(guideSection, { duration: 1.8 });
+                            if (!activeId) {
+                                setTimeout(() => selectQuestion('who-is-wr'), 1000);
+                            }
+                        }
+                    });
+                }
+
+                renderQuestions();
+                terminalBody.innerHTML = `
+                <div class="welcome-message" style="animation: fadeIn 0.8s ease;">
+                    <p class="console-prompt">> Pick a question from the list to read...</p>
+                    <div class="interactive-prompt-list">
+                        <button class="quick-question-btn" onclick="selectQuestion('who-is-wr')">Who are you?</button>
+                        <button class="quick-question-btn" onclick="selectQuestion('storytelling-engine')">How do the stories work?</button>
+                        <button class="quick-question-btn" onclick="selectQuestion('featured-works')">What stories are here?</button>
+                    </div>
+                </div>
+            `;
+
+                document.addEventListener('mouseover', (e) => {
+                    const target = e.target.closest('a, button, .book-card, .qa-q-btn, .story-mini-card, .qa-contact-card, .quick-question-btn');
+                    if (target) {
+                        document.body.classList.add('cursor-active');
+                    } else {
+                        document.body.classList.remove('cursor-active');
+                    }
+                });
+            });
+    </script>
+</body>
+
+</html>

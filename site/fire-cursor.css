@@ -1,0 +1,49 @@
+/* Custom pointer cursor — dot + trailing ring (matches index.html) */
+@supports (cursor: none) {
+  html.fire-cursor,
+  html.fire-cursor * {
+    cursor: none !important;
+  }
+}
+
+.custom-cursor,
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: left, top, width, height;
+}
+
+.custom-cursor {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  z-index: 9999;
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease;
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.custom-cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 9998;
+  transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1), height 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.2s ease;
+}
+
+body.cursor-active .custom-cursor {
+  width: 14px;
+  height: 14px;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+body.cursor-active .custom-cursor-ring {
+  width: 50px;
+  height: 50px;
+  border-color: var(--accent);
+  background-color: rgba(var(--accent-rgb), 0.05);
+}
