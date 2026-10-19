@@ -13,7 +13,7 @@ jobs:
     name: Source audit (HTML, assets, links, JS, CSS)
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out website
         uses: actions/checkout@v4
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -21,3 +21,53 @@ jobs:
           node-version: 22
       - name: Audit archive source
         run: node scripts/audit-site.cjs
+
+  taste-skill-visual:
+    name: Taste Skill browser inspection
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+      - name: Check out Taste Skill
+        uses: actions/checkout@v4
+        with:
+          repository: Leonxlnx/taste-skill
+          ref: main
+          path: .taste-skill-engine
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Inspect all pages at desktop and phone widths
+        shell: bash
+        run: |
+          set +e
+          overall=0
+          mkdir -p .taste-skill/inspect
+          for page in index.html *.html; do
+            [ -f "$page" ] || continue
+            slug=$(printf '%s' "$page" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-|-$//g')
+            widths="1440,390"
+            if [ "$page" = "index.html" ]; then widths="1440,768,390"; fi
+            out=".taste-skill/inspect/$slug"
+            mkdir -p "$out"
+            echo "::group::Taste Skill: $page ($widths)"
+            node .taste-skill-engine/skills/taste-skill/scripts/inspect.mjs "$page" --out "$out" --widths "$widths" --json > "$out/report.json" 2>&1
+            result=$?
+            cat "$out/report.json"
+            if [ "$result" -ne 0 ]; then
+              echo "::error file=$page::Taste Skill inspector found FAIL findings or could not complete"
+              overall=1
+            fi
+            echo "::endgroup::"
+          done
+          exit "$overall"
+      - name: Upload screenshots and reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: taste-skill-visual-inspection
+          path: .taste-skill/inspect/
+          if-no-files-found: warn
+          retention-days: 7
