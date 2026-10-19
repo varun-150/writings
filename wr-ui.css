@@ -1198,3 +1198,20 @@ body[data-chapter-theme="lavender"] {
   --accent-glow: rgba(208, 206, 196, .12);
   --accent-whisper: rgba(208, 206, 196, .035);
 }
+
+
+/* Story cards are keyboard links. Keep hidden overlays out of the tab order. */
+.book-card[role="link"] { cursor: pointer; }
+.book-card .card-overlay { visibility: hidden; }
+.book-card:hover .card-overlay,
+.book-card:focus-within .card-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+@media (hover: none) {
+  .book-card:hover .card-overlay.library-catalog-card { opacity: 0; }
+  .book-card:focus-within .card-overlay.library-catalog-card {
+    opacity: 1;
+    visibility: visible;
+  }
+}
