@@ -1552,126 +1552,6 @@
             border-top: 1px solid rgba(255, 255, 255, 0.04);
         }
 
-        /* -------------------------------------------------------------
-           LOCAL READING MEMORY BOOKMARK (RIBBON)
-           ------------------------------------------------------------- */
-        .reading-bookmark {
-            position: fixed;
-            top: 0;
-            right: 8vw;
-            width: 180px;
-            background: #0047ab;
-            color: #060608;
-            padding: 1.5rem 1rem;
-            z-index: 1000;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-            transform: translateY(-100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .reading-bookmark.visible {
-            transform: translateY(0);
-        }
-
-        .reading-bookmark:hover {
-            transform: translateY(10px);
-        }
-
-        /* Ribbon cut styling */
-        .reading-bookmark::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 90px solid #0047ab;
-            border-right: 90px solid #0047ab;
-            border-bottom: 15px solid transparent;
-        }
-
-        .bookmark-tag {
-            font-family: monospace;
-            font-size: 0.55rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            opacity: 0.8;
-            margin-bottom: 0.5rem;
-        }
-
-        .bookmark-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
-            font-weight: bold;
-            margin-bottom: 0.3rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 100%;
-        }
-
-        .bookmark-chapter {
-            font-size: 0.68rem;
-            margin-bottom: 0.8rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            width: 100%;
-            opacity: 0.9;
-        }
-
-        .bookmark-progress-container {
-            width: 100%;
-            height: 3px;
-            background: rgba(6, 6, 8, 0.15);
-            border-radius: 2px;
-            position: relative;
-            margin-bottom: 1.2rem;
-        }
-
-        .bookmark-progress-bar {
-            height: 100%;
-            background: #060608;
-            width: 0%;
-            border-radius: 2px;
-        }
-
-        .bookmark-percent {
-            position: absolute;
-            right: 0;
-            top: -14px;
-            font-size: 0.6rem;
-            font-weight: bold;
-        }
-
-        .bookmark-btn {
-            background: #060608;
-            color: #0047ab;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .bookmark-btn:hover {
-            background: #fff;
-            color: #060608;
-            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
-        }
-
         /* WR archive polish: sharper hierarchy, practical search, accessible motion */
         .archive-intro {
             max-width: 1800px;
@@ -1856,18 +1736,6 @@
     </section>
 
     <main class="bookshelf-wrapper" id="archive-main">
-
-        <!-- Continue Reading Bookmark Ribbon -->
-        <div id="reading-bookmark" class="reading-bookmark">
-            <div class="bookmark-tag">Last Read</div>
-            <h4 class="bookmark-title" id="bookmark-title">Almost</h4>
-            <div class="bookmark-chapter" id="bookmark-chapter">Chapter II</div>
-            <div class="bookmark-progress-container">
-                <div class="bookmark-progress-bar" id="bookmark-progress-bar"></div>
-                <span class="bookmark-percent" id="bookmark-percentage">45%</span>
-            </div>
-            <a href="#" class="bookmark-btn" id="bookmark-link">Keep reading</a>
-        </div>
 
         <!-- Featured Curator Recommendation -->
         <div class="featured-recommendation">
@@ -2962,60 +2830,6 @@
                     });
                 }
                 updateStoryCatalog();
-
-                // Check localStorage for reading progress and set Bookmark / Header button
-                const bookmarkEl = document.getElementById('reading-bookmark');
-                const bookmarkTitle = document.getElementById('bookmark-title');
-                const bookmarkChapter = document.getElementById('bookmark-chapter');
-                const bookmarkBar = document.getElementById('bookmark-progress-bar');
-                const bookmarkPercentage = document.getElementById('bookmark-percentage');
-                const bookmarkLink = document.getElementById('bookmark-link');
-
-                let latestProgress = null;
-                for (let i = 0; i < localStorage.length; i++) {
-                    const key = localStorage.key(i);
-                    if (key.startsWith('wr-progress-')) {
-                        try {
-                            const data = JSON.parse(localStorage.getItem(key));
-                            if (!latestProgress || data.timestamp > latestProgress.timestamp) {
-                                latestProgress = data;
-                            }
-                        } catch (e) {
-                            console.error("Failed to parse bookmark data", e);
-                        }
-                    }
-                }
-
-                if (latestProgress && bookmarkEl) {
-                    bookmarkTitle.textContent = latestProgress.title;
-                    bookmarkChapter.textContent = latestProgress.chapter;
-                    bookmarkBar.style.width = `${latestProgress.percentage}%`;
-                    bookmarkPercentage.textContent = `${latestProgress.percentage}%`;
-                    bookmarkLink.href = latestProgress.url;
-
-                    const headerControls = document.querySelector('.header-controls');
-                    if (headerControls) {
-                        const continueBtn = document.createElement('a');
-                        continueBtn.className = "control-btn";
-                        continueBtn.href = latestProgress.url;
-                        continueBtn.style.textDecoration = "none";
-                        continueBtn.style.borderColor = "var(--accent)";
-                        continueBtn.innerHTML = `
-                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                        </svg>
-                        Keep reading: ${latestProgress.title} (${latestProgress.percentage}%)
-                    `;
-                        headerControls.insertBefore(continueBtn, headerControls.firstChild);
-                    }
-
-                    setTimeout(() => {
-                        bookmarkEl.classList.add('visible');
-                    }, 1500);
-                } else if (bookmarkEl) {
-                    bookmarkEl.classList.add('hidden');
-                }
 
                 // Define global/window helper functions so inline HTML handlers can find them
                 window.selectQuestion = function (id) {
