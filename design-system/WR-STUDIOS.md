@@ -51,6 +51,8 @@ Long-form paragraphs are constrained to a comfortable measure. Headings scale wi
 ## Interaction and accessibility
 
 - Visible keyboard focus, skip links, archive-return links, and mobile touch targets.
+- Archive story cards are native anchors rather than click-only containers; the catalog remains navigable with JavaScript disabled.
+- The archive count is derived from the story-card collection at runtime. Reading-progress storage is optional, guarded, and constrained to same-origin story pages.
 - Reduced-motion preferences disable particle/tilt animation and shorten loading transitions.
 - The shared Lenis reader loop runs through the GSAP ticker once; reading progress is optional and storage failures must not prevent reading.
 - Story cards remain readable on touch screens; no hover-only content is required to identify the story.
@@ -67,4 +69,4 @@ The shader-style blue illumination uses layered radial light and cobalt particle
 
 ## Verification status
 
-The source files have been checked for stylesheet inclusion, script/style tag balance, duplicate IDs on inspected pages, JavaScript syntax, and balanced CSS delimiters. A rendered browser pass, responsive screenshot review, and live Render deployment check are still required before calling the redesign fully verified.
+Run `node scripts/audit-site.cjs` to repeat the source-level checks for page semantics, IDs, image alternatives, local references, card targets/counts, JavaScript syntax, and stylesheet structure; the GitHub Actions quality gate runs it on pull requests. A rendered browser pass, responsive screenshot review, and live Render deployment check are still required before calling the redesign fully verified.

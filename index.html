@@ -674,7 +674,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s;
+            transition: opacity 0.28s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.28s;
         }
 
         #splash-screen.fade-out {
@@ -1723,6 +1723,32 @@
             text-transform: uppercase;
         }
         .archive-intro-note strong { display:block; color:#f5f2e8; font:500 1.15rem/1.4 'Cinzel',serif; letter-spacing:.02em; }
+        .archive-intro-note span { display:block; margin-top:.25rem; letter-spacing:.08em; }
+        .archive-primary-action {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            gap:.8rem;
+            min-height:46px;
+            margin-top:1.45rem;
+            padding:.82rem 1.05rem;
+            border:1px solid rgba(61,120,255,.45);
+            border-radius:3px;
+            background:#0047ab;
+            color:#f5f2e8;
+            font:600 .74rem/1.25 'Inter',sans-serif;
+            letter-spacing:.12em;
+            text-transform:uppercase;
+            text-decoration:none;
+            box-shadow:0 10px 28px rgba(0,71,171,.16);
+            transition:transform .24s cubic-bezier(.2,.75,.2,1), background-color .24s ease, box-shadow .24s ease;
+        }
+        .archive-primary-action span { font-size:1.15rem; line-height:1; }
+        .archive-primary-action:hover {
+            transform:translateY(-2px);
+            background:#0a56c4;
+            box-shadow:0 13px 32px rgba(0,71,171,.24);
+        }
         .catalog-tools {
             display: grid;
             grid-template-columns: minmax(240px, 1fr) auto;
@@ -1795,20 +1821,49 @@
     <meta name="description" content="Explore the WR story archive: original fiction, mythology, romance, mystery, and interactive cinematic reading experiences.">
     <link rel="icon" type="image/png" href="New cover/Logo.png">
     <meta name="theme-color" content="#050608">
+    <script>document.documentElement.classList.add('js-enabled');</script>
+    <style>
+        html:not(.js-enabled) #splash-screen,
+        html:not(.js-enabled) #particle-canvas,
+        html:not(.js-enabled) .noise-layer,
+        html:not(.js-enabled) .vignette,
+        html:not(.js-enabled) .filter-links,
+        html:not(.js-enabled) .catalog-tools,
+        html:not(.js-enabled) #reading-bookmark,
+        html:not(.js-enabled) .qa-section,
+        html:not(.js-enabled) .header-controls { display:none !important; }
+        .no-script-note {
+            padding:.8rem 8vw;
+            border-bottom:1px solid rgba(245,242,232,.14);
+            background:#10131a;
+            color:#eae7dd;
+            font:400 .86rem/1.6 Inter,system-ui,sans-serif;
+        }
+    </style>
+    <script>
+        // Fail-open splash: this tiny guard runs before optional reader libraries.
+        // The archive stays readable even if a later script fails to initialize.
+        document.addEventListener('DOMContentLoaded', () => {
+            const splash = document.getElementById('splash-screen');
+            const canvas = document.getElementById('particle-canvas');
+            if (!splash) return;
+
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (canvas) canvas.style.zIndex = '10001';
+            window.setTimeout(() => splash.classList.add('fade-out'), reduceMotion ? 0 : 220);
+            window.setTimeout(() => {
+                if (canvas) canvas.style.zIndex = '1';
+            }, reduceMotion ? 0 : 520);
+        }, { once: true });
+    </script>
 </head>
 
 <body>
     <a class="skip-link" href="#archive-main">Skip to story archive</a>
 
-    <!-- Cinematic Splash Screen -->
-    <div id="splash-screen">
-        <div class="splash-glow"></div>
-        <div class="splash-content">
-            <div class="splash-brand">WR Presents</div>
-            <p class="splash-title" aria-hidden="true">THE STORY VAULT</p>
-            <div class="splash-phrase">Every Story Leaves a Trace.</div>
-        </div>
-    </div>
+    <noscript>
+        <p class="no-script-note">JavaScript is off. Every story remains available below; search, filters, and saved reading progress require JavaScript.</p>
+    </noscript>
 
     <div class="vignette"></div>
     <div class="noise-layer"></div>
@@ -1847,24 +1902,25 @@
     <section class="archive-intro" aria-labelledby="archive-headline">
         <div class="archive-intro-inner">
             <div>
-                <span class="archive-kicker">WR · Independent story archive</span>
-                <h1 id="archive-headline" class="archive-headline">Worlds made of words.<br><em>Stories that stay.</em></h1>
+
+                <h1 id="archive-headline" class="archive-headline">Worlds made of words.<br>Stories that stay.</h1>
                 <p class="archive-deck">A personal collection of fiction, feeling, mythology and memory — each story given room to breathe, with a reading experience shaped around its mood.</p>
+                <a class="archive-primary-action" href="#story-bookshelf">Explore the archive <span aria-hidden="true">↘</span></a>
             </div>
-            <div class="archive-intro-note"><strong>Written by WR</strong>Original fiction · Interactive reading</div>
+            <div class="archive-intro-note"><strong>Written by WR</strong><span>Original fiction · Interactive reading</span></div>
         </div>
     </section>
 
     <main class="bookshelf-wrapper" id="archive-main">
 
         <!-- Continue Reading Bookmark Ribbon -->
-        <div id="reading-bookmark" class="reading-bookmark">
-            <div class="bookmark-tag">Last Read</div>
-            <h4 class="bookmark-title" id="bookmark-title">Almost</h4>
-            <div class="bookmark-chapter" id="bookmark-chapter">Chapter II</div>
+        <div id="reading-bookmark" class="reading-bookmark hidden" aria-hidden="true">
+            <div class="bookmark-tag"></div>
+            <h4 class="bookmark-title" id="bookmark-title"></h4>
+            <div class="bookmark-chapter" id="bookmark-chapter"></div>
             <div class="bookmark-progress-container">
                 <div class="bookmark-progress-bar" id="bookmark-progress-bar"></div>
-                <span class="bookmark-percent" id="bookmark-percentage">45%</span>
+                <span class="bookmark-percent" id="bookmark-percentage"></span>
             </div>
             <a href="#" class="bookmark-btn" id="bookmark-link">Keep reading</a>
         </div>
@@ -1877,7 +1933,7 @@
                     <div class="featured-glare"></div>
                 </div>
                 <div class="featured-details">
-                    <span class="curator-tag">A story to start with</span>
+
                     <h2 class="featured-title">Abhinayam</h2>
                     <p class="featured-hook">"I wrote this over three months. It's the longest story here, and it means a lot to me."</p>
                     <p class="featured-description">A story about a Gopika's love for Krishna that lasts across lifetimes. I made this page change colors as you scroll so the visual matches the feeling.</p>
@@ -1886,13 +1942,13 @@
                         <span><strong>Read time:</strong> ~45 minutes</span>
                         <span><strong>Best read:</strong> Late at night, when it is quiet</span>
                     </div>
-                    <button class="featured-btn" onclick="window.location.href='Abhinayam.html'">
+                    <a class="featured-btn" href="Abhinayam.html">
                         Read Story
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <polyline points="12 5 19 12 12 19"></polyline>
                         </svg>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1901,7 +1957,7 @@
         <div class="archive-catalog-controls">
             <div class="filter-shelf">
                 <span class="catalog-label">Browse stories</span>
-                <div class="filter-links">
+                <div class="filter-links" role="group" aria-label="Filter stories by genre">
                     <button class="filter-link active" data-filter="all">All</button>
                     <button class="filter-link" data-filter="devotion-spiritual">Devotion / Spiritual</button>
                     <button class="filter-link" data-filter="romance">Romance</button>
@@ -1919,7 +1975,7 @@
                 <div class="stats-grid">
                     <div class="stat-item">
                         <span class="stat-label">STORIES</span>
-                        <span class="stat-val">13</span>
+                        <span class="stat-val" id="total-story-count">13</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-label">WORDS</span>
@@ -1951,8 +2007,7 @@
         <div class="bookshelf" id="story-bookshelf">
 
             <!-- Abhinayam -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Abhinayam" data-category="devotion-spiritual"
-                onclick="window.location.href='Abhinayam.html'">
+            <a class="book-card" href="Abhinayam.html" aria-label="Read story: Abhinayam" data-category="devotion-spiritual">
                 <div class="book-cover-container">
                     <span class="author-badge">My first story</span>
                     <img src="New cover/Abhinayam.png" alt="Abhinayam Cover" loading="lazy">
@@ -1976,10 +2031,10 @@
                     <p>Act I · The Echo Of A Previous Life</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Almost -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Almost" data-category="romance nostalgia" onclick="window.location.href='Almost.html'">
+            <a class="book-card" href="Almost.html" aria-label="Read story: Almost" data-category="romance nostalgia">
                 <div class="book-cover-container">
                     <span class="author-badge">Written from memory</span>
                     <img src="New cover/Almost.png" alt="Almost Cover" loading="lazy">
@@ -2003,10 +2058,10 @@
                     <p>INFJ Relationship Story</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Dharshan -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Dharshan" data-category="devotion-spiritual" onclick="window.location.href='Dharshan.html'">
+            <a class="book-card" href="Dharshan.html" aria-label="Read story: Dharshan" data-category="devotion-spiritual">
                 <div class="book-cover-container">
                     <span class="author-badge">After a trip to Tirupati</span>
                     <img src="New cover/Dharshan.png" alt="Dharshan Cover" loading="lazy">
@@ -2030,11 +2085,10 @@
                     <p>A Timeless Devotional Journey</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- DHRUVENDRA -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Dhruvendra" data-category="adventure-fantasy"
-                onclick="window.location.href='DHRUVENDRA%20-%20THE%20TREASURE%20SEEKER.html'">
+            <a class="book-card" href="DHRUVENDRA%20-%20THE%20TREASURE%20SEEKER.html" aria-label="Read story: Dhruvendra" data-category="adventure-fantasy">
                 <div class="book-cover-container">
                     <span class="author-badge">My longest draft</span>
                     <img src="New cover/Dhruvendra.png" alt="Dhruvendra Cover" loading="lazy">
@@ -2058,11 +2112,10 @@
                     <p>The Treasure Seeker</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Green Hollow -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Green Hollow" data-category="thriller-mystery"
-                onclick="window.location.href='Green%20Hollow%20ACT%20-%201.html'">
+            <a class="book-card" href="Green%20Hollow%20ACT%20-%201.html" aria-label="Read story: Green Hollow" data-category="thriller-mystery">
                 <div class="book-cover-container">
                     <span class="author-badge">Part one of a mystery</span>
                     <img src="New cover/Green Hollow ACT - 1.png" alt="Green Hollow Cover" loading="lazy">
@@ -2086,11 +2139,10 @@
                     <p>Act I · The Shadows of the Woods</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Kadha Laga Modhalaina Oka Parichayam -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Kadha Laga Modhalaina" data-category="social-drama"
-                onclick="window.location.href='Kadha%20Laga%20Modhalaina%20Oka%20Parichayam.html'">
+            <a class="book-card" href="Kadha%20Laga%20Modhalaina%20Oka%20Parichayam.html" aria-label="Read story: Kadha Laga Modhalaina" data-category="social-drama">
                 <div class="book-cover-container">
                     <span class="author-badge">Written in Telugu first</span>
                     <img src="New cover/Not Every Relationship Lasts — but Some Endings Create the Sweetest Memories. - 1.png"
@@ -2115,11 +2167,10 @@
                     <p>Oka Parichayam</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Kali -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Kali" data-category="mythological-action-thriller"
-                onclick="window.location.href='Kali%20-%20The%20Five%20Paths.html'">
+            <a class="book-card" href="Kali%20-%20The%20Five%20Paths.html" aria-label="Read story: Kali" data-category="mythological-action-thriller">
                 <div class="book-cover-container">
                     <span class="author-badge">Rewritten many times</span>
                     <img src="New cover/Kali.png" alt="Kali Cover" loading="lazy">
@@ -2143,11 +2194,10 @@
                     <p>The Five Paths</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Malli Kalisi… -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Malli Kalisi…" data-category="romance nostalgia"
-                onclick="window.location.href='Malli%20Kalisi%E2%80%A6.html'">
+            <a class="book-card" href="Malli%20Kalisi%E2%80%A6.html" aria-label="Read story: Malli Kalisi…" data-category="romance nostalgia">
                 <div class="book-cover-container">
                     <span class="author-badge">A story about meeting again</span>
                     <img src="New cover/Malli Kalisi….png" alt="Malli Kalisi Cover" loading="lazy">
@@ -2171,11 +2221,10 @@
                     <p>Reunion of Echoes</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Midnight Escape -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Midnight Escape" data-category="psychological-drama"
-                onclick="window.location.href='Midnight%20Escape.html'">
+            <a class="book-card" href="Midnight%20Escape.html" aria-label="Read story: Midnight Escape" data-category="psychological-drama">
                 <div class="book-cover-container">
                     <span class="author-badge">Wrote this in one night</span>
                     <img src="New cover/Midnight Escape.png" alt="Midnight Escape Cover" loading="lazy">
@@ -2199,11 +2248,10 @@
                     <p>Freedom Was Never the Destination</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Nonparticipant -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Nonparticipant" data-category="thriller-mystery"
-                onclick="window.location.href='Nonparticipant.html'">
+            <a class="book-card" href="Nonparticipant.html" aria-label="Read story: Nonparticipant" data-category="thriller-mystery">
                 <div class="book-cover-container">
                     <span class="author-badge">A quiet story</span>
                     <img src="New cover/NONPARTICIPANT.png" alt="Nonparticipant Cover" loading="lazy">
@@ -2227,11 +2275,10 @@
                     <p>A Silent Witness</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Telugu Ammai -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Telugu Ammai" data-category="determination-success"
-                onclick="window.location.href='Telugu%20Ammai.html'">
+            <a class="book-card" href="Telugu%20Ammai.html" aria-label="Read story: Telugu Ammai" data-category="determination-success">
                 <div class="book-cover-container">
                     <span class="author-badge">About a girl who dances</span>
                     <img src="New cover/Telugu Ammai.png" alt="Telugu Ammai Cover" loading="lazy">
@@ -2255,11 +2302,10 @@
                     <p>Pursuit of Dance</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- THE NIGHT ONLY I REMEMBER -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: The Night Only I Remember" data-category="thriller-mystery"
-                onclick="window.location.href='THE%20NIGHT%20ONLY%20I%20REMEMBER.html'">
+            <a class="book-card" href="THE%20NIGHT%20ONLY%20I%20REMEMBER.html" aria-label="Read story: The Night Only I Remember" data-category="thriller-mystery">
                 <div class="book-cover-container">
                     <span class="author-badge">A very strange dream</span>
                     <img src="New cover/A Quiet Place Inside Me.png" alt="The Night Only I Remember Cover"
@@ -2284,10 +2330,10 @@
                     <p>Memories in the Void</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
             <!-- Unsaid -->
-            <div class="book-card" role="link" tabindex="0" aria-label="Read story: Unsaid" data-category="romance nostalgia" onclick="window.location.href='Unsaid.html'">
+            <a class="book-card" href="Unsaid.html" aria-label="Read story: Unsaid" data-category="romance nostalgia">
                 <div class="book-cover-container">
                     <span class="author-badge">My personal favorite</span>
                     <img src="New cover/UNSAID.png" alt="Unsaid Cover" loading="lazy">
@@ -2311,7 +2357,7 @@
                     <p>Silence in Love</p>
                     <div class="read-story-cta">Open &rarr;</div>
                 </div>
-            </div>
+            </a>
 
         </div>
     </main>
@@ -2344,7 +2390,7 @@
                             <span class="dot yellow"></span>
                             <span class="dot green"></span>
                         </div>
-                        <span class="terminal-title">varun@story-vault:~</span>
+                        <span class="terminal-title">Notes from WR</span>
                     </div>
                     <div class="qa-terminal-body" id="qa-terminal-body">
                         <!-- Output dynamic -->
@@ -2556,9 +2602,6 @@
         // 6. SPLASH SCREEN & LOADER LOGIC
         // -------------------------------------------------------------
         window.addEventListener('DOMContentLoaded', () => {
-            const splashScreen = document.getElementById('splash-screen');
-            const canvas = document.getElementById('particle-canvas');
-
             // Randomize splash screen phrase
             const phrases = [
                 "Every story leaves a trace.",
@@ -2573,23 +2616,6 @@
                 phraseEl.textContent = phrases[Math.floor(Math.random() * phrases.length)];
             }
 
-            // Float particles on top of splash screen during opening sequence
-            if (canvas) {
-                canvas.style.zIndex = '10001';
-            }
-
-            // Brief opening mark, then straight into the archive
-            setTimeout(() => {
-                if (splashScreen) {
-                    splashScreen.classList.add('fade-out');
-                }
-                // Return canvas to z-index 1 so it sits behind text
-                setTimeout(() => {
-                    if (canvas) {
-                        canvas.style.zIndex = '1';
-                    }
-                }, 1200); // matching splash transition fade time
-            }, prefersReducedMotion ? 0 : 240);
                 // -------------------------------------------------------------
                 // INTERACTIVE Q&A CONSOLE ENGINE
                 // -------------------------------------------------------------
@@ -2883,15 +2909,21 @@
                 // Unified story search + category filtering. Category values are whitespace-separated tokens.
                 const filterLinks = document.querySelectorAll('.filter-link');
                 const cards = Array.from(document.querySelectorAll('.book-card'));
+                const totalStoryCount = document.getElementById('total-story-count');
+                if (totalStoryCount) totalStoryCount.textContent = String(cards.length);
                 cards.forEach(card => {
                     const title = card.querySelector('.book-info-footer h3')?.textContent.trim();
                     if (title) card.setAttribute('aria-label', `Read story: ${title}`);
-                    card.addEventListener('keydown', event => {
-                        if (event.target === card && (event.key === 'Enter' || event.key === ' ')) {
-                            event.preventDefault();
-                            card.click();
-                        }
-                    });
+                    // Native anchors already provide correct keyboard activation.
+                    // Keep support for any future legacy non-anchor card.
+                    if (card.tagName !== 'A') {
+                        card.addEventListener('keydown', event => {
+                            if (event.target === card && (event.key === 'Enter' || event.key === ' ')) {
+                                event.preventDefault();
+                                card.click();
+                            }
+                        });
+                    }
                 });
                 const storySearch = document.getElementById('story-search-input');
                 const visibleStoryCount = document.getElementById('visible-story-count');
@@ -2972,26 +3004,56 @@
                 const bookmarkLink = document.getElementById('bookmark-link');
 
                 let latestProgress = null;
-                for (let i = 0; i < localStorage.length; i++) {
-                    const key = localStorage.key(i);
-                    if (key.startsWith('wr-progress-')) {
+                try {
+                    // Accessing localStorage itself can throw in privacy-restricted contexts.
+                    const storage = window.localStorage;
+                    for (let i = 0; i < storage.length; i++) {
+                        const key = storage.key(i);
+                        if (!key || !key.startsWith('wr-progress-')) continue;
+
                         try {
-                            const data = JSON.parse(localStorage.getItem(key));
-                            if (!latestProgress || data.timestamp > latestProgress.timestamp) {
-                                latestProgress = data;
+                            const data = JSON.parse(storage.getItem(key) || 'null');
+                            if (!data || typeof data.title !== 'string' || !data.title.trim() ||
+                                typeof data.chapter !== 'string' || typeof data.url !== 'string') continue;
+
+                            const timestamp = Number(data.timestamp);
+                            const percentage = Number(data.percentage);
+                            if (!Number.isFinite(timestamp) || !Number.isFinite(percentage) ||
+                                percentage < 0 || percentage > 100) continue;
+
+                            const target = new URL(data.url, window.location.href);
+                            if (target.origin !== window.location.origin ||
+                                !/\.html$/i.test(target.pathname) ||
+                                target.pathname.split('/').filter(Boolean).length !== 1) continue;
+
+                            const safeProgress = {
+                                title: data.title.trim().slice(0, 120),
+                                chapter: data.chapter.trim().slice(0, 120),
+                                percentage: Math.round(percentage),
+                                timestamp,
+                                url: target.href
+                            };
+                            if (!latestProgress || safeProgress.timestamp > latestProgress.timestamp) {
+                                latestProgress = safeProgress;
                             }
                         } catch (e) {
-                            console.error("Failed to parse bookmark data", e);
+                            // Ignore one corrupt progress record without breaking the archive.
                         }
                     }
+                } catch (e) {
+                    // Storage can be disabled or unavailable; story discovery still works normally.
                 }
 
                 if (latestProgress && bookmarkEl) {
-                    bookmarkTitle.textContent = latestProgress.title;
-                    bookmarkChapter.textContent = latestProgress.chapter;
-                    bookmarkBar.style.width = `${latestProgress.percentage}%`;
-                    bookmarkPercentage.textContent = `${latestProgress.percentage}%`;
-                    bookmarkLink.href = latestProgress.url;
+                    bookmarkEl.classList.remove("hidden");
+                    bookmarkEl.setAttribute("aria-hidden", "false");
+                    const bookmarkTag = bookmarkEl.querySelector(".bookmark-tag");
+                    if (bookmarkTag) bookmarkTag.textContent = "Last read";
+                    if (bookmarkTitle) bookmarkTitle.textContent = latestProgress.title;
+                    if (bookmarkChapter) bookmarkChapter.textContent = latestProgress.chapter;
+                    if (bookmarkBar) bookmarkBar.style.width = `${latestProgress.percentage}%`;
+                    if (bookmarkPercentage) bookmarkPercentage.textContent = `${latestProgress.percentage}%`;
+                    if (bookmarkLink) bookmarkLink.href = latestProgress.url;
 
                     const headerControls = document.querySelector('.header-controls');
                     if (headerControls) {
@@ -3003,18 +3065,19 @@
                         continueBtn.innerHTML = `
                         <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);">
                             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 0 4 19.5v-15A2.5 2.5 0 0 0 6.5 2z"/>
                         </svg>
-                        Keep reading: ${latestProgress.title} (${latestProgress.percentage}%)
+                        Keep reading:
                     `;
+                        continueBtn.append(document.createTextNode(` ${latestProgress.title} (${latestProgress.percentage}%)`));
+                        continueBtn.setAttribute('aria-label', `Continue reading ${latestProgress.title}, ${latestProgress.percentage}% complete`);
                         headerControls.insertBefore(continueBtn, headerControls.firstChild);
                     }
 
-                    setTimeout(() => {
-                        bookmarkEl.classList.add('visible');
-                    }, 1500);
+                    bookmarkEl.classList.add('visible');
                 } else if (bookmarkEl) {
-                    bookmarkEl.classList.add('hidden');
+                    bookmarkEl.classList.add("hidden");
+                    bookmarkEl.setAttribute("aria-hidden", "true");
                 }
 
                 // Define global/window helper functions so inline HTML handlers can find them
@@ -3167,7 +3230,7 @@
                 renderQuestions();
                 terminalBody.innerHTML = `
                 <div class="welcome-message" style="animation: fadeIn 0.8s ease;">
-                    <p class="console-prompt">> Pick a question from the list to read...</p>
+                    <p class="console-prompt">Choose a question to begin...</p>
                     <div class="interactive-prompt-list">
                         <button class="quick-question-btn" onclick="selectQuestion('who-is-wr')">Who are you?</button>
                         <button class="quick-question-btn" onclick="selectQuestion('storytelling-engine')">How do the stories work?</button>

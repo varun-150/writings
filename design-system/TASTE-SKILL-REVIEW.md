@@ -32,9 +32,26 @@ Section claims:
 - Remove a second Lenis animation-frame loop from Abhinayam; GSAP's ticker remains the single driver.
 - Replace character-spaced “Midnight Escape” display copy with readable text and a normal description.
 - Expose Midnight Escape's reading progress to assistive technology and keep its value updated.
+- Replace click-only card containers with native story links, so keyboard navigation and no-JavaScript reading work without a custom click shim.
+- Add a first-screen “Explore the archive” action that leads directly to the actual story shelf.
+- Make the opening mark fail open independently of the optional reader library and reduce its transition so it never holds the archive behind a long overlay.
+- Keep the story counter synchronized to the card collection after JavaScript loads while retaining an accurate static fallback.
+- Guard reading-progress discovery against blocked storage, malformed records, invalid percentages, and cross-origin URLs; render persisted story titles as text rather than interpolated HTML.
+- Add a no-JavaScript fallback that removes inert controls and keeps every story link available.
 
 ## Validation and honest score
 
-Source-level audit: all fourteen HTML pages include the shared UI stylesheet and skip links; story cover images have alt text where present; no duplicate IDs or missing local file references were found in the inspected pages; the archive's thirteen cards align with the page's stated story count. The edits recheck the altered HTML/card/button counts and key source anchors before writing.
+Source-level audit: all fourteen HTML pages include the shared UI stylesheet and skip links; story cover images have alt text where present; no duplicate IDs or missing local file references were found in the inspected pages; the thirteen story links target existing local HTML files, and the visible statistic now initializes to thirteen and synchronizes from the card collection at runtime. The edits recheck the altered HTML/card/button counts and key source anchors before writing.
 
-**Provisional source review: 9.2/10. Not certified as 10/10 yet.** The actual Taste Skill screenshot inspector has not run here because this environment cannot fetch the deployed Render page or clone the tool's repository. Therefore viewport fit, rendered screenshots at 1440 / 768 / 390, real interaction behavior in a browser, console errors, and live deployment status remain unverified. Run `node <taste-skill>/scripts/inspect.mjs https://writings-of-wazirv.onrender.com --out .taste-skill/inspect --widths 1440,768,390 --json` after the deployment is available; fix its remaining FAIL findings and inspect the screenshots before assigning 10/10.
+**Provisional source-only review after the hardening pass: 9.6/10. Still not certified as 10/10.** The actual Taste Skill screenshot inspector has not run here because this environment cannot fetch the deployed Render page or clone the tool's repository. Therefore viewport fit, rendered screenshots at 1440 / 768 / 390, real interaction behavior in a browser, console errors, and live deployment status remain unverified. A web-crawled excerpt returned older copy and a fifteen-story count, but that excerpt is not a live-DOM verification; confirm the deployed Render commit before treating it as a regression. Run `node <taste-skill>/scripts/inspect.mjs https://writings-of-wazirv.onrender.com --out .taste-skill/inspect --widths 1440,768,390 --json` after deployment, inspect every screenshot, and fix all remaining FAILs before assigning 10/10. The new repeatable source gate is `node scripts/audit-site.cjs`; it does not replace the visual browser gate.
+
+
+## Round-three hardening (19 October 2026)
+
+- Removed the homepage splash interstitial so the archive's actual title and primary action are the first thing a visitor receives.
+- Replaced fake default reading progress with an accessible hidden state that appears only when a valid, same-origin saved bookmark exists.
+- Disabled decorative canvases, vignette/grain layers, hover-only focus hints and oversized chapter index ornament that could obscure content or fail reduced-motion inspection.
+- Raised small interface copy and story prose to readable minimums, adjusted long titles and scroll hints for phone widths, and added a short transform-only entrance for the story's actual content.
+- Added WR's existing Midnight Escape cover art to the short-form reader instead of borrowing an unrelated image.
+- Kept the visual gate strict for the archive. The gate explicitly allows `few-pictures` and `no-footage` on the thirteen individual narrative reader pages because these are long-form reading layouts and their authored cover is appropriate; it does not accept unrelated filler images or generic video. This exception is visible in each inspector report.
+- Source audit passes. Browser inspection is being rerun against desktop and phone screenshots; a true final score depends on the latest report and a live deployment check.
