@@ -189,28 +189,29 @@
         }
 
         .brand-logo-container {
-            width: 70px;
-            height: 70px;
+            width: clamp(100px, 10vw, 136px);
+            height: auto;
+            flex: 0 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 15px rgba(0, 71, 171, 0.05);
-            padding: 5px;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
             transition: var(--transition);
         }
 
         .brand:hover .brand-logo-container {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(0, 71, 171, 0.12);
-            background: rgba(0, 71, 171, 0.03);
+            filter: drop-shadow(0 0 16px rgba(0, 71, 171, 0.18));
         }
 
         .brand-logo {
+            display: block;
+            width: 100%;
+            height: auto;
             max-width: 100%;
-            max-height: 100%;
             object-fit: contain;
         }
 
@@ -1673,7 +1674,7 @@
     <link rel="stylesheet" href="wr-ui.css">
     <meta name="color-scheme" content="dark">
     <meta name="description" content="Explore the WR story archive: original fiction, mythology, romance, mystery, and interactive cinematic reading experiences.">
-    <link rel="icon" type="image/png" href="New cover/Logo.png">
+    <link rel="icon" type="image/webp" href="assets/wr-logo.webp">
     <meta name="theme-color" content="#050608">
 </head>
 
@@ -1701,7 +1702,7 @@
     <header>
         <div class="brand">
             <div class="brand-logo-container">
-                <img src="New cover/Logo.png" alt="The Story Vault Logo" class="brand-logo">
+                <img src="assets/wr-logo.webp" alt="WR — Writings of WazirV logo" class="brand-logo" width="512" height="512" decoding="async">
             </div>
             <div class="brand-text">
                 <p class="brand-title">The Story Vault</p>
