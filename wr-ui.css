@@ -1592,3 +1592,7 @@ body:has(.content-wrapper)::before {
   .archive-intro-inner { grid-template-columns: minmax(0, 1fr) !important; }
   .archive-intro-note { border-left: 0 !important; border-top: 1px solid var(--wr-line-strong) !important; padding: .9rem 0 0 !important; }
 }
+
+/* No loader gate and no JS-dependent hidden copy: the reader is usable from first paint. */
+.preloader { display: none !important; }
+.landing-tag, .landing-subtitle, .landing-meta, #begin-btn, #scroll-hint { opacity: 1; transform: none; }
