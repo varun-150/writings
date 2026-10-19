@@ -70,9 +70,9 @@
 
   const config = window.WR_AUTH_CONFIG || {};
   const looksConfigured = /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl || "") &&
-    typeof config.supabaseAnonKey === "string" &&
-    config.supabaseAnonKey.length > 20 &&
-    !config.supabaseAnonKey.includes("YOUR_SUPABASE");
+    typeof config.supabaseKey === "string" &&
+    config.supabaseKey.length > 20 &&
+    !config.supabaseKey.includes("YOUR_SUPABASE");
 
   if (!looksConfigured || !window.supabase || typeof window.supabase.createClient !== "function") {
     setupWarning.classList.add("visible");
@@ -83,7 +83,7 @@
     return;
   }
 
-  client = window.supabase.createClient(config.supabaseUrl, config.supabaseAnonKey, {
+  client = window.supabase.createClient(config.supabaseUrl, config.supabaseKey, {
     auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
   });
 

@@ -5,10 +5,10 @@ The account page uses Supabase Auth. The website does not store raw passwords in
 ## One-time setup
 
 1. Create a project at https://supabase.com/.
-2. In the Supabase project, copy the Project URL and browser-safe publishable key (or legacy anon key). Never use the service_role key or a secret key in frontend code.
+2. In the Supabase project, copy the Project URL and browser-safe publishable key (preferred; a legacy anon key also works). Never use the service_role key or a secret key in frontend code.
 3. Edit supabase-config.js in this repository and replace:
    - YOUR_SUPABASE_PROJECT_URL with the Project URL (normally https://PROJECT_REF.supabase.co).
-   - YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY with the publishable/anon key.
+   - YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY with the publishable key.
 4. In Authentication → URL Configuration, set the Site URL to https://writings-of-wazirv.onrender.com and add these Redirect URLs:
    - https://writings-of-wazirv.onrender.com/login.html
    - http://localhost:8000/login.html (for local testing)
