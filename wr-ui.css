@@ -1,7 +1,7 @@
 /* =========================================================
    WR STUDIOS — SHARED INTERFACE SYSTEM
    Editorial / cinematic / content-first
-   Palette intentionally neutral until the brand gradient is supplied.
+   Brand palette: 70% black, 20% milk white, 10% cobalt blue. Cobalt shader light is a controlled accent.
    ========================================================= */
 
 /* Two core type families plus a restrained handwritten accent */
@@ -9,19 +9,24 @@
 
 :root {
   /* Primitive tokens */
-  --wr-ink-950: #080908;
-  --wr-ink-900: #0d0e0d;
-  --wr-ink-850: #121312;
-  --wr-ink-800: #181a18;
-  --wr-ink-700: #232522;
-  --wr-paper-100: #f3f1ea;
-  --wr-paper-200: #e8e5dc;
-  --wr-paper-300: #cfccc2;
-  --wr-stone-500: #9a9a91;
-  --wr-stone-600: #76776f;
-  --wr-line: rgba(243, 241, 234, .13);
-  --wr-line-strong: rgba(243, 241, 234, .24);
+  --wr-ink-950: #050608;
+  --wr-ink-900: #090b10;
+  --wr-ink-850: #10131a;
+  --wr-ink-800: #171b23;
+  --wr-ink-700: #252b36;
+  --wr-paper-100: #f5f2e8;
+  --wr-paper-200: #eae7dd;
+  --wr-paper-300: #c8cad0;
+  --wr-stone-500: #9298a5;
+  --wr-stone-600: #687080;
+  --wr-line: rgba(245, 242, 232, .14);
+  --wr-line-strong: rgba(245, 242, 232, .28);
   --wr-overlay: rgba(8, 9, 8, .86);
+
+  /* Brand hues — use cobalt as the only saturated color */
+  --wr-cobalt: #0047ab;
+  --wr-cobalt-light: #2f6bff;
+  --wr-shader-glow: rgba(0, 71, 171, .22);
 
   /* Semantic tokens */
   --wr-bg: var(--wr-ink-950);
@@ -32,11 +37,11 @@
   --wr-text-strong: var(--wr-paper-100);
   --wr-text-muted: var(--wr-paper-300);
   --wr-text-dim: var(--wr-stone-500);
-  --wr-accent: #d8d5cb;
+  --wr-accent: var(--wr-cobalt);
   --wr-accent-contrast: var(--wr-ink-950);
-  --wr-focus: #f4f0e5;
+  --wr-focus: var(--wr-cobalt-light);
   --wr-gradient: none; /* Replace centrally when the WR brand gradient is supplied */
-  --wr-glow: rgba(243, 241, 234, .06);
+  --wr-glow: rgba(0, 71, 171, .16);
   --wr-shadow: 0 24px 70px rgba(0, 0, 0, .32);
 
   /* Typography tokens */
@@ -1214,4 +1219,293 @@ body[data-chapter-theme="lavender"] {
     opacity: 1;
     visibility: visible;
   }
+}
+
+
+/* =========================================================
+   WR BRAND PALETTE — 70% BLACK / 20% MILK WHITE / 10% COBALT
+   The cobalt effect is treated like a shader: layered light,
+   edge illumination and particle glow, not a fourth color.
+   Apply the brand ratio through surfaces and typography instead
+   of using equal amounts of all three colors.
+   ========================================================= */
+:root {
+  --wr-ink-950: #050608;
+  --wr-ink-900: #090b10;
+  --wr-ink-850: #10131a;
+  --wr-ink-800: #171b23;
+  --wr-ink-700: #252b36;
+
+  --wr-paper-100: #f5f2e8; /* milk white */
+  --wr-paper-200: #eae7dd;
+  --wr-paper-300: #c8cad0;
+  --wr-stone-500: #9298a5;
+  --wr-stone-600: #687080;
+
+  --wr-cobalt: #0047ab;
+  --wr-cobalt-light: #2f6bff;
+  --wr-cobalt-rgb: 0, 71, 171;
+  --wr-cobalt-light-rgb: 47, 107, 255;
+  --wr-shader-glow: rgba(var(--wr-cobalt-rgb), .22);
+  --wr-shader-core: rgba(var(--wr-cobalt-light-rgb), .13);
+
+  --wr-bg: var(--wr-ink-950);
+  --wr-bg-soft: var(--wr-ink-900);
+  --wr-surface: var(--wr-ink-850);
+  --wr-surface-raised: var(--wr-ink-800);
+  --wr-text: var(--wr-paper-200);
+  --wr-text-strong: var(--wr-paper-100);
+  --wr-text-muted: var(--wr-paper-300);
+  --wr-text-dim: var(--wr-stone-500);
+  --wr-accent: var(--wr-cobalt);
+  --wr-accent-contrast: var(--wr-paper-100);
+  --wr-focus: var(--wr-cobalt-light);
+  --wr-gradient: none; /* Keep the gradient customizable when the final brand gradient arrives. */
+  --wr-glow: rgba(var(--wr-cobalt-rgb), .20);
+  --wr-shadow: 0 24px 70px rgba(0, 0, 0, .44);
+
+  /* Legacy story-engine tokens are pinned to this brand palette. */
+  --bg-primary: var(--wr-bg);
+  --bg-gradient: none;
+  --text-hero: var(--wr-text-strong);
+  --text-primary: var(--wr-text);
+  --text-secondary: var(--wr-text-dim);
+  --text-muted: var(--wr-text-muted);
+  --accent: var(--wr-cobalt);
+  --accent-bright: var(--wr-cobalt-light);
+  --accent-dim: var(--wr-cobalt);
+  --accent-rgb: 0, 71, 171;
+  --accent-glow: rgba(var(--wr-cobalt-rgb), .23);
+  --accent-whisper: rgba(var(--wr-cobalt-rgb), .09);
+  --accent-rgba-20: rgba(var(--wr-cobalt-rgb), .20);
+  --accent-rgba-25: rgba(var(--wr-cobalt-rgb), .25);
+  --accent-rgba-05: rgba(var(--wr-cobalt-rgb), .06);
+  --accent-dark-rgba-05: rgba(var(--wr-cobalt-rgb), .035);
+}
+
+/* Enforce palette even while chapters switch their narrative theme. */
+body,
+body[data-chapter-theme],
+body[data-chapter-theme="cosmic"],
+body[data-chapter-theme="lavender"] {
+  --wr-bg: #050608;
+  --wr-text: var(--wr-paper-200);
+  --wr-text-strong: var(--wr-paper-100);
+  --wr-accent: var(--wr-cobalt);
+  --bg-primary: var(--wr-bg) !important;
+  --bg-gradient: none !important;
+  --text-hero: var(--wr-text-strong) !important;
+  --text-primary: var(--wr-text) !important;
+  --text-secondary: var(--wr-text-dim) !important;
+  --text-muted: var(--wr-text-muted) !important;
+  --accent: var(--wr-cobalt) !important;
+  --accent-bright: var(--wr-cobalt-light) !important;
+  --accent-dim: var(--wr-cobalt) !important;
+  --accent-rgb: 0, 71, 171 !important;
+  --accent-glow: rgba(var(--wr-cobalt-rgb), .23) !important;
+  --accent-whisper: rgba(var(--wr-cobalt-rgb), .09) !important;
+  --accent-rgba-20: rgba(var(--wr-cobalt-rgb), .20) !important;
+  --accent-rgba-25: rgba(var(--wr-cobalt-rgb), .25) !important;
+  --accent-rgba-05: rgba(var(--wr-cobalt-rgb), .06) !important;
+  --accent-dark-rgba-05: rgba(var(--wr-cobalt-rgb), .035) !important;
+}
+html, body {
+  background-color: var(--wr-bg) !important;
+  color: var(--wr-text) !important;
+}
+body {
+  background-image: none !important;
+}
+body:has(.bookshelf-wrapper)::before,
+body:has(.content-wrapper)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 48% 34% at 82% 5%, rgba(var(--wr-cobalt-light-rgb), .09) 0%, rgba(var(--wr-cobalt-rgb), .055) 33%, transparent 72%),
+    radial-gradient(ellipse 32% 28% at 0% 72%, rgba(var(--wr-cobalt-rgb), .07) 0%, transparent 74%) !important;
+}
+body:has(.bookshelf-wrapper),
+body:has(.content-wrapper) {
+  isolation: isolate;
+}
+
+/* Shader-like cobalt illumination: diffuse blue light, no extra palette hues. */
+#splash-screen {
+  background: #050608 !important;
+  background-image:
+    radial-gradient(ellipse 55% 45% at 50% 45%, rgba(var(--wr-cobalt-rgb), .20), rgba(var(--wr-cobalt-rgb), .06) 40%, transparent 74%) !important;
+}
+.splash-glow {
+  display: block !important;
+  width: min(74vw, 820px) !important;
+  height: min(68vw, 700px) !important;
+  background: radial-gradient(circle, rgba(var(--wr-cobalt-light-rgb), .18) 0%, rgba(var(--wr-cobalt-rgb), .13) 25%, transparent 70%) !important;
+  filter: blur(32px) saturate(1.1) !important;
+  opacity: .88 !important;
+  pointer-events: none;
+}
+.splash-title {
+  color: var(--wr-paper-100) !important;
+  -webkit-text-fill-color: var(--wr-paper-100) !important;
+}
+.splash-phrase { color: var(--wr-paper-200) !important; }
+.archive-intro {
+  background-image:
+    radial-gradient(ellipse 52% 74% at 88% 7%, rgba(var(--wr-cobalt-rgb), .16), transparent 72%) !important;
+}
+.archive-kicker, .archive-kicker::before { color: var(--wr-cobalt-light) !important; }
+.archive-kicker::before { background: currentColor !important; }
+.archive-headline em { color: var(--wr-cobalt-light) !important; }
+.archive-intro-note { border-color: rgba(var(--wr-cobalt-rgb), .62) !important; }
+.featured-card {
+  background-color: rgba(16, 19, 26, .72) !important;
+  background-image: radial-gradient(ellipse 64% 88% at 0% 50%, rgba(var(--wr-cobalt-rgb), .20), transparent 70%) !important;
+  border-color: rgba(var(--wr-cobalt-rgb), .42) !important;
+}
+.featured-card:hover { border-color: var(--wr-cobalt-light) !important; box-shadow: 0 20px 64px rgba(var(--wr-cobalt-rgb), .13) !important; }
+.curator-tag, .catalog-label { color: var(--wr-cobalt-light) !important; }
+.featured-hook { border-color: var(--wr-cobalt) !important; }
+.featured-btn {
+  background: var(--wr-cobalt) !important;
+  color: var(--wr-paper-100) !important;
+  border-color: var(--wr-cobalt-light) !important;
+}
+.featured-btn:hover { background: var(--wr-cobalt-light) !important; color: var(--wr-paper-100) !important; box-shadow: 0 0 30px rgba(var(--wr-cobalt-light-rgb), .22) !important; }
+
+.filter-link.active, .filter-link[aria-pressed="true"] {
+  background: var(--wr-cobalt) !important;
+  border-color: var(--wr-cobalt-light) !important;
+  color: var(--wr-paper-100) !important;
+  box-shadow: 0 0 24px rgba(var(--wr-cobalt-rgb), .18) !important;
+}
+.filter-link:hover {
+  background: rgba(var(--wr-cobalt-rgb), .20) !important;
+  border-color: rgba(var(--wr-cobalt-light-rgb), .72) !important;
+  color: var(--wr-paper-100) !important;
+}
+.story-search:focus-within {
+  border-color: var(--wr-cobalt-light) !important;
+  box-shadow: 0 0 0 3px rgba(var(--wr-cobalt-rgb), .17), 0 0 26px rgba(var(--wr-cobalt-rgb), .12) !important;
+}
+.story-search svg, .search-icon { color: var(--wr-cobalt-light) !important; }
+.story-search input:focus { outline-color: var(--wr-cobalt-light) !important; }
+.catalog-results strong { color: var(--wr-cobalt-light) !important; }
+.book-card {
+  background: var(--wr-ink-900) !important;
+  border-color: rgba(var(--wr-cobalt-rgb), .20) !important;
+}
+.book-card:hover, .book-card:focus-visible, .book-card:focus-within {
+  border-color: var(--wr-cobalt-light) !important;
+  box-shadow: 0 18px 46px rgba(var(--wr-cobalt-rgb), .16) !important;
+}
+.book-card .card-overlay.library-catalog-card {
+  background: rgba(5, 6, 8, .96) !important;
+  border-top: 1px solid rgba(var(--wr-cobalt-light-rgb), .55) !important;
+}
+.author-badge { border-color: rgba(var(--wr-cobalt-light-rgb), .42) !important; }
+.catalog-card-header { border-color: rgba(var(--wr-cobalt-rgb), .35) !important; }
+.catalog-title { color: var(--wr-paper-100) !important; }
+.catalog-line strong { color: var(--wr-cobalt-light) !important; }
+.catalog-synopsis { border-color: rgba(var(--wr-cobalt-rgb), .42) !important; }
+.read-story-cta { color: var(--wr-cobalt-light) !important; }
+.begin-btn, #begin-btn, .bookmark-btn {
+  background: var(--wr-cobalt) !important;
+  border-color: var(--wr-cobalt-light) !important;
+  color: var(--wr-paper-100) !important;
+  box-shadow: none !important;
+}
+.begin-btn:hover, #begin-btn:hover, .bookmark-btn:hover {
+  background: var(--wr-cobalt-light) !important;
+  border-color: var(--wr-cobalt-light) !important;
+  color: var(--wr-paper-100) !important;
+  box-shadow: 0 0 28px rgba(var(--wr-cobalt-light-rgb), .24) !important;
+}
+.control-btn, .archive-back-link, .wr-archive-link {
+  border-color: rgba(var(--wr-cobalt-rgb), .42) !important;
+}
+.control-btn:hover, .archive-back-link:hover, .wr-archive-link:hover {
+  border-color: var(--wr-cobalt-light) !important;
+  background: rgba(var(--wr-cobalt-rgb), .18) !important;
+  color: var(--wr-paper-100) !important;
+}
+#progress-bar { background: var(--wr-cobalt-light) !important; box-shadow: 0 0 16px rgba(var(--wr-cobalt-light-rgb), .65) !important; }
+.bookmark-progress-bar { background: var(--wr-cobalt-light) !important; box-shadow: 0 0 12px rgba(var(--wr-cobalt-light-rgb), .35); }
+.bookmark-progress-container { background: rgba(var(--wr-paper-100), .12) !important; }
+.story-epilogue {
+  border-color: rgba(var(--wr-cobalt-rgb), .42) !important;
+  background-image: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(var(--wr-cobalt-rgb), .12), transparent 72%) !important;
+}
+.epilogue-ornament, .chapter-num-label, .chapter-num-label::before { color: var(--wr-cobalt-light) !important; }
+.chapter-num-label::before { background: currentColor !important; }
+.chapter-watermark { color: rgba(var(--wr-cobalt-light-rgb), .12) !important; }
+.chapter-section {
+  background-color: var(--wr-ink-950) !important;
+  background-image: radial-gradient(ellipse 58% 36% at 78% 0%, rgba(var(--wr-cobalt-rgb), .075), transparent 72%) !important;
+}
+.chapter-section:nth-child(even) {
+  background-color: var(--wr-ink-900) !important;
+  background-image: radial-gradient(ellipse 54% 34% at 12% 8%, rgba(var(--wr-cobalt-rgb), .085), transparent 75%) !important;
+}
+.chapter-title, .epilogue-title, .qa-answer-title { color: var(--wr-paper-100) !important; }
+.chapter-synopsis, .story-p, .content-block p, .dialogue-text, .thought-dim,
+.story-content, .story-content p { color: var(--wr-paper-200) !important; }
+.quote-block, blockquote { border-color: var(--wr-cobalt) !important; }
+.dialogue-block { border-color: rgba(var(--wr-cobalt-rgb), .24) !important; }
+.scene-separator .separator-diamond { color: var(--wr-cobalt-light) !important; }
+.separator-line, .epilogue-divider { background: rgba(var(--wr-cobalt-rgb), .55) !important; }
+.control-btn:focus-visible, .begin-btn:focus-visible, .replay-btn:focus-visible,
+.featured-btn:focus-visible, .bookmark-btn:focus-visible, .toc-link:focus-visible {
+  outline: 2px solid var(--wr-cobalt-light) !important;
+  box-shadow: 0 0 0 5px rgba(var(--wr-cobalt-rgb), .2) !important;
+}
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline-color: var(--wr-cobalt-light) !important;
+  box-shadow: 0 0 0 4px rgba(var(--wr-cobalt-rgb), .16);
+}
+.qa-container, .qa-display {
+  border-color: rgba(var(--wr-cobalt-rgb), .27) !important;
+}
+.qa-q-btn:hover, .qa-q-btn.active,
+.quick-question-btn:hover, .story-mini-card:hover, .qa-contact-card:hover {
+  border-color: var(--wr-cobalt-light) !important;
+  background: rgba(var(--wr-cobalt-rgb), .16) !important;
+  color: var(--wr-paper-100) !important;
+  box-shadow: 0 0 22px rgba(var(--wr-cobalt-rgb), .10) !important;
+}
+.qa-answer-title { border-color: rgba(var(--wr-cobalt-rgb), .45) !important; }
+.console-prompt { color: var(--wr-cobalt-light) !important; }
+.story-mini-card h4 { color: var(--wr-paper-100) !important; }
+.reading-bookmark { border-color: rgba(var(--wr-cobalt-light-rgb), .5) !important; }
+.bookmark-tag { color: var(--wr-cobalt-light) !important; }
+
+/* Standalone reader: cobalt bloom plus the shared black/milk-white text palette. */
+body:has(.content-wrapper)::before {
+  background:
+    radial-gradient(ellipse 55% 42% at 70% 3%, rgba(var(--wr-cobalt-rgb), .20), rgba(var(--wr-cobalt-rgb), .045) 42%, transparent 74%),
+    radial-gradient(ellipse 34% 28% at 5% 65%, rgba(var(--wr-cobalt-light-rgb), .08), transparent 72%) !important;
+}
+.hero {
+  background-color: var(--wr-bg) !important;
+  background-image:
+    radial-gradient(ellipse 56% 55% at 75% 10%, rgba(var(--wr-cobalt-rgb), .22), transparent 74%),
+    linear-gradient(145deg, #050608 55%, #090d16 100%) !important;
+}
+.hero-badge { border-color: rgba(var(--wr-cobalt-light-rgb), .42) !important; color: var(--wr-cobalt-light) !important; }
+.hero-divider { background: var(--wr-cobalt) !important; box-shadow: 0 0 16px rgba(var(--wr-cobalt-light-rgb), .3); }
+.toc-link:hover, .toc-link.active { background: rgba(var(--wr-cobalt-rgb), .22) !important; color: var(--wr-paper-100) !important; }
+.btn-font:hover, .btn-font[aria-pressed="true"] {
+  border-color: var(--wr-cobalt-light) !important;
+  background: rgba(var(--wr-cobalt-rgb), .22) !important;
+  color: var(--wr-paper-100) !important;
+}
+.back-to-top { border-color: rgba(var(--wr-cobalt-light-rgb), .55) !important; }
+::selection { background: var(--wr-cobalt-light) !important; color: var(--wr-paper-100) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .splash-glow { filter: none !important; }
+  .featured-card:hover, .book-card:hover { box-shadow: none !important; }
 }
