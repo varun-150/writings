@@ -25,7 +25,7 @@
 
   /* Brand hues — use cobalt as the only saturated color */
   --wr-cobalt: #0047ab;
-  --wr-cobalt-light: #2f6bff;
+  --wr-cobalt-light: #3d78ff;
   --wr-shader-glow: rgba(0, 71, 171, .22);
 
   /* Semantic tokens */
@@ -1243,9 +1243,9 @@ body[data-chapter-theme="lavender"] {
   --wr-stone-600: #687080;
 
   --wr-cobalt: #0047ab;
-  --wr-cobalt-light: #2f6bff;
+  --wr-cobalt-light: #3d78ff;
   --wr-cobalt-rgb: 0, 71, 171;
-  --wr-cobalt-light-rgb: 47, 107, 255;
+  --wr-cobalt-light-rgb: 61, 120, 255;
   --wr-shader-glow: rgba(var(--wr-cobalt-rgb), .22);
   --wr-shader-core: rgba(var(--wr-cobalt-light-rgb), .13);
 
@@ -1271,9 +1271,9 @@ body[data-chapter-theme="lavender"] {
   --text-primary: var(--wr-text);
   --text-secondary: var(--wr-text-dim);
   --text-muted: var(--wr-text-muted);
-  --accent: var(--wr-cobalt);
+  --accent: var(--wr-cobalt-light);
   --accent-bright: var(--wr-cobalt-light);
-  --accent-dim: var(--wr-cobalt);
+  --accent-dim: var(--wr-cobalt-light);
   --accent-rgb: 0, 71, 171;
   --accent-glow: rgba(var(--wr-cobalt-rgb), .23);
   --accent-whisper: rgba(var(--wr-cobalt-rgb), .09);
@@ -1298,9 +1298,9 @@ body[data-chapter-theme="lavender"] {
   --text-primary: var(--wr-text) !important;
   --text-secondary: var(--wr-text-dim) !important;
   --text-muted: var(--wr-text-muted) !important;
-  --accent: var(--wr-cobalt) !important;
+  --accent: var(--wr-cobalt-light) !important;
   --accent-bright: var(--wr-cobalt-light) !important;
-  --accent-dim: var(--wr-cobalt) !important;
+  --accent-dim: var(--wr-cobalt-light) !important;
   --accent-rgb: 0, 71, 171 !important;
   --accent-glow: rgba(var(--wr-cobalt-rgb), .23) !important;
   --accent-whisper: rgba(var(--wr-cobalt-rgb), .09) !important;
@@ -1518,7 +1518,7 @@ body:has(.content-wrapper)::before {
   --surface-hover: var(--wr-surface-raised);
   --text-primary: var(--wr-text-strong);
   --text-secondary: var(--wr-text-muted);
-  --accent: var(--wr-cobalt);
+  --accent: var(--wr-cobalt-light);
   --accent-glow: rgba(var(--wr-cobalt-rgb), .24);
 }
 
