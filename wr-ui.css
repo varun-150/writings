@@ -607,7 +607,9 @@ body > header:not(.glass-header) {
 .archive-kicker::before { background: var(--wr-text-dim) !important; }
 .archive-headline {
   color: var(--wr-text-strong) !important;
-  font: 500 clamp(3.1rem, 7.2vw, 7rem)/.94 var(--wr-font-display) !important;
+  font: 500 clamp(2rem, 6vw, 5.75rem)/.98 var(--wr-font-display) !important;
+  max-width: none !important;
+  text-wrap: balance;
   letter-spacing: -.045em !important;
 }
 .archive-headline em { color: var(--wr-text-muted) !important; font-weight: 400; }
@@ -1578,3 +1580,19 @@ body:has(.content-wrapper)::before {
 .book-info-footer p, .catalog-line, .qa-header p {
   color: var(--wr-paper-300) !important;
 }
+
+
+/* Taste Skill refinements — the archive's work is its own cover-art contact sheet. */
+.brand-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 500; letter-spacing: .1em; color: var(--wr-paper-100); margin: 0 0 .5rem; }
+.filter-link { min-height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: .5rem .75rem !important; border: 1px solid transparent !important; border-radius: 999px !important; font: 500 .82rem/1.3 var(--wr-font-ui) !important; letter-spacing: 0 !important; }
+/* The headline is content, not an animation state; motion only choreographs supporting details. */
+#landing-title { opacity: 1 !important; transform: none !important; }
+@media (max-width: 480px) {
+  .archive-headline { max-width: none !important; font-size: clamp(2rem, 8.5vw, 2.35rem) !important; }
+  .archive-intro-inner { grid-template-columns: minmax(0, 1fr) !important; }
+  .archive-intro-note { border-left: 0 !important; border-top: 1px solid var(--wr-line-strong) !important; padding: .9rem 0 0 !important; }
+}
+
+/* No loader gate and no JS-dependent hidden copy: the reader is usable from first paint. */
+.preloader { display: none !important; }
+.landing-tag, .landing-subtitle, .landing-meta, #begin-btn, #scroll-hint { opacity: 1; transform: none; }

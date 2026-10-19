@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Midnight Escape — WR | Interactive Story</title>
-<meta name="description" content="E s c a p e — Freedom Was Never the Destination. - A premium reading experience">
+<meta name="description" content="Midnight Escape — Freedom was never the destination. A four-minute interactive story by WR.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet">
@@ -679,10 +679,10 @@ body.font-large {
 <div class="noscript-warn">Please enable JavaScript for reading progress tracking, responsive animations, and custom typography controls.</div>
 </noscript>
 <a href="#main-content" class="skip-link">Skip to content</a>
-<div id="progress-bar"></div>
+<div id="progress-bar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 <header role="banner">
 <span class="header-logo">WR Stories</span>
-<span class="header-title">M i d n i g h t</span>
+<span class="header-title">Midnight Escape</span>
 <div class="header-actions" role="navigation" aria-label="Font Controls">
 <a class="wr-archive-link" href="index.html" aria-label="Return to all stories">← All stories</a>
 <button class="btn-font" onclick="setFont('small')" aria-label="Decrease font size">A-</button>
@@ -692,8 +692,8 @@ body.font-large {
 </header>
 <div class="hero">
 <div class="hero-badge">4 min read</div>
-<h1 class="hero-title"><span class="accent">M i d n i g h t</span></h1>
-<p class="hero-subtitle">E s c a p e — Freedom Was Never the Destination.</p>
+<h1 class="hero-title"><span class="accent">Midnight Escape</span></h1>
+<p class="hero-subtitle">Freedom was never the destination.</p>
 <div class="hero-divider"></div>
 <button class="hero-scroll" aria-label="Scroll to read"><span>Begin Reading</span><div class="scroll-arrow"></div></button>
 </div>
@@ -762,7 +762,7 @@ body.font-large {
 </main>
 <button class="back-to-top" aria-label="Back to top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
 <footer role="contentinfo">
-<div class="footer-brand">M i d n i g h t</div>
+<div class="footer-brand">Midnight Escape</div>
 <p>A premium reading experience &middot; Written by WR</p>
 </footer>
 <script>
@@ -770,7 +770,12 @@ window.addEventListener('scroll', function() {
     var d = document.documentElement;
     var s = d.scrollTop || document.body.scrollTop;
     var t = d.scrollHeight - d.clientHeight;
-    document.getElementById('progress-bar').style.width = (t > 0 ? (s / t) * 100 : 0) + '%';
+    var progress = t > 0 ? Math.min(100, Math.round((s / t) * 100)) : 0;
+    var progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+        progressBar.style.width = progress + '%';
+        progressBar.setAttribute('aria-valuenow', String(progress));
+    }
 });
 
 function setFont(sz) {

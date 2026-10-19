@@ -71,59 +71,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. PRELOADER
     // --------------------------------------------------------
     const preloader = document.getElementById('preloader');
-    const coverImg = document.getElementById('cover-img');
 
+    let preloaderDismissed = false;
     function hidePreloader() {
-        gsap.to(preloader, {
-            opacity: 0,
-            duration: 1,
-            ease: 'power2.out',
-            onComplete: () => {
-                preloader.classList.add('loaded');
-                initLandingAnimations();
-            }
-        });
+        if (preloaderDismissed) return;
+        preloaderDismissed = true;
+        initLandingAnimations();
+        if (preloader) {
+            preloader.classList.add('loaded');
+            preloader.style.display = 'none';
+        }
     }
+    hidePreloader();
 
-    // Wait for cover image to load, or timeout after 3s
-    if (coverImg.complete) {
-        setTimeout(hidePreloader, 1200);
-    } else {
-        coverImg.addEventListener('load', () => setTimeout(hidePreloader, 800));
-        setTimeout(hidePreloader, 3000); // fallback
-    }
-
-
-    // --------------------------------------------------------
     // 3. LANDING ANIMATIONS
     // --------------------------------------------------------
     function initLandingAnimations() {
+        const supporting = ['#landing-tag', '#landing-subtitle', '#landing-meta', '#begin-btn'];
+        const elements = [...supporting, '#landing-title', '#scroll-hint'];
         if (prefersReducedMotion) {
-            // Just show everything immediately
-            gsap.set(['#landing-tag', '#landing-title', '#landing-subtitle', '#landing-meta', '#begin-btn', '#scroll-hint'], {
-                opacity: 1
-            });
+            gsap.set(elements, { opacity: 1, y: 0, clearProps: 'transform' });
             return;
         }
-
+        gsap.set(elements, { opacity: 1, y: 0 });
+        gsap.set(supporting, { y: 14 });
+        gsap.set('#scroll-hint', { y: 8 });
         const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-        tl.to('#landing-tag', { opacity: 1, y: 0, duration: 1 }, 0.2)
-          .fromTo('#landing-title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.5 }, 0.5)
-          .to('#landing-subtitle', { opacity: 1, y: 0, duration: 1.2 }, 0.9)
-          .to('#landing-meta', { opacity: 1, y: 0, duration: 1 }, 1.2)
-          .to('#begin-btn', { opacity: 1, y: 0, duration: 1 }, 1.5)
-          .to('#scroll-hint', { opacity: 0.5, duration: 1.5 }, 2);
-
-        // Set initial hidden states
-        gsap.set(['#landing-tag', '#landing-subtitle', '#landing-meta', '#begin-btn'], {
-            opacity: 0, y: 25
-        });
-        gsap.set('#scroll-hint', { opacity: 0 });
+        tl.to('#landing-tag', { y: 0, duration: 0.36 }, 0)
+          .to('#landing-subtitle', { y: 0, duration: 0.4 }, 0.05)
+          .to('#landing-meta', { y: 0, duration: 0.4 }, 0.1)
+          .to('#begin-btn', { y: 0, duration: 0.4 }, 0.15)
+          .to('#scroll-hint', { y: 0, duration: 0.45 }, 0.24);
     }
 
-
-    // --------------------------------------------------------
     // 4. CURSOR GLOW
     // --------------------------------------------------------
     const cursorGlow = document.getElementById('cursor-glow');
