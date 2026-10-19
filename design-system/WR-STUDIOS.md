@@ -15,7 +15,7 @@ The WR brand palette is **70% black, 20% milk white, and 10% cobalt blue**. Blac
 --wr-paper-100: #f5f2e8;
 --wr-paper-200: #eae7dd;
 --wr-cobalt: #0047ab;
---wr-cobalt-light: #2f6bff;
+--wr-cobalt-light: #3d78ff;
 --wr-shader-glow: rgba(0, 71, 171, .22);
 
 /* Semantic aliases */
