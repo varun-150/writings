@@ -72,6 +72,16 @@ Open [http://localhost:8000](http://localhost:8000).
 
 You can also use the Live Server extension in VS Code. A local server is recommended so relative assets and reading progress behave like a deployed site.
 
+## Verify the archive
+
+Run the zero-dependency source audit from the repository root:
+
+```bash
+node scripts/audit-site.cjs
+```
+
+The audit checks the HTML pages, accessibility basics, local asset/story targets, story counts, and JavaScript syntax. GitHub Actions runs the same checks on pull requests. Rendered viewport and interaction checks should still be done in a real browser.
+
 ## Deploy to Render
 
 The repository includes [`render.yaml`](render.yaml), configured to publish the repository root as a static site.
