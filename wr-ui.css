@@ -1509,3 +1509,28 @@ body:has(.content-wrapper)::before {
   .splash-glow { filter: none !important; }
   .featured-card:hover, .book-card:hover { box-shadow: none !important; }
 }
+
+
+/* Legacy homepage token aliases map into the same three-color system. */
+:root {
+  --bg: var(--wr-bg);
+  --surface: var(--wr-surface);
+  --surface-hover: var(--wr-surface-raised);
+  --text-primary: var(--wr-text-strong);
+  --text-secondary: var(--wr-text-muted);
+  --accent: var(--wr-cobalt);
+  --accent-glow: rgba(var(--wr-cobalt-rgb), .24);
+}
+
+/* Reading ribbon and progress details use cobalt, not the retired gold accent. */
+#reading-bookmark, .reading-bookmark {
+  background-color: rgba(9, 11, 16, .96) !important;
+  border-color: rgba(var(--wr-cobalt-light-rgb), .55) !important;
+  color: var(--wr-paper-100) !important;
+}
+.bookmark-tag, .bookmark-percent { color: var(--wr-cobalt-light) !important; }
+.bookmark-btn {
+  background: var(--wr-cobalt) !important;
+  color: var(--wr-paper-100) !important;
+}
+.bookmark-progress-bar { background-color: var(--wr-cobalt-light) !important; }
