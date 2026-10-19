@@ -1611,3 +1611,272 @@ body:has(.content-wrapper)::before {
   outline: 2px solid var(--wr-focus) !important;
   outline-offset: 4px !important;
 }
+
+
+/* Taste Skill — final refinement pass: editorial, readable, content-first. */
+:root {
+  --wr-font-note: var(--wr-font-reading);
+  --wr-shadow: none;
+  --wr-text-xs: .8125rem;
+  --wr-text-sm: .9375rem;
+}
+
+/* Flat surfaces replace decorative blur, glow, gradients, and hairline scaffolding. */
+*, *::before, *::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body, body::before, body::after, body:has(.content-wrapper)::before,
+body[data-chapter-theme], .archive-intro, .featured-card,
+.landing-section, .landing-section::before, .landing-ambient,
+.chapter-section, .chapter-section:nth-child(even), .hero,
+.cover-wrapper, .story-epilogue, .qa-container, .qa-display {
+  background-image: none !important;
+}
+body::before, body::after, body:has(.content-wrapper)::before,
+.landing-section::before, .landing-ambient, .splash-glow,
+.chapter-watermark, .landing-tag, .archive-kicker, .curator-tag {
+  display: none !important;
+}
+body, body[data-chapter-theme], .chapter-section, .chapter-section:nth-child(even),
+.landing-section, .hero {
+  background-color: var(--wr-ink-950) !important;
+  color: var(--wr-paper-200) !important;
+}
+.chapter-section:nth-child(even), .featured-card, .archival-stats-card,
+.qa-container, .qa-display, .dialogue-block, .story-epilogue, .toc-sidebar {
+  background-color: var(--wr-ink-900) !important;
+}
+.glass-header {
+  background: var(--wr-ink-950) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.featured-card, .archival-stats-card, .qa-container, .qa-display, .book-card,
+.dialogue-block, .story-epilogue, .toc-sidebar, .archive-intro-inner,
+.featured-meta, .catalog-label, .chapter-dot, .cover-3d,
+.chapter-num-label, .hero-divider, .separator-line, .epilogue-divider,
+header, .brand-logo-container, .featured-cover-container {
+  border-color: transparent !important;
+}
+.featured-card, .featured-cover-container, .book-card, .cover-3d {
+  box-shadow: none !important;
+}
+.featured-card { border-radius: 0 !important; }
+.featured-cover-container { border-radius: 0 !important; }
+.book-card { border-radius: 0 !important; background: var(--wr-ink-900) !important; }
+.book-card:hover, .featured-card:hover, .book-card:focus-visible {
+  box-shadow: none !important;
+}
+.book-card:hover .book-cover-container img,
+.featured-card:hover .featured-cover-container img {
+  filter: none !important;
+  transform: scale(1.025);
+}
+.filter-link, .filter-link.active {
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+.archive-primary-action, .begin-btn, .featured-btn, .bookmark-btn,
+.control-btn, .replay-btn {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-radius: 3px !important;
+  font: 600 .8125rem/1.3 var(--wr-font-ui) !important;
+  letter-spacing: .015em !important;
+  text-transform: none !important;
+}
+.archive-primary-action {
+  background: var(--wr-cobalt) !important;
+  color: var(--wr-paper-100) !important;
+  border: 0 !important;
+}
+.archive-primary-action:hover, .begin-btn:hover, .featured-btn:hover,
+.bookmark-btn:hover {
+  box-shadow: none !important;
+  transform: translateY(-2px);
+}
+
+/* Two families only: Inter for interface, Cormorant Garamond for editorial copy. */
+body, body *, button, input, select, textarea,
+.terminal-title, .console-prompt, .catalog-line, .bookmark-tag,
+.bookmark-chapter, .bookmark-percent, .stat-label, .stat-val,
+.control-btn, .filter-link, .catalog-label, .catalog-results,
+.author-badge, .overlay-mood, .overlay-meta, .read-story-cta,
+.header-brand-sub, .sidebar-label, .sb-num, .sb-name, .sb-desc,
+.focus-indicator, .chapter-num-label, .landing-meta,
+.wr-archive-link, .archive-back-link, .hero-badge {
+  font-family: var(--wr-font-ui) !important;
+}
+h1, h2, h3, h4, .brand-title, .brand h1, .landing-title,
+.chapter-title, .featured-title, .epilogue-title,
+.hero-title, .hero-subtitle, .featured-hook, .splash-title,
+.splash-phrase, .story-p, .content-block p, .dialogue-text,
+.thought-dim, .chapter-synopsis, .story-content, .story-content p {
+  font-family: var(--wr-font-reading) !important;
+}
+code, pre, kbd, samp {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace !important;
+}
+
+/* Reading copy has a proper measure and real size, including on small screens. */
+body { font-size: 16px !important; }
+p, li, blockquote, .archive-deck, .featured-description,
+.qa-answer-text, .story-p, .content-block p, .dialogue-text,
+.thought-dim, .chapter-synopsis, .story-content, .story-content p {
+  font-size: 1.0625rem !important;
+  line-height: 1.7 !important;
+}
+.archive-deck, .featured-description, .qa-answer-text,
+.story-p, .content-block p, .dialogue-text, .thought-dim,
+.chapter-synopsis, .story-content, .story-content p {
+  max-width: 62ch !important;
+  color: var(--wr-paper-200) !important;
+}
+.archive-headline {
+  max-width: 900px !important;
+  font: 500 clamp(2.8rem, 6vw, 5.5rem)/.98 var(--wr-font-display) !important;
+  letter-spacing: -.035em !important;
+  text-wrap: balance !important;
+  color: var(--wr-paper-100) !important;
+}
+.archive-headline em, .landing-title, .hero-title, .hero-title .accent {
+  color: var(--wr-paper-100) !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+  text-shadow: none !important;
+}
+.landing-title {
+  font-size: clamp(3.2rem, 6.2vw, 5.2rem) !important;
+  line-height: .98 !important;
+  letter-spacing: -.035em !important;
+  max-width: 100% !important;
+  text-wrap: balance !important;
+}
+.landing-title::before, .landing-title::after { display: none !important; content: none !important; }
+.landing-content { align-items: center; }
+.landing-subtitle, .hero-subtitle {
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem) !important;
+  line-height: 1.35 !important;
+  color: var(--wr-paper-200) !important;
+  letter-spacing: 0 !important;
+}
+.featured-hook { font-size: clamp(1.25rem, 2vw, 1.55rem) !important; }
+.chapter-title, .epilogue-title {
+  font-size: clamp(2.25rem, 5vw, 4rem) !important;
+  line-height: 1.04 !important;
+  text-wrap: balance !important;
+  color: var(--wr-paper-100) !important;
+}
+.header-brand-sub, .sidebar-label, .sb-num, .sb-desc,
+.focus-indicator, .landing-meta, .hero-badge, .archive-back-link,
+.wr-archive-link, .author-badge, .overlay-mood, .overlay-meta,
+.read-story-cta, .bookmark-tag, .bookmark-chapter, .bookmark-percent,
+.stat-label, .catalog-label, .terminal-title, .console-prompt,
+.catalog-line, .chapter-num-label, .curator-tag, .archive-kicker,
+.filter-link, .catalog-results, .featured-meta, .subtitle,
+.footer-contact, footer p {
+  font-size: .8125rem !important;
+  line-height: 1.5 !important;
+  letter-spacing: .015em !important;
+  text-transform: none !important;
+  font-family: var(--wr-font-ui) !important;
+}
+.terminal-title, .console-prompt, .catalog-line, .bookmark-tag {
+  font-family: var(--wr-font-ui) !important;
+  letter-spacing: .01em !important;
+}
+.author-badge { pointer-events: none; }
+.archive-intro-note {
+  border: 0 !important;
+  padding-left: 0 !important;
+}
+.archive-intro-inner { border: 0 !important; }
+.featured-meta { border: 0 !important; }
+.featured-title { color: var(--wr-paper-100) !important; }
+.book-info-footer h3 {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+  text-wrap: balance;
+}
+.book-info-footer p {
+  overflow: visible !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+}
+.chapter-num-label {
+  font-size: .8125rem !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+.chapter-watermark { display: none !important; }
+.hero-badge { background: none !important; border: 0 !important; color: var(--wr-paper-200) !important; }
+::selection { background: var(--wr-cobalt) !important; color: var(--wr-paper-100) !important; }
+
+/* A light entrance on real cover art; no hidden starting state and no reduced-motion trap. */
+@keyframes wr-cover-arrive {
+  from { opacity: .82; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.book-card { animation: wr-cover-arrive .42s var(--wr-ease) both; }
+.book-card:nth-child(2) { animation-delay: 30ms; }
+.book-card:nth-child(3) { animation-delay: 60ms; }
+.book-card:nth-child(4) { animation-delay: 90ms; }
+.book-card:nth-child(5) { animation-delay: 120ms; }
+.book-card:nth-child(6) { animation-delay: 150ms; }
+.book-card:nth-child(7) { animation-delay: 180ms; }
+.book-card:nth-child(8) { animation-delay: 210ms; }
+.book-card:nth-child(9) { animation-delay: 240ms; }
+.book-card:nth-child(10) { animation-delay: 270ms; }
+.book-card:nth-child(11) { animation-delay: 300ms; }
+.book-card:nth-child(12) { animation-delay: 330ms; }
+.book-card:nth-child(13) { animation-delay: 360ms; }
+
+@media (max-width: 600px) {
+  .archive-headline { font-size: clamp(2.15rem, 8.7vw, 3rem) !important; }
+  .archive-intro { padding-inline: var(--wr-page-gutter) !important; }
+  .bookshelf-wrapper { padding-inline: var(--wr-page-gutter) !important; }
+  .landing-title { font-size: clamp(2.35rem, 8.8vw, 3.35rem) !important; }
+  .chapter-title, .epilogue-title { font-size: clamp(2rem, 8vw, 2.8rem) !important; }
+  .story-p, .content-block p, .dialogue-text, .thought-dim,
+  .chapter-synopsis, .story-content, .story-content p {
+    font-size: 1.0625rem !important;
+    line-height: 1.72 !important;
+  }
+  .archive-primary-action { width: 100%; }
+  .book-info-footer { padding: .7rem .55rem !important; }
+  .book-info-footer h3 { font-size: 1rem !important; }
+  .book-info-footer p { font-size: .8125rem !important; }
+  .filter-links { gap: .35rem !important; }
+  .filter-link { font-size: .8125rem !important; padding: .55rem .7rem !important; }
+  .header-actions { flex-wrap: wrap; }
+  .cover-3d { max-width: min(72vw, 260px) !important; }
+}
+
+/* Reduced motion means the finished page, never invisible copy. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  .preloader, #splash-screen, .splash-glow { display: none !important; }
+  .landing-section, .landing-content, .landing-text, .landing-title,
+  .landing-subtitle, .landing-meta, #begin-btn, #scroll-hint,
+  .chapter-section, .chapter-intro-inner, .chapter-section *,
+  .content-block, .content-block *, .story-content, .story-content *,
+  .hero, .hero *, .content-wrapper, .content-wrapper *,
+  .featured-card, .featured-card *, .archive-intro, .archive-intro *,
+  .qa-section, .qa-section *, .book-card, .book-card * {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+}
