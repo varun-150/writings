@@ -1914,13 +1914,13 @@
     <main class="bookshelf-wrapper" id="archive-main">
 
         <!-- Continue Reading Bookmark Ribbon -->
-        <div id="reading-bookmark" class="reading-bookmark">
-            <div class="bookmark-tag">Last Read</div>
-            <h4 class="bookmark-title" id="bookmark-title">Almost</h4>
-            <div class="bookmark-chapter" id="bookmark-chapter">Chapter II</div>
+        <div id="reading-bookmark" class="reading-bookmark hidden" aria-hidden="true">
+            <div class="bookmark-tag"></div>
+            <h4 class="bookmark-title" id="bookmark-title"></h4>
+            <div class="bookmark-chapter" id="bookmark-chapter"></div>
             <div class="bookmark-progress-container">
                 <div class="bookmark-progress-bar" id="bookmark-progress-bar"></div>
-                <span class="bookmark-percent" id="bookmark-percentage">45%</span>
+                <span class="bookmark-percent" id="bookmark-percentage"></span>
             </div>
             <a href="#" class="bookmark-btn" id="bookmark-link">Keep reading</a>
         </div>
@@ -3045,6 +3045,10 @@
                 }
 
                 if (latestProgress && bookmarkEl) {
+                    bookmarkEl.classList.remove("hidden");
+                    bookmarkEl.setAttribute("aria-hidden", "false");
+                    const bookmarkTag = bookmarkEl.querySelector(".bookmark-tag");
+                    if (bookmarkTag) bookmarkTag.textContent = "Last read";
                     if (bookmarkTitle) bookmarkTitle.textContent = latestProgress.title;
                     if (bookmarkChapter) bookmarkChapter.textContent = latestProgress.chapter;
                     if (bookmarkBar) bookmarkBar.style.width = `${latestProgress.percentage}%`;
@@ -3072,7 +3076,8 @@
 
                     bookmarkEl.classList.add('visible');
                 } else if (bookmarkEl) {
-                    bookmarkEl.classList.add('hidden');
+                    bookmarkEl.classList.add("hidden");
+                    bookmarkEl.setAttribute("aria-hidden", "true");
                 }
 
                 // Define global/window helper functions so inline HTML handlers can find them

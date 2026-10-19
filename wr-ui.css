@@ -1880,3 +1880,97 @@ p, li, blockquote, .archive-deck, .featured-description,
     clip-path: none !important;
   }
 }
+
+
+/* Final Taste Skill pass — reading first, decoration second. */
+#particle-canvas, .film-grain, .vignette, .vignette-overlay, .noise-layer,
+.noise-overlay, .cursor-glow, .cursor-ring, .cursor-trail, .custom-cursor,
+.custom-cursor-ring, .focus-indicator, .splash-glow {
+  display: none !important;
+}
+.chapter-num-label, .chapter-watermark, .landing-tag, .archive-kicker, .curator-tag { display: none !important; }
+.stats-header, .stats-footer, .qa-terminal-header, footer, .hero, .chapter-header, .chapter-divider, .prologue-divider {
+  border-top: 0 !important; border-bottom: 0 !important;
+}
+#reading-bookmark.hidden { display: none !important; }
+html body #archive-main *:not(h1,h2,h3,h4,h5,h6,svg,path,img,canvas,pre,code),
+html body #story-wrapper *:not(h1,h2,h3,h4,h5,h6,svg,path,img,canvas,pre,code),
+html body #main-content *:not(h1,h2,h3,h4,h5,h6,svg,path,img,canvas,pre,code) {
+  font-size: max(13px, 1em) !important; letter-spacing: 0 !important; text-transform: none !important;
+}
+html body #story-wrapper p, html body #main-content p,
+html body #story-wrapper li, html body #main-content li,
+html body .story-content p, html body .prologue p,
+html body .chapter-body p, html body .content-block p {
+  font-size: 17px !important; line-height: 1.72 !important; max-width: 62ch !important;
+  color: var(--wr-paper-200) !important;
+}
+html body header .header-brand-sub, html body footer *,
+html body .header-actions *, html body .toc-sidebar * {
+  font-size: max(13px, 1em) !important; letter-spacing: 0 !important;
+}
+.landing-title, html body .landing-title {
+  font-size: clamp(48px, 5.2vw, 78px) !important; line-height: .99 !important;
+  max-width: 100% !important; text-wrap: balance !important; overflow-wrap: normal !important;
+}
+.landing-title::before, .landing-title::after { display: none !important; content: none !important; }
+.scroll-hint, #scroll-hint {
+  position: relative !important; inset: auto !important; left: auto !important; bottom: auto !important;
+  transform: none !important; width: max-content !important; max-width: calc(100% - 40px) !important;
+  margin: 22px auto 0 !important; padding: 0 12px !important;
+  font-size: 13px !important; line-height: 1.45 !important; letter-spacing: 0 !important;
+  text-transform: none !important; white-space: normal !important; text-align: center !important;
+}
+.scroll-hint-line { display: none !important; }
+.landing-section { width: 100% !important; overflow-x: clip !important; }
+.landing-content {
+  width: 100% !important; max-width: 1200px !important; margin-inline: auto !important;
+  padding-inline: clamp(20px, 4vw, 56px) !important; box-sizing: border-box !important;
+}
+.landing-text, .landing-meta, .landing-subtitle { min-width: 0 !important; max-width: 100% !important; overflow-wrap: anywhere; }
+.chapter-title, .epilogue-title {
+  font-size: clamp(36px, 5vw, 64px) !important; line-height: 1.04 !important;
+  text-wrap: balance !important; color: var(--wr-paper-100) !important;
+}
+.archive-intro-note, .archive-intro-inner, .featured-meta { border: 0 !important; }
+.book-info-footer h3 { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; text-wrap: balance; }
+.book-info-footer p { overflow: visible !important; white-space: normal !important; text-overflow: clip !important; }
+.hero-artwork {
+  display: block; width: clamp(112px, 14vw, 172px); aspect-ratio: 2 / 3;
+  margin: 0 auto 1.65rem; overflow: hidden; background: var(--wr-ink-900);
+}
+.hero-artwork img { display: block; width: 100%; height: 100%; object-fit: cover; }
+body .hero {
+  background: var(--wr-ink-950) !important; min-height: 100svh !important; height: auto !important;
+  padding: clamp(5rem, 9vh, 7rem) 24px !important;
+}
+@keyframes wr-reader-arrival { from { opacity: .86; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+.landing-title { animation: wr-reader-arrival .42s ease both; }
+.landing-subtitle { animation: wr-reader-arrival .42s ease 50ms both; }
+.landing-meta { animation: wr-reader-arrival .42s ease 100ms both; }
+.cover-3d { animation: wr-reader-arrival .5s ease 30ms both; }
+#begin-btn, .begin-btn { animation: wr-reader-arrival .42s ease 140ms both; }
+#scroll-hint, .scroll-hint { animation: wr-reader-arrival .42s ease 180ms both; }
+.header-brand-name { animation: wr-reader-arrival .42s ease 70ms both; }
+.header-brand-sub { animation: wr-reader-arrival .42s ease 110ms both; }
+.hero-title { animation: wr-reader-arrival .42s ease both; }
+.hero-subtitle { animation: wr-reader-arrival .42s ease 70ms both; }
+.hero-scroll { animation: wr-reader-arrival .42s ease 140ms both; }
+@media (max-width: 600px) {
+  .landing-content { gap: clamp(20px, 6vw, 36px) !important; }
+  .landing-title { font-size: clamp(38px, 8vw, 52px) !important; }
+  .chapter-title, .epilogue-title { font-size: clamp(32px, 8vw, 46px) !important; }
+  .scroll-hint { margin-top: 24px !important; }
+  .book-info-footer h3 { font-size: max(16px, 1em) !important; }
+  .hero-artwork { width: 112px; margin-bottom: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  #archive-main *, #story-wrapper *, #main-content *, .landing-section *,
+  .chapter-section *, .chapter-intro *, .chapter-intro-inner *, .hero *,
+  .content-wrapper *, .story-content *, .content-block *, .chapter-body *,
+  .featured-card *, .archive-intro *, .qa-section *, .book-card * {
+    opacity: 1 !important; visibility: visible !important; transform: none !important;
+    filter: none !important; clip-path: none !important;
+  }
+}

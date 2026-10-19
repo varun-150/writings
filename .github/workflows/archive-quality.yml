@@ -52,8 +52,13 @@ jobs:
             if [ "$page" = "index.html" ]; then widths="1440,768,390"; fi
             out=".taste-skill/inspect/$slug"
             mkdir -p "$out"
+            # The archive page must carry its visual collection. Individual story pages are
+            # long-form reading experiences: one authored cover and no decorative stock video
+            # is an intentional editorial decision, not an unfinished campaign landing page.
+            allow=""
+            if [ "$page" != "index.html" ]; then allow="--allow few-pictures,no-footage"; fi
             echo "::group::Taste Skill: $page ($widths)"
-            node .taste-skill-engine/skills/taste-skill/scripts/inspect.mjs "$page" --out "$out" --widths "$widths" --json > "$out/report.json" 2>&1
+            node .taste-skill-engine/skills/taste-skill/scripts/inspect.mjs "$page" --out "$out" --widths "$widths" --json $allow > "$out/report.json" 2>&1
             result=$?
             cat "$out/report.json"
             if [ "$result" -ne 0 ]; then
