@@ -1596,3 +1596,98 @@ body:has(.content-wrapper)::before {
 /* No loader gate and no JS-dependent hidden copy: the reader is usable from first paint. */
 .preloader { display: none !important; }
 .landing-tag, .landing-subtitle, .landing-meta, #begin-btn, #scroll-hint { opacity: 1; transform: none; }
+
+
+/* Taste Skill round 2 — immediate editorial archive, not a loading screen. */
+.archive-intro {
+  background-image: radial-gradient(ellipse 48% 62% at 83% 6%, rgba(var(--wr-cobalt-rgb), .16), transparent 72%) !important;
+}
+.archive-intro-inner { grid-template-columns: minmax(0,1fr) minmax(190px,260px) !important; align-items:end; }
+.archive-intro-copy { max-width:100%; }
+.archive-headline {
+  max-width:none !important;
+  font:500 clamp(3.6rem,9.5vw,8rem)/.91 var(--wr-font-display) !important;
+  letter-spacing:-.045em !important; color:var(--wr-paper-100) !important; text-wrap:balance;
+}
+.archive-headline em { color:inherit !important; font-style:normal !important; }
+.archive-deck {
+  max-width:56ch !important; font-size:clamp(1rem,1.25vw,1.15rem) !important;
+  line-height:1.65 !important; color:var(--wr-paper-200) !important; margin-top:1.1rem !important;
+}
+.archive-primary-action {
+  min-height:48px; margin-top:1.35rem; padding:.85rem 1.25rem; display:inline-flex;
+  align-items:center; justify-content:center; width:fit-content; background:var(--wr-cobalt) !important;
+  color:var(--wr-paper-100) !important; border:0; border-radius:0; font:600 .85rem/1.2 var(--wr-font-ui);
+  text-decoration:none; transition:background-color var(--wr-duration) var(--wr-ease), color var(--wr-duration) var(--wr-ease), transform var(--wr-duration) var(--wr-ease);
+}
+.archive-primary-action:hover { background:var(--wr-cobalt-light) !important; transform:translateY(-2px); }
+.archive-primary-action:focus-visible { outline:2px solid var(--wr-cobalt-light) !important; outline-offset:4px !important; }
+.archive-intro-note {
+  align-self:end; padding:.7rem 0 .1rem 1.15rem !important; font:400 .9rem/1.6 var(--wr-font-ui) !important;
+  border-left:2px solid var(--wr-cobalt) !important;
+}
+.archive-intro-note strong { display:block; font-size:1.2rem !important; margin-bottom:.2rem; }
+.archive-catalog-controls { align-items:start; gap:clamp(1.5rem,4vw,3rem) !important; }
+.catalog-label {
+  display:block; margin:0 0 .9rem; color:var(--wr-paper-100) !important;
+  font:500 clamp(1.5rem,2.1vw,2rem)/1.1 var(--wr-font-display) !important;
+  letter-spacing:-.02em !important; text-transform:none !important;
+}
+.filter-links { gap:.2rem .6rem !important; }
+.filter-link {
+  min-height:44px; display:inline-flex; align-items:center; justify-content:center; padding:.55rem .7rem !important;
+  border:0 !important; border-bottom:2px solid transparent !important; border-radius:0 !important;
+  background:transparent !important; color:var(--wr-text-muted) !important;
+  font:500 .82rem/1.35 var(--wr-font-ui) !important; letter-spacing:0 !important; text-align:left;
+}
+.filter-link.active, .filter-link[aria-pressed="true"] {
+  background:transparent !important; border-color:transparent transparent var(--wr-cobalt-light) !important;
+  color:var(--wr-paper-100) !important; box-shadow:none !important;
+}
+.filter-link:hover { background:transparent !important; border-color:transparent transparent rgba(var(--wr-cobalt-light-rgb),.7) !important; color:var(--wr-cobalt-light) !important; }
+.filter-link::before { content:none !important; }
+.archival-stats-card {
+  background:var(--wr-ink-900) !important; border:0 !important; border-radius:0 !important;
+  box-shadow:none !important; font-family:var(--wr-font-ui) !important; font-size:.84rem !important; padding:1.25rem !important;
+}
+.stats-header {
+  text-align:left !important; color:var(--wr-paper-100) !important; border:0 !important; padding:0 !important;
+  margin:0 0 1rem !important; font:500 1.2rem/1.15 var(--wr-font-display) !important;
+  letter-spacing:0 !important; text-transform:none !important;
+}
+.stat-val { color:var(--wr-paper-100) !important; font:500 clamp(1.25rem,2vw,1.8rem)/1.1 var(--wr-font-display) !important; }
+.stat-label { color:var(--wr-text-dim) !important; font:500 .7rem/1.35 var(--wr-font-ui) !important; letter-spacing:.06em !important; }
+.stats-footer { color:var(--wr-text-dim) !important; font:400 .76rem/1.5 var(--wr-font-ui) !important; }
+.featured-card {
+  background-color:var(--wr-ink-900) !important;
+  background-image:radial-gradient(ellipse 64% 88% at 0% 50%, rgba(var(--wr-cobalt-rgb),.17), transparent 70%) !important;
+  border:0 !important; border-radius:0 !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important; box-shadow:none !important;
+}
+.featured-card:hover { box-shadow:none !important; }
+.featured-cover-container { border-radius:0 !important; box-shadow:none !important; }
+.featured-cover-container img { filter:saturate(.9) brightness(.96) !important; }
+.curator-tag { display:none !important; }
+.featured-hook { border-left:2px solid var(--wr-cobalt) !important; padding-left:1rem; }
+.book-card {
+  background:transparent !important; border:0 !important; border-radius:0 !important; box-shadow:none !important;
+  text-decoration:none !important; color:inherit !important; outline-offset:5px !important;
+}
+.book-card:hover, .book-card:focus-visible, .book-card:focus-within { border:0 !important; box-shadow:none !important; }
+.book-cover-container { border-radius:0 !important; }
+.book-cover-container img { transition:transform .55s var(--wr-ease), filter .55s var(--wr-ease) !important; }
+.book-card:hover .book-cover-container img, .book-card:focus-visible .book-cover-container img { transform:scale(1.025); filter:brightness(.92) !important; }
+.book-info-footer { padding-inline:0 !important; }
+.book-info-footer h3 { color:var(--wr-paper-100) !important; }
+.book-info-footer p { color:var(--wr-text-muted) !important; }
+.book-card .begin-btn { display:inline-flex; width:fit-content; min-height:40px; margin-top:.65rem; padding:.6rem .8rem !important; font-size:.7rem !important; }
+@media (max-width:720px) {
+  .archive-intro { padding-top:2rem !important; }
+  .archive-intro-inner { grid-template-columns:minmax(0,1fr) !important; gap:1.4rem !important; }
+  .archive-headline { font-size:clamp(2.65rem,9.2vw,3.5rem) !important; max-width:100% !important; line-height:.98 !important; }
+  .archive-intro-note { border-left:0 !important; border-top:1px solid var(--wr-line-strong) !important; padding:.8rem 0 0 !important; }
+  .featured-card { grid-template-columns:minmax(0,1fr) !important; }
+  .featured-cover-container { max-width:min(100%,300px) !important; margin-inline:auto !important; }
+  .archive-catalog-controls { grid-template-columns:minmax(0,1fr) !important; }
+  .filter-links { gap:.2rem .4rem !important; }
+}
+@media (prefers-reduced-motion:reduce) { .archive-primary-action, .book-cover-container img { transition:none !important; } }
