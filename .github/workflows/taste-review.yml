@@ -47,6 +47,7 @@ jobs:
           node "$RUNNER_TEMP/taste-skill/skills/taste-skill/scripts/lint.mjs" index.html wr-ui.css story-cinematic.css story-cinematic.js --json > .taste-skill-lint.json || true
           node -e "const r=require('./.taste-skill-lint.json'); console.log('Taste Skill lint scanned '+r.files+' files; FAIL=' + r.findings.filter(x=>x.level==='FAIL').length + ', WARN=' + r.findings.filter(x=>x.level==='WARN').length); for(const x of r.findings.slice(0,30)) console.log(x.level+' '+x.id+' '+x.file+':'+x.line+' '+x.message)"
       - name: Run rendered Taste Skill inspection on every page
+        if: always()
         id: inspect
         continue-on-error: true
         run: |
