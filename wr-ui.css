@@ -1113,3 +1113,57 @@ body[data-chapter-theme] { --wr-accent: var(--accent); }
   .book-card:hover .book-cover-container img { transform: none !important; }
   .book-card .card-overlay.library-catalog-card { opacity: 0; }
 }
+
+
+/* Neutral loading state, including pages that used to hard-code colored loaders. */
+.preloader {
+  background: var(--wr-bg) !important;
+  color: var(--wr-text) !important;
+}
+.preloader-title {
+  color: var(--wr-text-strong) !important;
+  font: 500 clamp(1.2rem, 2.5vw, 1.8rem)/1.2 var(--wr-font-display) !important;
+  letter-spacing: .2em !important;
+}
+.preloader-line { background: var(--wr-line-strong) !important; }
+.preloader-sub {
+  color: var(--wr-text-dim) !important;
+  font: 600 .61rem/1.5 var(--wr-font-ui) !important;
+  letter-spacing: .17em !important;
+}
+
+/* Midnight Escape's previous colored pseudo-gradient is disabled until brand colors are finalized. */
+body:has(.content-wrapper) {
+  --accent-rgba-05: rgba(243,241,234,.025);
+  --accent-dark-rgba-05: rgba(243,241,234,.015);
+}
+body:has(.content-wrapper)::before { background: none !important; }
+.btn-font {
+  min-height: 44px !important;
+  padding: 0 .9rem !important;
+  border: 1px solid var(--wr-line) !important;
+  border-radius: 999px !important;
+  background: rgba(255,255,255,.025) !important;
+  color: var(--wr-text-muted) !important;
+  font: 600 .66rem/1.4 var(--wr-font-ui) !important;
+  letter-spacing: .07em;
+}
+.btn-font:hover, .btn-font[aria-pressed="true"] {
+  border-color: var(--wr-line-strong) !important;
+  background: rgba(255,255,255,.06) !important;
+  color: var(--wr-text-strong) !important;
+}
+.noscript-warn {
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--wr-line-strong);
+  border-radius: var(--wr-radius-md);
+  background: var(--wr-surface);
+  color: var(--wr-text-strong);
+  font: .9rem/1.6 var(--wr-font-ui);
+}
+@media (max-width: 600px) {
+  .glass-header .archive-back-link span { display: inline; }
+  .header-actions { gap: .4rem !important; }
+  .header-title { max-width: 34% !important; }
+}
