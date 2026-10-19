@@ -4,16 +4,19 @@
 
 **Working concept:** The Folio — a quiet, editorial story archive with cinematic depth. The interface gives the stories the strongest visual voice; navigation and controls remain calm, direct, and readable.
 
-The color gradient is intentionally not selected yet. The current default is a neutral graphite/off-white surface so the future WR gradient can be introduced centrally without rewriting page components.
+The WR brand palette is **70% black, 20% milk white, and 10% cobalt blue**. Black owns the canvas and primary surfaces; milk white carries typography, separators, and editorial contrast; cobalt is reserved for actionable states and shader-like blue illumination. The full brand gradient can still be supplied later and will be wired through the shared tokens.
 
 ## Token architecture
 
 ```css
 /* Primitive values */
---wr-ink-950: #080908;
---wr-ink-900: #0d0e0d;
---wr-paper-100: #f3f1ea;
---wr-paper-200: #e8e5dc;
+--wr-ink-950: #050608;
+--wr-ink-900: #090b10;
+--wr-paper-100: #f5f2e8;
+--wr-paper-200: #eae7dd;
+--wr-cobalt: #0047ab;
+--wr-cobalt-light: #2f6bff;
+--wr-shader-glow: rgba(0, 71, 171, .22);
 
 /* Semantic aliases */
 --wr-bg: var(--wr-ink-950);
@@ -52,15 +55,15 @@ Long-form paragraphs are constrained to a comfortable measure. Headings scale wi
 - The shared Lenis reader loop runs through the GSAP ticker once; reading progress is optional and storage failures must not prevent reading.
 - Story cards remain readable on touch screens; no hover-only content is required to identify the story.
 
-## Gradient handoff
+## Palette and shader lighting
 
-When the WR gradient is supplied, set it at the top of `wr-ui.css`:
+The palette is applied through `wr-ui.css` and the shared particle engine:
 
-- `--wr-gradient`: the site/hero background treatment.
-- `--wr-accent`: the primary accent for controls and small emphasis.
-- `--wr-glow`: low-opacity ambient light, if desired.
+- **70% black:** page canvases, story surfaces, navigation, and deep panels (`--wr-bg`, `--wr-ink-*`).
+- **20% milk white:** primary and secondary reading text, labels, dividers, and editorial contrast (`--wr-paper-*`).
+- **10% cobalt blue:** active filters, primary actions, progress, focus, small rules, borders, and controlled shader-like light (`--wr-cobalt`, `--wr-cobalt-light`, `--wr-shader-glow`).
 
-Keep text and controls mapped to semantic tokens instead of adding one-off hex values to page rules. Check contrast for both the gradient's lightest and darkest regions before release.
+The shader-style blue illumination uses layered radial light and cobalt particle glow—not a fourth hue or a full-page saturated wash. The full custom WR gradient is still pending; `--wr-gradient` remains a single central handoff point. Keep text and controls mapped to semantic tokens and check contrast before changing the gradient.
 
 ## Verification status
 
