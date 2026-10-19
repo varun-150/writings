@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>M i d n i g h t</title>
+<title>Midnight Escape — WR | Interactive Story</title>
 <meta name="description" content="E s c a p e — Freedom Was Never the Destination. - A premium reading experience">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -670,6 +670,9 @@ body.font-large {
     }
 }
 </style>
+    <link rel="stylesheet" href="wr-ui.css">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#080908">
 </head>
 <body>
 <noscript>
@@ -681,6 +684,7 @@ body.font-large {
 <span class="header-logo">WR Stories</span>
 <span class="header-title">M i d n i g h t</span>
 <div class="header-actions" role="navigation" aria-label="Font Controls">
+<a class="wr-archive-link" href="index.html" aria-label="Return to all stories">← All stories</a>
 <button class="btn-font" onclick="setFont('small')" aria-label="Decrease font size">A-</button>
 <button class="btn-font" onclick="setFont('normal')" aria-label="Reset font size">A</button>
 <button class="btn-font" onclick="setFont('large')" aria-label="Increase font size">A+</button>
@@ -700,7 +704,7 @@ body.font-large {
 <li class="toc-item"><a href="#prologue" class="toc-link">Prologue</a></li>
 </ul>
 </div>
-<main id="main-content" role="main" class="content-wrapper">
+<main id="main-content" role="main" class="content-wrapper" tabindex="-1">
 <div class="reading-area">
 <div class="chapter-header" id="prologue">
 <div class="chapter-eyebrow">NARRATIVE</div>

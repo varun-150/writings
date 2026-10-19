@@ -13,18 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. LENIS SMOOTH SCROLL
     // --------------------------------------------------------
     const lenis = new Lenis({
-        duration: 1.6,
+        duration: prefersReducedMotion ? 0.01 : 1.15,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 1.5,
+        smoothWheel: !prefersReducedMotion,
+        touchMultiplier: 1.25,
         infinite: false,
     });
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+    // Lenis is advanced by the GSAP ticker below; do not start a second RAF loop.
 
     // Save reading progress to localStorage
     const pathParts = window.location.pathname.split('/');
@@ -51,14 +47,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const titleEl = document.querySelector('.landing-title');
         const storyTitle = titleEl ? titleEl.textContent.trim() : document.title.split('—')[0].split('|')[0].trim();
         
-        localStorage.setItem(`wr-progress-${storyId}`, JSON.stringify({
-            id: storyId,
-            title: storyTitle,
-            percentage: progress,
-            chapter: activeChapterTitle,
-            url: window.location.href,
-            timestamp: Date.now()
-        }));
+        try {
+            localStorage.setItem(`wr-progress-${storyId}`, JSON.stringify({
+                id: storyId,
+                title: storyTitle,
+                percentage: progress,
+                chapter: activeChapterTitle,
+                url: window.location.href,
+                timestamp: Date.now()
+            }));
+        } catch (error) {
+            // Reading progress is optional; private browsing/storage restrictions must not break reading.
+        }
     });
 
     // Sync GSAP ScrollTrigger with Lenis

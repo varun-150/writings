@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Almost — Act I | Romance & Calmness</title>
     <meta name="description" content="An INFJ Relationship That Failed Perfectly. A story about safety in shared silence.">
-    <meta name="theme-color" content="#050504">
+    <meta name="theme-color" content="#080908">
 
     <!-- Fonts (preconnect for speed) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,8 +13,11 @@
 
     <!-- Design System -->
     <link rel="stylesheet" href="story-cinematic.css">
+    <link rel="stylesheet" href="wr-ui.css">
+    <meta name="color-scheme" content="dark">
 </head>
 <body>
+    <a class="skip-link" href="#landing">Skip to story introduction</a>
 
     <!-- ============================================ -->
     <!-- PRELOADER                                    -->
@@ -184,6 +187,10 @@
         </nav>
 
         <div class="header-controls">
+            <a href="index.html" class="archive-back-link" title="Back to the WR story archive" aria-label="Back to all stories">
+                <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+                <span>All stories</span>
+            </a>
             <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode" aria-label="Toggle focus reading mode">
                 <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
                 <svg class="icon-focus-off icon-hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
@@ -414,7 +421,7 @@
     <!-- ============================================ -->
     <!-- LANDING EXPERIENCE                           -->
     <!-- ============================================ -->
-    <section class="landing-section" id="landing" aria-label="Story introduction">
+    <section class="landing-section" id="landing" tabindex="-1" aria-label="Story introduction">
         <div class="landing-ambient" aria-hidden="true"></div>
 
         <div class="landing-content">

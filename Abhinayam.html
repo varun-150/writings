@@ -7,7 +7,7 @@
     <title>Abhinayam — Act I | The Echo Of A Previous Life</title>
     <meta name="description"
         content="An award-winning interactive digital novel. Experience the story of a Gopika whose love for Krishna transcends lifetimes, told through cinematic scroll-driven storytelling.">
-    <meta name="theme-color" content="#050504">
+    <meta name="theme-color" content="#080908">
 
     <!-- Fonts (preconnect for speed) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1804,9 +1804,12 @@
             color: var(--text-hero);
         }
     </style>
+    <link rel="stylesheet" href="wr-ui.css">
+    <meta name="color-scheme" content="dark">
 </head>
 
 <body>
+    <a class="skip-link" href="#landing">Skip to story introduction</a>
 
     <!-- ============================================ -->
     <!-- PRELOADER                                    -->
@@ -1877,6 +1880,10 @@
         </nav>
 
         <div class="header-controls">
+            <a href="index.html" class="archive-back-link" title="Back to the WR story archive" aria-label="Back to all stories">
+                <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"></path><path d="m12 19-7-7 7-7"></path></svg>
+                <span>All stories</span>
+            </a>
             <button id="focus-btn" class="control-btn" title="Toggle Focus Reading Mode"
                 aria-label="Toggle focus reading mode">
                 <svg class="icon-focus-on" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -1943,14 +1950,14 @@
     <!-- ============================================ -->
     <!-- LANDING EXPERIENCE                           -->
     <!-- ============================================ -->
-    <section class="landing-section" id="landing" aria-label="Story introduction">
+    <section class="landing-section" id="landing" tabindex="-1" aria-label="Story introduction">
         <div class="landing-ambient" aria-hidden="true"></div>
 
         <div class="landing-content">
             <!-- Book Cover with 3D Parallax -->
             <div class="cover-wrapper">
                 <div class="cover-3d" id="cover-3d">
-                    <img src="new cover/Abhinayam.png" alt="Abhinayam — The Gopika Who Returned — Book Cover"
+                    <img src="New cover/Abhinayam.png" alt="Abhinayam — The Gopika Who Returned — Book Cover"
                         id="cover-img">
                     <div class="cover-sheen" aria-hidden="true"></div>
                 </div>
