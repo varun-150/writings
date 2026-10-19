@@ -38,9 +38,9 @@ The site is more than a list of documents. It combines the archive with a purpos
 
 ## Shared interface system
 
-The shared design layer lives in `wr-ui.css`. It contains the primitive, semantic, and component tokens for typography, spacing, surfaces, borders, focus states, and responsive behavior. The current base palette is intentionally neutral while the final WR brand gradient is being decided.
+The shared design layer lives in `wr-ui.css`. It contains the primitive, semantic, and component tokens for typography, spacing, surfaces, borders, focus states, and responsive behavior.
 
-To apply the future gradient, start with the `--wr-gradient`, `--wr-accent`, and `--wr-glow` tokens near the top of `wr-ui.css`. Avoid adding one-off colors to individual pages.
+**Brand palette:** 70% black, 20% milk white, 10% cobalt blue. Cobalt is used for active navigation, buttons, progress, focus states, subtle edge lighting, and shader-like radial illumination. The shared story particles now use the cobalt shader color too. The custom WR gradient can be added later through `--wr-gradient`, `--wr-accent`, and `--wr-shader-glow`; avoid one-off colors in individual pages.
 
 The shared cinematic reading engine remains in:
 

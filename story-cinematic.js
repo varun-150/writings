@@ -252,29 +252,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
     let particles = [];
-    let particleColor = { r: 201, g: 165, b: 90 }; // Default gold
-    let targetParticleColor = { r: 201, g: 165, b: 90 };
+    let particleColor = { r: 61, g: 120, b: 255 }; // Default cobalt shader blue
+    let targetParticleColor = { r: 61, g: 120, b: 255 };
     let particleAnimFrame = null;
 
     // Chapter particle configs
     const chapterParticles = {
-        landing:  { r: 201, g: 165, b: 90,  count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.4 },
-        sunset:   { r: 224, g: 112, b: 80,  count: 50, sizeMax: 3,   drift: 0.2,  opacityMax: 0.35 },
-        midnight: { r: 90,  g: 106, b: 240, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.45 },
-        cosmic:   { r: 192, g: 128, b: 240, count: 60, sizeMax: 2.5, drift: 0.12, opacityMax: 0.5 },
-        gold:     { r: 232, g: 168, b: 32,  count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
-        lavender: { r: 168, g: 136, b: 224, count: 40, sizeMax: 2.2, drift: 0.1,  opacityMax: 0.42 },
-        calmness: { r: 80,  g: 179, b: 224, count: 40, sizeMax: 2.2, drift: 0.1,  opacityMax: 0.42 },
-        romance:  { r: 224, g: 80,  b: 166, count: 45, sizeMax: 2.5, drift: 0.15, opacityMax: 0.40 },
-        tension:  { r: 224, g: 80,  b: 80,  count: 50, sizeMax: 3,   drift: 0.22, opacityMax: 0.35 },
-        fear:     { r: 144, g: 144, b: 156, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.45 },
-        sadness:  { r: 80,  g: 120, b: 224, count: 40, sizeMax: 2.5, drift: 0.1,  opacityMax: 0.45 },
-        instability: { r: 224, g: 224, b: 80, count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
-        violence: { r: 224, g: 48,  b: 48,  count: 50, sizeMax: 3.2, drift: 0.25, opacityMax: 0.40 },
-        curiosity: { r: 80,  g: 224, b: 179, count: 40, sizeMax: 2.2, drift: 0.12, opacityMax: 0.45 },
-        release:  { r: 139, g: 162, b: 176, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.40 },
-        resolution: { r: 201, g: 165, b: 90,  count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.40 },
-        isolation: { r: 136, g: 136, b: 156, count: 30, sizeMax: 2,   drift: 0.05, opacityMax: 0.45 }
+        landing:  { r: 61, g: 120, b: 255,  count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.4 },
+        sunset:   { r: 61, g: 120, b: 255,  count: 50, sizeMax: 3,   drift: 0.2,  opacityMax: 0.35 },
+        midnight: { r: 61, g: 120, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.45 },
+        cosmic:   { r: 61, g: 120, b: 255, count: 60, sizeMax: 2.5, drift: 0.12, opacityMax: 0.5 },
+        gold:     { r: 61, g: 120, b: 255,  count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
+        lavender: { r: 61, g: 120, b: 255, count: 40, sizeMax: 2.2, drift: 0.1,  opacityMax: 0.42 },
+        calmness: { r: 61, g: 120, b: 255, count: 40, sizeMax: 2.2, drift: 0.1,  opacityMax: 0.42 },
+        romance:  { r: 61, g: 120, b: 255, count: 45, sizeMax: 2.5, drift: 0.15, opacityMax: 0.40 },
+        tension:  { r: 61, g: 120, b: 255,  count: 50, sizeMax: 3,   drift: 0.22, opacityMax: 0.35 },
+        fear:     { r: 61, g: 120, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.45 },
+        sadness:  { r: 61, g: 120, b: 255, count: 40, sizeMax: 2.5, drift: 0.1,  opacityMax: 0.45 },
+        instability: { r: 61, g: 120, b: 255, count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
+        violence: { r: 61, g: 120, b: 255,  count: 50, sizeMax: 3.2, drift: 0.25, opacityMax: 0.40 },
+        curiosity: { r: 61, g: 120, b: 255, count: 40, sizeMax: 2.2, drift: 0.12, opacityMax: 0.45 },
+        release:  { r: 61, g: 120, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.40 },
+        resolution: { r: 61, g: 120, b: 255,  count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.40 },
+        isolation: { r: 61, g: 120, b: 255, count: 30, sizeMax: 2,   drift: 0.05, opacityMax: 0.45 }
     };
 
     function initParticles() {
