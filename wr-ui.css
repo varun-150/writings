@@ -1974,3 +1974,13 @@ body .hero {
     filter: none !important; clip-path: none !important;
   }
 }
+
+
+/* Chapter navigation uses visible numerals; tooltips are not page content. */
+.chapter-dot .dot-tooltip { display: none !important; }
+.chapter-dot .dot-label { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+.chapter-dot { min-width: 32px; min-height: 32px; }
+@media (prefers-reduced-motion: reduce) {
+  .chapter-dot .dot-tooltip { display: none !important; }
+  .chapter-dot .dot-label { opacity: 1 !important; visibility: visible !important; transform: none !important; }
+}
