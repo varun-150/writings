@@ -258,23 +258,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Chapter particle configs
     const chapterParticles = {
-        landing:  { r: 47, g: 107, b: 255,  count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.4 },
-        sunset:   { r: 47, g: 107, b: 255,  count: 50, sizeMax: 3,   drift: 0.2,  opacityMax: 0.35 },
-        midnight: { r: 47, g: 107, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.45 },
-        cosmic:   { r: 47, g: 107, b: 255, count: 60, sizeMax: 2.5, drift: 0.12, opacityMax: 0.5 },
-        gold:     { r: 47, g: 107, b: 255,  count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
-        lavender: { r: 47, g: 107, b: 255, count: 40, sizeMax: 2.2, drift: 0.1,  opacityMax: 0.42 },
-        calmness: { r: 47, g: 107, b: 255, count: 40, sizeMax: 2.2, drift: 0.1,  opacityMax: 0.42 },
-        romance:  { r: 47, g: 107, b: 255, count: 45, sizeMax: 2.5, drift: 0.15, opacityMax: 0.40 },
-        tension:  { r: 47, g: 107, b: 255,  count: 50, sizeMax: 3,   drift: 0.22, opacityMax: 0.35 },
-        fear:     { r: 47, g: 107, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.45 },
-        sadness:  { r: 47, g: 107, b: 255, count: 40, sizeMax: 2.5, drift: 0.1,  opacityMax: 0.45 },
-        instability: { r: 47, g: 107, b: 255, count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
-        violence: { r: 47, g: 107, b: 255,  count: 50, sizeMax: 3.2, drift: 0.25, opacityMax: 0.40 },
-        curiosity: { r: 47, g: 107, b: 255, count: 40, sizeMax: 2.2, drift: 0.12, opacityMax: 0.45 },
-        release:  { r: 47, g: 107, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.40 },
-        resolution: { r: 47, g: 107, b: 255,  count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.40 },
-        isolation: { r: 47, g: 107, b: 255, count: 30, sizeMax: 2,   drift: 0.05, opacityMax: 0.45 }
+        landing:  { r: 61, g: 120, b: 255,  count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.4 },
+        sunset:   { r: 61, g: 120, b: 255,  count: 50, sizeMax: 3,   drift: 0.2,  opacityMax: 0.35 },
+        midnight: { r: 61, g: 120, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.45 },
+        cosmic:   { r: 61, g: 120, b: 255, count: 60, sizeMax: 2.5, drift: 0.12, opacityMax: 0.5 },
+        gold:     { r: 61, g: 120, b: 255,  count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
+        lavender: { r: 61, g: 120, b: 255, count: 40, sizeMax: 2.2, drift: 0.1,  opacityMax: 0.42 },
+        calmness: { r: 61, g: 120, b: 255, count: 40, sizeMax: 2.2, drift: 0.1,  opacityMax: 0.42 },
+        romance:  { r: 61, g: 120, b: 255, count: 45, sizeMax: 2.5, drift: 0.15, opacityMax: 0.40 },
+        tension:  { r: 61, g: 120, b: 255,  count: 50, sizeMax: 3,   drift: 0.22, opacityMax: 0.35 },
+        fear:     { r: 61, g: 120, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.45 },
+        sadness:  { r: 61, g: 120, b: 255, count: 40, sizeMax: 2.5, drift: 0.1,  opacityMax: 0.45 },
+        instability: { r: 61, g: 120, b: 255, count: 45, sizeMax: 2.8, drift: 0.18, opacityMax: 0.38 },
+        violence: { r: 61, g: 120, b: 255,  count: 50, sizeMax: 3.2, drift: 0.25, opacityMax: 0.40 },
+        curiosity: { r: 61, g: 120, b: 255, count: 40, sizeMax: 2.2, drift: 0.12, opacityMax: 0.45 },
+        release:  { r: 61, g: 120, b: 255, count: 35, sizeMax: 2,   drift: 0.08, opacityMax: 0.40 },
+        resolution: { r: 61, g: 120, b: 255,  count: 40, sizeMax: 2.5, drift: 0.15, opacityMax: 0.40 },
+        isolation: { r: 61, g: 120, b: 255, count: 30, sizeMax: 2,   drift: 0.05, opacityMax: 0.45 }
     };
 
     function initParticles() {
