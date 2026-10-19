@@ -149,8 +149,8 @@
           renderSession(data.session);
           showMessage("Account created and signed in.", "success");
         } else {
-          showMessage("Account request received. Check your email to confirm the account before signing in.", "success");
           setMode("signin");
+          showMessage("Account request received. Check your email to confirm the account before signing in.", "success");
         }
       } else if (mode === "recovery") {
         const { error } = await client.auth.updateUser({ password });
