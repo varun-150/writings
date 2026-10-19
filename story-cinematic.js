@@ -252,8 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas ? canvas.getContext('2d') : null;
     let particles = [];
-    let particleColor = { r: 201, g: 165, b: 90 }; // Default gold
-    let targetParticleColor = { r: 201, g: 165, b: 90 };
+    let particleColor = { r: 61, g: 120, b: 255 }; // Default cobalt shader blue
+    let targetParticleColor = { r: 61, g: 120, b: 255 };
     let particleAnimFrame = null;
 
     // Chapter particle configs
