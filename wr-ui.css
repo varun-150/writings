@@ -565,7 +565,7 @@ body > header:not(.glass-header) {
 #splash-screen {
   background: var(--wr-bg) !important;
   background-image: none !important;
-  transition: opacity .8s var(--wr-ease), visibility .8s;
+  transition: opacity .28s var(--wr-ease), visibility .28s;
 }
 .splash-glow { display:none !important; }
 .splash-brand {
@@ -1208,7 +1208,7 @@ body[data-chapter-theme="lavender"] {
 
 
 /* Story cards are keyboard links. Keep hidden overlays out of the tab order. */
-.book-card[role="link"] { cursor: pointer; }
+.book-card { cursor: pointer; color: inherit !important; text-decoration: none !important; }
 .book-card .card-overlay { visibility: hidden; }
 .book-card:hover .card-overlay,
 .book-card:focus-within .card-overlay {
@@ -1596,3 +1596,18 @@ body:has(.content-wrapper)::before {
 /* No loader gate and no JS-dependent hidden copy: the reader is usable from first paint. */
 .preloader { display: none !important; }
 .landing-tag, .landing-subtitle, .landing-meta, #begin-btn, #scroll-hint { opacity: 1; transform: none; }
+
+
+/* Fast cinematic mark, never a reading gate. */
+.splash-brand, .splash-title, .splash-phrase {
+  animation-duration: .18s !important;
+  animation-delay: 0s !important;
+}
+.book-card:focus-visible {
+  outline: 2px solid var(--wr-focus) !important;
+  outline-offset: 4px !important;
+}
+.archive-primary-action:focus-visible {
+  outline: 2px solid var(--wr-focus) !important;
+  outline-offset: 4px !important;
+}
