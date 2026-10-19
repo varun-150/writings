@@ -1068,3 +1068,48 @@ body:has(.content-wrapper) header {
   }
   .cover-3d { transform:none !important; }
 }
+
+
+/* Preserve the chapter engine's mood changes while keeping the base brand neutral. */
+:root {
+  --bg-primary: var(--wr-bg);
+  --bg-gradient: var(--wr-gradient);
+  --text-hero: var(--wr-text-strong);
+  --text-primary: var(--wr-text);
+  --text-secondary: var(--wr-text-dim);
+  --text-muted: var(--wr-text-dim);
+  --accent: var(--wr-accent);
+  --accent-bright: var(--wr-accent);
+  --accent-dim: var(--wr-text-dim);
+  --accent-rgb: 216, 213, 203;
+  --accent-glow: var(--wr-glow);
+  --accent-whisper: rgba(243, 241, 234, .03);
+}
+body {
+  --wr-accent: var(--accent, #d8d5cb);
+  background-color: var(--bg-primary, var(--wr-bg)) !important;
+  background-image: var(--bg-gradient, var(--wr-gradient)) !important;
+  color: var(--text-primary, var(--wr-text)) !important;
+}
+body:has(.bookshelf-wrapper) {
+  --accent: var(--wr-accent);
+  --accent-bright: var(--wr-accent);
+  --accent-dim: var(--wr-text-dim);
+  --accent-rgb: 216, 213, 203;
+  --accent-glow: var(--wr-glow);
+}
+body[data-chapter-theme] { --wr-accent: var(--accent); }
+.chapter-section { background: rgba(255,255,255,.008) !important; }
+.chapter-section:nth-child(even) { background: rgba(255,255,255,.018) !important; }
+
+/* Guarded contrast and layout details for interactive catalog components */
+.book-card[hidden] { display: none !important; }
+#story-search-input { accent-color: var(--wr-text-strong); }
+.catalog-results { margin: 0; }
+.archive-back-link svg { flex: 0 0 auto; }
+.wr-archive-link { white-space: nowrap; }
+@media (hover: none) {
+  .book-card:hover { transform: none !important; }
+  .book-card:hover .book-cover-container img { transform: none !important; }
+  .book-card .card-overlay.library-catalog-card { opacity: 0; }
+}
