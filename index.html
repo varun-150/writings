@@ -2410,10 +2410,11 @@
 
     <script>
         // Initialize Lenis Smooth Scroll
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const lenis = new Lenis({
-            duration: 1.2,
+            duration: prefersReducedMotion ? 0.01 : 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothWheel: true,
+            smoothWheel: !prefersReducedMotion,
             touchMultiplier: 1.2,
             infinite: false,
         });
@@ -2431,7 +2432,7 @@
         const cursorRing = document.getElementById('cursor-ring');
         let mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
-        if (window.matchMedia("(pointer: fine)").matches) {
+        if (window.matchMedia("(pointer: fine)").matches && !prefersReducedMotion) {
             document.addEventListener('mousemove', (e) => {
                 mouse.targetX = e.clientX;
                 mouse.targetY = e.clientY;
@@ -2547,7 +2548,7 @@
             });
             requestAnimationFrame(animateParticles);
         }
-        requestAnimationFrame(animateParticles);
+        if (!prefersReducedMotion) requestAnimationFrame(animateParticles);
 
         // -------------------------------------------------------------
         // 6. SPLASH SCREEN & LOADER LOGIC
@@ -2586,7 +2587,7 @@
                         canvas.style.zIndex = '1';
                     }
                 }, 1200); // matching splash transition fade time
-            }, 2500);
+            }, prefersReducedMotion ? 0 : 2500);
                 // -------------------------------------------------------------
                 // INTERACTIVE Q&A CONSOLE ENGINE
                 // -------------------------------------------------------------
