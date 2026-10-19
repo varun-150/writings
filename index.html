@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WR — Writings of WazirV | Story Archive</title>
+    <title>WR — Writings of WazirV | Stories beyond the ordinary</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1791,8 +1791,9 @@
 
     </style>
     <link rel="stylesheet" href="wr-ui.css">
+    <link rel="stylesheet" href="wr-continuum.css">
     <meta name="color-scheme" content="dark">
-    <meta name="description" content="Explore the WR story archive: original fiction, mythology, romance, mystery, and interactive cinematic reading experiences.">
+    <meta name="description" content="WR — Writings of WazirV: original stories, immersive reading, and a cinematic archive for fiction, mythology, romance, and memory.">
     <link rel="icon" type="image/png" href="New cover/Logo.png">
     <meta name="theme-color" content="#050608">
 </head>
@@ -1818,59 +1819,54 @@
     <div class="custom-cursor" id="cursor"></div>
     <div class="custom-cursor-ring" id="cursor-ring"></div>
 
-    <header>
-        <div class="brand">
-            <div class="brand-logo-container">
-                <img src="New cover/Logo.png" alt="The Story Vault Logo" class="brand-logo">
-            </div>
-            <div class="brand-text">
-                <p class="brand-title">The Story Vault</p>
-                <div class="subtitle">Some stories I wrote</div>
-            </div>
-        </div>
-        <div class="header-controls">
-            <button id="qa-toggle-btn" class="control-btn">
-                <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                </svg>
-                About This Place
-            </button>
-        </div>
-    </header>
+
+<header class="continuum-header">
+  <a class="brand" href="#home" aria-label="WR — Writings of WazirV home"><span class="brand-logo-container"><img src="New cover/Logo.png" alt="" class="brand-logo" width="64" height="64"></span><span class="brand-text"><span class="brand-title">WR</span><span class="subtitle">Writings of WazirV</span></span></a>
+  <nav class="continuum-nav" aria-label="Main navigation">
+    <a href="#home" data-nav-section="#home" aria-current="page">Home</a><a href="#featured-stories" data-nav-section="#featured-stories">Stories</a><a href="#story-bookshelf" data-nav-section="#story-bookshelf">Archive</a><a href="#intent-field" data-intent-link="create">Studio</a><button id="qa-toggle-btn" type="button" data-nav-section="#archive-guide">About</button>
+  </nav>
+</header>
 
 
 
 
-    <section class="archive-intro" aria-labelledby="archive-headline">
-        <div class="archive-intro-inner">
-            <div>
-                <span class="archive-kicker">WR · Independent story archive</span>
-                <h1 id="archive-headline" class="archive-headline">Worlds made of words.<br><em>Stories that stay.</em></h1>
-                <p class="archive-deck">A personal collection of fiction, feeling, mythology and memory — each story given room to breathe, with a reading experience shaped around its mood.</p>
-            </div>
-            <div class="archive-intro-note"><strong>Written by WR</strong>Original fiction · Interactive reading</div>
-        </div>
-    </section>
+
+<section class="archive-intro continuum-hero" id="home" aria-labelledby="archive-headline">
+  <div class="archive-intro-inner continuum-hero-inner">
+    <div class="continuum-hero-copy"><span class="archive-kicker">WR CONTINUUM · ORIGINAL STORIES</span>
+      <h1 id="archive-headline" class="archive-headline"><span>Stories beyond</span><em>the ordinary.</em></h1>
+      <p class="archive-deck">A growing archive of original fiction shaped by love, mythology, memory and the moments that stay with us. Find a story, enter its world, and read at your own pace.</p>
+      <div class="continuum-hero-actions"><a class="continuum-button continuum-button-primary" href="#featured-stories">Explore Stories <span aria-hidden="true">↗</span></a><button class="continuum-button continuum-button-secondary" type="button" id="enter-studio" data-intent-action="create">Enter Studio <span aria-hidden="true">↗</span></button></div>
+      <div class="continuum-hero-note"><span class="continuum-note-mark" aria-hidden="true"></span><span><strong>Written by WR</strong><small>Original fiction · Cinematic reading</small></span></div>
+    </div>
+    <figure class="continuum-hero-visual"><img src="wr-writer-at-desk.svg" alt="A quiet, cobalt-lit writing room: a writer at a desk beneath a night window, with books and handwritten notes." width="960" height="920" fetchpriority="high"><figcaption><span>THE WRITER'S ROOM</span><span>Ideas become worlds.</span></figcaption></figure>
+  </div>
+</section>
 
     <main class="bookshelf-wrapper" id="archive-main">
 
-        <!-- Continue Reading Bookmark Ribbon -->
-        <div id="reading-bookmark" class="reading-bookmark">
-            <div class="bookmark-tag">Last Read</div>
-            <h4 class="bookmark-title" id="bookmark-title">Almost</h4>
-            <div class="bookmark-chapter" id="bookmark-chapter">Chapter II</div>
-            <div class="bookmark-progress-container">
-                <div class="bookmark-progress-bar" id="bookmark-progress-bar"></div>
-                <span class="bookmark-percent" id="bookmark-percentage">45%</span>
-            </div>
-            <a href="#" class="bookmark-btn" id="bookmark-link">Keep reading</a>
-        </div>
 
-        <!-- Featured Curator Recommendation -->
-        <div class="featured-recommendation">
+<section class="continuum-intent" id="intent-field" aria-labelledby="intent-field-title">
+  <div class="continuum-section-head continuum-intent-head"><div><span class="continuum-eyebrow">WR CONTINUUM / 01</span><h2 id="intent-field-title">Choose your intent.</h2></div><p>One archive. Four ways in.</p></div>
+  <div class="continuum-intent-layout">
+    <div class="continuum-intent-modes" role="group" aria-label="Choose your intent"><button type="button" class="continuum-intent-mode is-active" data-intent="explore" aria-pressed="true">Explore <span>01</span></button><button type="button" class="continuum-intent-mode" data-intent="read" aria-pressed="false">Read <span>02</span></button><button type="button" class="continuum-intent-mode" data-intent="create" aria-pressed="false">Create <span>03</span></button><button type="button" class="continuum-intent-mode" data-intent="refine" aria-pressed="false">Refine <span>04</span></button></div>
+    <div class="continuum-intent-context"><p id="continuum-intent-copy" aria-live="polite">Browse the featured covers, then open the story that catches your eye.</p><button type="button" class="continuum-intent-action" id="continuum-intent-action">Browse featured stories <span aria-hidden="true">↗</span></button></div>
+    <form id="continuum-search-form" class="continuum-search-form" role="search"><label for="continuum-search">Find your thread</label><div class="continuum-search-control"><input id="continuum-search" type="search" placeholder="Title, mood, or theme…" autocomplete="off"><button type="submit" aria-label="Search the story archive">Search <span aria-hidden="true">↗</span></button></div><p>Search the existing archive. Your place stays right where it is.</p></form>
+  </div>
+  <div class="continuum-action-echo" id="continuum-action-echo"><span class="continuum-echo-label"><span aria-hidden="true">●</span> Action Echo</span><p id="continuum-action-message" role="status" aria-live="polite">The archive is ready. Choose an intent, search, or open a story to begin.</p><button type="button" id="continuum-action-undo" hidden>Undo</button></div>
+</section>
+
+
+<div id="reading-bookmark" class="reading-bookmark" role="region" aria-label="Reading continuity">
+  <div class="bookmark-copy"><div class="bookmark-tag">Suggested entry</div><div class="bookmark-story-copy"><h4 class="bookmark-title" id="bookmark-title">The Night Only I Remember</h4><div class="bookmark-chapter" id="bookmark-chapter">Start at the beginning</div></div></div>
+  <div class="bookmark-progress-container" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="bookmark-progress"><div class="bookmark-progress-bar" id="bookmark-progress-bar" style="width:0%"></div><span class="bookmark-percent" id="bookmark-percentage">0%</span></div>
+  <a href="THE%20NIGHT%20ONLY%20I%20REMEMBER.html" class="bookmark-btn" id="bookmark-link">Start reading <span aria-hidden="true">↗</span></a><button type="button" class="bookmark-dismiss" id="bookmark-dismiss" aria-label="Dismiss reading bar">×</button>
+</div>
+
+
+<section class="continuum-featured-section" id="featured-stories" aria-labelledby="continuum-featured-heading">
+  <div class="continuum-section-head continuum-featured-heading"><div><span class="continuum-eyebrow">THE STORY SHELF / 02</span><h2 id="continuum-featured-heading">Worlds worth stepping into.</h2></div><a class="continuum-all-stories" href="#story-bookshelf">All 13 stories <span aria-hidden="true">↗</span></a></div>
+  <div class="featured-recommendation continuum-feature-grid">
             <div class="featured-card">
                 <div class="featured-cover-container">
                     <img src="New cover/Abhinayam.png" alt="Abhinayam Featured Cover">
@@ -1895,7 +1891,14 @@
                     </button>
                 </div>
             </div>
-        </div>
+
+<a class="continuum-feature-card" href="Kali%20-%20The%20Five%20Paths.html" aria-labelledby="continuum-kali-title"><span class="continuum-feature-cover"><img src="New cover/Kali.png" alt="Kali — The Five Paths cover artwork" loading="lazy" width="540" height="720"><span class="continuum-feature-index">02 / FIVE PATHS</span></span><span class="continuum-feature-body"><span class="continuum-feature-kicker">MYTHOLOGY · TRAGEDY</span><span class="continuum-feature-title" id="continuum-kali-title">Kali – The Five Paths</span><span class="continuum-feature-summary">Tragedy and cosmic conflict.</span><span class="continuum-feature-open">Open story <span aria-hidden="true">↗</span></span></span></a>
+<a class="continuum-feature-card" href="THE%20NIGHT%20ONLY%20I%20REMEMBER.html" aria-labelledby="continuum-night-title"><span class="continuum-feature-cover"><img src="New cover/A Quiet Place Inside Me.png" alt="The Night Only I Remember cover artwork" loading="lazy" width="540" height="720"><span class="continuum-feature-index">03 / MEMORY</span></span><span class="continuum-feature-body"><span class="continuum-feature-kicker">MYSTERY · TRAGEDY</span><span class="continuum-feature-title" id="continuum-night-title">The Night Only I Remember</span><span class="continuum-feature-summary">Tragedy and mystery.</span><span class="continuum-feature-open">Open story <span aria-hidden="true">↗</span></span></span></a>
+  </div>
+</section>
+
+
+<section class="continuum-reading-progress" aria-labelledby="continuum-progress-heading"><div class="continuum-progress-copy"><span class="continuum-eyebrow">READING CONTINUITY / 03</span><h2 id="continuum-progress-heading">Your place in the story.</h2><p id="continuum-progress-detail">No saved progress on this device yet. Read any story and your latest position can appear here.</p></div><div class="continuum-progress-state"><strong id="continuum-progress-title">No session saved</strong><div class="continuum-progress-track" id="continuum-progress-meter" role="progressbar" aria-label="Latest saved reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="continuum-progress-fill"></span></div><span class="continuum-progress-number" id="continuum-progress-number">0% saved</span></div><a class="continuum-progress-link" id="continuum-progress-link" href="THE%20NIGHT%20ONLY%20I%20REMEMBER.html">Start a story <span aria-hidden="true">↗</span></a></section>
 
         <!-- Archive Catalog Controls (Filter + Monospace Statistics) -->
         <div class="archive-catalog-controls">
@@ -2963,59 +2966,22 @@
                 }
                 updateStoryCatalog();
 
-                // Check localStorage for reading progress and set Bookmark / Header button
-                const bookmarkEl = document.getElementById('reading-bookmark');
-                const bookmarkTitle = document.getElementById('bookmark-title');
-                const bookmarkChapter = document.getElementById('bookmark-chapter');
-                const bookmarkBar = document.getElementById('bookmark-progress-bar');
-                const bookmarkPercentage = document.getElementById('bookmark-percentage');
-                const bookmarkLink = document.getElementById('bookmark-link');
-
-                let latestProgress = null;
-                for (let i = 0; i < localStorage.length; i++) {
-                    const key = localStorage.key(i);
-                    if (key.startsWith('wr-progress-')) {
-                        try {
-                            const data = JSON.parse(localStorage.getItem(key));
-                            if (!latestProgress || data.timestamp > latestProgress.timestamp) {
-                                latestProgress = data;
-                            }
-                        } catch (e) {
-                            console.error("Failed to parse bookmark data", e);
-                        }
-                    }
-                }
-
-                if (latestProgress && bookmarkEl) {
-                    bookmarkTitle.textContent = latestProgress.title;
-                    bookmarkChapter.textContent = latestProgress.chapter;
-                    bookmarkBar.style.width = `${latestProgress.percentage}%`;
-                    bookmarkPercentage.textContent = `${latestProgress.percentage}%`;
-                    bookmarkLink.href = latestProgress.url;
-
-                    const headerControls = document.querySelector('.header-controls');
-                    if (headerControls) {
-                        const continueBtn = document.createElement('a');
-                        continueBtn.className = "control-btn";
-                        continueBtn.href = latestProgress.url;
-                        continueBtn.style.textDecoration = "none";
-                        continueBtn.style.borderColor = "var(--accent)";
-                        continueBtn.innerHTML = `
-                        <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent);">
-                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
-                        </svg>
-                        Keep reading: ${latestProgress.title} (${latestProgress.percentage}%)
-                    `;
-                        headerControls.insertBefore(continueBtn, headerControls.firstChild);
-                    }
-
-                    setTimeout(() => {
-                        bookmarkEl.classList.add('visible');
-                    }, 1500);
-                } else if (bookmarkEl) {
-                    bookmarkEl.classList.add('hidden');
-                }
+                const bookmarkEl=document.getElementById('reading-bookmark');
+                const bookmarkTitle=document.getElementById('bookmark-title');
+                const bookmarkChapter=document.getElementById('bookmark-chapter');
+                const bookmarkBar=document.getElementById('bookmark-progress-bar');
+                const bookmarkPercentage=document.getElementById('bookmark-percentage');
+                const bookmarkLink=document.getElementById('bookmark-link');
+                const bookmarkProgress=document.getElementById('bookmark-progress');
+                const bookmarkTag=bookmarkEl?bookmarkEl.querySelector('.bookmark-tag'):null;
+                let latestProgress=null,readingStorageAvailable=true;
+                try{for(let i=0;i<localStorage.length;i++){const key=localStorage.key(i);if(!key||!key.startsWith('wr-progress-'))continue;try{const row=JSON.parse(localStorage.getItem(key));if(row&&typeof row.title==='string'&&Number.isFinite(Number(row.timestamp))&&(!latestProgress||Number(row.timestamp)>Number(latestProgress.timestamp)))latestProgress=row}catch(_){}}}catch(_){readingStorageAvailable=false}
+                const progressHref=row=>{try{const u=new URL(row.url,location.href);return u.origin===location.origin&&/\.html$/i.test(u.pathname)?u.href:'THE%20NIGHT%20ONLY%20I%20REMEMBER.html'}catch(_){return 'THE%20NIGHT%20ONLY%20I%20REMEMBER.html'}};
+                let barDismissed=false;try{barDismissed=sessionStorage.getItem('wr-reading-bar-dismissed')==='1'}catch(_){}
+                if(bookmarkEl){const value=latestProgress&&readingStorageAvailable?Math.min(100,Math.max(0,Number(latestProgress.percentage)||0)):0;
+                if(latestProgress&&readingStorageAvailable){bookmarkTitle.textContent=latestProgress.title;bookmarkChapter.textContent=latestProgress.chapter||'Continue where you left off';bookmarkBar.style.width=value+'%';bookmarkPercentage.textContent=value+'%';bookmarkLink.href=progressHref(latestProgress);bookmarkLink.textContent='Continue reading ↗';if(bookmarkTag)bookmarkTag.textContent='Currently reading'}
+                else{bookmarkTitle.textContent='The Night Only I Remember';bookmarkChapter.textContent=readingStorageAvailable?'Start at the beginning':'Reading history unavailable';bookmarkBar.style.width='0%';bookmarkPercentage.textContent='0%';bookmarkLink.href='THE%20NIGHT%20ONLY%20I%20REMEMBER.html';bookmarkLink.textContent='Start reading ↗';if(bookmarkTag)bookmarkTag.textContent=readingStorageAvailable?'Suggested entry':'Ready to read'}
+                if(bookmarkProgress)bookmarkProgress.setAttribute('aria-valuenow',String(value));bookmarkEl.classList.remove('hidden');if(!barDismissed)bookmarkEl.classList.add('visible')}
 
                 // Define global/window helper functions so inline HTML handlers can find them
                 window.selectQuestion = function (id) {
@@ -3186,6 +3152,7 @@
                 });
             });
     </script>
+    <script src="wr-continuum.js" defer></script>
 </body>
 
 </html>
