@@ -1671,6 +1671,124 @@
             color: #060608;
             box-shadow: 0 4px 10px rgba(255, 255, 255, 0.25);
         }
+
+        /* WR archive polish: sharper hierarchy, practical search, accessible motion */
+        .archive-intro {
+            max-width: 1800px;
+            padding: clamp(1rem, 2.5vw, 2rem) 8vw 1rem;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        .archive-intro-inner {
+            border-top: 1px solid rgba(255,255,255,.12);
+            padding-top: clamp(1.5rem, 3vw, 2.6rem);
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: end;
+            gap: 2rem;
+        }
+        .archive-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            color: var(--accent);
+            font: 600 .67rem/1.4 'Inter', sans-serif;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            margin-bottom: .85rem;
+        }
+        .archive-kicker::before { content: ''; width: 26px; height: 1px; background: currentColor; }
+        .archive-headline {
+            color: #f8f6f0;
+            font: 400 clamp(2.2rem, 5.2vw, 5rem)/1.03 'Cinzel', serif;
+            letter-spacing: -.025em;
+            max-width: 850px;
+            text-wrap: balance;
+        }
+        .archive-headline em { color: var(--accent); font-weight: 400; }
+        .archive-deck {
+            max-width: 650px;
+            color: rgba(203,213,225,.76);
+            font: 400 clamp(.95rem, 1.1vw, 1.08rem)/1.8 'Inter', sans-serif;
+            margin-top: 1.1rem;
+        }
+        .archive-intro-note {
+            min-width: 180px;
+            padding: 1rem 1.1rem;
+            border-left: 1px solid rgba(212,175,55,.45);
+            color: rgba(203,213,225,.65);
+            font: 500 .67rem/1.8 'Inter', sans-serif;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        .archive-intro-note strong { display:block; color:#f8f6f0; font:500 1.15rem/1.4 'Cinzel',serif; letter-spacing:.02em; }
+        .catalog-tools {
+            display: grid;
+            grid-template-columns: minmax(240px, 1fr) auto;
+            gap: 1rem;
+            align-items: center;
+            margin: 0 0 2.5rem;
+            position: relative;
+            z-index: 10;
+        }
+        .story-search {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            min-height: 52px;
+            padding: 0 1rem;
+            background: rgba(255,255,255,.025);
+            border: 1px solid rgba(255,255,255,.12);
+            border-radius: 8px;
+            transition: border-color .25s ease, background .25s ease;
+        }
+        .story-search:focus-within { border-color: var(--accent); background: rgba(212,175,55,.045); }
+        .story-search svg { flex: 0 0 18px; width:18px; color:var(--accent); }
+        .story-search input {
+            flex: 1; min-width: 0; background: transparent; border: 0; outline: 0;
+            color: #fff; font: 400 .88rem/1.4 'Inter',sans-serif;
+        }
+        .story-search input::placeholder { color: rgba(203,213,225,.52); }
+        .story-search kbd {
+            border: 1px solid rgba(255,255,255,.12); border-radius:4px; padding:.2rem .4rem;
+            color: rgba(203,213,225,.65); font: .65rem 'Inter',sans-serif;
+        }
+        .catalog-results {
+            color: rgba(203,213,225,.62);
+            font: .7rem 'Inter',sans-serif; letter-spacing:.12em; text-transform:uppercase;
+            white-space: nowrap;
+        }
+        .catalog-results strong { color:#fff; font-weight:600; }
+        .filter-link { border-radius: 3px; }
+        .filter-link:focus-visible, .control-btn:focus-visible, .featured-btn:focus-visible, .begin-btn:focus-visible,
+        .story-search input:focus-visible, .bookmark-btn:focus-visible {
+            outline: 2px solid #f4d477; outline-offset: 4px;
+        }
+        .book-card[hidden] { display:none !important; }
+        .empty-results {
+            grid-column: 1 / -1;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            border: 1px dashed rgba(255,255,255,.16);
+            border-radius: 12px;
+            color: rgba(203,213,225,.7);
+            font: .9rem/1.7 'Inter',sans-serif;
+        }
+        .empty-results strong { display:block; color:#fff; font:1.2rem/1.5 'Cinzel',serif; margin-bottom:.5rem; }
+        @media (max-width: 768px) {
+            .archive-intro { padding: 1rem 6vw; }
+            .archive-intro-inner { grid-template-columns:1fr; gap:1rem; }
+            .archive-intro-note { border-left:0; border-top:1px solid rgba(212,175,55,.3); padding: .8rem 0 0; }
+            .catalog-tools { grid-template-columns:1fr; margin-bottom:1.5rem; }
+            .catalog-results { white-space:normal; }
+            .story-search kbd { display:none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+        }
+
     </style>
 </head>
 
@@ -1718,6 +1836,18 @@
     </header>
 
 
+
+
+    <section class="archive-intro" aria-labelledby="archive-headline">
+        <div class="archive-intro-inner">
+            <div>
+                <span class="archive-kicker">WR · Independent story archive</span>
+                <h2 id="archive-headline" class="archive-headline">Worlds made of words.<br><em>Stories that stay.</em></h2>
+                <p class="archive-deck">A personal collection of fiction, feeling, mythology and memory — each story given room to breathe, with a reading experience shaped around its mood.</p>
+            </div>
+            <div class="archive-intro-note"><strong>Written by WR</strong>Original fiction · Interactive reading</div>
+        </div>
+    </section>
 
     <main class="bookshelf-wrapper">
 
@@ -1802,7 +1932,17 @@
             </div>
         </div>
 
-        <div class="bookshelf">
+
+            <div class="catalog-tools">
+                <label class="story-search" for="story-search-input">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+                    <input id="story-search-input" type="search" placeholder="Find a story by title, mood, or theme…" autocomplete="off" aria-label="Search the story archive">
+                    <kbd>/</kbd>
+                </label>
+                <p class="catalog-results" aria-live="polite"><strong id="visible-story-count">15</strong> stories in the archive</p>
+            </div>
+
+        <div class="bookshelf" id="story-bookshelf">
 
             <!-- Abhinayam -->
             <div class="book-card" data-category="devotion-spiritual"
@@ -2732,34 +2872,78 @@
                     }
                 });
 
-                // Filter Shelf Logic
+                // Unified story search + category filtering. Category values are whitespace-separated tokens.
                 const filterLinks = document.querySelectorAll('.filter-link');
-                const cards = document.querySelectorAll('.book-card');
+                const cards = Array.from(document.querySelectorAll('.book-card'));
+                const storySearch = document.getElementById('story-search-input');
+                const visibleStoryCount = document.getElementById('visible-story-count');
+                const bookshelf = document.getElementById('story-bookshelf');
+                let activeCategory = 'all';
+                let emptyState = null;
+
+                if (bookshelf && !document.getElementById('story-search-empty')) {
+                    emptyState = document.createElement('div');
+                    emptyState.className = 'empty-results';
+                    emptyState.id = 'story-search-empty';
+                    emptyState.hidden = true;
+                    emptyState.innerHTML = '<strong>No stories found.</strong>Try another title, mood, or category.';
+                    bookshelf.appendChild(emptyState);
+                } else {
+                    emptyState = document.getElementById('story-search-empty');
+                }
+
+                function updateStoryCatalog() {
+                    const query = storySearch ? storySearch.value.trim().toLocaleLowerCase() : '';
+                    let visible = 0;
+                    cards.forEach(card => {
+                        const title = card.querySelector('.book-info-footer h3')?.textContent || '';
+                        const description = card.querySelector('.book-info-footer p')?.textContent || '';
+                        const synopsis = card.querySelector('.catalog-synopsis')?.textContent || card.querySelector('.overlay-meta')?.textContent || '';
+                        const mood = card.querySelector('.catalog-line')?.textContent || card.querySelector('.overlay-mood')?.textContent || '';
+                        const categories = (card.getAttribute('data-category') || '').toLocaleLowerCase().split(/\\s+/).filter(Boolean);
+                        const matchesCategory = activeCategory === 'all' || categories.includes(activeCategory);
+                        const searchable = [title, description, synopsis, mood, card.getAttribute('data-category') || ''].join(' ').toLocaleLowerCase();
+                        const matchesQuery = !query || searchable.includes(query);
+                        const matches = matchesCategory && matchesQuery;
+
+                        card.hidden = !matches;
+                        card.classList.toggle('hidden', !matches);
+                        card.setAttribute('aria-hidden', String(!matches));
+                        if (matches) visible++;
+                    });
+                    if (visibleStoryCount) visibleStoryCount.textContent = String(visible);
+                    if (emptyState) emptyState.hidden = visible !== 0;
+                }
+
                 filterLinks.forEach(link => {
+                    link.setAttribute('aria-pressed', String(link.classList.contains('active')));
                     link.addEventListener('click', () => {
-                        filterLinks.forEach(l => l.classList.remove('active'));
-                        link.classList.add('active');
-                        const category = link.getAttribute('data-filter').toLowerCase();
-
-                        cards.forEach(card => {
-                            const cardCat = card.getAttribute('data-category').toLowerCase();
-                            const categories = cardCat.split(/\s+/);
-                            const matches = (category === 'all') || categories.includes(category);
-
-                            if (matches) {
-                                card.style.display = '';
-                                setTimeout(() => {
-                                    card.style.opacity = '1';
-                                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-                                }, 50);
-                            } else {
-                                card.style.opacity = '0';
-                                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(0.95, 0.95, 0.95)';
-                                setTimeout(() => { card.style.display = 'none'; }, 400);
-                            }
+                        filterLinks.forEach(item => {
+                            const active = item === link;
+                            item.classList.toggle('active', active);
+                            item.setAttribute('aria-pressed', String(active));
                         });
+                        activeCategory = (link.getAttribute('data-filter') || 'all').toLocaleLowerCase();
+                        updateStoryCatalog();
                     });
                 });
+
+                if (storySearch) {
+                    storySearch.addEventListener('input', updateStoryCatalog);
+                    document.addEventListener('keydown', event => {
+                        const tag = event.target && event.target.tagName;
+                        const typing = tag === 'INPUT' || tag === 'TEXTAREA' || event.target?.isContentEditable;
+                        if (event.key === '/' && !typing) {
+                            event.preventDefault();
+                            storySearch.focus();
+                        } else if (event.key === 'Escape' && document.activeElement === storySearch) {
+                            storySearch.value = '';
+                            updateStoryCatalog();
+                            storySearch.blur();
+                        }
+                    });
+                }
+                updateStoryCatalog();
 
                 // Check localStorage for reading progress and set Bookmark / Header button
                 const bookmarkEl = document.getElementById('reading-bookmark');
