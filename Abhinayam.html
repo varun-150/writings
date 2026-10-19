@@ -2404,39 +2404,33 @@
                 if (preloaderDismissed) return;
                 preloaderDismissed = true;
                 initLandingAnimations();
-                if (!preloader) return;
-                gsap.to(preloader, {
-                    opacity: 0,
-                    duration: 0.24,
-                    ease: 'power2.out',
-                    onComplete: () => {
-                        preloader.classList.add('loaded');
-                        preloader.style.display = 'none';
-                    }
-                });
+                if (preloader) {
+                    preloader.classList.add('loaded');
+                    preloader.style.display = 'none';
+                }
             }
-            window.setTimeout(hidePreloader, prefersReducedMotion ? 0 : 80);
-            
-            // --------------------------------------------------------
+            hidePreloader();
+
             // 3. LANDING ANIMATIONS
             // --------------------------------------------------------
             function initLandingAnimations() {
                 const supporting = ['#landing-tag', '#landing-subtitle', '#landing-meta', '#begin-btn'];
+                const elements = [...supporting, '#landing-title', '#scroll-hint'];
                 if (prefersReducedMotion) {
-                    gsap.set([...supporting, '#landing-title', '#scroll-hint'], { opacity: 1, y: 0, clearProps: 'transform' });
+                    gsap.set(elements, { opacity: 1, y: 0, clearProps: 'transform' });
                     return;
                 }
-                gsap.set(supporting, { opacity: 0, y: 14 });
-                gsap.set('#scroll-hint', { opacity: 0, y: 0 });
-                gsap.set('#landing-title', { opacity: 1, y: 0 });
+                gsap.set(elements, { opacity: 1, y: 0 });
+                gsap.set(supporting, { y: 14 });
+                gsap.set('#scroll-hint', { y: 8 });
                 const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-                tl.to('#landing-tag', { opacity: 1, y: 0, duration: 0.36 }, 0)
-                  .to('#landing-subtitle', { opacity: 1, y: 0, duration: 0.4 }, 0.05)
-                  .to('#landing-meta', { opacity: 1, y: 0, duration: 0.4 }, 0.1)
-                  .to('#begin-btn', { opacity: 1, y: 0, duration: 0.4 }, 0.15)
-                  .to('#scroll-hint', { opacity: 0.5, duration: 0.45 }, 0.24);
+                tl.to('#landing-tag', { y: 0, duration: 0.36 }, 0)
+                  .to('#landing-subtitle', { y: 0, duration: 0.4 }, 0.05)
+                  .to('#landing-meta', { y: 0, duration: 0.4 }, 0.1)
+                  .to('#begin-btn', { y: 0, duration: 0.4 }, 0.15)
+                  .to('#scroll-hint', { y: 0, duration: 0.45 }, 0.24);
             }
-            
+
             // 4. CURSOR GLOW
             // --------------------------------------------------------
             const cursorGlow = document.getElementById('cursor-glow');
