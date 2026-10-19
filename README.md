@@ -49,6 +49,12 @@ The shared cinematic reading engine remains in:
 
 The interface design decisions are documented in [`design-system/WR-STUDIOS.md`](design-system/WR-STUDIOS.md).
 
+## Account authentication
+
+The login.html page supports email/password sign-up, sign-in, password recovery, sign-out, and persistent sessions through Supabase Auth. The app intentionally does not store plaintext passwords. See AUTH-SETUP.md to configure the Supabase project URL and public client key before using it on the live site. Until those values are configured, the account page will show a setup notice.
+
+**Important:** login currently authenticates visitors; it does not restrict access to the public story archive.
+
 ## Built with
 
 - Semantic HTML5
