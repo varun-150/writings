@@ -1534,3 +1534,47 @@ body:has(.content-wrapper)::before {
   color: var(--wr-paper-100) !important;
 }
 .bookmark-progress-bar { background-color: var(--wr-cobalt-light) !important; }
+
+
+/* Main story cover: cobalt shader spill, with black remaining the canvas. */
+.landing-section {
+  background-color: var(--wr-ink-950) !important;
+  background-image:
+    radial-gradient(ellipse 44% 48% at 70% 30%, rgba(var(--wr-cobalt-rgb), .22) 0%, rgba(var(--wr-cobalt-rgb), .09) 35%, transparent 73%),
+    radial-gradient(ellipse 25% 40% at 20% 84%, rgba(var(--wr-cobalt-light-rgb), .07) 0%, transparent 75%) !important;
+}
+.landing-section::before {
+  background:
+    radial-gradient(ellipse 42% 52% at 72% 28%, rgba(var(--wr-cobalt-light-rgb), .12) 0%, rgba(var(--wr-cobalt-rgb), .05) 34%, transparent 70%) !important;
+  opacity: 1 !important;
+  mix-blend-mode: screen;
+}
+.landing-ambient {
+  background:
+    radial-gradient(ellipse at 55% 50%, rgba(var(--wr-cobalt-rgb), .14), transparent 68%) !important;
+  opacity: .8 !important;
+  filter: blur(18px) saturate(1.1) !important;
+}
+.cover-3d {
+  border-color: rgba(var(--wr-cobalt-light-rgb), .42) !important;
+  box-shadow: 0 22px 64px rgba(0, 0, 0, .48), 0 0 36px rgba(var(--wr-cobalt-rgb), .12) !important;
+}
+.glass-header {
+  background: rgba(5, 6, 8, .88) !important;
+  border-bottom-color: rgba(var(--wr-cobalt-rgb), .22) !important;
+}
+.chapter-watermark { text-shadow: 0 0 30px rgba(var(--wr-cobalt-rgb), .07); }
+
+/* Keep visual surfaces in the black family; use milk white for hierarchy. */
+.archival-stats-card, .qa-container, .qa-display, .story-epilogue,
+.toc-sidebar, .featured-card, .book-card, .dialogue-block {
+  color: var(--wr-paper-200);
+}
+.archival-stats-card, .qa-container, .qa-display, .toc-sidebar {
+  background-color: rgba(9, 11, 16, .82) !important;
+}
+.book-info-footer, .catalog-card-body { background-color: transparent; }
+.archive-deck, .featured-description, .story-search input,
+.book-info-footer p, .catalog-line, .qa-header p {
+  color: var(--wr-paper-300) !important;
+}
