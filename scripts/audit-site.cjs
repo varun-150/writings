@@ -37,6 +37,7 @@ function checkPage(file) {
   const h1s = (markup.match(/<h1\b/gi)||[]).length;
   if (h1s!==1) bad(rel+': expected one static h1, found '+h1s);
   if (!/<a\b[^>]*class\s*=\s*(?:"[^"]*\bskip-link\b[^"]*"|'[^']*\bskip-link\b[^']*')/i.test(markup)) bad(rel+': missing skip link');
+  if (!source.includes('href="wr-ui.css"')) bad(rel+': shared interface stylesheet is missing');
 
   let imgs=0;
   const imgRe=/<img\b[^>]*>/gi;
