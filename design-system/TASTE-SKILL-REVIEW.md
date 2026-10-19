@@ -28,7 +28,7 @@ Section claims:
 - Tighten the archive headline scale and balance for narrow screens.
 - Give category controls larger, clearer touch targets.
 - Replace nested buttons inside link-role story cards with non-interactive visual spans; the card itself remains the single link-like action, now with a story-specific accessible name.
-- Remove the cover-image-gated preloader delay on cinematic story pages. The headline stays visible while secondary detail enters quickly.
+- Remove the cover-image-gated preloader layer on cinematic story pages. The headline and primary action remain visible without depending on JavaScript; supporting details can settle in with a short, non-blocking motion.
 - Remove a second Lenis animation-frame loop from Abhinayam; GSAP's ticker remains the single driver.
 - Replace character-spaced “Midnight Escape” display copy with readable text and a normal description.
 - Expose Midnight Escape's reading progress to assistive technology and keep its value updated.
