@@ -42,6 +42,7 @@ jobs:
       - name: Run full-site browser checks
         run: node scripts/wr-browser-qa.mjs
       - name: Run Taste Skill source lint (diagnostic)
+        if: always()
         continue-on-error: true
         run: |
           node "$RUNNER_TEMP/taste-skill/skills/taste-skill/scripts/lint.mjs" index.html wr-ui.css story-cinematic.css story-cinematic.js --json > .taste-skill-lint.json || true
