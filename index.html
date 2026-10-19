@@ -2900,7 +2900,7 @@
                         const description = card.querySelector('.book-info-footer p')?.textContent || '';
                         const synopsis = card.querySelector('.catalog-synopsis')?.textContent || card.querySelector('.overlay-meta')?.textContent || '';
                         const mood = card.querySelector('.catalog-line')?.textContent || card.querySelector('.overlay-mood')?.textContent || '';
-                        const categories = (card.getAttribute('data-category') || '').toLocaleLowerCase().split(/\\s+/).filter(Boolean);
+                        const categories = (card.getAttribute('data-category') || '').toLocaleLowerCase().split(/\s+/).filter(Boolean);
                         const matchesCategory = activeCategory === 'all' || categories.includes(activeCategory);
                         const searchable = [title, description, synopsis, mood, card.getAttribute('data-category') || ''].join(' ').toLocaleLowerCase();
                         const matchesQuery = !query || searchable.includes(query);
