@@ -1691,3 +1691,14 @@ body:has(.content-wrapper)::before {
   .filter-links { gap:.2rem .4rem !important; }
 }
 @media (prefers-reduced-motion:reduce) { .archive-primary-action, .book-cover-container img { transition:none !important; } }
+
+
+/* Taste Skill: the standalone reader's title is content, never an animation gate. */
+body:has(.content-wrapper) .hero-title,
+body:has(.content-wrapper) .hero-subtitle,
+body:has(.content-wrapper) .hero-divider,
+body:has(.content-wrapper) .hero-scroll {
+  opacity: 1 !important;
+  animation: none !important;
+  transform: none !important;
+}
