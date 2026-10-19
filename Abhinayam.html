@@ -2388,12 +2388,6 @@
                 infinite: false,
             });
 
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-
             // Sync GSAP ScrollTrigger with Lenis
             lenis.on('scroll', ScrollTrigger.update);
             gsap.ticker.add((time) => { lenis.raf(time * 1000); });
@@ -2404,59 +2398,45 @@
             // 2. PRELOADER
             // --------------------------------------------------------
             const preloader = document.getElementById('preloader');
-            const coverImg = document.getElementById('cover-img');
 
+            let preloaderDismissed = false;
             function hidePreloader() {
+                if (preloaderDismissed) return;
+                preloaderDismissed = true;
+                initLandingAnimations();
+                if (!preloader) return;
                 gsap.to(preloader, {
                     opacity: 0,
-                    duration: 1,
+                    duration: 0.24,
                     ease: 'power2.out',
                     onComplete: () => {
                         preloader.classList.add('loaded');
-                        initLandingAnimations();
+                        preloader.style.display = 'none';
                     }
                 });
             }
-
-            // Wait for cover image to load, or timeout after 3s
-            if (coverImg.complete) {
-                setTimeout(hidePreloader, 1200);
-            } else {
-                coverImg.addEventListener('load', () => setTimeout(hidePreloader, 800));
-                setTimeout(hidePreloader, 3000); // fallback
-            }
-
-
+            window.setTimeout(hidePreloader, prefersReducedMotion ? 0 : 80);
+            
             // --------------------------------------------------------
             // 3. LANDING ANIMATIONS
             // --------------------------------------------------------
             function initLandingAnimations() {
+                const supporting = ['#landing-tag', '#landing-subtitle', '#landing-meta', '#begin-btn'];
                 if (prefersReducedMotion) {
-                    // Just show everything immediately
-                    gsap.set(['#landing-tag', '#landing-title', '#landing-subtitle', '#landing-meta', '#begin-btn', '#scroll-hint'], {
-                        opacity: 1
-                    });
+                    gsap.set([...supporting, '#landing-title', '#scroll-hint'], { opacity: 1, y: 0, clearProps: 'transform' });
                     return;
                 }
-
+                gsap.set(supporting, { opacity: 0, y: 14 });
+                gsap.set('#scroll-hint', { opacity: 0, y: 0 });
+                gsap.set('#landing-title', { opacity: 1, y: 0 });
                 const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
-                tl.to('#landing-tag', { opacity: 1, y: 0, duration: 1 }, 0.2)
-                    .fromTo('#landing-title', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.5 }, 0.5)
-                    .to('#landing-subtitle', { opacity: 1, y: 0, duration: 1.2 }, 0.9)
-                    .to('#landing-meta', { opacity: 1, y: 0, duration: 1 }, 1.2)
-                    .to('#begin-btn', { opacity: 1, y: 0, duration: 1 }, 1.5)
-                    .to('#scroll-hint', { opacity: 0.5, duration: 1.5 }, 2);
-
-                // Set initial hidden states
-                gsap.set(['#landing-tag', '#landing-subtitle', '#landing-meta', '#begin-btn'], {
-                    opacity: 0, y: 25
-                });
-                gsap.set('#scroll-hint', { opacity: 0 });
+                tl.to('#landing-tag', { opacity: 1, y: 0, duration: 0.36 }, 0)
+                  .to('#landing-subtitle', { opacity: 1, y: 0, duration: 0.4 }, 0.05)
+                  .to('#landing-meta', { opacity: 1, y: 0, duration: 0.4 }, 0.1)
+                  .to('#begin-btn', { opacity: 1, y: 0, duration: 0.4 }, 0.15)
+                  .to('#scroll-hint', { opacity: 0.5, duration: 0.45 }, 0.24);
             }
-
-
-            // --------------------------------------------------------
+            
             // 4. CURSOR GLOW
             // --------------------------------------------------------
             const cursorGlow = document.getElementById('cursor-glow');
