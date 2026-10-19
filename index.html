@@ -1821,6 +1821,25 @@
     <meta name="description" content="Explore the WR story archive: original fiction, mythology, romance, mystery, and interactive cinematic reading experiences.">
     <link rel="icon" type="image/png" href="New cover/Logo.png">
     <meta name="theme-color" content="#050608">
+    <script>document.documentElement.classList.add('js-enabled');</script>
+    <style>
+        html:not(.js-enabled) #splash-screen,
+        html:not(.js-enabled) #particle-canvas,
+        html:not(.js-enabled) .noise-layer,
+        html:not(.js-enabled) .vignette,
+        html:not(.js-enabled) .filter-links,
+        html:not(.js-enabled) .catalog-tools,
+        html:not(.js-enabled) #reading-bookmark,
+        html:not(.js-enabled) .qa-section,
+        html:not(.js-enabled) .header-controls { display:none !important; }
+        .no-script-note {
+            padding:.8rem 8vw;
+            border-bottom:1px solid rgba(245,242,232,.14);
+            background:#10131a;
+            color:#eae7dd;
+            font:400 .86rem/1.6 Inter,system-ui,sans-serif;
+        }
+    </style>
     <script>
         // Fail-open splash: this tiny guard runs before optional reader libraries.
         // The archive stays readable even if a later script fails to initialize.
@@ -1853,17 +1872,6 @@
     </div>
 
     <noscript>
-        <style>
-            #splash-screen, #particle-canvas, .noise-layer, .vignette { display:none !important; }
-            .filter-links, .catalog-tools, #reading-bookmark, .qa-section, .header-controls { display:none !important; }
-            .no-script-note {
-                padding:.8rem 8vw;
-                border-bottom:1px solid rgba(245,242,232,.14);
-                background:#10131a;
-                color:#eae7dd;
-                font:400 .86rem/1.6 Inter,system-ui,sans-serif;
-            }
-        </style>
         <p class="no-script-note">JavaScript is off. Every story remains available below; search, filters, and saved reading progress require JavaScript.</p>
     </noscript>
 
