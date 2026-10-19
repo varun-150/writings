@@ -1167,3 +1167,34 @@ body:has(.content-wrapper)::before { background: none !important; }
   .header-actions { gap: .4rem !important; }
   .header-title { max-width: 34% !important; }
 }
+
+
+/* Keep the cosmic/mystery chapter palettes slate-neutral rather than purple. */
+body[data-chapter-theme="cosmic"] {
+  --bg-primary: #080a0b;
+  --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #141719 0%, #080a0b 100%);
+  --text-hero: #f0f1ef;
+  --text-primary: #d9dddc;
+  --text-secondary: #89918f;
+  --text-muted: #3b4240;
+  --accent: #c9cfcb;
+  --accent-bright: #e2e6e3;
+  --accent-dim: #737d78;
+  --accent-rgb: 201, 207, 203;
+  --accent-glow: rgba(201, 207, 203, .12);
+  --accent-whisper: rgba(201, 207, 203, .035);
+}
+body[data-chapter-theme="lavender"] {
+  --bg-primary: #090a09;
+  --bg-gradient: radial-gradient(ellipse 80% 60% at 50% 40%, #161715 0%, #090a09 100%);
+  --text-hero: #f2f0ea;
+  --text-primary: #dfddd5;
+  --text-secondary: #99988f;
+  --text-muted: #45453f;
+  --accent: #d0cec4;
+  --accent-bright: #ece9df;
+  --accent-dim: #77766e;
+  --accent-rgb: 208, 206, 196;
+  --accent-glow: rgba(208, 206, 196, .12);
+  --accent-whisper: rgba(208, 206, 196, .035);
+}
